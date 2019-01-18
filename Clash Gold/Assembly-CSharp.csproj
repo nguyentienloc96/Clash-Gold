@@ -54,12 +54,16 @@
      <Compile Include="Assets\_Scripts\App42CallBack\UnityCallBack1.cs" />
      <Compile Include="Assets\_Scripts\App42CallBack\UnityCallBack2.cs" />
      <Compile Include="Assets\_Scripts\App42CallBack\UnityCallBack3.cs" />
+     <Compile Include="Assets\_Scripts\Event\EventDispatcher.cs" />
+     <Compile Include="Assets\_Scripts\Event\EventID.cs" />
+     <Compile Include="Assets\_Scripts\Heroes\Hero.cs" />
+     <Compile Include="Assets\_Scripts\Heroes\Hero_Barbarians.cs" />
      <Compile Include="Assets\_Scripts\JsonController\Ads.cs" />
      <Compile Include="Assets\_Scripts\JsonController\GameConfig.cs" />
      <Compile Include="Assets\_Scripts\JsonController\LoadDataJson.cs" />
      <Compile Include="Assets\_Scripts\JsonController\Purchaser.cs" />
      <Compile Include="Assets\_Scripts\JsonController\SimpleJSON.cs" />
-     <Compile Include="Assets\_Scripts\UIController\ConvertNumber.cs" />
+     <Compile Include="Assets\_Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\EasyUnityAds\Scripts\debug_text.cs" />
      <Compile Include="Assets\EasyUnityAds\Scripts\PlayUnityAd.cs" />
      <Compile Include="Assets\GoogleMobileAds\Api\AdFailedToLoadEventArgs.cs" />

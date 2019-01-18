@@ -18,11 +18,13 @@ public class GameConfig : MonoBehaviour
         Instance = this;
     }
 
-    public long GoldStart;
-    public long DiamondStart;
+    public double GoldStart;
+    public long CoinStart;
 
     public int GoldMinerAmount;
-    public float[] RatioBorn = {1f , 0.5f , 0.3f};
+    public float[] RatioBorn = {1f , 0.7f , 0.3f};
+    public int OwnLand1;
+    public int OwnLand2;
     public float RatioBornAdd;
     public float TimeDestroy;
     public float Timeday;
@@ -38,6 +40,7 @@ public class GameConfig : MonoBehaviour
     public float Ri;
     public float Wi;
     public float BuildTime;
+    public float UpgradeTime;
     public float Hi;
     public float Med;
     public float Lo;
@@ -49,6 +52,7 @@ public class GameConfig : MonoBehaviour
     public int CapWar01;
     public float TimeCanon;
     public float Timecanonsurvive;
+    public List<string> lstSpeech = new List<string>();
 
     public string ID_UnityAds_ios;
     public string ID_Inter_android;
@@ -73,7 +77,6 @@ public class GameConfig : MonoBehaviour
                 if (success)
                 {
                     id = Social.localUser.id;
-                    //Debug.Log(id);
                     StorageService storageService = App42API.BuildStorageService();
                     storageService.FindDocumentByKeyValue("Db", "Data", "id", id, new UnityCallBack1());
                 }

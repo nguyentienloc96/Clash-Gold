@@ -1,19 +1,21 @@
 {
   "GoldStart" : 12000,
-  "DiamondStart" : 10,
+  "CoinStart" : 10,
   "GoldMinerAmount" : 20,
   "RatioBorn" : [
     1,
-    0.5,
+    0.7,
     0.3
     ],
-  "RatioBornAdd" : 0.01,
+  "OwnLand1" : 6,
+  "OwnLand2" : 9,
+  "RatioBornAdd" : 0.02,
   "TimeDestroy" : 60,
-  "Timeday" : 2,
+  "Timeday" : 10,
   "TimeAd" : 180,
   "Rgold" : 5,
   "CapGold0" : 100,
-  "CapGoldUp" : 1.1,
+  "CapGoldUp" : 1.5,
   "PriceGoldUp" : 20,
   "Bloodlv0" : 12000,
   "Bloodratio" : 1.3,
@@ -21,7 +23,8 @@
   "PriceBloodUp" : 1.4,
   "Ri" : 3,
   "Wi" : 1.1,
-  "BuildTime" : 15,
+  "BuildTime" : 25,
+  "UpgradeTime" : 10,
   "Hi" : 5,
   "Med" : 4,
   "Lo" : 3,
@@ -41,5 +44,10 @@
   "kProductID300" : "consumable",
   "kProductID5000": "consumable",
   "link_ios" : "",
-  "string_Share" : ""
+  "string_Share" : "",
+  "speech": {
+  "warning1" : "",
+  "warning2" : "",
+  "warning3" : ""
+  }
 }

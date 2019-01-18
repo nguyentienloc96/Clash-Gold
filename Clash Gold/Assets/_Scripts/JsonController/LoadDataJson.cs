@@ -43,13 +43,15 @@ public class LoadDataJson : MonoBehaviour
         Debug.Log("<color=yellow>Done: </color>LoadGameConfig !");
         if (objJson != null)
         {
-            GameConfig.Instance.GoldStart = objJson["GoldStart"].AsLong;
-            GameConfig.Instance.DiamondStart = objJson["DiamondStart"].AsLong;
+            GameConfig.Instance.GoldStart = objJson["GoldStart"].AsDouble;
+            GameConfig.Instance.CoinStart = objJson["CoinStart"].AsLong;
             GameConfig.Instance.GoldMinerAmount = objJson["GoldMinerAmount"].AsInt;
             for (int i = 0; i < GameConfig.Instance.RatioBorn.Length; i++)
             {
                 GameConfig.Instance.RatioBorn[i] = objJson["RatioBorn"][i].AsFloat;
             }
+            GameConfig.Instance.OwnLand1 = objJson["OwnLand1"].AsInt;
+            GameConfig.Instance.OwnLand2 = objJson["OwnLand2"].AsInt;
             GameConfig.Instance.RatioBornAdd = objJson["RatioBornAdd"].AsFloat;
             GameConfig.Instance.TimeDestroy = objJson["TimeDestroy"].AsFloat;
             GameConfig.Instance.Timeday = objJson["Timeday"].AsFloat;
@@ -65,6 +67,7 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.Ri = objJson["Ri"].AsFloat;
             GameConfig.Instance.Wi = objJson["Wi"].AsFloat;
             GameConfig.Instance.BuildTime = objJson["BuildTime"].AsFloat;
+            GameConfig.Instance.UpgradeTime = objJson["UpgradeTime"].AsFloat;
             GameConfig.Instance.Hi = objJson["Hi"].AsFloat;
             GameConfig.Instance.Med = objJson["Med"].AsFloat;
             GameConfig.Instance.Lo = objJson["Lo"].AsFloat;
@@ -76,7 +79,6 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.CapWar01 = objJson["CapWar01"].AsInt;
             GameConfig.Instance.TimeCanon = objJson["TimeCanon"].AsFloat;
             GameConfig.Instance.Timecanonsurvive = objJson["Timecanonsurvive"].AsFloat;
-
             GameConfig.Instance.ID_UnityAds_ios = objJson["ID_UnityAds_ios"];
             GameConfig.Instance.ID_Inter_android = objJson["ID_Inter_android"];
             GameConfig.Instance.ID_Inter_ios = objJson["ID_Inter_ios"];
@@ -86,6 +88,10 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.kProductID5000 = objJson["kProductID5000"];
             GameConfig.Instance.link_ios = objJson["link_ios"];
             GameConfig.Instance.string_Share = objJson["string_Share"];
+            for (int j = 0; j < objJson["speech"].Count; j++)
+            {
+                GameConfig.Instance.lstSpeech.Add(objJson["speech"][j]);
+            }
         }
     }
 
