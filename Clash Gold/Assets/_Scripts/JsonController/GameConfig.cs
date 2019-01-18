@@ -45,9 +45,11 @@ public class GameConfig : MonoBehaviour
     public float Med;
     public float Lo;
     public float health1;
+    public float UnitRange;
     public float dam1;
     public float hitspeed1;
-    public float speed1;
+    public float speed_medium;
+    public float speed_hard;
     public long Price01;
     public int CapWar01;
     public float TimeCanon;

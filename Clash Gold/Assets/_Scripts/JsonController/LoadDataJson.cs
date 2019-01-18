@@ -73,8 +73,10 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.Lo = objJson["Lo"].AsFloat;
             GameConfig.Instance.health1 = objJson["health1"].AsFloat;
             GameConfig.Instance.dam1 = objJson["dam1"].AsFloat;
+            GameConfig.Instance.UnitRange = objJson["UnitRange"].AsFloat;
             GameConfig.Instance.hitspeed1 = objJson["hitspeed1"].AsFloat;
-            GameConfig.Instance.speed1 = objJson["speed1"].AsFloat;
+            GameConfig.Instance.speed_medium = objJson["speed_medium"].AsFloat;
+            GameConfig.Instance.speed_hard = objJson["speed_hard"].AsFloat;
             GameConfig.Instance.Price01 = objJson["Price01"].AsLong;
             GameConfig.Instance.CapWar01 = objJson["CapWar01"].AsInt;
             GameConfig.Instance.TimeCanon = objJson["TimeCanon"].AsFloat;

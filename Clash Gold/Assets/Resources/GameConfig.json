@@ -30,8 +30,10 @@
   "Lo" : 3,
   "health1" : 636,
   "dam1" : 159,
+  "UnitRange" : 1,
   "hitspeed1" : 1.4,
-  "speed1" : 1,
+  "speed_medium" : 5,
+  "speed_hard" : 10,
   "Price01": 5000,
   "CapWar01" : 40,
   "TimeCanon" : 10,
@@ -49,5 +51,43 @@
   "warning1" : "",
   "warning2" : "",
   "warning3" : ""
+  },
+  "heroes" : {
+	"Barbarians" : {
+		"id" : 1,
+		"health1" : 636,
+		"dam1" : 159,
+		"hitspeed1" : 1.4,
+		"speed1" : 5,
+		"Price01" : 5000,
+		"CapWar01" : 40,
+		"range" : 0,
+		"isMum" : false,
+		"type" : 1
+	},
+	"The Wing Trio" : {
+		"id" : 2,
+		"health1" : 190,
+		"dam1" : 84,
+		"hitspeed1" : 1,
+		"speed1" : 10,
+		"Price01" : 5000,
+		"CapWar01" : 30,
+		"range" : 0,
+		"isMum" : false,
+		"type" : 2
+	},
+	"Deadly MOM" : {
+		"id" : 3,
+		"health1" : 787,
+		"dam1" : 69,
+		"hitspeed1" : 1,
+		"speed1" : 5,
+		"Price01" : 5000,
+		"CapWar01" : 10,
+		"range" : 5,
+		"isMum" : true,
+		"type" : 3
+	}
   }
 }

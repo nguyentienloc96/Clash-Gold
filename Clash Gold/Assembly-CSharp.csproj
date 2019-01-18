@@ -58,6 +58,7 @@
      <Compile Include="Assets\_Scripts\Event\EventID.cs" />
      <Compile Include="Assets\_Scripts\Heroes\Hero.cs" />
      <Compile Include="Assets\_Scripts\Heroes\Hero_Barbarians.cs" />
+     <Compile Include="Assets\_Scripts\Heroes\InfoHero.cs" />
      <Compile Include="Assets\_Scripts\JsonController\Ads.cs" />
      <Compile Include="Assets\_Scripts\JsonController\GameConfig.cs" />
      <Compile Include="Assets\_Scripts\JsonController\LoadDataJson.cs" />

@@ -4,12 +4,7 @@ using UnityEngine;
 
 public abstract class Hero
 {
-    public float health;
-    public float dame;
-    public float hitSpeed;
-    public float speed;
-    public float price;
-    public float capWar;
+    public InfoHero info;
 	// Use this for initialization
 	void Start () {
 		
