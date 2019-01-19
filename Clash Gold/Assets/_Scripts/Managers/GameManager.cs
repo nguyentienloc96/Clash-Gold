@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
     public static GameManager Instance = new GameManager();
     void Awake()
     {
@@ -12,16 +13,22 @@ public class GameManager : MonoBehaviour {
         }
         Instance = this;
     }
+
+    [Header("List Hero")]
+    public List<Hero> lstHero = new List<Hero>();
+
     [Header("Info Player")]
     public double gold;
     public long coin;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }

@@ -55,6 +55,7 @@ public class GameConfig : MonoBehaviour
     public float TimeCanon;
     public float Timecanonsurvive;
     public List<string> lstSpeech = new List<string>();
+    public List<InfoHero> lstHero = new List<InfoHero>();
 
     public string ID_UnityAds_ios;
     public string ID_Inter_android;

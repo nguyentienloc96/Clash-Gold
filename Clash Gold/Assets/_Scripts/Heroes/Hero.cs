@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Hero
+public abstract class Hero : MonoBehaviour
 {
-    public InfoHero info;
+    public InfoHero infoHero = new InfoHero();
 	// Use this for initialization
 	void Start () {
 		
@@ -14,6 +14,8 @@ public abstract class Hero
 	void Update () {
 		
 	}
+
+    public abstract void SetInfoHero();
 
     public abstract void MoveToPosition(Vector2 _toPos);
 

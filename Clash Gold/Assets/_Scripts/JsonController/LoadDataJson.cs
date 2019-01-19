@@ -94,6 +94,18 @@ public class LoadDataJson : MonoBehaviour
             {
                 GameConfig.Instance.lstSpeech.Add(objJson["speech"][j]);
             }
+            //for (int t = 0; t < objJson["heroes"].Count; t++)
+            //{
+            //    InfoHero _info = new InfoHero();
+            //    _info.ID = objJson["heroes"][t]["id"].AsInt;
+            //    _info.health = objJson["heroes"][t]["health1"].AsFloat;
+            //    _info.dame = objJson["heroes"][t]["dam1"].AsFloat;
+            //    _info.hitSpeed = objJson["heroes"][t]["hitspeed1"].AsFloat;
+            //    _info.range = objJson["heroes"][t]["range"].AsFloat;
+            //    _info.speed = objJson["heroes"][t]["speed1"].AsFloat;
+            //    _info.price = objJson["heroes"][t]["Price01"].AsInt;
+            //}
+
         }
     }
 

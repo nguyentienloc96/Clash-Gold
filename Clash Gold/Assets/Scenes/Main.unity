@@ -194,41 +194,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1905405937
+--- !u!1 &1180428347
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 1905405940}
-  - component: {fileID: 1905405939}
-  - component: {fileID: 1905405938}
+  - component: {fileID: 1180428349}
+  - component: {fileID: 1180428348}
   m_Layer: 0
-  m_Name: LoadDataJson
+  m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1905405938
+--- !u!114 &1180428348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1905405937}
+  m_GameObject: {fileID: 1180428347}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb07c527d2a67e54c9f3c4dec6c3b6ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   GoldStart: 0
-  DiamondStart: 0
+  CoinStart: 0
   GoldMinerAmount: 0
   RatioBorn:
   - 1
-  - 0.5
+  - 0.7
   - 0.3
+  OwnLand1: 0
+  OwnLand2: 0
   RatioBornAdd: 0
   TimeDestroy: 0
   Timeday: 0
@@ -244,17 +245,21 @@ MonoBehaviour:
   Ri: 0
   Wi: 0
   BuildTime: 0
+  UpgradeTime: 0
   Hi: 0
   Med: 0
   Lo: 0
   health1: 0
+  UnitRange: 0
   dam1: 0
   hitspeed1: 0
-  speed1: 0
+  speed_medium: 0
+  speed_hard: 0
   Price01: 0
   CapWar01: 0
   TimeCanon: 0
   Timecanonsurvive: 0
+  lstSpeech: []
   ID_UnityAds_ios: 
   ID_Inter_android: 
   ID_Inter_ios: 
@@ -264,6 +269,75 @@ MonoBehaviour:
   kProductID50: consumable
   kProductID300: consumable
   kProductID5000: consumable
+--- !u!4 &1180428349
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1180428347}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1460069070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1460069072}
+  - component: {fileID: 1460069071}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1460069071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460069070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfc8d067aa6b8fd4aaa2a324e8be0ebc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1460069072
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1460069070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1905405937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1905405940}
+  - component: {fileID: 1905405939}
+  m_Layer: 0
+  m_Name: LoadDataJson
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!114 &1905405939
 MonoBehaviour:
   m_ObjectHideFlags: 0
