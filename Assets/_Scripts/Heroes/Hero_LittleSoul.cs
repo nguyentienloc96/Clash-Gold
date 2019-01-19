@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_Barbarians : Hero
-{
+public class Hero_LittleSoul : Hero {
     public override void Attack()
     {
 
@@ -30,20 +29,20 @@ public class Hero_Barbarians : Hero
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 1;
-        this.infoHero.health = 636;
-        this.infoHero.dame = 159;
-        this.infoHero.hitSpeed = 1.4f;
-        this.infoHero.speed = 5;
-        this.infoHero.price = 5000;
-        this.infoHero.capWar = 40 * GameConfig.Instance.Lo;
+        this.infoHero.ID = 6;
+        this.infoHero.health = 67;
+        this.infoHero.dame = 67;
+        this.infoHero.hitSpeed = 1.1f;
+        this.infoHero.speed = 10;
+        this.infoHero.price = 0;
+        this.infoHero.capWar = 0;
         this.infoHero.range = 0;
         this.infoHero.counterDame = 0;
         this.infoHero.isMum = false;
-        this.infoHero.isBaby = false;
+        this.infoHero.isBaby = true;
         this.infoHero.idBaby = 0;
-        this.infoHero.idMom = 0;
-        this.infoHero.typeHero = TypeHero.ChemThuong;
+        this.infoHero.idMom = 5;
+        this.infoHero.typeHero = TypeHero.ChemBay;
 
     }
 
@@ -53,10 +52,9 @@ public class Hero_Barbarians : Hero
         SetInfoHero();
         //Debug.Log(this.infoHero);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
 }
