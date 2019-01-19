@@ -31,7 +31,7 @@ public class LoadDataJson : MonoBehaviour
             Ads.Instance.ShowBanner();
         }   
 #if UNITY_ADS
-        Advertisement.Initialize(GameConfig.Instance.idUnityAds_ios, true);
+        Advertisement.Initialize(GameConfig.Instance.ID_UnityAds_ios, true);
 #endif
         Purchaser.Instance.Init();
     }
