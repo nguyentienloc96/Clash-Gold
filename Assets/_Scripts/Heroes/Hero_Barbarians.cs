@@ -18,6 +18,16 @@ public class Hero_Barbarians : Hero
         throw new System.NotImplementedException();
     }
 
+    public override void CheckEnemy()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void BeingAttacked(int _dame)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public override void SetInfoHero()
     {
         this.infoHero.ID = 1;
