@@ -631,12 +631,16 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 08b2a206-400a-4f93-9171-3e068923130d
+  cloudProjectId: fa05fdae-c32f-4f45-aced-847f6123ad5b
   projectName: Clash Gold
-  organizationId: supergun512
+  organizationId: nguenloc271096
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
