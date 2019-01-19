@@ -3,11 +3,12 @@
 /[Oo]bj/
 /[Bb]uild/
 /[Bb]uilds/
+/[Pp]rojectSettings/
 /Assets/AssetStoreTools*
 !/Assets/Demigiant/*
 !/Assets/UnityAds/*
 !/Assets/Plugins/*
-!*.dll
+
 # Visual Studio 2015 cache directory
 /.vs/
 
