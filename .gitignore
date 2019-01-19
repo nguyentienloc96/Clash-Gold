@@ -7,7 +7,7 @@
 !/Assets/Demigiant/*
 !/Assets/UnityAds/*
 !/Assets/Plugins/*
-
+!*.dll
 # Visual Studio 2015 cache directory
 /.vs/
 
