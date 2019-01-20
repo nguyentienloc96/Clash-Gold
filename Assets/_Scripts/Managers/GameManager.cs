@@ -14,9 +14,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    [Header("List Hero")]
-    public List<Hero> lstHero = new List<Hero>();
-
     [Header("Info Player")]
     public double gold;
     public long coin;
