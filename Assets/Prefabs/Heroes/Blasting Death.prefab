@@ -118,8 +118,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4936982340760612}
   - component: {fileID: 95000562081363902}
+  - component: {fileID: 114061283358277362}
   m_Layer: 0
-  m_Name: Twisting axe 1
+  m_Name: Blasting Death
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,6 +240,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114061283358277362
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1990582347850294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7a0ea3e44386d14f85432f774b33ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198208810726835412
 ParticleSystem:
   m_ObjectHideFlags: 1

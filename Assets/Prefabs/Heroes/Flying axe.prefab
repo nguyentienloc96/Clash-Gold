@@ -85,8 +85,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4182719690836306}
   - component: {fileID: 95437779030835234}
+  - component: {fileID: 114123254830182618}
   m_Layer: 0
-  m_Name: Flying axe
+  m_Name: Flying Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -239,6 +240,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114123254830182618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1420002386631098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b7c274d23f8e54889a78aaa820b3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198595465158617760
 ParticleSystem:
   m_ObjectHideFlags: 1
