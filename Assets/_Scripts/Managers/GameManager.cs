@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("DateTime")]
     public DateTime dateGame;
     public DateTime dateStartPlay;
-    public List<Text> listDate;
+    public Text txtDate;
     private float time;
     #endregion
 
@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [Header("Info Player")]
     public double gold;
     public long coin;
+    public int goldMount;
     
     void Start()
     {
@@ -38,15 +39,15 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //time += Time.deltaTime;
-        //if (time >= GameConfig.Instance.Timeday)
-        //{
-        //    int month = dateGame.Month;
-        //    int year = dateGame.Year;
-        //    dateGame = dateGame.AddDays(1f);
-        //    SetDate();
-        //    time = 0;
-        //}
+        time += Time.deltaTime;
+        if (time >= GameConfig.Instance.Timeday)
+        {
+            int month = dateGame.Month;
+            int year = dateGame.Year;
+            dateGame = dateGame.AddDays(1f);
+            SetDate();
+            time = 0;
+        }
     }
 
     public void LoadDate()
@@ -57,13 +58,6 @@ public class GameManager : MonoBehaviour
 
     public void SetDate()
     {
-        string dayString = dateGame.Day.ToString("00");
-        listDate[0].text = dayString;
-
-        string monthString = dateGame.Month.ToString("00");
-        listDate[1].text = monthString;
-
-        string yearString = dateGame.Year.ToString("0000");
-        listDate[2].text = yearString;
+        txtDate.text = "Date: " + dateGame.Day.ToString("00") + "/" + dateGame.Month.ToString("00") + "/" + dateGame.Year.ToString("0000");
     }
 }

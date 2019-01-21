@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 95437779030835234}
   - component: {fileID: 114123254830182618}
   m_Layer: 0
-  m_Name: Flying Axe
+  m_Name: Flying axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 95506553080259480}
   - component: {fileID: 114390210070759204}
   m_Layer: 0
-  m_Name: Twisting Axe
+  m_Name: Twisting axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
