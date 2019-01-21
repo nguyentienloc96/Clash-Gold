@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_FireShield : Hero {
+public class Hero_Reflector : Hero {
     public override void Attack()
     {
 
