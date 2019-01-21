@@ -46,6 +46,7 @@
   "kProductID300" : "consumable",
   "kProductID5000": "consumable",
   "link_ios" : "",
+  "link_android" : "",
   "string_Share" : "",
   "speech": {
   "warning1" : "",

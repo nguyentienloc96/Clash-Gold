@@ -89,6 +89,7 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.kProductID300 = objJson["kProductID300"];
             GameConfig.Instance.kProductID5000 = objJson["kProductID5000"];
             GameConfig.Instance.link_ios = objJson["link_ios"];
+            GameConfig.Instance.link_android = objJson["link_android"];
             GameConfig.Instance.string_Share = objJson["string_Share"];
             for (int j = 0; j < objJson["speech"].Count; j++)
             {
