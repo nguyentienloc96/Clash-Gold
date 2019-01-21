@@ -70,7 +70,11 @@ GameObject:
   - component: {fileID: 198517765787933910}
   - component: {fileID: 199252080761092588}
   m_Layer: 0
+<<<<<<< HEAD
   m_Name: Par Die
+=======
+  m_Name: Flying axe
+>>>>>>> d8385e20f9aa71dafe1e7600af4c0308ccaf34d9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

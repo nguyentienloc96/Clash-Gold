@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[System.Serializable]
 public abstract class Hero : MonoBehaviour
 {
     public InfoHero infoHero = new InfoHero();
+    public Animator animator;
+    public bool isRelease;
     
 	// Use this for initialization
 	void Start () {
