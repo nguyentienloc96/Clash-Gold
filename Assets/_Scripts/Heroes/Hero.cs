@@ -2,12 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Action
+{
+    IDLE,
+    RUN,
+    ATTACK,
+    DIE
+}
 
 [System.Serializable]
 public abstract class Hero : MonoBehaviour
 {
     public InfoHero infoHero = new InfoHero();
     public Animator animator;
+    public Action action;
     public bool isRelease;
     
 	// Use this for initialization
