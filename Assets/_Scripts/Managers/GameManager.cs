@@ -14,7 +14,17 @@ public class GameManager : MonoBehaviour
     public DateTime dateStartPlay;
     public Text txtDate;
     private float time;
-    #endregion
+    #endregion    
+
+    [Header("INFO PLAYER")]
+    public double gold;
+    public long coin;
+    public int goldMount;
+    public Castle castlePlayer;
+    public List<GoldMine> lstGoldMinePlayer;
+
+    [Header("INFO ENEMY")]
+    public List<GoldMine> lstGoldMineEnemy;
 
     void Awake()
     {
@@ -26,11 +36,6 @@ public class GameManager : MonoBehaviour
         LoadDate();
     }
 
-    [Header("Info Player")]
-    public double gold;
-    public long coin;
-    public int goldMount;
-    
     void Start()
     {
 
@@ -50,6 +55,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region === DATE GAME ===
     public void LoadDate()
     {
         dateGame = DateTime.Now;
@@ -60,4 +66,5 @@ public class GameManager : MonoBehaviour
     {
         txtDate.text = "Date: " + dateGame.Day.ToString("00") + "/" + dateGame.Month.ToString("00") + "/" + dateGame.Year.ToString("0000");
     }
+    #endregion
 }
