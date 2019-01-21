@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Action
+public enum TypeAction
 {
     IDLE,
     RUN,
@@ -15,7 +15,7 @@ public abstract class Hero : MonoBehaviour
 {
     public InfoHero infoHero = new InfoHero();
     public Animator animator;
-    public Action action;
+    public TypeAction typeAction;
     public bool isRelease;
     
 	// Use this for initialization
