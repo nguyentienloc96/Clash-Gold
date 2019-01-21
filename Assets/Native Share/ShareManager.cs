@@ -9,15 +9,15 @@ using System;
 
 public class ShareManager : MonoBehaviour {
 
-     public static ShareManager Instance;
+    public static ShareManager Instance;
 
-    private void Awake()
+    void Awake()
     {
         if (Instance != null)
             return;
         Instance = this;
     }
-	public string ScreenshotName = "screenshot.png";
+    public string ScreenshotName = "screenshot.png";
 
     public void shareText(string text)
     {
@@ -29,7 +29,7 @@ public class ShareManager : MonoBehaviour {
         string screenShotPath = Application.persistentDataPath + "/" + ScreenshotName;
         if(File.Exists(screenShotPath)) File.Delete(screenShotPath);
 
-        ScreenCapture.CaptureScreenshot(ScreenshotName);
+        //ScreenCapture.CaptureScreenshot(ScreenshotName);
 
         StartCoroutine(delayedShare(screenShotPath, text));
     }

@@ -62,6 +62,7 @@ public class GameConfig : MonoBehaviour
     public string ID_Inter_ios;
     public string ID_Banner_ios;
     public string link_ios;
+    public string link_android;
     public string string_Share;
     public string kProductID50 = "consumable";
     public string kProductID300 = "consumable";
