@@ -61,33 +61,6 @@ public class Hero_DrunkenBomber : Hero {
     public void Update()
     {
         AnimtionUpdate();
-
-        TestAnim();
-    }
-
-    public void TestAnim()
-    {
-
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            Debug.Log("J");
-            AnimAttack();
-        }
-        else if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("P");
-            AnimDie();
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            Debug.Log("A");
-            AnimRun();
-        }
-        else
-        {
-            AnimIdle();
-        }
-
     }
 
     public void AnimtionUpdate()
