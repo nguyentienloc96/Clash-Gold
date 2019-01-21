@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_Barbarians : Hero
+public class Hero_TheFuriousQuartet : Hero
 {
     public override void Attack()
     {

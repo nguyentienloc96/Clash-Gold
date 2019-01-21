@@ -20,6 +20,7 @@ public abstract class Hero : MonoBehaviour
     public int numAttack;
     public bool isFly;
     public bool isCannon;
+    public bool isHero;
     public bool isRelease;
     
 	// Use this for initialization

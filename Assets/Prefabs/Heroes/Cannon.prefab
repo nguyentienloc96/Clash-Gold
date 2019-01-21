@@ -257,6 +257,7 @@ MonoBehaviour:
   numAttack: 6
   isFly: 0
   isCannon: 1
+  isHero: 1
   isRelease: 0
   timeSurvive: 0
 --- !u!198 &198562650876575022

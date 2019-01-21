@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_FlyingMage : Hero {
+public class Hero_BalloonKing : Hero {
     public override void Attack()
     {
 

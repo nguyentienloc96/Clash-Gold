@@ -257,6 +257,7 @@ MonoBehaviour:
   numAttack: 2
   isFly: 0
   isCannon: 0
+  isHero: 1
   isRelease: 0
   spreadDame: 0
 --- !u!198 &198426528349560212

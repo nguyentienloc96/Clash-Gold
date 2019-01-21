@@ -257,6 +257,7 @@ MonoBehaviour:
   numAttack: 4
   isFly: 1
   isCannon: 0
+  isHero: 1
   isRelease: 0
 --- !u!198 &198365696389997534
 ParticleSystem:
