@@ -251,6 +251,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf887fcb0c928bc408311a6bec50ae17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 95441973544456962}
+  typeAction: 0
+  numRun: 3
+  numAttack: 3
+  isFly: 1
+  isCannon: 0
+  isRelease: 0
 --- !u!198 &198255232856437180
 ParticleSystem:
   m_ObjectHideFlags: 1

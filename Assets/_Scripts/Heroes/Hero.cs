@@ -16,6 +16,10 @@ public abstract class Hero : MonoBehaviour
     public InfoHero infoHero = new InfoHero();
     public Animator animator;
     public TypeAction typeAction;
+    public int numRun;
+    public int numAttack;
+    public bool isFly;
+    public bool isCannon;
     public bool isRelease;
     
 	// Use this for initialization
