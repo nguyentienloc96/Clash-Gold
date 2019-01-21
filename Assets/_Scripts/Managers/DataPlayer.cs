@@ -23,3 +23,9 @@ public class DataPlayer : MonoBehaviour {
 		
 	}
 }
+
+public struct BuildHouse
+{
+    public int ID;
+    public bool isUnlock;
+}

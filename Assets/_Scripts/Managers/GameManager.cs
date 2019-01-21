@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public int goldMount;
     public Castle castlePlayer;
     public List<GoldMine> lstGoldMinePlayer;
+    public List<BuildHouse> lstBuildHouse;
 
     [Header("INFO ENEMY")]
     public List<GoldMine> lstGoldMineEnemy;

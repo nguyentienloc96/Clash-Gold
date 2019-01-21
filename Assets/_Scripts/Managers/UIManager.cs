@@ -13,6 +13,11 @@ public class UIManager : MonoBehaviour {
     public Text txtCoin;
     public Text txtGoldMount;
 
+    [Header("IN-WALL")]
+    public GameObject panelInWall;
+    public GameObject panelBuild;
+    public List<GameObject> lstHouse;
+
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
@@ -117,5 +122,18 @@ public class UIManager : MonoBehaviour {
     #endregion
 
     #region === UI IN-WALL ===
+    public void ShowInWall()
+    {
+        panelInWall.SetActive(true);
+    }
+
+    public void ShowPanelBuild()
+    {
+        panelBuild.SetActive(true);
+        //for (int i = 0; i < lstHouse.Count; i++)
+        //{
+            
+        //}
+    }
     #endregion
 }

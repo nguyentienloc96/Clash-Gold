@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 95696936289474506}
   - component: {fileID: 114683303628875534}
   m_Layer: 0
-  m_Name: Flying Axe
+  m_Name: Flying axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -253,11 +253,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 95696936289474506}
   typeAction: 0
-  numRun: 3
-  numAttack: 5
-  isFly: 1
+  numRun: 0
+  numAttack: 0
+  isFly: 0
   isCannon: 0
-  isHero: 1
+  isHero: 0
   isRelease: 0
 --- !u!198 &198472477130599040
 ParticleSystem:

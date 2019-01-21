@@ -26,7 +26,7 @@ public class Castle : MonoBehaviour
     void OnMouseUp()
     {
         if (!IsPointerOverGameObject())
-            Debug.Log("a");
+            UIManager.Instance.ShowInWall();
     }
 
     public static bool IsPointerOverGameObject()
