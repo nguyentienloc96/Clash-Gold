@@ -5,6 +5,7 @@ using UnityEngine;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 
+[RequireComponent(typeof(LoadDataJson))]
 public class GameConfig : MonoBehaviour
 {
     public static GameConfig Instance;

@@ -22,16 +22,6 @@ public abstract class Hero : MonoBehaviour
     public bool isCannon;
     public bool isHero;
     public bool isRelease;
-    
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public abstract void SetInfoHero();
 

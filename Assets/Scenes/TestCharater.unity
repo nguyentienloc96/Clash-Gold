@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &457467075
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4175850395140876, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1090152412
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +166,8 @@ GameObject:
   - component: {fileID: 1090152415}
   - component: {fileID: 1090152414}
   - component: {fileID: 1090152413}
+  - component: {fileID: 1090152418}
+  - component: {fileID: 1090152417}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -194,3 +238,74 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1090152417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1090152412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0defe4ac6bfa1741b65344705c4a7ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1090152418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1090152412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb07c527d2a67e54c9f3c4dec6c3b6ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoldStart: 0
+  CoinStart: 0
+  GoldMinerAmount: 0
+  RatioBorn:
+  - 1
+  - 0.7
+  - 0.3
+  OwnLand1: 0
+  OwnLand2: 0
+  RatioBornAdd: 0
+  TimeDestroy: 0
+  Timeday: 0
+  TimeAd: 0
+  Rgold: 0
+  CapGold0: 0
+  CapGoldUp: 0
+  PriceGoldUp: 0
+  Bloodlv0: 0
+  Bloodratio: 0
+  PriceBlood0: 0
+  PriceBloodUp: 0
+  Ri: 0
+  Wi: 0
+  BuildTime: 0
+  UpgradeTime: 0
+  Hi: 0
+  Med: 0
+  Lo: 0
+  health1: 0
+  UnitRange: 0
+  dam1: 0
+  hitspeed1: 0
+  speed_medium: 0
+  speed_hard: 0
+  Price01: 0
+  CapWar01: 0
+  TimeCanon: 0
+  Timecanonsurvive: 0
+  lstSpeech: []
+  ID_UnityAds_ios: 
+  ID_Inter_android: 
+  ID_Inter_ios: 
+  ID_Banner_ios: 
+  link_ios: 
+  link_android: 
+  string_Share: 
+  kProductID50: consumable
+  kProductID300: consumable
+  kProductID5000: consumable

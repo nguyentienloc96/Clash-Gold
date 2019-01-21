@@ -47,14 +47,70 @@ public class Hero_FlyingReflector : Hero {
     }
 
     // Use this for initialization
-    void Start()
+    public void Start()
     {
         SetInfoHero();
-        //Debug.Log(this.infoHero);
+        animator.SetFloat("IndexRun", numRun);
+        animator.SetFloat("IndexAttack", numAttack);
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    public void Update()
+    {
+        AnimtionUpdate();
+
+        TestAnim();
+    }
+
+    public void TestAnim()
+    {
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Debug.Log("J");
+            AnimAttack();
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("P");
+            AnimDie();
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("A");
+            AnimRun();
+        }
+        else
+        {
+            AnimIdle();
+        }
+
+    }
+
+    public void AnimtionUpdate()
+    {
+        animator.SetBool("Run", typeAction == TypeAction.RUN ? true : false);
+        animator.SetBool("Attack", typeAction == TypeAction.ATTACK ? true : false);
+        animator.SetBool("Die", typeAction == TypeAction.DIE ? true : false);
+    }
+
+    public void AnimAttack()
+    {
+        typeAction = TypeAction.ATTACK;
+    }
+
+    public void AnimDie()
+    {
+        typeAction = TypeAction.DIE;
+    }
+
+    public void AnimRun()
+    {
+        typeAction = TypeAction.RUN;
+    }
+
+    public void AnimIdle()
+    {
+        typeAction = TypeAction.IDLE;
+    }
 }
