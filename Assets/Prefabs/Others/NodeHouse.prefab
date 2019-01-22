@@ -773,14 +773,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4395aabb21dca4ab72c071c78f4699, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  idHouse: 0
+  idHero: 0
   level: 0
-  isBuild: 0
+  typeState: 0
   countHero: 0
+  timeBuild: 0
+  timeUpgrade: 0
   buttonUpgrade: {fileID: 114250777370089148}
   buttonRelease: {fileID: 114143342186675592}
   txtCountHero: {fileID: 114605430616097178}
+  txtCountTime: {fileID: 114943038531549976}
   imgHouse: {fileID: 114378052044031324}
+  imgLoadingBuild: {fileID: 114592581952595838}
+  imgNotBuild: {fileID: 114500066499511552}
 --- !u!114 &114592581952595838
 MonoBehaviour:
   m_ObjectHideFlags: 1

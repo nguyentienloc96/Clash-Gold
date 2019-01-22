@@ -16,8 +16,11 @@ public class UIManager : MonoBehaviour {
     [Header("IN-WALL")]
     public GameObject panelInWall;
     public GameObject panelBuild;
+    public GameObject panelUpgrade;
+    public int xUpgrade = 1;
     public List<GameObject> lstHouse; //List nha de build
 
+    public List<Sprite> lstSpriteHouse;
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
@@ -141,6 +144,26 @@ public class UIManager : MonoBehaviour {
             if (!GameManager.Instance.lstBuildHouse[i].isUnlock)
                 lstHouse[i].transform.Find("Lock").gameObject.SetActive(true);
         }
+    }
+
+    public void ShowPanelUpgrade()
+    {
+        panelUpgrade.SetActive(true);
+    }
+
+    public void Btn_x1x10_Upgrade(int _x)
+    {
+        xUpgrade = _x;
+    }
+
+    public void Btn_YesUpgrade()
+    {
+        GameManager.Instance.lstHousePlayer[houseClick].YesUpgrade(xUpgrade);
+    }
+
+    public void Btn_NoUpgrade()
+    {
+        panelUpgrade.SetActive(false);
     }
 
     [HideInInspector]
