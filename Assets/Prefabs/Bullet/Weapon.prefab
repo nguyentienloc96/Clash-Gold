@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 212180264790932242}
   - component: {fileID: 50657769479618042}
   - component: {fileID: 61143663025580758}
-  m_Layer: 0
+  - component: {fileID: 114194844019381748}
+  m_Layer: 8
   m_Name: Weapon
-  m_TagString: Untagged
+  m_TagString: Bullet Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +72,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.013309682, y: 0.13026556}
@@ -87,6 +88,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.081564575, y: 0.23771447}
   m_EdgeRadius: 0
+--- !u!114 &114194844019381748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1518318750879548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a148caf57f69e74287aaa2f91cc3b8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dameBullet: 0
 --- !u!212 &212180264790932242
 SpriteRenderer:
   m_ObjectHideFlags: 1

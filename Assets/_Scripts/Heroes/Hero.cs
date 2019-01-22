@@ -26,7 +26,9 @@ public abstract class Hero : MonoBehaviour
     public ParticleSystem parDie;
 
     [Header("ATTACK HERO")]
-    public Transform targetShoot;
+    public Transform posShoot;
+    public Transform targetCompetitor;
+    public float timeCheckAttack;
 
     public abstract void SetInfoHero();
 
@@ -67,5 +69,31 @@ public abstract class Hero : MonoBehaviour
     public void AnimIdle()
     {
         typeAction = TypeAction.IDLE;
+    }
+
+    protected GameObject CheckCompetitorNear(List<Hero> lsCompetitor)
+    {
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestCompetitor = null;
+        foreach (Hero obj in lsCompetitor)
+        {
+            float distanceToEnemy = Vector3.Distance(transform.position, obj.transform.position);
+            if (distanceToEnemy < shortestDistance)
+            {
+                shortestDistance = distanceToEnemy;
+                nearestCompetitor = obj.gameObject;
+            }
+        }
+
+        return nearestCompetitor;
+    }
+
+    protected void TakeDamage(int _dame)
+    {
+        infoHero.health -= _dame;
+        if(infoHero.health <= 0)
+        {
+            Die();
+        }
     }
 }

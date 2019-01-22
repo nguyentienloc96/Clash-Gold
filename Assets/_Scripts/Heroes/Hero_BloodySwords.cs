@@ -15,6 +15,10 @@ public class Hero_BloodySwords : Hero {
     public override void Die()
     {
         AnimDie();
+        if (gameObject.CompareTag("Enemy"))
+        {
+            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
+        }
     }
 
     public override void CheckEnemy()
@@ -24,7 +28,7 @@ public class Hero_BloodySwords : Hero {
 
     public override void BeingAttacked(int _dame)
     {
-        throw new System.NotImplementedException();
+        TakeDamage(_dame);
     }
 
     public override void SetInfoHero()

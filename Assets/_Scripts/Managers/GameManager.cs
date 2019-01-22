@@ -28,6 +28,10 @@ public class GameManager : MonoBehaviour
     [Header("INFO ENEMY")]
     public List<GoldMine> lstGoldMineEnemy;
 
+    [Header("MANAGER HERO AND ENEMY")]
+    public List<Hero> lsHero;
+    public List<Hero> lsEnemy;
+
     void Awake()
     {
         if (Instance != null)
