@@ -1,7 +1,7 @@
 ﻿public enum EventID
 {
-    None = 0,
-    SpawnHero,
+    None,
+    NextDay,
     BeingAttacked,
     Win,
     GameOver,
