@@ -13,6 +13,7 @@ public class InfoHero {
     public float price;
     public float capWar;
     public float counterDame;
+    public float speedBullet;
     public bool isMum;
     public bool isBaby;
     public int idMom;

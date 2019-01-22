@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hero_BloodySwords : Hero {
     public override void Attack()
     {
-
+        AnimAttack();
     }
     public override void MoveToPosition(Vector2 _toPos)
     {
@@ -14,7 +14,11 @@ public class Hero_BloodySwords : Hero {
 
     public override void Die()
     {
-        throw new System.NotImplementedException();
+        AnimDie();
+        if (gameObject.CompareTag("Enemy"))
+        {
+            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
+        }
     }
 
     public override void CheckEnemy()
@@ -24,7 +28,7 @@ public class Hero_BloodySwords : Hero {
 
     public override void BeingAttacked(int _dame)
     {
-        throw new System.NotImplementedException();
+        TakeDamage(_dame);
     }
 
     public override void SetInfoHero()
@@ -60,30 +64,4 @@ public class Hero_BloodySwords : Hero {
         AnimtionUpdate();
     }
 
-    public void AnimtionUpdate()
-    {
-        animator.SetBool("Run", typeAction == TypeAction.RUN ? true : false);
-        animator.SetBool("Attack", typeAction == TypeAction.ATTACK ? true : false);
-        animator.SetBool("Die", typeAction == TypeAction.DIE ? true : false);
-    }
-
-    public void AnimAttack()
-    {
-        typeAction = TypeAction.ATTACK;
-    }
-
-    public void AnimDie()
-    {
-        typeAction = TypeAction.DIE;
-    }
-
-    public void AnimRun()
-    {
-        typeAction = TypeAction.RUN;
-    }
-
-    public void AnimIdle()
-    {
-        typeAction = TypeAction.IDLE;
-    }
 }

@@ -19,7 +19,9 @@ public class ObjectPoolingManager : MonoBehaviour {
 
     public ObjectPool[] arrayPooledObjects;
 
-    protected GameObject containerObject;
+    [Header("MANAGER HERO AND ENEMY")]
+    public List<Hero> lsHero;
+    public List<Hero> lsEnemy;
 
     void Awake()
     {
@@ -30,8 +32,6 @@ public class ObjectPoolingManager : MonoBehaviour {
 
     void Start()
     {
-        containerObject = new GameObject("ObjectPoolManage");
-
         for (int i = 0; i < arrayPooledObjects.Length; i++)
         {
             arrayPooledObjects[i].pooledObjects = new List<GameObject>();
@@ -41,7 +41,7 @@ public class ObjectPoolingManager : MonoBehaviour {
 
             for (int n = 0; n < arrayPooledObjects[i].amountToBuffer; n++)
             {
-                GameObject newObj = Instantiate(arrayPooledObjects[i].objectPrefab, containerObject.transform);
+                GameObject newObj = Instantiate(arrayPooledObjects[i].objectPrefab, transform);
                 newObj.name = arrayPooledObjects[i].namePool;
                 newObj.SetActive(false);
                 arrayPooledObjects[i].pooledObjects.Add(newObj);
@@ -84,7 +84,7 @@ public class ObjectPoolingManager : MonoBehaviour {
         }
         else
         {
-            GameObject obj_P = Instantiate(GetTypePool(objectType).objectPrefab, containerObject.transform);
+            GameObject obj_P = Instantiate(GetTypePool(objectType).objectPrefab, transform);
             obj_P.name = GetTypePool(objectType).namePool;
             GetTypePool(objectType).pooledObjects.Add(obj_P);
             obj_P.SetActive(false);
