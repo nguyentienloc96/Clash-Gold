@@ -7,77 +7,24 @@ public class Hero_FlyingArcher : Hero
     public override void Attack()
     {
         AnimAttack();
-        GameObject _bullet = ObjectPoolingManager.Instance.GetObjectForType("Flying Archer", posShoot.position);
+        GameObject _bullet = ObjectPoolingManager.Instance.GetObjectForType(nameBullet, posShoot.position);
         _bullet.SetActive(true);
         _bullet.transform.right = transform.right;
         _bullet.GetComponent<Rigidbody2D>().velocity = transform.up * infoHero.speedBullet;
-        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame;
-    }
-    public override void MoveToPosition(Vector2 _toPos)
-    {
-        Vector2 dir = _toPos - new Vector2(transform.position.x, transform.position.y);
-        transform.up = dir;
-        if (Vector3.Distance(transform.position, _toPos) > infoHero.range / 5f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 5f * Time.deltaTime);
-            AnimRun();
-        }
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
     }
 
     public override void Die()
     {
-        ObjectPoolingManager.Instance.ResetPoolForType("Flying Archer");
         AnimDie();
-    }
-
-    public override void CheckEnemy()
-    {
-        if (targetCompetitor == null)
+        ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
+        if (gameObject.CompareTag("Enemy"))
         {
-            List<Hero> lsCompetitor = new List<Hero>();
-            if (gameObject.CompareTag("Hero"))
-            {
-                lsCompetitor = ObjectPoolingManager.Instance.lsEnemy;
-            }
-            else if (gameObject.CompareTag("Enemy"))
-            {
-                lsCompetitor = ObjectPoolingManager.Instance.lsHero;
-            }
-            List<Hero> lsCompetitorTarget = new List<Hero>();
-            Hero targetAttack = null;
-            if (infoHero.typeHero == TypeHero.ChemThuong)
-            {
-                foreach (Hero obj in lsCompetitor)
-                {
-                    if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
-                    {
-                        if (obj.typeAction != TypeAction.DIE && obj.infoHero.health > 0)
-                        {
-                            lsCompetitorTarget.Add(obj);
-                        }
-                    }
-                }
-            }
-            else
-            {
-
-                foreach (Hero obj in lsCompetitor)
-                {
-                    if (obj.typeAction != TypeAction.DIE && obj.infoHero.health > 0)
-                    {
-                        lsCompetitorTarget.Add(obj);
-                    }
-                }
-            }
-            targetAttack = CheckCompetitorNear(lsCompetitorTarget);
-            if (targetAttack != null)
-            {
-                targetCompetitor = targetAttack.transform;
-            }
-            else
-            {
-                targetCompetitor = null;
-            }
+            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
+        }
+        else
+        {
+            ObjectPoolingManager.Instance.lsHero.Remove(this);
         }
     }
 
@@ -103,47 +50,22 @@ public class Hero_FlyingArcher : Hero
         this.infoHero.idMom = 0;
         this.infoHero.typeHero = TypeHero.CungBay;
         this.infoHero.speedBullet = 10f;
+        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
+
     }
 
-    // Use this for initialization
+    string nameBullet;
     public void Start()
     {
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-
+        nameBullet = gameObject.tag == "Hero" ? "Flying Archer" : "Flying Archer E";
     }
 
-    // Update is called once per frame
     public void Update()
     {
-        AnimtionUpdate();
-
-        CheckEnemy();
-
-        if (targetCompetitor != null)
-        {
-            AutoAttack();
-            MoveToPosition(targetCompetitor.position);
-        }
-    }
-
-    public void AutoAttack()
-    {
-        timeCheckAttack += Time.deltaTime;
-
-        if (Vector3.Distance(transform.position, targetCompetitor.position) <= infoHero.range / 5f)
-        {
-            if (timeCheckAttack >= infoHero.hitSpeed)
-            {
-                Attack();
-                timeCheckAttack = 0;
-            }
-            else
-            {
-                AnimIdle();
-            }
-        }
-
+        HeroUpdate();
     }
 }

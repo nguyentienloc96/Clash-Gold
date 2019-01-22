@@ -7,17 +7,8 @@ public class Hero_TheWingTrio : Hero {
     {
 
     }
-    public override void MoveToPosition(Vector2 _toPos)
-    {
-        throw new System.NotImplementedException();
-    }
 
     public override void Die()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void CheckEnemy()
     {
         throw new System.NotImplementedException();
     }
@@ -53,10 +44,8 @@ public class Hero_TheWingTrio : Hero {
         animator.SetFloat("IndexAttack", numAttack);
     }
 
-    // Update is called once per frame
     public void Update()
     {
-        AnimtionUpdate();
+        HeroUpdate();
     }
-
 }

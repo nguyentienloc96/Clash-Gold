@@ -113,12 +113,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &63013971 stripped
+--- !u!114 &220445655 stripped
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
+  m_PrefabParentObject: {fileID: 114010228185448654, guid: 1223d28194c20c64c8aa4697a3b47b2e,
     type: 2}
-  m_PrefabInternal: {fileID: 251160791}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}
+  m_PrefabInternal: {fileID: 1869856708}
+  m_Script: {fileID: 11500000, guid: f6e14af905f46194a86484ac964e1e74, type: 3}
 --- !u!1001 &247338553
 Prefab:
   m_ObjectHideFlags: 0
@@ -161,266 +161,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &251160791
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 2.21
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -4.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0.9208796
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: -0.38984716
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437748449095362, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_Name
-      value: Bloody Swords E (7)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &527026703
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437748449095362, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_Name
-      value: Bloody Swords E (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &527026704 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 527026703}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}
---- !u!114 &566415097 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1214880543}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}
---- !u!1001 &597183698
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437748449095362, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_Name
-      value: Bloody Swords E (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &597183699 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 597183698}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}
---- !u!1001 &754698130
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.56
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437748449095362, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_Name
-      value: Bloody Swords E (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &754698131 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 754698130}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}
---- !u!1001 &836515389
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -1.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437748449095362, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_Name
-      value: Bloody Swords E (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &836515390 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 836515389}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}
 --- !u!1 &1090152412
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,100 +322,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 247338553}
   m_Script: {fileID: 11500000, guid: bf887fcb0c928bc408311a6bec50ae17, type: 3}
---- !u!1001 &1214880543
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1353474491
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 4.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1437748449095362, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_Name
-      value: Bloody Swords E (6)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1353474492 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1353474491}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}
 --- !u!1 &1517325084
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,17 +355,15 @@ MonoBehaviour:
       type: 2}
     amountToBuffer: 0
     pooledObjects: []
+  - namePool: Archer E
+    objectPrefab: {fileID: 1521122973746262, guid: 09a6f326f742a1e488b74a26fdab200b,
+      type: 2}
+    amountToBuffer: 0
+    pooledObjects: []
   lsHero:
   - {fileID: 1141034239}
   lsEnemy:
-  - {fileID: 566415097}
-  - {fileID: 597183699}
-  - {fileID: 527026704}
-  - {fileID: 754698131}
-  - {fileID: 836515390}
-  - {fileID: 1753913577}
-  - {fileID: 1353474492}
-  - {fileID: 63013971}
+  - {fileID: 220445655}
 --- !u!4 &1517325086
 Transform:
   m_ObjectHideFlags: 0
@@ -733,55 +377,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1753913576
+--- !u!1001 &1869856708
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
       propertyPath: m_LocalRotation.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalRotation.w
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1437748449095362, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_Name
-      value: Bloody Swords E (5)
+    - target: {fileID: 4960561465220944, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 1223d28194c20c64c8aa4697a3b47b2e, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1753913577 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114757963872536754, guid: 3c1692434b25ce24cabc7d944e0d0d7a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1753913576}
-  m_Script: {fileID: 11500000, guid: d9be1df905b613e49809a92765c3cdd5, type: 3}

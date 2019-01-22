@@ -7,6 +7,7 @@ public class InfoHero {
     public int ID;
     public int numberHero;
     public float health;
+    public float healthAll;
     public float dame;
     public float range;
     public float hitSpeed;

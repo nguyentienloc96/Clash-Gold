@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoHero:
     ID: 0
+    numberHero: 0
     health: 0
     dame: 0
     range: 0
@@ -410,6 +411,7 @@ MonoBehaviour:
     idMom: 0
     idBaby: 0
     typeHero: 0
+  txtCountHero: {fileID: 102255146629956568}
   animator: {fileID: 95316159578425638}
   typeAction: 0
   numRun: 2

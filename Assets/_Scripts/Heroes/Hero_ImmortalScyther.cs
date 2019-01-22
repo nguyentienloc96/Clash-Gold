@@ -7,17 +7,8 @@ public class Hero_ImmortalScyther : Hero {
     {
 
     }
-    public override void MoveToPosition(Vector2 _toPos)
-    {
-        throw new System.NotImplementedException();
-    }
 
     public override void Die()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public override void CheckEnemy()
     {
         throw new System.NotImplementedException();
     }
@@ -53,11 +44,8 @@ public class Hero_ImmortalScyther : Hero {
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
     }
-
-    // Update is called once per frame
     public void Update()
     {
-        AnimtionUpdate();
+        HeroUpdate();
     }
-  
 }

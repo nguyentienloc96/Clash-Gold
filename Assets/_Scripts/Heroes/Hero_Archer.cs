@@ -5,26 +5,32 @@ using UnityEngine;
 public class Hero_Archer : Hero {
     public override void Attack()
     {
-
-    }
-    public override void MoveToPosition(Vector2 _toPos)
-    {
-        throw new System.NotImplementedException();
+        
+        AnimAttack();
+        GameObject _bullet = ObjectPoolingManager.Instance.GetObjectForType(nameBullet, posShoot.position);
+        _bullet.SetActive(true);
+        _bullet.transform.right = transform.right;
+        _bullet.GetComponent<Rigidbody2D>().velocity = transform.up * infoHero.speedBullet;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
     }
 
     public override void Die()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void CheckEnemy()
-    {
-        throw new System.NotImplementedException();
+        AnimDie();
+        ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
+        if (gameObject.CompareTag("Enemy"))
+        {
+            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
+        }
+        else
+        {
+            ObjectPoolingManager.Instance.lsHero.Remove(this);
+        }
     }
 
     public override void BeingAttacked(float _dame)
     {
-        throw new System.NotImplementedException();
+        TakeDamage(_dame);
     }
 
     public override void SetInfoHero()
@@ -43,21 +49,23 @@ public class Hero_Archer : Hero {
         this.infoHero.idBaby = 0;
         this.infoHero.idMom = 0;
         this.infoHero.typeHero = TypeHero.CungThuong;
-
+        this.infoHero.speedBullet = 10f;
+        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }
 
-    // Use this for initialization
+    string nameBullet;
     public void Start()
     {
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
+        nameBullet = gameObject.tag == "Hero" ? "Archer" : "Archer E";
     }
 
-    // Update is called once per frame
     public void Update()
     {
-        AnimtionUpdate();
+        HeroUpdate();
     }
 
 }

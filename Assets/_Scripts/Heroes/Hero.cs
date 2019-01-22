@@ -15,6 +15,7 @@ public abstract class Hero : MonoBehaviour
 {
     [Header("INFO HERO")]
     public InfoHero infoHero = new InfoHero();
+    public TextMesh txtCountHero;
 
     [Header("ANIM HERO")]
     public Animator animator;
@@ -27,15 +28,11 @@ public abstract class Hero : MonoBehaviour
 
     [Header("ATTACK HERO")]
     public Transform posShoot;
-    public Transform targetCompetitor;
+    public Hero targetCompetitor;
     public float timeCheckAttack;
     public ParticleSystem parHit;
 
     public abstract void SetInfoHero();
-
-    public abstract void CheckEnemy();
-
-    public abstract void MoveToPosition(Vector2 _toPos);
 
     public abstract void Attack();
 
@@ -96,10 +93,111 @@ public abstract class Hero : MonoBehaviour
     protected void TakeDamage(float _dame)
     {
         parHit.Play();
-        infoHero.health -= _dame;
-        if (infoHero.health <= 0)
+        infoHero.healthAll -= _dame;
+        infoHero.numberHero = Mathf.CeilToInt(infoHero.healthAll / infoHero.health);
+        if (infoHero.numberHero <= 0)
         {
+            infoHero.numberHero = 0;
             Die();
         }
+        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero)
+;
     }
+
+    public void CheckEnemy()
+    {
+        if (targetCompetitor == null)
+        {
+            List<Hero> lsCompetitor = new List<Hero>();
+            if (gameObject.CompareTag("Hero"))
+            {
+                lsCompetitor = ObjectPoolingManager.Instance.lsEnemy;
+            }
+            else if (gameObject.CompareTag("Enemy"))
+            {
+                lsCompetitor = ObjectPoolingManager.Instance.lsHero;
+            }
+            List<Hero> lsCompetitorTarget = new List<Hero>();
+            Hero targetAttack = null;
+            if (infoHero.typeHero == TypeHero.ChemThuong)
+            {
+                foreach (Hero obj in lsCompetitor)
+                {
+                    if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
+                    {
+                        if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
+                        {
+
+                            lsCompetitorTarget.Add(obj);
+                        }
+                    }
+                }
+            }
+            else
+            {
+
+                foreach (Hero obj in lsCompetitor)
+                {
+                    if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
+                    {
+                        lsCompetitorTarget.Add(obj);
+                    }
+                }
+            }
+            targetAttack = CheckCompetitorNear(lsCompetitorTarget);
+            if (targetAttack != null)
+            {
+                targetCompetitor = targetAttack;
+            }
+            else
+            {
+                targetCompetitor = null;
+            }
+        }
+    }
+
+    public void MoveToPosition(Vector2 _toPos)
+    {
+        Vector2 dir = _toPos - new Vector2(transform.position.x, transform.position.y);
+        transform.up = dir;
+        if (Vector3.Distance(transform.position, _toPos) > infoHero.range / 5f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 5f * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z);
+            AnimRun();
+        }
+    }
+
+    public void AutoAttack()
+    {
+        timeCheckAttack += Time.deltaTime;
+
+        if (Vector3.Distance(transform.position, targetCompetitor.transform.position) <= infoHero.range / 5f)
+        {
+            if (timeCheckAttack >= infoHero.hitSpeed)
+            {
+                Attack();
+                timeCheckAttack = 0;
+            }
+            else
+            {
+                AnimIdle();
+            }
+        }
+
+    }
+
+    public void HeroUpdate()
+    {
+        AnimtionUpdate();
+
+        CheckEnemy();
+
+        if (targetCompetitor != null)
+        {
+            AutoAttack();
+            MoveToPosition(targetCompetitor.transform.position);
+        }
+    }
+
 }

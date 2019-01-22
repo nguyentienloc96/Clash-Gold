@@ -7,10 +7,6 @@ public class Hero_BloodySwords : Hero {
     {
         AnimAttack();
     }
-    public override void MoveToPosition(Vector2 _toPos)
-    {
-        throw new System.NotImplementedException();
-    }
 
     public override void Die()
     {
@@ -19,11 +15,10 @@ public class Hero_BloodySwords : Hero {
         {
             ObjectPoolingManager.Instance.lsEnemy.Remove(this);
         }
-    }
-
-    public override void CheckEnemy()
-    {
-
+        else
+        {
+            ObjectPoolingManager.Instance.lsHero.Remove(this);
+        }
     }
 
     public override void BeingAttacked(float _dame)
@@ -47,21 +42,19 @@ public class Hero_BloodySwords : Hero {
         this.infoHero.idBaby = 0;
         this.infoHero.idMom = 0;
         this.infoHero.typeHero = TypeHero.ChemThuong;
+        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
 
     }
 
-    // Use this for initialization
     public void Start()
     {
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-    }
 
-    // Update is called once per frame
+    }
     public void Update()
     {
-        AnimtionUpdate();
+        HeroUpdate();
     }
-
 }

@@ -7,24 +7,23 @@ public class Hero_AnimatedPuppets : Hero {
     {
 
     }
-    public override void MoveToPosition(Vector2 _toPos)
-    {
-        throw new System.NotImplementedException();
-    }
 
     public override void Die()
     {
-        throw new System.NotImplementedException();
-    }
-
-    public override void CheckEnemy()
-    {
-        throw new System.NotImplementedException();
+        AnimDie();
+        if (gameObject.CompareTag("Enemy"))
+        {
+            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
+        }
+        else
+        {
+            ObjectPoolingManager.Instance.lsHero.Remove(this);
+        }
     }
 
     public override void BeingAttacked(float _dame)
     {
-        throw new System.NotImplementedException();
+        TakeDamage(_dame);
     }
 
     public override void SetInfoHero()
@@ -57,6 +56,6 @@ public class Hero_AnimatedPuppets : Hero {
     // Update is called once per frame
     public void Update()
     {
-        AnimtionUpdate();
+        HeroUpdate();
     }
 }
