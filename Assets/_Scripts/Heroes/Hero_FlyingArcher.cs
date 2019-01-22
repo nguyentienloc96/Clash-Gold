@@ -5,7 +5,11 @@ using UnityEngine;
 public class Hero_FlyingArcher : Hero {
     public override void Attack()
     {
-
+        AnimAttack();
+        GameObject _bullet = ObjectPoolingManager.Instance.GetObjectForType("Flying Archer", targetShoot.position);
+        _bullet.SetActive(true);
+        _bullet.transform.right = transform.right;
+        _bullet.GetComponent<Rigidbody2D>().velocity = transform.up * 18f;
     }
     public override void MoveToPosition(Vector2 _toPos)
     {
@@ -14,7 +18,7 @@ public class Hero_FlyingArcher : Hero {
 
     public override void Die()
     {
-        throw new System.NotImplementedException();
+        AnimDie();
     }
 
     public override void CheckEnemy()
@@ -52,12 +56,41 @@ public class Hero_FlyingArcher : Hero {
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
+
     }
 
     // Update is called once per frame
     public void Update()
     {
         AnimtionUpdate();
+
+
+        TestAnim();
+    }
+
+    public void TestAnim()
+    {
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space");
+            Attack();
+        }
+        else if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("P");
+            Die();
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            Debug.Log("A");
+            AnimRun();
+        }
+        else
+        {
+            AnimIdle();
+        }
+
     }
 
     public void AnimtionUpdate()

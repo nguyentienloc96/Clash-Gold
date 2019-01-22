@@ -5,7 +5,7 @@ using UnityEngine;
 public class Hero_BloodySwords : Hero {
     public override void Attack()
     {
-
+        AnimAttack();
     }
     public override void MoveToPosition(Vector2 _toPos)
     {
@@ -14,7 +14,7 @@ public class Hero_BloodySwords : Hero {
 
     public override void Die()
     {
-        throw new System.NotImplementedException();
+        AnimDie();
     }
 
     public override void CheckEnemy()

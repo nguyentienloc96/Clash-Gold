@@ -113,7 +113,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &434496276
+--- !u!1001 &247338553
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4358302011799632, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.56
       objectReference: {fileID: 0}
     - target: {fileID: 4358302011799632, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -152,9 +152,23 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114832127272877978, guid: 9b4784f0d8162594f9f3ec94709efd5b,
+        type: 2}
+      propertyPath: targetShoot
+      value: 
+      objectReference: {fileID: 247338554}
+    - target: {fileID: 4358302011799632, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &247338554 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4334412336103998, guid: 9b4784f0d8162594f9f3ec94709efd5b,
+    type: 2}
+  m_PrefabInternal: {fileID: 247338553}
 --- !u!1 &1090152412
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,6 +324,52 @@ MonoBehaviour:
   kProductID50: consumable
   kProductID300: consumable
   kProductID5000: consumable
+--- !u!1001 &1214880543
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.81727
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 180
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1517325084
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,8 +398,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrayPooledObjects:
-  - namePool: Balloon King
-    objectPrefab: {fileID: 0}
+  - namePool: Flying Archer
+    objectPrefab: {fileID: 1518318750879548, guid: e837be2456a39174392f369a3eb24914,
+      type: 2}
     amountToBuffer: 0
     pooledObjects: []
 --- !u!4 &1517325086
@@ -353,5 +414,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
