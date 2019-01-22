@@ -13,14 +13,15 @@ public enum TypeAction
 [System.Serializable]
 public abstract class Hero : MonoBehaviour
 {
+    [Header("Info Hero")]
     public InfoHero infoHero = new InfoHero();
+
+    [Header("Anim Hero")]
     public Animator animator;
     public TypeAction typeAction;
     public int numRun;
     public int numAttack;
     public bool isFly;
-    public bool isCannon;
-    public bool isHero;
     public bool isRelease;
 
     public abstract void SetInfoHero();

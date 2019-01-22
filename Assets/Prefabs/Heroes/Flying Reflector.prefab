@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114010789712721616}
   m_Layer: 0
   m_Name: Flying Reflector
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,13 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274af6a2958ab4149b48ad0823094b96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoHero:
+    ID: 0
+    health: 0
+    dame: 0
+    range: 0
+    hitSpeed: 0
+    speed: 0
+    price: 0
+    capWar: 0
+    counterDame: 0
+    isMum: 0
+    isBaby: 0
+    idMom: 0
+    idBaby: 0
+    typeHero: 0
   animator: {fileID: 95450018680310660}
   typeAction: 0
   numRun: 3
   numAttack: 7
   isFly: 1
-  isCannon: 0
-  isHero: 1
   isRelease: 0
 --- !u!198 &198196550875840094
 ParticleSystem:

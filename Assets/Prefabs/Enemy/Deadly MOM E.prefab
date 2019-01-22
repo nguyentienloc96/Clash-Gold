@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 114746589315087482}
   m_Layer: 0
   m_Name: Deadly MOM E
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,13 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828ba839b17edb841a4a81338ec68f28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoHero:
+    ID: 0
+    health: 0
+    dame: 0
+    range: 0
+    hitSpeed: 0
+    speed: 0
+    price: 0
+    capWar: 0
+    counterDame: 0
+    isMum: 0
+    isBaby: 0
+    idMom: 0
+    idBaby: 0
+    typeHero: 0
   animator: {fileID: 95251556829761450}
   typeAction: 0
   numRun: 2
   numAttack: 1
   isFly: 0
-  isCannon: 0
-  isHero: 0
   isRelease: 0
 --- !u!198 &198313804530502306
 ParticleSystem:

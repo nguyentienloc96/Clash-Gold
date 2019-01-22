@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114388992349577930}
   m_Layer: 0
   m_Name: Bloody Wing E
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,13 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d231f45f3efef8049b7098852357fc65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoHero:
+    ID: 0
+    health: 0
+    dame: 0
+    range: 0
+    hitSpeed: 0
+    speed: 0
+    price: 0
+    capWar: 0
+    counterDame: 0
+    isMum: 0
+    isBaby: 0
+    idMom: 0
+    idBaby: 0
+    typeHero: 0
   animator: {fileID: 95997898762972568}
   typeAction: 0
   numRun: 3
   numAttack: 5
   isFly: 1
-  isCannon: 0
-  isHero: 0
   isRelease: 0
 --- !u!198 &198380202962391084
 ParticleSystem:

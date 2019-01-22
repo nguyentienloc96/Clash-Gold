@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 114227594247358410}
   m_Layer: 0
   m_Name: Drunken Bomber E
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,13 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d22914eb0620a46bc623029cd7f4a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoHero:
+    ID: 0
+    health: 0
+    dame: 0
+    range: 0
+    hitSpeed: 0
+    speed: 0
+    price: 0
+    capWar: 0
+    counterDame: 0
+    isMum: 0
+    isBaby: 0
+    idMom: 0
+    idBaby: 0
+    typeHero: 0
   animator: {fileID: 95458834423069988}
   typeAction: 0
   numRun: 0
   numAttack: 2
   isFly: 0
-  isCannon: 0
-  isHero: 0
   isRelease: 0
   spreadDame: 0
 --- !u!198 &198280470957988644

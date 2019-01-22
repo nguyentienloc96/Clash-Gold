@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114820545408001004}
   m_Layer: 0
   m_Name: Immortal Scyther
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,13 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1d4861c37a9c2c49855da66ce12d83a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoHero:
+    ID: 0
+    health: 0
+    dame: 0
+    range: 0
+    hitSpeed: 0
+    speed: 0
+    price: 0
+    capWar: 0
+    counterDame: 0
+    isMum: 0
+    isBaby: 0
+    idMom: 0
+    idBaby: 0
+    typeHero: 0
   animator: {fileID: 95811339903179862}
   typeAction: 0
   numRun: 1
   numAttack: 5
   isFly: 0
-  isCannon: 0
-  isHero: 1
   isRelease: 0
 --- !u!198 &198841723162190170
 ParticleSystem:

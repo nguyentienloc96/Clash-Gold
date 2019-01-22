@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 114840607397310176}
   m_Layer: 0
   m_Name: Explosive Wing
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,13 +251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d0980ec1ba390a448573b1f9770ca7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoHero:
+    ID: 0
+    health: 0
+    dame: 0
+    range: 0
+    hitSpeed: 0
+    speed: 0
+    price: 0
+    capWar: 0
+    counterDame: 0
+    isMum: 0
+    isBaby: 0
+    idMom: 0
+    idBaby: 0
+    typeHero: 0
   animator: {fileID: 95984871876143188}
   typeAction: 0
   numRun: 3
   numAttack: 2
   isFly: 1
-  isCannon: 0
-  isHero: 1
   isRelease: 0
 --- !u!198 &198285974184687790
 ParticleSystem:
