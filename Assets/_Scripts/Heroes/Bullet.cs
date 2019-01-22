@@ -11,7 +11,10 @@ public class Bullet : MonoBehaviour
         {
             if (collision.tag == "Enemy")
             {
-                collision.GetComponent<Hero>().BeingAttacked(dameBullet);
+                Hero hero = collision.GetComponent<Hero>();
+                hero.parHit.transform.right = -transform.up;
+                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                hero.BeingAttacked(dameBullet);
                 gameObject.SetActive(false);
             }
         }
@@ -20,7 +23,10 @@ public class Bullet : MonoBehaviour
         {
             if (collision.tag == "Hero")
             {
-                collision.GetComponent<Hero>().BeingAttacked(dameBullet);
+                Hero hero = collision.GetComponent<Hero>();
+                hero.parHit.transform.right = -transform.up;
+                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                hero.BeingAttacked(dameBullet);
                 gameObject.SetActive(false);
             }
         }

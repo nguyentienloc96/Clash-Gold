@@ -17,9 +17,10 @@ public class Hero_FlyingArcher : Hero
     {
         Vector2 dir = _toPos - new Vector2(transform.position.x, transform.position.y);
         transform.up = dir;
-        if (Vector3.Distance(transform.position, _toPos) > infoHero.range)
+        if (Vector3.Distance(transform.position, _toPos) > infoHero.range / 5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 5f * Time.deltaTime);
+            AnimRun();
         }
     }
 
@@ -42,21 +43,40 @@ public class Hero_FlyingArcher : Hero
             {
                 lsCompetitor = ObjectPoolingManager.Instance.lsHero;
             }
+            List<Hero> lsCompetitorTarget = new List<Hero>();
+            Hero targetAttack = null;
             if (infoHero.typeHero == TypeHero.ChemThuong)
             {
-                List<Hero> lsCompetitorTarget = new List<Hero>();
                 foreach (Hero obj in lsCompetitor)
                 {
                     if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
                     {
-                        lsCompetitorTarget.Add(obj);
+                        if (obj.typeAction != TypeAction.DIE && obj.infoHero.health > 0)
+                        {
+                            lsCompetitorTarget.Add(obj);
+                        }
                     }
                 }
-                targetCompetitor = CheckCompetitorNear(lsCompetitorTarget).transform;
             }
             else
             {
-                targetCompetitor = CheckCompetitorNear(lsCompetitor).transform;
+
+                foreach (Hero obj in lsCompetitor)
+                {
+                    if (obj.typeAction != TypeAction.DIE && obj.infoHero.health > 0)
+                    {
+                        lsCompetitorTarget.Add(obj);
+                    }
+                }
+            }
+            targetAttack = CheckCompetitorNear(lsCompetitorTarget);
+            if (targetAttack != null)
+            {
+                targetCompetitor = targetAttack.transform;
+            }
+            else
+            {
+                targetCompetitor = null;
             }
         }
     }
@@ -75,7 +95,7 @@ public class Hero_FlyingArcher : Hero
         this.infoHero.speed = 5;
         this.infoHero.price = 4000;
         this.infoHero.capWar = 10 * GameConfig.Instance.Med;
-        this.infoHero.range = 2;
+        this.infoHero.range = 11;
         this.infoHero.counterDame = 0;
         this.infoHero.isMum = false;
         this.infoHero.isBaby = false;
@@ -101,33 +121,28 @@ public class Hero_FlyingArcher : Hero
 
         CheckEnemy();
 
-        TestAnim();
-
         if (targetCompetitor != null)
         {
+            AutoAttack();
             MoveToPosition(targetCompetitor.position);
         }
     }
 
-    public void TestAnim()
+    public void AutoAttack()
     {
         timeCheckAttack += Time.deltaTime;
 
-        if (Vector3.Distance(transform.position, targetCompetitor.position) <= infoHero.range)
+        if (Vector3.Distance(transform.position, targetCompetitor.position) <= infoHero.range / 5f)
         {
             if (timeCheckAttack >= infoHero.hitSpeed)
             {
                 Attack();
                 timeCheckAttack = 0;
             }
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            AnimRun();
-        }
-        else
-        {
-            AnimIdle();
+            else
+            {
+                AnimIdle();
+            }
         }
 
     }

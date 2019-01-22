@@ -23,7 +23,7 @@ public class Hero_BloodySwords : Hero {
 
     public override void CheckEnemy()
     {
-        throw new System.NotImplementedException();
+
     }
 
     public override void BeingAttacked(float _dame)
