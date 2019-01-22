@@ -114,6 +114,8 @@ public class House : MonoBehaviour
     {
         if (GameManager.Instance.gold < price)
             return;
+
+        price = priceWillUpgrade;
         GameManager.Instance.gold -= (long)(price * GameConfig.Instance.Ri);
         typeState = TypeStateHouse.Upgrading;
         xUpgrade = _x;
@@ -126,8 +128,7 @@ public class House : MonoBehaviour
     {
         typeState = TypeStateHouse.None;
         level = levelWillupgrade;
-        capWar = capWillUpgrade;
-        price = priceWillUpgrade;
+        capWar = capWillUpgrade;       
         imgLoadingBuild.gameObject.SetActive(false);
         imgHouse.gameObject.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
@@ -135,6 +136,7 @@ public class House : MonoBehaviour
 
     public void Build(int _id)
     {
+        GameManager.Instance.gold -= price;
         timeBuild = GameConfig.Instance.BuildTime * idHouse;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
         typeState = TypeStateHouse.Building;
@@ -150,6 +152,7 @@ public class House : MonoBehaviour
     void BuildComplete()
     {
         typeState = TypeStateHouse.None;
+        this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         this.level = 1;
         this.price = (int)GameManager.Instance.lsHero[idHero].infoHero.price;
         this.capWar = (int)GameManager.Instance.lsHero[idHero].infoHero.capWar;

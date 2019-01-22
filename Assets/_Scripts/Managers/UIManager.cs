@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour {
     public GameObject panelInWall;
     public GameObject panelBuild;
     public GameObject panelUpgrade;
+    public Text txtLevelCastle;
+    public Text txtBlood;
     public List<GameObject> lstHouse; //List nha de build
 
     [Header("UPGRADE")]
@@ -56,7 +58,8 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        txtGold.text = ConvertNumber(GameManager.Instance.gold);
+        //txtGold.text = ConvertNumber(GameManager.Instance.gold);
+        txtGold.text = GameManager.Instance.gold.ToString();
         txtCoin.text = GameManager.Instance.coin.ToString();
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.goldMount.ToString();
 	}
@@ -105,6 +108,8 @@ public class UIManager : MonoBehaviour {
     {
         panelHome.SetActive(false);
         panelMain.SetActive(true);
+        GameManager.Instance.gold = GameConfig.Instance.GoldStart;
+        GameManager.Instance.coin = GameConfig.Instance.CoinStart;       
     }
 
     public void Btn_Continue()
