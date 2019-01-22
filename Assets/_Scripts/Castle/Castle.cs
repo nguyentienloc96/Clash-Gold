@@ -8,13 +8,14 @@ using UnityEngine.EventSystems;
 public class Castle : MonoBehaviour
 {
     public float health;
-    public float goldIncrease;
+    public float healthMax;
+    public long price;
     public int level;
     public Collider2D colliderLand;
     // Use this for initialization
     void Start()
     {
-
+        healthMax = GameConfig.Instance.Bloodlv0;
     }
 
     // Update is called once per frame
@@ -37,5 +38,16 @@ public class Castle : MonoBehaviour
         List<RaycastResult> list = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, list);
         return list.Count > 0;
+    }
+
+    public void UpgradeCastle()
+    {
+        healthMax = healthMax * GameConfig.Instance.Bloodratio;
+        price = (long)(price * GameConfig.Instance.PriceBloodUp);
+    }
+
+    public void Move()
+    {
+
     }
 }

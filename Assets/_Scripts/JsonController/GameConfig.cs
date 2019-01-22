@@ -19,8 +19,8 @@ public class GameConfig : MonoBehaviour
         Instance = this;
     }
 
-    public double GoldStart;
-    public long CoinStart;
+    public long GoldStart;
+    public int CoinStart;
 
     public int GoldMinerAmount;
     public float[] RatioBorn = {1f , 0.7f , 0.3f};

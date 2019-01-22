@@ -43,8 +43,8 @@ public class LoadDataJson : MonoBehaviour
         Debug.Log("<color=yellow>Done: </color>LoadGameConfig !");
         if (objJson != null)
         {
-            GameConfig.Instance.GoldStart = objJson["GoldStart"].AsDouble;
-            GameConfig.Instance.CoinStart = objJson["CoinStart"].AsLong;
+            GameConfig.Instance.GoldStart = objJson["GoldStart"].AsLong;
+            GameConfig.Instance.CoinStart = objJson["CoinStart"].AsInt;
             GameConfig.Instance.GoldMinerAmount = objJson["GoldMinerAmount"].AsInt;
             for (int i = 0; i < GameConfig.Instance.RatioBorn.Length; i++)
             {
