@@ -24,6 +24,7 @@ public class DataPlayer : MonoBehaviour {
 	}
 }
 
+[System.Serializable]
 public struct BuildHouse
 {
     public int ID;

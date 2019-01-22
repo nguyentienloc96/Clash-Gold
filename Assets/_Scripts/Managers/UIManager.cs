@@ -81,6 +81,12 @@ public class UIManager : MonoBehaviour {
         return smoney;
     }
 
+    public void Btn_ClosePanel(GameObject _g)
+    {
+        if (_g != null)
+            _g.SetActive(false);
+    }
+
     #region === UI HOME ===
     public void Btn_Play()
     {
@@ -130,10 +136,11 @@ public class UIManager : MonoBehaviour {
     public void ShowPanelBuild()
     {
         panelBuild.SetActive(true);
-        //for (int i = 0; i < lstHouse.Count; i++)
-        //{
-            
-        //}
+        for (int i = 0; i < lstHouse.Count; i++)
+        {
+            if (!GameManager.Instance.lstBuildHouse[i].isUnlock)
+                lstHouse[i].transform.Find("Lock").gameObject.SetActive(true);
+        }
     }
     #endregion
 }

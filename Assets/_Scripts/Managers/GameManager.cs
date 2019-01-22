@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     public DateTime dateStartPlay;
     public Text txtDate;
     private float time;
-    #endregion    
+    #endregion
 
     [Header("INFO PLAYER")]
     public double gold;
@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int goldMount;
     public Castle castlePlayer;
     public List<GoldMine> lstGoldMinePlayer;
-    public List<BuildHouse> lstBuildHouse;
+    public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
 
     [Header("INFO ENEMY")]
     public List<GoldMine> lstGoldMineEnemy;
@@ -39,7 +39,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        for (int i = 0; i < 9; i++)
+        {
+            BuildHouse bh = new BuildHouse();
+            bh.ID = i;
+            if (i >= 5)
+                bh.isUnlock = false;
+            else
+                bh.isUnlock = true;
+            lstBuildHouse.Add(bh);
+        }
     }
 
     // Update is called once per frame

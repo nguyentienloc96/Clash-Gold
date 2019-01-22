@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NodeHouse : MonoBehaviour {
+public class House : MonoBehaviour {
     public int id;
     public int level;
     public bool isBuild;
+    public bool isUnlock;
     public int countHero;
 
     public Button buttonUpgrade;
@@ -36,6 +37,18 @@ public class NodeHouse : MonoBehaviour {
         else
         {
             UIManager.Instance.ShowPanelBuild();
+        }
+    }
+
+    public void CheckBuild()
+    {
+        if(isUnlock)
+        {
+
+        }
+        else
+        {
+
         }
     }
 }
