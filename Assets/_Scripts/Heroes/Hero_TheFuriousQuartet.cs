@@ -23,7 +23,7 @@ public class Hero_TheFuriousQuartet : Hero
         throw new System.NotImplementedException();
     }
 
-    public override void BeingAttacked(int _dame)
+    public override void BeingAttacked(float _dame)
     {
         throw new System.NotImplementedException();
     }

@@ -11,7 +11,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.tag == "Enemy")
             {
-                collision.GetComponent<Hero>().BeingAttacked((int)dameBullet);
+                collision.GetComponent<Hero>().BeingAttacked(dameBullet);
                 gameObject.SetActive(false);
             }
         }
@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.tag == "Hero")
             {
-                collision.GetComponent<Hero>().BeingAttacked((int)dameBullet);
+                collision.GetComponent<Hero>().BeingAttacked(dameBullet);
                 gameObject.SetActive(false);
             }
         }

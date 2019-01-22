@@ -38,7 +38,7 @@ public abstract class Hero : MonoBehaviour
 
     public abstract void Attack();
 
-    public abstract void BeingAttacked(int _dame);
+    public abstract void BeingAttacked(float _dame);
 
     public abstract void Die();
 
@@ -88,7 +88,7 @@ public abstract class Hero : MonoBehaviour
         return nearestCompetitor;
     }
 
-    protected void TakeDamage(int _dame)
+    protected void TakeDamage(float _dame)
     {
         infoHero.health -= _dame;
         if(infoHero.health <= 0)

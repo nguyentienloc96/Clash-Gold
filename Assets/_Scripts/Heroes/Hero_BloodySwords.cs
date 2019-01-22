@@ -26,7 +26,7 @@ public class Hero_BloodySwords : Hero {
         throw new System.NotImplementedException();
     }
 
-    public override void BeingAttacked(int _dame)
+    public override void BeingAttacked(float _dame)
     {
         TakeDamage(_dame);
     }

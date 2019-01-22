@@ -61,7 +61,7 @@ public class Hero_FlyingArcher : Hero
         }
     }
 
-    public override void BeingAttacked(int _dame)
+    public override void BeingAttacked(float _dame)
     {
         TakeDamage(_dame);
     }
