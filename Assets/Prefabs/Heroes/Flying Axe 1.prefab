@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 95696936289474506}
   - component: {fileID: 114683303628875534}
   m_Layer: 0
-  m_Name: Flying Axe
+  m_Name: Flying Axe 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
