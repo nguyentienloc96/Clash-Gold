@@ -18,6 +18,7 @@ public class Hero_FlyingArcher : Hero {
 
     public override void Die()
     {
+        ObjectPoolingManager.Instance.ResetPoolForType("Flying Archer");
         AnimDie();
     }
 
@@ -73,17 +74,17 @@ public class Hero_FlyingArcher : Hero {
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("Space");
+            Debug.Log("Shooter");
             Attack();
         }
         else if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("P");
+            Debug.Log("Die");
             Die();
         }
         else if (Input.GetKey(KeyCode.A))
         {
-            Debug.Log("A");
+            Debug.Log("Fly");
             AnimRun();
         }
         else
@@ -91,32 +92,5 @@ public class Hero_FlyingArcher : Hero {
             AnimIdle();
         }
 
-    }
-
-    public void AnimtionUpdate()
-    {
-        animator.SetBool("Run", typeAction == TypeAction.RUN ? true : false);
-        animator.SetBool("Attack", typeAction == TypeAction.ATTACK ? true : false);
-        animator.SetBool("Die", typeAction == TypeAction.DIE ? true : false);
-    }
-
-    public void AnimAttack()
-    {
-        typeAction = TypeAction.ATTACK;
-    }
-
-    public void AnimDie()
-    {
-        typeAction = TypeAction.DIE;
-    }
-
-    public void AnimRun()
-    {
-        typeAction = TypeAction.RUN;
-    }
-
-    public void AnimIdle()
-    {
-        typeAction = TypeAction.IDLE;
     }
 }

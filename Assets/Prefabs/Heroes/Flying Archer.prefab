@@ -272,6 +272,8 @@ MonoBehaviour:
   numAttack: 3
   isFly: 1
   isRelease: 0
+  parDie: {fileID: 198255232856437180}
+  targetShoot: {fileID: 4334412336103998}
 --- !u!198 &198255232856437180
 ParticleSystem:
   m_ObjectHideFlags: 1

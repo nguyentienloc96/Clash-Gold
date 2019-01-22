@@ -60,30 +60,4 @@ public class Hero_BloodyWing : Hero {
         AnimtionUpdate();
     }
 
-    public void AnimtionUpdate()
-    {
-        animator.SetBool("Run", typeAction == TypeAction.RUN ? true : false);
-        animator.SetBool("Attack", typeAction == TypeAction.ATTACK ? true : false);
-        animator.SetBool("Die", typeAction == TypeAction.DIE ? true : false);
-    }
-
-    public void AnimAttack()
-    {
-        typeAction = TypeAction.ATTACK;
-    }
-
-    public void AnimDie()
-    {
-        typeAction = TypeAction.DIE;
-    }
-
-    public void AnimRun()
-    {
-        typeAction = TypeAction.RUN;
-    }
-
-    public void AnimIdle()
-    {
-        typeAction = TypeAction.IDLE;
-    }
 }

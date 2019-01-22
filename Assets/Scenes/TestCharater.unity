@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4358302011799632, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.56
+      value: -3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4358302011799632, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
       propertyPath: m_LocalPosition.z
@@ -152,23 +152,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114832127272877978, guid: 9b4784f0d8162594f9f3ec94709efd5b,
-        type: 2}
-      propertyPath: targetShoot
-      value: 
-      objectReference: {fileID: 247338554}
-    - target: {fileID: 4358302011799632, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b4784f0d8162594f9f3ec94709efd5b, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &247338554 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4334412336103998, guid: 9b4784f0d8162594f9f3ec94709efd5b,
-    type: 2}
-  m_PrefabInternal: {fileID: 247338553}
 --- !u!1 &1090152412
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +323,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.81727
+      value: 2.8
       objectReference: {fileID: 0}
     - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -361,11 +347,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4851562228402308, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3c1692434b25ce24cabc7d944e0d0d7a, type: 2}
@@ -414,5 +396,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
