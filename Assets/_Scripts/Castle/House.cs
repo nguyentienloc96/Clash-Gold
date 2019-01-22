@@ -9,14 +9,14 @@ public class House : MonoBehaviour
     public int idHouse;
     public int idHero;
     public int level;
-    public double price;
+    public long price;
     public int capWar;
     public TypeStateHouse typeState;
     public int countHero;
     public float timeBuild;
     public float timeUpgrade;
     int xUpgrade;
-    public double priceWillUpgrade;
+    public long priceWillUpgrade;
     public int capWillUpgrade;
     public int levelWillupgrade;
 
@@ -105,7 +105,7 @@ public class House : MonoBehaviour
         for (int i = 1; i <= _x; i++)
         {
             levelWillupgrade++;
-            priceWillUpgrade = priceWillUpgrade * GameConfig.Instance.Ri;
+            priceWillUpgrade = (long)(priceWillUpgrade * GameConfig.Instance.Ri);
             capWillUpgrade = (int)(capWillUpgrade * GameConfig.Instance.Wi);
         }
     }
@@ -114,7 +114,7 @@ public class House : MonoBehaviour
     {
         if (GameManager.Instance.gold < price)
             return;
-        GameManager.Instance.gold -= price * GameConfig.Instance.Ri;
+        GameManager.Instance.gold -= (long)(price * GameConfig.Instance.Ri);
         typeState = TypeStateHouse.Upgrading;
         xUpgrade = _x;
         txtCountHero.gameObject.SetActive(false);
