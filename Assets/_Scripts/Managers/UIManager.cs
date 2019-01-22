@@ -16,7 +16,7 @@ public class UIManager : MonoBehaviour {
     [Header("IN-WALL")]
     public GameObject panelInWall;
     public GameObject panelBuild;
-    public List<GameObject> lstHouse;
+    public List<GameObject> lstHouse; //List nha de build
 
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
@@ -141,6 +141,13 @@ public class UIManager : MonoBehaviour {
             if (!GameManager.Instance.lstBuildHouse[i].isUnlock)
                 lstHouse[i].transform.Find("Lock").gameObject.SetActive(true);
         }
+    }
+
+    [HideInInspector]
+    public int houseClick;
+    public void Btn_BuildHouse(int _id)
+    {
+        GameManager.Instance.lstHousePlayer[houseClick].Build(_id);       
     }
     #endregion
 }

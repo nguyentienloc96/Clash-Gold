@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class House : MonoBehaviour {
-    public int id;
+    public int idHouse;
+    public int idHero;
     public int level;
     public bool isBuild;
     public bool isUnlock;
@@ -36,6 +37,7 @@ public class House : MonoBehaviour {
         }
         else
         {
+            UIManager.Instance.houseClick = idHouse;
             UIManager.Instance.ShowPanelBuild();
         }
     }
@@ -50,5 +52,14 @@ public class House : MonoBehaviour {
         {
 
         }
+    }
+
+    public void Build(int _id)
+    {
+        this.idHero = _id;
+        this.level = 1;
+        this.isBuild = true;
+        this.countHero = 0;
+        //this.imgHouse = UIManager.Instance.lstHouse[_id].sp;
     }
 }
