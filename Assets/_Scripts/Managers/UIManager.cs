@@ -17,8 +17,18 @@ public class UIManager : MonoBehaviour {
     public GameObject panelInWall;
     public GameObject panelBuild;
     public GameObject panelUpgrade;
-    public int xUpgrade = 1;
     public List<GameObject> lstHouse; //List nha de build
+
+    [Header("UPGRADE")]
+    public int xUpgrade = 1;
+    public Sprite[] sprX1X10;
+    public Image imgX1;
+    public Image imgX10;
+    public Text txtLevelCurrent;
+    public Text txtLevelUpgrade;
+    public Text txtCapCurrent;
+    public Text txtCapUpgrade;
+    public Text txtPrice;
 
     public List<Sprite> lstSpriteHouse;
     public List<string> arrAlphabetNeed = new List<string>();
@@ -51,7 +61,7 @@ public class UIManager : MonoBehaviour {
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.goldMount.ToString();
 	}
 
-    public string ConvertNumber(double number)
+    public string ConvertNumber(long number)
     {
         string smoney = string.Format("{0:#,##0}", number);
         for (int i = 0; i < arrAlphabetNeed.Count; i++)
@@ -149,11 +159,17 @@ public class UIManager : MonoBehaviour {
     public void ShowPanelUpgrade()
     {
         panelUpgrade.SetActive(true);
+        GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(1);
+        Btn_x1x10_Upgrade(1);
     }
 
     public void Btn_x1x10_Upgrade(int _x)
     {
         xUpgrade = _x;
+        txtLevelCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].level.ToString();
+        txtLevelUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].levelWillupgrade.ToString();
+        txtCapCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].capWar.ToString();
+        txtCapUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].capWillUpgrade.ToString();
     }
 
     public void Btn_YesUpgrade()

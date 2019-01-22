@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EventDispatcher;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,8 +18,8 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [Header("INFO PLAYER")]
-    public double gold;
-    public long coin;
+    public long gold;
+    public int coin;
     public int goldMount;
     public Castle castlePlayer;
     public List<GoldMine> lstGoldMinePlayer;
@@ -66,7 +67,17 @@ public class GameManager : MonoBehaviour
             int year = dateGame.Year;
             dateGame = dateGame.AddDays(1f);
             SetDate();
+            this.PostEvent(EventID.NextDay);
             time = 0;
+        }
+    }
+
+    public void AddGold(long _gold)
+    {
+        gold += _gold;
+        if (gold < 0)
+        {
+            gold = 0;
         }
     }
 

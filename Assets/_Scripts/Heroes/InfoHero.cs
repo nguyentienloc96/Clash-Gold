@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class InfoHero {
     public int ID;
+    public int numberHero;
     public float health;
     public float dame;
     public float range;
