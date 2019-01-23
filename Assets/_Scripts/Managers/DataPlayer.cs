@@ -1,18 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DataPlayer : MonoBehaviour {
     [HideInInspector]
-    public double gold;
+    public long gold; //vàng
     [HideInInspector]
-    public long coin;
+    public int coin; //coin
     [HideInInspector]
-    public int goldMount;
+    public int ratioBorn; //độ khó
     [HideInInspector]
-    public Castle castlePlayer;
+    public DateTime dateGame; //ngày trong game
     [HideInInspector]
-    public List<GoldMine> lstGoldMinePlayer;
+    public Castle castlePlayer; //thành của người chơi
+    [HideInInspector]
+    public List<GoldMine> lstGoldMinePlayer; //list mỏ vàng người chơi
+    [HideInInspector]
+    public List<BuildHouse> lstBuildHouse; //nhà đã mở hay chưa
+    [HideInInspector]
+    public List<House> lstHouseInWall; //list nhà trong thành
+    [HideInInspector]
+    public List<Hero> lstHero; //list hero
 	// Use this for initialization
 	void Start () {
 		

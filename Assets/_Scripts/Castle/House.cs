@@ -116,7 +116,7 @@ public class House : MonoBehaviour
             return;
 
         price = priceWillUpgrade;
-        GameManager.Instance.gold -= (long)(price * GameConfig.Instance.Ri);
+        GameManager.Instance.AddGold(-(long)(price * GameConfig.Instance.Ri));
         typeState = TypeStateHouse.Upgrading;
         xUpgrade = _x;
         txtCountHero.gameObject.SetActive(false);
@@ -136,7 +136,7 @@ public class House : MonoBehaviour
 
     public void Build(int _id)
     {
-        GameManager.Instance.gold -= price;
+        GameManager.Instance.AddGold(-price);
         timeBuild = GameConfig.Instance.BuildTime * idHouse;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
         typeState = TypeStateHouse.Building;
