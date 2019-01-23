@@ -22,15 +22,14 @@ public class GameManager : MonoBehaviour
     public bool isPlay = false;
     public long gold;
     public int coin;
-    public int goldMount;
     public float ratioBorn; //level game: de, trung binh, kho
     public Castle castlePlayer;
-    public List<GoldMine> lstGoldMinePlayer;
+    public List<GoldMine> lstGoldMinePlayer = new List<GoldMine>();
     public List<House> lstHousePlayer = new List<House>();
     public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
 
     [Header("INFO ENEMY")]
-    public List<GoldMine> lstGoldMineEnemy;
+    public List<GoldMine> lstGoldMineEnemy = new List<GoldMine>();
 
     [Header("MANAGER HERO AND ENEMY")]
     public List<Hero> lsHero;
@@ -84,6 +83,15 @@ public class GameManager : MonoBehaviour
         if (gold < 0)
         {
             gold = 0;
+        }
+    }
+
+    public void AddCoin(int _coin)
+    {
+        coin += _coin;
+        if (coin < 0)
+        {
+            coin = 0;
         }
     }
 

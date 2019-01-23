@@ -68,9 +68,10 @@ public class UIManager : MonoBehaviour
         //txtGold.text = ConvertNumber(GameManager.Instance.gold);
         txtGold.text = GameManager.Instance.gold.ToString();
         txtCoin.text = GameManager.Instance.coin.ToString();
-        txtGoldMount.text = "Gold mount: " + GameManager.Instance.goldMount.ToString();
+        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString();
     }
 
+    #region === SUPPORT ===
     public string ConvertNumber(long number)
     {
         string smoney = string.Format("{0:#,##0}", number);
@@ -121,6 +122,7 @@ public class UIManager : MonoBehaviour
         _g.SetActive(false);
         //_g.GetComponent<Animator>().Play("DeActivePanel");
     }
+    #endregion
 
     #region === UI HOME ===
     public void Btn_Play()

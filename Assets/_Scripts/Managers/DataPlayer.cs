@@ -5,21 +5,23 @@ using System;
 
 public class DataPlayer : MonoBehaviour {
     [HideInInspector]
-    public long gold;
+    public long gold; //vàng
     [HideInInspector]
-    public int coin;
+    public int coin; //coin
     [HideInInspector]
-    public int goldMount;
+    public int ratioBorn; //độ khó
     [HideInInspector]
-    public int ratioBorn;
+    public DateTime dateGame; //ngày trong game
     [HideInInspector]
-    public DateTime dateGame;
+    public Castle castlePlayer; //thành của người chơi
     [HideInInspector]
-    public Castle castlePlayer;
+    public List<GoldMine> lstGoldMinePlayer; //list mỏ vàng người chơi
     [HideInInspector]
-    public List<GoldMine> lstGoldMinePlayer;
+    public List<BuildHouse> lstBuildHouse; //nhà đã mở hay chưa
     [HideInInspector]
-    public List<BuildHouse> lstBuildHouse;
+    public List<House> lstHouseInWall; //list nhà trong thành
+    [HideInInspector]
+    public List<Hero> lstHero; //list hero
 	// Use this for initialization
 	void Start () {
 		
