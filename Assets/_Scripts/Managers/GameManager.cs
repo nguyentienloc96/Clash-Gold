@@ -60,7 +60,10 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < lstHousePlayer.Count; i++)
         {
-            //
+            if (lstHousePlayer[i].typeState == TypeStateHouse.None)
+            {
+                //load du lieu
+            }
         }
     }
 

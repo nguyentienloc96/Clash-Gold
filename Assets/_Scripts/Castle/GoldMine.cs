@@ -74,7 +74,7 @@ public class GoldMine : MonoBehaviour {
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
-
+            //Cho linh tu dong qua land nhan vat
         }
     }
 }
