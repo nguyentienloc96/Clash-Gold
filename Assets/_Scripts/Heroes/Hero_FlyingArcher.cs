@@ -18,14 +18,6 @@ public class Hero_FlyingArcher : Hero
     {
         AnimDie();
         ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
-        if (gameObject.CompareTag("Enemy"))
-        {
-            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
-        }
-        else
-        {
-            ObjectPoolingManager.Instance.lsHero.Remove(this);
-        }
     }
 
     public override void BeingAttacked(float _dame)

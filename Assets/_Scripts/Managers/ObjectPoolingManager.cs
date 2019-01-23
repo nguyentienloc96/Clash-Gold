@@ -19,10 +19,6 @@ public class ObjectPoolingManager : MonoBehaviour {
 
     public ObjectPool[] arrayPooledObjects;
 
-    [Header("MANAGER HERO AND ENEMY")]
-    public List<Hero> lsHero;
-    public List<Hero> lsEnemy;
-
     void Awake()
     {
         if (Instance != null)

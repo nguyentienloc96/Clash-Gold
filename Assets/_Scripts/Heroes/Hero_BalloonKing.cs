@@ -5,18 +5,24 @@ using UnityEngine;
 public class Hero_BalloonKing : Hero {
     public override void Attack()
     {
-
+        AnimAttack();
+        GameObject _bullet = ObjectPoolingManager.Instance.GetObjectForType(nameBullet, posShoot.position);
+        _bullet.SetActive(true);
+        _bullet.transform.right = transform.right;
+        _bullet.GetComponent<Rigidbody2D>().velocity = transform.up * infoHero.speedBullet;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
     }
 
     public override void Die()
     {
-        throw new System.NotImplementedException();
+        AnimDie();
+        ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
     }
 
 
     public override void BeingAttacked(float _dame)
     {
-        throw new System.NotImplementedException();
+        TakeDamage(_dame);
     }
 
     public override void SetInfoHero()
@@ -35,9 +41,11 @@ public class Hero_BalloonKing : Hero {
         this.infoHero.idBaby = 6;
         this.infoHero.idMom = 0;
         this.infoHero.typeHero = TypeHero.CungBay;
-
+        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }
-    // Use this for initialization
+
+    string nameBullet;
     public void Start()
     {
         SetInfoHero();

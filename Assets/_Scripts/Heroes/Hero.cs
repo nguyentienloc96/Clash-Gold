@@ -56,6 +56,14 @@ public abstract class Hero : MonoBehaviour
     {
         typeAction = TypeAction.DIE;
         parDie.Play();
+        if (gameObject.CompareTag("Enemy"))
+        {
+            TestManager.Instance.lsEnemy.Remove(this);
+        }
+        else
+        {
+            TestManager.Instance.lsHero.Remove(this);
+        }
         Destroy(gameObject, 0.5f);
     }
 
@@ -111,11 +119,11 @@ public abstract class Hero : MonoBehaviour
             List<Hero> lsCompetitor = new List<Hero>();
             if (gameObject.CompareTag("Hero"))
             {
-                lsCompetitor = ObjectPoolingManager.Instance.lsEnemy;
+                lsCompetitor = TestManager.Instance.lsEnemy;
             }
             else if (gameObject.CompareTag("Enemy"))
             {
-                lsCompetitor = ObjectPoolingManager.Instance.lsHero;
+                lsCompetitor = TestManager.Instance.lsHero;
             }
             List<Hero> lsCompetitorTarget = new List<Hero>();
             Hero targetAttack = null;
@@ -127,8 +135,17 @@ public abstract class Hero : MonoBehaviour
                     {
                         if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
                         {
-
-                            lsCompetitorTarget.Add(obj);
+                            if (obj.infoHero.typeHero != TypeHero.Canon)
+                            {
+                                lsCompetitorTarget.Add(obj);
+                            }
+                            else
+                            {
+                                if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
+                                {
+                                    lsCompetitorTarget.Add(obj);
+                                }
+                            }
                         }
                     }
                 }
@@ -140,7 +157,17 @@ public abstract class Hero : MonoBehaviour
                 {
                     if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
                     {
-                        lsCompetitorTarget.Add(obj);
+                        if (obj.infoHero.typeHero != TypeHero.Canon)
+                        {
+                            lsCompetitorTarget.Add(obj);
+                        }
+                        else
+                        {
+                            if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
+                            {
+                                lsCompetitorTarget.Add(obj);
+                            }
+                        }
                     }
                 }
             }
@@ -162,7 +189,7 @@ public abstract class Hero : MonoBehaviour
         transform.up = dir;
         if (Vector3.Distance(transform.position, _toPos) > infoHero.range / 5f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
             transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z);
             AnimRun();
         }
@@ -196,7 +223,10 @@ public abstract class Hero : MonoBehaviour
         if (targetCompetitor != null)
         {
             AutoAttack();
-            MoveToPosition(targetCompetitor.transform.position);
+            if (infoHero.typeHero != TypeHero.Canon)
+            {
+                MoveToPosition(targetCompetitor.transform.position);
+            }
         }
     }
 

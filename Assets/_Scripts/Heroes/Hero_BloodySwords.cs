@@ -6,19 +6,16 @@ public class Hero_BloodySwords : Hero {
     public override void Attack()
     {
         AnimAttack();
+        if (targetCompetitor.infoHero.ID == 12)
+        {
+            targetCompetitor.BeingAttacked(targetCompetitor.infoHero.counterDame * targetCompetitor.infoHero.numberHero);
+        }
+        targetCompetitor.BeingAttacked(infoHero.dame * infoHero.numberHero);
     }
 
     public override void Die()
     {
         AnimDie();
-        if (gameObject.CompareTag("Enemy"))
-        {
-            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
-        }
-        else
-        {
-            ObjectPoolingManager.Instance.lsHero.Remove(this);
-        }
     }
 
     public override void BeingAttacked(float _dame)
@@ -35,7 +32,7 @@ public class Hero_BloodySwords : Hero {
         this.infoHero.speed = 10;
         this.infoHero.price = 4000;
         this.infoHero.capWar = 10 * GameConfig.Instance.Med;
-        this.infoHero.range = 0;
+        this.infoHero.range = 3.5f;
         this.infoHero.counterDame = 0;
         this.infoHero.isMum = false;
         this.infoHero.isBaby = false;
@@ -43,6 +40,7 @@ public class Hero_BloodySwords : Hero {
         this.infoHero.idMom = 0;
         this.infoHero.typeHero = TypeHero.ChemThuong;
         this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
 
     }
 

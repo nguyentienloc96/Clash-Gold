@@ -5,17 +5,26 @@ using UnityEngine;
 public class Hero_TheWingTrio : Hero {
     public override void Attack()
     {
-
+        AnimAttack();
+        if (targetCompetitor.infoHero.ID == 12)
+        {
+            targetCompetitor.BeingAttacked(targetCompetitor.infoHero.counterDame * targetCompetitor.infoHero.numberHero);
+        }
+        if (targetCompetitor.infoHero.ID == 13)
+        {
+            BeingAttacked(targetCompetitor.infoHero.counterDame * targetCompetitor.infoHero.numberHero);
+        }
+        targetCompetitor.BeingAttacked(infoHero.dame * infoHero.numberHero);
     }
 
     public override void Die()
     {
-        throw new System.NotImplementedException();
+        AnimDie();
     }
 
     public override void BeingAttacked(float _dame)
     {
-        throw new System.NotImplementedException();
+        TakeDamage(_dame);
     }
 
     public override void SetInfoHero()
@@ -34,8 +43,10 @@ public class Hero_TheWingTrio : Hero {
         this.infoHero.idBaby = 0;
         this.infoHero.idMom = 0;
         this.infoHero.typeHero = TypeHero.ChemBay;
-
+        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }
+
     // Use this for initialization
     public void Start()
     {
@@ -43,6 +54,7 @@ public class Hero_TheWingTrio : Hero {
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
     }
+
 
     public void Update()
     {

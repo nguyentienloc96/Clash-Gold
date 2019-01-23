@@ -13,8 +13,8 @@ public class Bullet : MonoBehaviour
             {
                 Hero hero = collision.GetComponent<Hero>();
                 hero.parHit.transform.right = -transform.up;
-                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
-                hero.BeingAttacked(dameBullet);
+                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);   
+                hero.BeingAttacked(dameBullet);                
                 gameObject.SetActive(false);
             }
         }

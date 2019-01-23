@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4851562228402308}
   - component: {fileID: 95316159578425638}
   - component: {fileID: 114757963872536754}
-  - component: {fileID: 61576571190125272}
+  - component: {fileID: 61826204842282732}
   m_Layer: 0
   m_Name: Bloody Swords E
   m_TagString: Enemy
@@ -260,8 +260,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1437748449095362}
-  m_LocalRotation: {x: 0, y: -0, z: 0.9208796, w: -0.38984716}
-  m_LocalPosition: {x: 2.21, y: -4.22, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4049734885080560}
@@ -272,7 +272,7 @@ Transform:
   - {fileID: 4536462280301720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 225.89}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4988084192673834
 Transform:
   m_ObjectHideFlags: 1
@@ -320,7 +320,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!61 &61576571190125272
+--- !u!61 &61826204842282732
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -398,6 +398,7 @@ MonoBehaviour:
     ID: 0
     numberHero: 0
     health: 0
+    healthAll: 0
     dame: 0
     range: 0
     hitSpeed: 0

@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4960561465220944}
   - component: {fileID: 95839693725329560}
   - component: {fileID: 114010228185448654}
-  - component: {fileID: 61865516923498374}
+  - component: {fileID: 61187983404393650}
   m_Layer: 0
   m_Name: Archer E
   m_TagString: Enemy
@@ -320,7 +320,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!61 &61865516923498374
+--- !u!61 &61187983404393650
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 4358302011799632}
   - component: {fileID: 95441973544456962}
   - component: {fileID: 114832127272877978}
-  - component: {fileID: 61073830702147892}
+  - component: {fileID: 61516428430693152}
   m_Layer: 0
   m_Name: Flying Archer
   m_TagString: Hero
@@ -207,7 +207,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1729169328990716}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4983486697425230}
@@ -320,7 +320,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!61 &61073830702147892
+--- !u!61 &61516428430693152
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -398,6 +398,7 @@ MonoBehaviour:
     ID: 0
     numberHero: 200
     health: 0
+    healthAll: 0
     dame: 0
     range: 0
     hitSpeed: 0

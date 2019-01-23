@@ -5,7 +5,6 @@ using UnityEngine;
 public class Hero_Archer : Hero {
     public override void Attack()
     {
-        
         AnimAttack();
         GameObject _bullet = ObjectPoolingManager.Instance.GetObjectForType(nameBullet, posShoot.position);
         _bullet.SetActive(true);
@@ -18,14 +17,6 @@ public class Hero_Archer : Hero {
     {
         AnimDie();
         ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
-        if (gameObject.CompareTag("Enemy"))
-        {
-            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
-        }
-        else
-        {
-            ObjectPoolingManager.Instance.lsHero.Remove(this);
-        }
     }
 
     public override void BeingAttacked(float _dame)
@@ -60,7 +51,7 @@ public class Hero_Archer : Hero {
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.tag == "Hero" ? "Archer" : "Archer E";
+        nameBullet = gameObject.name;
     }
 
     public void Update()

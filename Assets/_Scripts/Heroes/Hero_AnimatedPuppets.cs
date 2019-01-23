@@ -5,20 +5,17 @@ using UnityEngine;
 public class Hero_AnimatedPuppets : Hero {
     public override void Attack()
     {
-
+        AnimAttack();
+        if (targetCompetitor.infoHero.ID == 12)
+        {
+            targetCompetitor.BeingAttacked(targetCompetitor.infoHero.counterDame * targetCompetitor.infoHero.numberHero);
+        }
+        targetCompetitor.BeingAttacked(infoHero.dame * infoHero.numberHero);
     }
 
     public override void Die()
     {
         AnimDie();
-        if (gameObject.CompareTag("Enemy"))
-        {
-            ObjectPoolingManager.Instance.lsEnemy.Remove(this);
-        }
-        else
-        {
-            ObjectPoolingManager.Instance.lsHero.Remove(this);
-        }
     }
 
     public override void BeingAttacked(float _dame)
