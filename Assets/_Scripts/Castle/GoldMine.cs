@@ -69,6 +69,14 @@ public class GoldMine : MonoBehaviour {
         GameManager.Instance.AddGold(-(long)(priceGold * GameConfig.Instance.Ri));
         capGold = capWillUpgrade;
     }
+
+    public void AttackPlayer()
+    {
+        if (typeGoleMine == TypeGoldMine.Enemy)
+        {
+
+        }
+    }
 }
 
 [System.Serializable]

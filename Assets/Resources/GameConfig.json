@@ -67,6 +67,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 1
 	},
 	"The Wing Trio" : {
@@ -82,6 +83,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 2
 	},
 	"Deadly MOM" : {
@@ -97,6 +99,7 @@
 		"isBaby" : false,
 		"idBaby" : 4,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 3
 	},
 	"Deadly baby" : {
@@ -112,6 +115,7 @@
 		"isBaby" : true,
 		"idBaby" : 0,
 		"idMom" : 3,
+		"speedBullet" : 0,
 		"type" : 1
 	},
 	"Flying mage" : {
@@ -127,6 +131,7 @@
 		"isBaby" : false,
 		"idBaby" : 6,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 4
 	},
 	"Little soul" : {
@@ -142,6 +147,7 @@
 		"isBaby" : true,
 		"idBaby" : 0,
 		"idMom" : 5,
+		"speedBullet" : 0,
 		"type" : 2
 	},
 	"Short Gunner" : {
@@ -157,6 +163,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 3
 	},
 	"Flying gunner" : {
@@ -172,6 +179,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 4
 	},
 	"Drunken Bomber" : {
@@ -187,6 +195,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 3
 	},
 	"Explosive Wing" : {
@@ -202,6 +211,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 4
 	},
 	"Canon" : {
@@ -217,9 +227,10 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 5
 	},
-	"Fire shield" : {
+	"Reflector" : {
 		"id" : 12,
 		"health1" : 598,
 		"dam1" : 176,
@@ -233,6 +244,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 3
 	},
 	"Flying reflector" : {
@@ -249,6 +261,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 4  
 	},
 	"Archer" : {
@@ -264,6 +277,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 3  
 	},
 	"Flying archer" : {
@@ -279,6 +293,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 10,
 		"type" : 4  
 	},
 	"Bloody Swords" : {
@@ -294,6 +309,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 1
 	},
 	"Bloody wing" : {
@@ -309,6 +325,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 2 
 	},
 	"Immortal scyther" : {
@@ -324,6 +341,7 @@
 		"isBaby" : false,
 		"idBaby" : 19,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 1  
 	},
 	"Animated puppets" : {
@@ -339,6 +357,7 @@
 		"isBaby" : true,
 		"idBaby" : 0,
 		"idMom" : 18,
+		"speedBullet" : 0,
 		"type" : 1  
 	},
 	"Blasting death" : {
@@ -354,6 +373,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 2
 	},
 	"Twisting axe" : {
@@ -369,6 +389,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 1
 	},
 	"Flying axe" : {
@@ -384,6 +405,7 @@
 		"isBaby" : false,
 		"idBaby" : 0,
 		"idMom" : 0,
+		"speedBullet" : 0,
 		"type" : 1
 	}
   }

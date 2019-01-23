@@ -95,18 +95,45 @@ public class LoadDataJson : MonoBehaviour
             {
                 GameConfig.Instance.lstSpeech.Add(objJson["speech"][j]);
             }
-            //for (int t = 0; t < objJson["heroes"].Count; t++)
-            //{
-            //    InfoHero _info = new InfoHero();
-            //    _info.ID = objJson["heroes"][t]["id"].AsInt;
-            //    _info.health = objJson["heroes"][t]["health1"].AsFloat;
-            //    _info.dame = objJson["heroes"][t]["dam1"].AsFloat;
-            //    _info.hitSpeed = objJson["heroes"][t]["hitspeed1"].AsFloat;
-            //    _info.range = objJson["heroes"][t]["range"].AsFloat;
-            //    _info.speed = objJson["heroes"][t]["speed1"].AsFloat;
-            //    _info.price = objJson["heroes"][t]["Price01"].AsInt;
-            //}
-
+            for (int t = 0; t < objJson["heroes"].Count; t++)
+            {
+                InfoHero _info = new InfoHero();
+                _info.ID = objJson["heroes"][t]["id"].AsInt;
+                _info.health = objJson["heroes"][t]["health1"].AsFloat;
+                _info.dame = objJson["heroes"][t]["dam1"].AsFloat;
+                _info.hitSpeed = objJson["heroes"][t]["hitspeed1"].AsFloat;
+                _info.range = objJson["heroes"][t]["range"].AsFloat;
+                _info.speed = objJson["heroes"][t]["speed1"].AsFloat;
+                _info.price = objJson["heroes"][t]["Price01"].AsInt;
+                _info.capWar = objJson["heroes"][t]["CapWar01"].AsInt;
+                _info.isMom = objJson["heroes"][t]["isMom"].AsBool;
+                _info.isBaby = objJson["heroes"][t]["isBaby"].AsBool;
+                _info.idMom = objJson["heroes"][t]["idMom"].AsInt;
+                _info.idBaby = objJson["heroes"][t]["idBaby"].AsInt;
+                _info.speedBullet = objJson["heroes"][t]["speedBullet"].AsFloat;
+                if (objJson["heroes"][t]["type"].AsInt == 1)
+                {
+                    _info.typeHero = TypeHero.ChemThuong;
+                }
+                else if (objJson["heroes"][t]["type"].AsInt == 2)
+                {
+                    _info.typeHero = TypeHero.ChemBay;
+                }
+                else if (objJson["heroes"][t]["type"].AsInt == 3)
+                {
+                    _info.typeHero = TypeHero.CungThuong;
+                }
+                else if (objJson["heroes"][t]["type"].AsInt == 4)
+                {
+                    _info.typeHero = TypeHero.CungBay;
+                }
+                else if (objJson["heroes"][t]["type"].AsInt == 5)
+                {
+                    _info.typeHero = TypeHero.Canon;
+                }
+                GameConfig.Instance.lstInfoHero.Add(_info);
+            }
+            
         }
     }
 

@@ -12,6 +12,7 @@ public class Castle : MonoBehaviour
     public long price;
     public int level;
     public Collider2D colliderLand;
+    public List<Hero> lstHeroRelease;
     // Use this for initialization
     void Start()
     {

@@ -26,20 +26,20 @@ public class Hero_AnimatedPuppets : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 19;
-        this.infoHero.health = 98;
-        this.infoHero.dame = 98;
-        this.infoHero.hitSpeed = 1.1f;
-        this.infoHero.speed = 10;
-        this.infoHero.price = 0;
-        this.infoHero.capWar = 0;
-        this.infoHero.range = 0;
-        this.infoHero.counterDame = 0;
-        this.infoHero.isMum = false;
-        this.infoHero.isBaby = true;
-        this.infoHero.idBaby = 0;
-        this.infoHero.idMom = 18;
-        this.infoHero.typeHero = TypeHero.ChemThuong;
-
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        //this.infoHero.health = 98;
+        //this.infoHero.dame = 98;
+        //this.infoHero.hitSpeed = 1.1f;
+        //this.infoHero.speed = 10;
+        //this.infoHero.price = 0;
+        //this.infoHero.capWar = 0;
+        //this.infoHero.range = 0;
+        //this.infoHero.counterDame = 0;
+        //this.infoHero.isMom = false;
+        //this.infoHero.isBaby = true;
+        //this.infoHero.idBaby = 0;
+        //this.infoHero.idMom = 18;
+        //this.infoHero.typeHero = TypeHero.ChemThuong;
     }
 
     // Use this for initialization

@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public List<GoldMine> lstGoldMineEnemy = new List<GoldMine>();
 
     [Header("MANAGER HERO AND ENEMY")]
-    public List<Hero> lsHero;
+    public List<Hero> lsHero = new List<Hero>();
     public List<Hero> lsEnemy;
 
     void Awake()
@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
                 bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
+        
     }
 
     // Update is called once per frame

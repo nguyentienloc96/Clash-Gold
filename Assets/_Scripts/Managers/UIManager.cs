@@ -71,6 +71,12 @@ public class UIManager : MonoBehaviour
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString();
     }
 
+    public GameObject g;
+    public void Btn_Test()
+    {
+        Instantiate(g, this.transform, false);
+    }
+
     #region === SUPPORT ===
     public string ConvertNumber(long number)
     {

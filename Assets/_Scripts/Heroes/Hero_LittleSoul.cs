@@ -30,19 +30,20 @@ public class Hero_LittleSoul : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 6;
-        this.infoHero.health = 67;
-        this.infoHero.dame = 67;
-        this.infoHero.hitSpeed = 1.1f;
-        this.infoHero.speed = 10;
-        this.infoHero.price = 0;
-        this.infoHero.capWar = 0;
-        this.infoHero.range = 0;
-        this.infoHero.counterDame = 0;
-        this.infoHero.isMum = false;
-        this.infoHero.isBaby = true;
-        this.infoHero.idBaby = 0;
-        this.infoHero.idMom = 5;
-        this.infoHero.typeHero = TypeHero.ChemBay;
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        //this.infoHero.health = 67;
+        //this.infoHero.dame = 67;
+        //this.infoHero.hitSpeed = 1.1f;
+        //this.infoHero.speed = 10;
+        //this.infoHero.price = 0;
+        //this.infoHero.capWar = 0;
+        //this.infoHero.range = 0;
+        //this.infoHero.counterDame = 0;
+        //this.infoHero.isMom = false;
+        //this.infoHero.isBaby = true;
+        //this.infoHero.idBaby = 0;
+        //this.infoHero.idMom = 5;
+        //this.infoHero.typeHero = TypeHero.ChemBay;
         this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
         this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }

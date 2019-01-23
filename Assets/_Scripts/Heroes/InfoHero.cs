@@ -16,7 +16,7 @@ public class InfoHero {
     public float capWar;
     public float counterDame;
     public float speedBullet;
-    public bool isMum;
+    public bool isMom;
     public bool isBaby;
     public int idMom;
     public int idBaby;

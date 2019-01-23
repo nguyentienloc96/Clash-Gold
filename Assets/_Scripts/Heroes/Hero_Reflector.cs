@@ -27,19 +27,20 @@ public class Hero_Reflector : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 12;
-        this.infoHero.health = 598;
-        this.infoHero.dame = 176;
-        this.infoHero.hitSpeed = 1.1f;
-        this.infoHero.speed = 5;
-        this.infoHero.price = 4000;
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        //this.infoHero.health = 598;
+        //this.infoHero.dame = 176;
+        //this.infoHero.hitSpeed = 1.1f;
+        //this.infoHero.speed = 5;
+        //this.infoHero.price = 4000;
         this.infoHero.capWar = 10 * GameConfig.Instance.Med;
-        this.infoHero.range = 6;
-        this.infoHero.counterDame = 100;
-        this.infoHero.isMum = false;
-        this.infoHero.isBaby = false;
-        this.infoHero.idBaby = 0;
-        this.infoHero.idMom = 0;
-        this.infoHero.typeHero = TypeHero.CungThuong;
+        //this.infoHero.range = 6;
+        //this.infoHero.counterDame = 100;
+        //this.infoHero.isMom = false;
+        //this.infoHero.isBaby = false;
+        //this.infoHero.idBaby = 0;
+        //this.infoHero.idMom = 0;
+        //this.infoHero.typeHero = TypeHero.CungThuong;
         this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
         this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }
