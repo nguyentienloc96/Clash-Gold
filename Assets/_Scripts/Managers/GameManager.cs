@@ -18,9 +18,12 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [Header("INFO PLAYER")]
+    [HideInInspector]
+    public bool isPlay = false;
     public long gold;
     public int coin;
     public int goldMount;
+    public float ratioBorn; //level game: de, trung binh, kho
     public Castle castlePlayer;
     public List<GoldMine> lstGoldMinePlayer;
     public List<House> lstHousePlayer = new List<House>();
@@ -60,15 +63,18 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        if (time >= GameConfig.Instance.Timeday)
+        if (isPlay)
         {
-            int month = dateGame.Month;
-            int year = dateGame.Year;
-            dateGame = dateGame.AddDays(1f);
-            SetDate();
-            this.PostEvent(EventID.NextDay);
-            time = 0;
+            time += Time.deltaTime;
+            if (time >= GameConfig.Instance.Timeday)
+            {
+                int month = dateGame.Month;
+                int year = dateGame.Year;
+                dateGame = dateGame.AddDays(1f);
+                SetDate();
+                this.PostEvent(EventID.NextDay);
+                time = 0;
+            }
         }
     }
 
@@ -84,7 +90,14 @@ public class GameManager : MonoBehaviour
     #region === DATE GAME ===
     public void LoadDate()
     {
-        dateGame = DateTime.Now;
+        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
+        {
+            dateGame = DateTime.Now;
+        }
+        else
+        {
+            dateGame = DateTime.Now;
+        }
         SetDate();
     }
 

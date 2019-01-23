@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : MonoBehaviour
+{
     [Header("UI HOME")]
     public GameObject panelHome;
+    public GameObject panelGroupHome;
+    public GameObject panelChooseLevel;
     public GameObject panelMain;
+    public GameObject panelYesNoNewPlay;
+    public Button buttonContinue;
 
     [Header("UI TOP")]
     public Text txtGold;
@@ -45,8 +50,9 @@ public class UIManager : MonoBehaviour {
         }
         Instance = this;
     }
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         for (int i = 0; i < 4; i++)
         {
             for (int j = 0; j < arrAlphabet.Length; j++)
@@ -54,15 +60,16 @@ public class UIManager : MonoBehaviour {
                 arrAlphabetNeed.Add(arrAlphabet[i] + arrAlphabet[j]);
             }
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         //txtGold.text = ConvertNumber(GameManager.Instance.gold);
         txtGold.text = GameManager.Instance.gold.ToString();
         txtCoin.text = GameManager.Instance.coin.ToString();
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.goldMount.ToString();
-	}
+    }
 
     public string ConvertNumber(long number)
     {
@@ -97,24 +104,71 @@ public class UIManager : MonoBehaviour {
         return smoney;
     }
 
-    public void Btn_ClosePanel(GameObject _g)
+    public void SetActivePanel(GameObject _g)
     {
-        if (_g != null)
-            _g.SetActive(false);
+        if (_g == null)
+            return;
+
+        _g.SetActive(true);
+        //_g.GetComponent<Animator>().Play("ActivePanel");
+    }
+
+    public void SetDeActivePanel(GameObject _g)
+    {
+        if (_g == null)
+            return;
+
+        _g.SetActive(false);
+        //_g.GetComponent<Animator>().Play("DeActivePanel");
     }
 
     #region === UI HOME ===
     public void Btn_Play()
     {
-        panelHome.SetActive(false);
-        panelMain.SetActive(true);
+        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
+        {
+            SetActivePanel(panelChooseLevel);
+        }
+        else
+        {
+            SetActivePanel(panelYesNoNewPlay);
+        }      
+        SetDeActivePanel(panelGroupHome);       
+    }
+
+    public void Btn_YesNewPlay()
+    {
+        SetActivePanel(panelChooseLevel);
+        SetDeActivePanel(panelYesNoNewPlay);
         GameManager.Instance.gold = GameConfig.Instance.GoldStart;
-        GameManager.Instance.coin = GameConfig.Instance.CoinStart;       
+        GameManager.Instance.coin = GameConfig.Instance.CoinStart;
+    }
+
+    public void Btn_NoNewPlay()
+    {
+        SetActivePanel(panelGroupHome);
+        SetDeActivePanel(panelYesNoNewPlay);
+    }
+
+    public void Btn_ChooseLevel(int _level)
+    {
+        GameManager.Instance.ratioBorn = GameConfig.Instance.RatioBorn[_level];
+        panelHome.SetActive(false);
+        GameManager.Instance.isPlay = true;
     }
 
     public void Btn_Continue()
     {
-
+        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
+        {
+            buttonContinue.interactable = false;
+        }
+        else
+        {
+            buttonContinue.interactable = true;
+        }
+        panelHome.SetActive(false);
+        GameManager.Instance.isPlay = true;
     }
 
     public void Btn_Tutorial()
@@ -148,7 +202,7 @@ public class UIManager : MonoBehaviour {
     #region === UI IN-WALL ===
     public void ShowInWall()
     {
-        panelInWall.SetActive(true);
+        SetActivePanel(panelInWall);
     }
 
     public void ShowPanelBuild()
@@ -163,7 +217,7 @@ public class UIManager : MonoBehaviour {
 
     public void ShowPanelUpgrade()
     {
-        panelUpgrade.SetActive(true);
+        SetActivePanel(panelUpgrade);
         GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(1);
         Btn_x1x10_Upgrade(1);
     }
@@ -184,14 +238,14 @@ public class UIManager : MonoBehaviour {
 
     public void Btn_NoUpgrade()
     {
-        panelUpgrade.SetActive(false);
+        SetDeActivePanel(panelUpgrade);
     }
 
     [HideInInspector]
     public int houseClick;
     public void Btn_BuildHouse(int _id)
     {
-        GameManager.Instance.lstHousePlayer[houseClick].Build(_id);       
+        GameManager.Instance.lstHousePlayer[houseClick].Build(_id);
     }
     #endregion
 }

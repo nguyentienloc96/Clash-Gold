@@ -1,18 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class DataPlayer : MonoBehaviour {
     [HideInInspector]
-    public double gold;
+    public long gold;
     [HideInInspector]
-    public long coin;
+    public int coin;
     [HideInInspector]
     public int goldMount;
+    [HideInInspector]
+    public int ratioBorn;
+    [HideInInspector]
+    public DateTime dateGame;
     [HideInInspector]
     public Castle castlePlayer;
     [HideInInspector]
     public List<GoldMine> lstGoldMinePlayer;
+    [HideInInspector]
+    public List<BuildHouse> lstBuildHouse;
 	// Use this for initialization
 	void Start () {
 		

@@ -73,22 +73,22 @@ public class GameConfig : MonoBehaviour
 
     void Start()
     {
-        if (id == "")
-        {
-            App42API.Initialize(app42_apiKey, app42_secretKey);
-            //GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
-            Social.localUser.Authenticate(success =>
-            {
-                if (success)
-                {
-                    id = Social.localUser.id;
-                    StorageService storageService = App42API.BuildStorageService();
-                    storageService.FindDocumentByKeyValue("Db", "Data", "id", id, new UnityCallBack1());
-                }
-                else
-                    Debug.Log("Failed to authenticate");
-            });
-        }
+        //if (id == "")
+        //{
+        //    App42API.Initialize(app42_apiKey, app42_secretKey);
+        //    //GameCenterPlatform.ShowDefaultAchievementCompletionBanner(true);
+        //    Social.localUser.Authenticate(success =>
+        //    {
+        //        if (success)
+        //        {
+        //            id = Social.localUser.id;
+        //            StorageService storageService = App42API.BuildStorageService();
+        //            storageService.FindDocumentByKeyValue("Db", "Data", "id", id, new UnityCallBack1());
+        //        }
+        //        else
+        //            Debug.Log("Failed to authenticate");
+        //    });
+        //}
     }
 }
 
