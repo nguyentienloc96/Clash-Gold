@@ -57,7 +57,11 @@ public class GameManager : MonoBehaviour
                 bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
-        
+
+        for (int i = 0; i < lstHousePlayer.Count; i++)
+        {
+            //
+        }
     }
 
     // Update is called once per frame
