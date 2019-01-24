@@ -35,9 +35,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4179925628120192}
   - component: {fileID: 212387124777719532}
-  - component: {fileID: 68930958695821912}
   - component: {fileID: 50372687624708096}
   - component: {fileID: 114983053751308604}
+  - component: {fileID: 60520201837551570}
   m_Layer: 0
   m_Name: Gold Mine
   m_TagString: Untagged
@@ -85,9 +85,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 3.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4567355918638882}
   - {fileID: 4665881951542494}
   - {fileID: 4581940222790342}
+  - {fileID: 4567355918638882}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -102,7 +102,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4179925628120192}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4581940222790342
 Transform:
@@ -115,7 +115,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4179925628120192}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4665881951542494
 Transform:
@@ -128,7 +128,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4179925628120192}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50372687624708096
 Rigidbody2D:
@@ -150,8 +150,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &68930958695821912
-EdgeCollider2D:
+--- !u!60 &60520201837551570
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -159,38 +159,55 @@ EdgeCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.17, y: 3.42}
+    newSize: {x: 5.17, y: 3.42}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: -2.585, y: 0}
-  - {x: -2.4793959, y: -0.5052886}
-  - {x: -2.272082, y: -0.8173418}
-  - {x: -1.903955, y: -1.1633272}
-  - {x: -1.5378317, y: -1.3676485}
-  - {x: -0.9556937, y: -1.5892842}
-  - {x: 0.01048775, y: -1.7047896}
-  - {x: 0.5888364, y: -1.6573275}
-  - {x: 1.0191504, y: -1.5709221}
-  - {x: 1.6737722, y: -1.2708552}
-  - {x: 2.2189302, y: -0.86130285}
-  - {x: 2.4514048, y: -0.5504019}
-  - {x: 2.5768352, y: -0.090617895}
-  - {x: 2.5272758, y: 0.33052826}
-  - {x: 2.3279707, y: 0.7150352}
-  - {x: 1.9940865, y: 1.0958946}
-  - {x: 1.5611856, y: 1.3351252}
-  - {x: 1.1083214, y: 1.5280087}
-  - {x: 0.4075002, y: 1.6683424}
-  - {x: -0.23369032, y: 1.6792715}
-  - {x: -0.8292805, y: 1.617379}
-  - {x: -1.4351896, y: 1.4270785}
-  - {x: -1.982554, y: 1.0652511}
-  - {x: -2.315581, y: 0.74055934}
-  - {x: -2.4997878, y: 0.36534262}
-  - {x: -2.5706286, y: -0.01653409}
+    m_Paths:
+    - - {x: -2.5107183, y: -0.3687563}
+      - {x: -2.3469667, y: -0.6903982}
+      - {x: -2.0789728, y: -1.0058405}
+      - {x: -1.7528591, y: -1.226415}
+      - {x: -1.4200962, y: -1.4138747}
+      - {x: -1.0656912, y: -1.5376563}
+      - {x: -0.60366917, y: -1.6379263}
+      - {x: -0.083529495, y: -1.6893965}
+      - {x: 0.22644293, y: -1.6764915}
+      - {x: 0.45105702, y: -1.6640302}
+      - {x: 0.95928836, y: -1.5651822}
+      - {x: 1.40764, y: -1.42107}
+      - {x: 1.77322, y: -1.2275997}
+      - {x: 2.0191064, y: -1.044708}
+      - {x: 2.1651633, y: -0.89322376}
+      - {x: 2.3586695, y: -0.67389727}
+      - {x: 2.494747, y: -0.40783262}
+      - {x: 2.5702806, y: -0.07257295}
+      - {x: 2.551649, y: 0.17053556}
+      - {x: 2.4848428, y: 0.40395474}
+      - {x: 2.3422542, y: 0.7064924}
+      - {x: 2.070737, y: 0.9961846}
+      - {x: 1.8283442, y: 1.1836998}
+      - {x: 1.062475, y: 1.54686}
+      - {x: 0.07804853, y: 1.6929095}
+      - {x: -0.33572373, y: 1.6785553}
+      - {x: -0.90792954, y: 1.5832565}
+      - {x: -1.2972784, y: 1.4521792}
+      - {x: -1.712846, y: 1.2617533}
+      - {x: -1.9538777, y: 1.0872495}
+      - {x: -2.138668, y: 0.9181912}
+      - {x: -2.331188, y: 0.70168424}
+      - {x: -2.4998472, y: 0.41008353}
+      - {x: -2.5643504, y: 0.0154976845}
 --- !u!114 &114983053751308604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -210,7 +227,7 @@ MonoBehaviour:
   capWillUpgrade: 50
   levelWillUpgrade: 0
   level: 9
-  colliderLand: {fileID: 68930958695821912}
+  colliderLand: {fileID: 0}
   typeGoleMine: 0
   lstHeroGoldMine: []
   lsPos:

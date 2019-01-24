@@ -21,6 +21,7 @@ public class TestManager : MonoBehaviour
     [Header("Charater")]
     public List<Hero> lsHero;
     public List<Hero> lsEnemy;
+    public GameObject goldMine;
 
     [Header("UI")]
     public GameObject pannelSelect;
@@ -29,6 +30,7 @@ public class TestManager : MonoBehaviour
     public InputField txtCountHero;
     public InputField txtCountEnemy;
     public Button btnPlay;
+    public Toggle tgGoldMine;
 
     public Transform posHero;
     public Transform posEnemy;
@@ -69,8 +71,14 @@ public class TestManager : MonoBehaviour
         }
         StartCoroutine(IEInstantiate(lsPrefabsHero[typeHero], posHero, numberHero, "Hero"));
 
-        StartCoroutine(IEInstantiate(lsPrefabsEnemy[typeEnemy], posEnemy, numberEnemy, "Enemy"));
-
+        if (tgGoldMine.isOn)
+        {
+            StartCoroutine(IEInstantiate(lsPrefabsEnemy[typeEnemy], posEnemy, numberEnemy, "Enemy"));
+        }
+        else
+        {
+            goldMine.SetActive(true);
+        }
         pannelSelect.SetActive(false);
 
     }

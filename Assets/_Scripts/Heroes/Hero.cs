@@ -31,7 +31,9 @@ public abstract class Hero : MonoBehaviour
     public Hero targetCompetitor;
     public float timeCheckAttack;
     public ParticleSystem parHit;
-    
+
+    [Header("CHECK GOLD MINE")]
+    public bool isInGoldMine;
 
     public abstract void SetInfoHero();
 
