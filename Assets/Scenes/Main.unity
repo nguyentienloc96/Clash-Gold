@@ -6362,7 +6362,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1057d4f88008bd64b90cdf3147444bc9, type: 3}
   - {fileID: 21300000, guid: 1cb6711d685868b4a9348c4dfc914e58, type: 3}
   - {fileID: 21300000, guid: de101c4d46d784e4fb4a9b91a262374d, type: 3}
-  arrAlphabetNeed: []
+  arrAlphabetNeed:
+  - k
+  - M
+  - B
+  - T
   houseClick: 0
 --- !u!4 &1423240709
 Transform:

@@ -81,9 +81,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //txtGold.text = ConvertNumber(GameManager.Instance.gold);
-        txtGold.text = GameManager.Instance.gold.ToString();
-        txtCoin.text = GameManager.Instance.coin.ToString();
+        txtGold.text = ConvertNumber(GameManager.Instance.gold);
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString();
     }
 

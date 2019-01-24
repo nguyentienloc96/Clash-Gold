@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
         {
             gold = 0;
         }
+        UIManager.Instance.txtGold.text = UIManager.Instance.ConvertNumber(gold);
     }
 
     public void AddCoin(int _coin)
@@ -110,6 +111,7 @@ public class GameManager : MonoBehaviour
         {
             coin = 0;
         }
+        UIManager.Instance.txtCoin.text = UIManager.Instance.ConvertNumber(coin);
     }
 
     #region === DATE GAME ===
