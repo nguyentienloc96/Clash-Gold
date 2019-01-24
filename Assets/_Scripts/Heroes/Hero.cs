@@ -129,6 +129,7 @@ public abstract class Hero : MonoBehaviour
             Hero targetAttack = null;
             if (infoHero.typeHero == TypeHero.ChemThuong)
             {
+
                 foreach (Hero obj in lsCompetitor)
                 {
                     if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
@@ -152,7 +153,6 @@ public abstract class Hero : MonoBehaviour
             }
             else
             {
-
                 foreach (Hero obj in lsCompetitor)
                 {
                     if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
@@ -187,7 +187,7 @@ public abstract class Hero : MonoBehaviour
     {
         Vector2 dir = _toPos - new Vector2(transform.position.x, transform.position.y);
         transform.up = dir;
-        if (Vector3.Distance(transform.position, _toPos) > infoHero.range / 5f)
+        if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
         {
             transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
             transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z);
@@ -199,7 +199,7 @@ public abstract class Hero : MonoBehaviour
     {
         timeCheckAttack += Time.deltaTime;
 
-        if (Vector3.Distance(transform.position, targetCompetitor.transform.position) <= infoHero.range / 5f)
+        if (Vector3.Distance(transform.position, targetCompetitor.transform.position) <= ((infoHero.range / 5f) + 0.75f))
         {
             if (timeCheckAttack >= infoHero.hitSpeed)
             {

@@ -67,19 +67,30 @@ public class TestManager : MonoBehaviour
             numberHero = 100;
             numberEnemy = 100;
         }
+        StartCoroutine(IEInstantiate(lsPrefabsHero[typeHero], posHero, numberHero, "Hero"));
 
-        Hero hero = Instantiate<Hero>(lsPrefabsHero[typeHero], posHero);
-        hero.gameObject.name = "Hero";
-        lsHero.Add(hero);
-        hero.infoHero.numberHero = numberHero;
-
-        Hero enemy = Instantiate<Hero>(lsPrefabsEnemy[typeEnemy], posEnemy);
-        hero.gameObject.name = "Enemy";
-        lsEnemy.Add(enemy);
-        enemy.infoHero.numberHero = numberEnemy;
-        enemy.transform.eulerAngles = new Vector3(0f, 0f, 180f);
+        StartCoroutine(IEInstantiate(lsPrefabsEnemy[typeEnemy], posEnemy, numberEnemy, "Enemy"));
 
         pannelSelect.SetActive(false);
+
+    }
+
+
+    public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name)
+    {
+        Hero hero = Instantiate<Hero>(prafabs, posIns);
+        hero.gameObject.name = name;
+        if (name == "Hero")
+            lsHero.Add(hero);
+        else
+        {
+            lsEnemy.Add(hero);
+            hero.transform.eulerAngles = new Vector3(0f, 0f, 180f);
+        }
+        yield return new WaitForEndOfFrame();
+        hero.infoHero.numberHero = countHero;
+        hero.txtCountHero.text = UIManager.Instance.ConvertNumber(hero.infoHero.numberHero);
+        hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
     }
 
     public void BackMenu()
@@ -97,14 +108,4 @@ public class TestManager : MonoBehaviour
         pannelSelect.SetActive(true);
     }
 
-    public void Update()
-    {
-        if (lsEnemy.Count <= 0 || lsHero.Count <= 0)
-        {
-            if (!pannelSelect.activeSelf)
-            {
-                BackMenu();
-            }
-        }
-    }
 }
