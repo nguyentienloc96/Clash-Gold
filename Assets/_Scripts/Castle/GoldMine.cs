@@ -6,7 +6,9 @@ using EventDispatcher;
 
 
 [System.Serializable]
-public class GoldMine : MonoBehaviour {
+public class GoldMine : MonoBehaviour
+{
+    public int id;
     public float health;
     public int capGold;
     public long priceGold;
@@ -16,22 +18,45 @@ public class GoldMine : MonoBehaviour {
     public int level;
     public Collider2D colliderLand;
     public TypeGoldMine typeGoleMine;
+    public List<Hero> lstHeroGoldMine; //list hero trong mo vang
 
     [Header("UI")]
     public Text txtLevel;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    public void LoadDataGoldMine(int _id,float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
+    {
+        this.id = _id;
+        this.health = _health;
+        this.capGold = _capGold;
+        this.priceGold = _priceGold;
+        this.level = _level;
+        this.typeGoleMine = _type;
+
+        if (this.typeGoleMine == TypeGoldMine.Enemy)
+        {
+            this.RegisterListener(EventID.EnemyAttackPlayer, (param) => OnAttackPlayer(param));
+        }
+    }
 
     void OnNextDay()
     {
         SpawmGold();
+    }
+
+    void OnAttackPlayer(object param)
+    {
+        Debug.Log(param);
     }
 
     void SpawmGold()

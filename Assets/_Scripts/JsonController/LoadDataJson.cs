@@ -10,6 +10,7 @@ using UnityEngine.Advertisements; // only compile Ads code on supported platform
 public class LoadDataJson : MonoBehaviour
 {
     public static LoadDataJson Instance;
+    public GameObject gameManager;
     void Awake()
     {
         if (Instance != null)
@@ -132,9 +133,9 @@ public class LoadDataJson : MonoBehaviour
                     _info.typeHero = TypeHero.Canon;
                 }
                 GameConfig.Instance.lstInfoHero.Add(_info);
-            }
-            
+            }          
         }
+        gameManager.SetActive(true);
     }
 
     string loadJson(string _nameJson)
