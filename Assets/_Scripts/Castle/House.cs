@@ -98,16 +98,19 @@ public class House : MonoBehaviour
     }
 
     public void CheckUpgrade(int _x)
-    {
-        capWillUpgrade = capWar;
-        priceWillUpgrade = price;
-        levelWillupgrade = level;
-        for (int i = 1; i <= _x; i++)
-        {
-            levelWillupgrade++;
-            priceWillUpgrade = (long)(priceWillUpgrade * GameConfig.Instance.Ri);
-            capWillUpgrade = (int)(capWillUpgrade * GameConfig.Instance.Wi);
-        }
+    {       
+        levelWillupgrade += _x;
+        priceWillUpgrade = (long)(price * Mathf.Pow(GameConfig.Instance.Ri, _x));
+        capWillUpgrade = (int)(price * Mathf.Pow(GameConfig.Instance.Wi, _x));
+        //capWillUpgrade = capWar;
+        //priceWillUpgrade = price;
+        //levelWillupgrade = level;
+        //for (int i = 1; i <= _x; i++)
+        //{
+        //    levelWillupgrade++;
+        //    priceWillUpgrade = (long)(priceWillUpgrade * GameConfig.Instance.Ri);
+        //    capWillUpgrade = (int)(capWillUpgrade * GameConfig.Instance.Wi);
+        //}
     }
 
     public void YesUpgrade(int _x)

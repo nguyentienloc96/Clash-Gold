@@ -27,7 +27,7 @@ public class GoldMine : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        level = Random.Range(0, GameConfig.Instance.GoldMinerAmount);
+        level = Random.Range(0, 10);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         for(int i = 0; i < 3; i++)
         {
@@ -48,16 +48,24 @@ public class GoldMine : MonoBehaviour
         hero.gameObject.name = name;
         lstHeroGoldMine.Add(hero);
         yield return new WaitForEndOfFrame();
-        hero.infoHero.capWar = GameConfig.Instance.Wi * Mathf.Pow(hero.infoHero.capWar, level);
+        //hero.infoHero.capWar = GameConfig.Instance.Wi * Mathf.Pow(hero.infoHero.capWar, level);   //Loc
+        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);     //DatDz
         hero.infoHero.numberHero = countHero;
         hero.txtCountHero.text = UIManager.Instance.ConvertNumber(hero.infoHero.numberHero);
         hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
     }
 
-    void Update()
-    {
-
-    }
+    //public float timer = 0;
+    //void Update()
+    //{
+    //    if (timer >= 3f)
+    //    {
+    //        this.PostEvent(EventID.NextDay);
+    //        timer = 0;
+    //    }
+    //    else
+    //        timer += Time.deltaTime;
+    //}
 
     public void LoadDataGoldMine(int _id,float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
     {
@@ -77,6 +85,7 @@ public class GoldMine : MonoBehaviour
     void OnNextDay()
     {
         SpawmGold();
+        SpawmHero();
     }
 
     void OnAttackPlayer(object param)
@@ -92,6 +101,14 @@ public class GoldMine : MonoBehaviour
         }
     }
 
+    void SpawmHero()
+    {
+        for (int i = 0; i < lstHeroGoldMine.Count; i++)
+        {
+            lstHeroGoldMine[i].AddHero((int)lstHeroGoldMine[i].infoHero.capWar);
+        }
+    }
+
     public void Btn_ShowPanelUpgrade()
     {
         //
@@ -102,12 +119,16 @@ public class GoldMine : MonoBehaviour
         capWillUpgrade = capGold;
         priceWillUpgrade = capGold;
         levelWillUpgrade = level;
-        for (int i = 1; i <= _x; i++)
-        {
-            levelWillUpgrade++;
-            priceWillUpgrade = (long)(priceWillUpgrade * GameConfig.Instance.PriceGoldUp);
-            capWillUpgrade = (int)(capWillUpgrade * GameConfig.Instance.CapGoldUp);
-        }
+
+        capWillUpgrade = (int)(capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, _x));
+        priceWillUpgrade = (long)(capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _x));
+        levelWillUpgrade = level += _x;
+        //for (int i = 1; i <= _x; i++)
+        //{
+        //    levelWillUpgrade++;
+        //    priceWillUpgrade = (long)(priceWillUpgrade * GameConfig.Instance.PriceGoldUp);
+        //    capWillUpgrade = (int)(capWillUpgrade * GameConfig.Instance.CapGoldUp);
+        //}
     }
 
     void UpgradeGoldMine()

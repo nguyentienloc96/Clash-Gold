@@ -232,4 +232,10 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
+    public void AddHero(int _numberHero)
+    {
+        infoHero.numberHero += _numberHero;
+        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+    }
+
 }
