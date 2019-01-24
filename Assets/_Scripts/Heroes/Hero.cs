@@ -31,6 +31,7 @@ public abstract class Hero : MonoBehaviour
     public Hero targetCompetitor;
     public float timeCheckAttack;
     public ParticleSystem parHit;
+    
 
     public abstract void SetInfoHero();
 
@@ -185,8 +186,6 @@ public abstract class Hero : MonoBehaviour
 
     public void MoveToPosition(Vector3 _toPos)
     {
-        //Vector3 dir = (_toPos - transform.position).normalized;
-        //transform.up = dir;
         Vector3 diff = _toPos - transform.position;
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;

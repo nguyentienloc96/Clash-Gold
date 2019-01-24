@@ -415,7 +415,7 @@ MonoBehaviour:
   txtCountHero: {fileID: 102542762531138280}
   animator: {fileID: 95572750599485924}
   typeAction: 0
-  numRun: 3
+  numRun: 2
   numAttack: 5
   isFly: 0
   isRelease: 0
