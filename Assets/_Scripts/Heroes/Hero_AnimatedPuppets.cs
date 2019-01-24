@@ -40,6 +40,8 @@ public class Hero_AnimatedPuppets : Hero {
         //this.infoHero.idBaby = 0;
         //this.infoHero.idMom = 18;
         //this.infoHero.typeHero = TypeHero.ChemThuong;
+        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }
 
     // Use this for initialization

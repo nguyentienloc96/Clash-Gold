@@ -52,6 +52,8 @@ public class Hero_BalloonKing : Hero {
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
+        nameBullet = gameObject.name;
+
     }
     public void Update()
     {
