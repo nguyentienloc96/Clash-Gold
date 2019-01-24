@@ -55,7 +55,7 @@ public class UIManager : MonoBehaviour
         }
         Instance = this;
     }
-    // Use this for initialization
+
     void Start()
     {
         for (int i = 0; i < 4; i++)
@@ -78,10 +78,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        txtGold.text = ConvertNumber(GameManager.Instance.gold);
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString();
     }
 
@@ -157,16 +155,17 @@ public class UIManager : MonoBehaviour
         else
         {
             SetActivePanel(panelYesNoNewPlay);
-        }      
-        SetDeActivePanel(panelGroupHome);       
+        }
+        SetDeActivePanel(panelGroupHome);
     }
 
     public void Btn_YesNewPlay()
     {
         SetActivePanel(panelChooseLevel);
         SetDeActivePanel(panelYesNoNewPlay);
-        GameManager.Instance.gold = GameConfig.Instance.GoldStart;
-        GameManager.Instance.coin = GameConfig.Instance.CoinStart;
+        GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
+        GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+
     }
 
     public void Btn_NoNewPlay()
