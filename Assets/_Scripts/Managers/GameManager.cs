@@ -59,15 +59,7 @@ public class GameManager : MonoBehaviour
             lstBuildHouse.Add(bh);
         }
 
-        for (int i = 0; i < lstHousePlayer.Count; i++)
-        {
-            if (lstHousePlayer[i].typeState == TypeStateHouse.None)
-            {
-                //load du lieu
-            }
-        }
-
-        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
+        if (lstGoldMinePlayer.Count >= 2)
         {
             dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
         }
@@ -93,10 +85,11 @@ public class GameManager : MonoBehaviour
                 time = 0;
             }
 
-            if (dateGame >= dateEnemyAttack)
+            if (lstGoldMinePlayer.Count >= 2 && dateGame >= dateEnemyAttack)
             {
                 int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
                 this.PostEvent(EventID.EnemyAttackPlayer, a);
+                dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
             }
         }
     }

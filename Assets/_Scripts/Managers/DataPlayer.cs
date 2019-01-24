@@ -6,6 +6,17 @@ using System.IO;
 
 public class DataPlayer : MonoBehaviour
 {
+    public static DataPlayer Instance;
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(this);
+    }
+
     [HideInInspector]
     public long gold; //vàng
     [HideInInspector]
@@ -20,6 +31,8 @@ public class DataPlayer : MonoBehaviour
     public Castle castlePlayer; //thành của người chơi
     [HideInInspector]
     public List<GoldMine> lstGoldMinePlayer; //list mỏ vàng người chơi
+    [HideInInspector]
+    public List<GoldMine> lstGoldMineEnemy; //list mỏ vàng enemy
     [HideInInspector]
     public List<BuildHouse> lstBuildHouse; //nhà đã mở hay chưa
     [HideInInspector]
@@ -38,7 +51,7 @@ public class DataPlayer : MonoBehaviour
 
     }
 
-    public IEnumerator SaveDataPlayer()
+    public void SaveDataPlayer()
     {
         DataPlayer data = new DataPlayer();
         data.gold = GameManager.Instance.gold;
@@ -46,9 +59,13 @@ public class DataPlayer : MonoBehaviour
         data.ratioBorn = GameManager.Instance.ratioBorn;
         data.dateGame = GameManager.Instance.dateGame;
         data.dateEnemyAttack = GameManager.Instance.dateEnemyAttack;
+        data.castlePlayer = GameManager.Instance.castlePlayer;
+        data.lstGoldMinePlayer = GameManager.Instance.lstGoldMinePlayer;
+        data.lstGoldMineEnemy = GameManager.Instance.lstGoldMineEnemy;
         data.lstBuildHouse = GameManager.Instance.lstBuildHouse;
         data.lstHouseInWall = GameManager.Instance.lstHousePlayer;
-        yield return new WaitForEndOfFrame();
+        data.lstHero = GameManager.Instance.lsHero;
+        //yield return new WaitForEndOfFrame();
         string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
         File.WriteAllText(_path, JsonUtility.ToJson(data, true));
         File.ReadAllText(_path);
@@ -71,7 +88,20 @@ public class DataPlayer : MonoBehaviour
 
     public IEnumerator IE_LoadDataPlayer(SimpleJSON_DatDz.JSONNode objJson)
     {
-        yield return null;
+        yield return new WaitForEndOfFrame();
+        Debug.Log("Load Done !");
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause == true)
+        {
+            SaveDataPlayer();
+        }
+        else
+        { 
+
+        }
     }
 }
 

@@ -67,6 +67,15 @@ public class UIManager : MonoBehaviour
         }
 
         this.RegisterListener(EventID.ShowSpeech, (param) => OnShowSpeech(param));
+
+        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
+        {
+            buttonContinue.interactable = false;
+        }
+        else
+        {
+            buttonContinue.interactable = true;
+        }
     }
 
     // Update is called once per frame
@@ -177,14 +186,7 @@ public class UIManager : MonoBehaviour
 
     public void Btn_Continue()
     {
-        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
-        {
-            buttonContinue.interactable = false;
-        }
-        else
-        {
-            buttonContinue.interactable = true;
-        }
+        DataPlayer.Instance.LoadDataPlayer();
         panelHome.SetActive(false);
         GameManager.Instance.isPlay = true;
     }
@@ -264,6 +266,7 @@ public class UIManager : MonoBehaviour
     public void Btn_BuildHouse(int _id)
     {
         GameManager.Instance.lstHousePlayer[houseClick].Build(_id);
+        SetDeActivePanel(panelBuild);
     }
     #endregion
 }

@@ -24,7 +24,9 @@ public class House : MonoBehaviour
     public Button buttonRelease;
     public Text txtCountHero;
     public Text txtCountTime;
+    public Text txtLevel;
     public Image imgHouse;
+    public GameObject panelHouse;
     public Image imgLoadingBuild;
     public Image imgNotBuild;
     // Use this for initialization
@@ -58,13 +60,14 @@ public class House : MonoBehaviour
             {
                 typeState = TypeStateHouse.None;
                 imgLoadingBuild.gameObject.SetActive(false);
-                imgHouse.gameObject.SetActive(true);
+                panelHouse.SetActive(true);
                 txtCountHero.gameObject.SetActive(true);
                 timeUpgrade = 0;
             }
             timeUpgrade -= Time.deltaTime;
             transformToTime(timeUpgrade);
         }
+        txtLevel.text = "Lv " + level.ToString();
     }
 
     string transformToTime(float time = 0)
@@ -83,11 +86,26 @@ public class House : MonoBehaviour
         UIManager.Instance.houseClick = idHouse;
         if (typeState == TypeStateHouse.None)
         {
-            buttonUpgrade.gameObject.SetActive(true);
-            buttonRelease.gameObject.SetActive(true);
+            if (!buttonUpgrade.gameObject.activeSelf)
+            {
+                buttonUpgrade.gameObject.SetActive(true);
+            }
+            else
+            {
+                buttonUpgrade.gameObject.SetActive(false);
+            }
+
+            if (!buttonRelease.gameObject.activeSelf)
+            {
+                buttonRelease.gameObject.SetActive(true);
+            }
+            else
+            {
+                buttonRelease.gameObject.SetActive(false);
+            }
         }
         else if (typeState == TypeStateHouse.Lock)
-        {           
+        {
             UIManager.Instance.ShowPanelBuild();
         }
     }
@@ -98,7 +116,7 @@ public class House : MonoBehaviour
     }
 
     public void CheckUpgrade(int _x)
-    {       
+    {
         levelWillupgrade += _x;
         priceWillUpgrade = (long)(price * Mathf.Pow(GameConfig.Instance.Ri, _x));
         capWillUpgrade = (int)(price * Mathf.Pow(GameConfig.Instance.Wi, _x));
@@ -124,16 +142,16 @@ public class House : MonoBehaviour
         xUpgrade = _x;
         txtCountHero.gameObject.SetActive(false);
         imgLoadingBuild.gameObject.SetActive(true);
-        imgHouse.gameObject.SetActive(false);
+        panelHouse.SetActive(false);
     }
 
     void UpgradeComplete()
     {
         typeState = TypeStateHouse.None;
         level = levelWillupgrade;
-        capWar = capWillUpgrade;       
+        capWar = capWillUpgrade;
         imgLoadingBuild.gameObject.SetActive(false);
-        imgHouse.gameObject.SetActive(true);
+        panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
     }
 
@@ -149,7 +167,7 @@ public class House : MonoBehaviour
 
         imgNotBuild.enabled = false;
         imgLoadingBuild.gameObject.SetActive(true);
-        imgHouse.gameObject.SetActive(false);
+        panelHouse.SetActive(false);
     }
 
     void BuildComplete()
@@ -157,11 +175,11 @@ public class House : MonoBehaviour
         typeState = TypeStateHouse.None;
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         this.level = 1;
-        this.price = (int)GameManager.Instance.lsHero[idHero].infoHero.price;
-        this.capWar = (int)GameManager.Instance.lsHero[idHero].infoHero.capWar;
+        this.price = (int)GameConfig.Instance.lstInfoHero[idHero].price;
+        this.capWar = (int)GameConfig.Instance.lstInfoHero[idHero].capWar;
         this.countHero = 0;
         imgLoadingBuild.gameObject.SetActive(false);
-        imgHouse.gameObject.SetActive(true);
+        panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
     }
 
