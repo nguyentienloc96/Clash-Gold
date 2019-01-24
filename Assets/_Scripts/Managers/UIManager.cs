@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using EventDispatcher;
 
 public class UIManager : MonoBehaviour
 {
@@ -37,6 +38,10 @@ public class UIManager : MonoBehaviour
     public Text txtCapUpgrade;
     public Text txtPrice;
 
+    [Header("UI SHOWSPEECH")]
+    public GameObject panelShowSpeech;
+    public Text txtShowSpeech;
+
     public List<Sprite> lstSpriteHouse;
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
@@ -60,6 +65,8 @@ public class UIManager : MonoBehaviour
                 arrAlphabetNeed.Add(arrAlphabet[i] + arrAlphabet[j]);
             }
         }
+
+        this.RegisterListener(EventID.ShowSpeech, (param) => OnShowSpeech(param));
     }
 
     // Update is called once per frame
@@ -121,6 +128,15 @@ public class UIManager : MonoBehaviour
 
         _g.SetActive(false);
         //_g.GetComponent<Animator>().Play("DeActivePanel");
+    }
+    #endregion
+
+    #region === EVENT ===
+    void OnShowSpeech(object _param)
+    {
+        Debug.Log((int)_param);
+        SetActivePanel(panelShowSpeech);
+        txtShowSpeech.text = GameConfig.Instance.lstSpeech[(int)_param];
     }
     #endregion
 

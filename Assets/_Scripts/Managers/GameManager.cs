@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     public List<GoldMine> lstGoldMinePlayer = new List<GoldMine>();
     public List<House> lstHousePlayer = new List<House>();
     public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
+    public DateTime dateEnemyAttack;
 
     [Header("INFO ENEMY")]
     public List<GoldMine> lstGoldMineEnemy = new List<GoldMine>();
@@ -65,6 +66,15 @@ public class GameManager : MonoBehaviour
                 //load du lieu
             }
         }
+
+        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
+        {
+            dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+        }
+        else
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -78,9 +88,15 @@ public class GameManager : MonoBehaviour
                 int month = dateGame.Month;
                 int year = dateGame.Year;
                 dateGame = dateGame.AddDays(1f);
-                SetDate();
+                SetDateUI();
                 this.PostEvent(EventID.NextDay);
                 time = 0;
+            }
+
+            if (dateGame >= dateEnemyAttack)
+            {
+                int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
+                this.PostEvent(EventID.EnemyAttackPlayer, a);
             }
         }
     }
@@ -114,10 +130,10 @@ public class GameManager : MonoBehaviour
         {
             dateGame = DateTime.Now;
         }
-        SetDate();
+        SetDateUI();
     }
 
-    public void SetDate()
+    public void SetDateUI()
     {
         txtDate.text = "Date: " + dateGame.Day.ToString("00") + "/" + dateGame.Month.ToString("00") + "/" + dateGame.Year.ToString("0000");
     }
