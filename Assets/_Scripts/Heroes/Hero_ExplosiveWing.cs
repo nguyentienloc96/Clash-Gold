@@ -6,10 +6,11 @@ public class Hero_ExplosiveWing : Hero {
     public override void Attack()
     {
         AnimAttack();
+        Vector3 diff = (targetCompetitor.transform.position - posShoot.position).normalized;
         GameObject _bullet = ObjectPoolingManager.Instance.GetObjectForType(nameBullet, posShoot.position);
         _bullet.SetActive(true);
-        _bullet.transform.right = transform.right;
-        _bullet.GetComponent<Rigidbody2D>().velocity = transform.up * infoHero.speedBullet;
+        _bullet.transform.up = diff;
+        _bullet.GetComponent<Rigidbody2D>().velocity = diff * infoHero.speedBullet;
         _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
     }
 

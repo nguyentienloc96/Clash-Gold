@@ -31,6 +31,7 @@ public abstract class Hero : MonoBehaviour
     public Hero targetCompetitor;
     public float timeCheckAttack;
     public ParticleSystem parHit;
+    
 
     public abstract void SetInfoHero();
 
@@ -183,14 +184,15 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
-    public void MoveToPosition(Vector2 _toPos)
+    public void MoveToPosition(Vector3 _toPos)
     {
-        Vector2 dir = _toPos - new Vector2(transform.position.x, transform.position.y);
-        transform.up = dir;
+        Vector3 diff = _toPos - transform.position;
+        diff.Normalize();
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
         {
             transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
-            transform.eulerAngles = new Vector3(0f, 0f, transform.eulerAngles.z);
             AnimRun();
         }
     }
