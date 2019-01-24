@@ -407,7 +407,7 @@ MonoBehaviour:
     capWar: 0
     counterDame: 0
     speedBullet: 0
-    isMum: 0
+    isMom: 0
     isBaby: 0
     idMom: 0
     idBaby: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
   txtCountHero: {fileID: 102542762531138280}
   animator: {fileID: 95572750599485924}
   typeAction: 0
-  numRun: 2
+  numRun: 3
   numAttack: 5
   isFly: 0
   isRelease: 0

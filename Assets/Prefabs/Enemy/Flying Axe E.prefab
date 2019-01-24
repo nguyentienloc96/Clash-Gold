@@ -37,7 +37,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4097840243827236}
   - component: {fileID: 95559106262209734}
-  - component: {fileID: 114894762414966344}
+  - component: {fileID: 114399349503428976}
   - component: {fileID: 61229707583525148}
   m_Layer: 0
   m_Name: Flying Axe E
@@ -383,7 +383,7 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
---- !u!114 &114894762414966344
+--- !u!114 &114399349503428976
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -391,7 +391,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1443245813769728}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f68f1157c66abd7499018e402b5fe40e, type: 3}
+  m_Script: {fileID: 11500000, guid: c8b7c274d23f8e54889a78aaa820b3f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   infoHero:
@@ -407,7 +407,7 @@ MonoBehaviour:
     capWar: 0
     counterDame: 0
     speedBullet: 0
-    isMum: 0
+    isMom: 0
     isBaby: 0
     idMom: 0
     idBaby: 0
@@ -415,9 +415,9 @@ MonoBehaviour:
   txtCountHero: {fileID: 102148320238504432}
   animator: {fileID: 95559106262209734}
   typeAction: 0
-  numRun: 3
-  numAttack: 5
-  isFly: 1
+  numRun: 0
+  numAttack: 0
+  isFly: 0
   isRelease: 0
   parDie: {fileID: 198231387514826476}
   posShoot: {fileID: 0}
