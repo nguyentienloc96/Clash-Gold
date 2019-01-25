@@ -90,7 +90,7 @@ public class GoldMine : MonoBehaviour
 
     void OnAttackPlayer(object param)
     {
-        Debug.Log(param);
+        //Debug.Log(param);
     }
 
     void SpawmGold()
@@ -116,13 +116,12 @@ public class GoldMine : MonoBehaviour
 
     public void CheckUpgrade(int _x)
     {
-        capWillUpgrade = capGold;
-        priceWillUpgrade = capGold;
-        levelWillUpgrade = level;
-
         capWillUpgrade = (int)(capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, _x));
         priceWillUpgrade = (long)(capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _x));
         levelWillUpgrade = level += _x;
+        //capWillUpgrade = capGold;
+        //priceWillUpgrade = capGold;
+        //levelWillUpgrade = level;
         //for (int i = 1; i <= _x; i++)
         //{
         //    levelWillUpgrade++;

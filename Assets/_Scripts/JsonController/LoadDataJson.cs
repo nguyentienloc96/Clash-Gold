@@ -11,6 +11,7 @@ public class LoadDataJson : MonoBehaviour
 {
     public static LoadDataJson Instance;
     public GameObject gameManager;
+    public bool isReset;
     void Awake()
     {
         if (Instance != null)
@@ -18,6 +19,10 @@ public class LoadDataJson : MonoBehaviour
             return;
         }
         Instance = this;
+        if (isReset)
+        {
+            PlayerPrefs.DeleteAll();
+        }
     }
 
     private string gameConfig = "GameConfig";

@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
     public GameObject panelInWall;
     public GameObject panelBuild;
     public GameObject panelUpgrade;
+    public GameObject panelRelease;
     public Text txtLevelCastle;
     public Text txtBlood;
     public List<GameObject> lstHouse; //List nha de build
@@ -42,7 +43,9 @@ public class UIManager : MonoBehaviour
     public GameObject panelShowSpeech;
     public Text txtShowSpeech;
 
+    [Header("OTHERS")]
     public List<Sprite> lstSpriteHouse;
+    public Button buttonReleaseCanon;
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
@@ -80,7 +83,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString();
+        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();
     }
 
     #region === SUPPORT ===
@@ -123,7 +126,8 @@ public class UIManager : MonoBehaviour
             return;
 
         _g.SetActive(true);
-        //_g.GetComponent<Animator>().Play("ActivePanel");
+        if (_g.name == "InWall")
+            _g.GetComponent<Animator>().Play("ActivePanel");
     }
 
     public void SetDeActivePanel(GameObject _g)
@@ -165,7 +169,7 @@ public class UIManager : MonoBehaviour
         SetDeActivePanel(panelYesNoNewPlay);
         GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
         GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
-
+        buttonReleaseCanon.interactable = false;
     }
 
     public void Btn_NoNewPlay()
@@ -186,6 +190,10 @@ public class UIManager : MonoBehaviour
         DataPlayer.Instance.LoadDataPlayer();
         panelHome.SetActive(false);
         GameManager.Instance.isPlay = true;
+        if (GameManager.Instance.castlePlayer.isCanReleaseCanon)
+            buttonReleaseCanon.interactable = true;
+        else
+            buttonReleaseCanon.interactable = false;
     }
 
     public void Btn_Tutorial()
@@ -224,7 +232,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowPanelBuild()
     {
-        panelBuild.SetActive(true);
+        SetActivePanel(panelBuild);
         for (int i = 0; i < lstHouse.Count; i++)
         {
             if (!GameManager.Instance.lstBuildHouse[i].isUnlock)
@@ -232,25 +240,42 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public void ShowPanelRelease()
+    {
+        SetActivePanel(panelRelease);
+    }
+
     public void ShowPanelUpgrade()
     {
         SetActivePanel(panelUpgrade);
-        GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(1);
         Btn_x1x10_Upgrade(1);
     }
 
     public void Btn_x1x10_Upgrade(int _x)
     {
         xUpgrade = _x;
+        if (xUpgrade == 1)
+        {
+            imgX1.sprite = sprX1X10[0];
+            imgX10.sprite = sprX1X10[1];
+        }
+        else
+        {
+            imgX1.sprite = sprX1X10[1];
+            imgX10.sprite = sprX1X10[0];
+        }
+        GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(xUpgrade);
         txtLevelCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].level.ToString();
         txtLevelUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].levelWillupgrade.ToString();
         txtCapCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].capWar.ToString();
         txtCapUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].capWillUpgrade.ToString();
+        txtPrice.text = ConvertNumber(GameManager.Instance.lstHousePlayer[houseClick].priceWillUpgrade);
     }
 
     public void Btn_YesUpgrade()
     {
         GameManager.Instance.lstHousePlayer[houseClick].YesUpgrade(xUpgrade);
+        SetDeActivePanel(panelUpgrade);
     }
 
     public void Btn_NoUpgrade()
@@ -265,5 +290,11 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.lstHousePlayer[houseClick].Build(_id);
         SetDeActivePanel(panelBuild);
     }
+
+    public void Btn_CloseWall()
+    {
+        panelInWall.GetComponent<Animator>().Play("DeActivePanel");
+    }
+
     #endregion
 }

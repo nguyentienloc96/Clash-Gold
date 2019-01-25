@@ -11,6 +11,7 @@ public class Castle : MonoBehaviour
     public float healthMax;
     public long price;
     public int level;
+    public bool isCanReleaseCanon = false;
     public Collider2D colliderLand;
     public List<Hero> lstHeroRelease;
     // Use this for initialization

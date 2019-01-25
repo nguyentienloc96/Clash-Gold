@@ -28,11 +28,16 @@ public class House : MonoBehaviour
     public Image imgHouse;
     public GameObject panelHouse;
     public Image imgLoadingBuild;
+    public Image imgLoadingBar;
     public Image imgNotBuild;
     // Use this for initialization
     void Start()
     {
-        this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
+        //if (this.typeState == TypeStateHouse.None)
+        //{
+        //    this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
+        //    this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
+        //}
     }
 
     // Update is called once per frame
@@ -51,23 +56,21 @@ public class House : MonoBehaviour
                 timeBuild = 0;
             }
             timeBuild -= Time.deltaTime;
-            transformToTime(timeBuild);
+            imgLoadingBar.fillAmount += (1.0f / (2.2f * timeBuild)) * Time.deltaTime;
+            txtCountTime.text = transformToTime(timeBuild);
         }
 
         if (typeState == TypeStateHouse.Upgrading)
         {
             if (timeUpgrade <= 0)
             {
-                typeState = TypeStateHouse.None;
-                imgLoadingBuild.gameObject.SetActive(false);
-                panelHouse.SetActive(true);
-                txtCountHero.gameObject.SetActive(true);
+                UpgradeComplete();
                 timeUpgrade = 0;
             }
             timeUpgrade -= Time.deltaTime;
-            transformToTime(timeUpgrade);
+            imgLoadingBar.fillAmount += (1.0f / (2.2f * timeUpgrade)) * Time.deltaTime;
+            txtCountTime.text = transformToTime(timeUpgrade);
         }
-        txtLevel.text = "Lv " + level.ToString();
     }
 
     string transformToTime(float time = 0)
@@ -78,6 +81,21 @@ public class House : MonoBehaviour
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    public void LoadDataHouse(int _idHero, int _level, int _capWar, long _price, TypeStateHouse _type, int _countHero)
+    {
+        this.idHero = _idHero;
+        this.level = _level;
+        this.capWar = _capWar;
+        this.price = _price;
+        this.typeState = _type;
+        this.countHero = _countHero;
+        if (this.typeState == TypeStateHouse.None)
+        {
+            this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
+            this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
+        }
+    }
+
     public void Btn_OnClick()
     {
         if (typeState == TypeStateHouse.Building || typeState == TypeStateHouse.Upgrading)
@@ -86,6 +104,8 @@ public class House : MonoBehaviour
         UIManager.Instance.houseClick = idHouse;
         if (typeState == TypeStateHouse.None)
         {
+            this.PostEvent(EventID.ClickHouse, idHouse);
+
             if (!buttonUpgrade.gameObject.activeSelf)
             {
                 buttonUpgrade.gameObject.SetActive(true);
@@ -113,13 +133,23 @@ public class House : MonoBehaviour
     public void Btn_Upgrade()
     {
         UIManager.Instance.ShowPanelUpgrade();
+        buttonUpgrade.gameObject.SetActive(false);
+        buttonRelease.gameObject.SetActive(false);
+
+    }
+
+    public void Btn_Release()
+    {
+        UIManager.Instance.ShowPanelRelease();
+        buttonUpgrade.gameObject.SetActive(false);
+        buttonRelease.gameObject.SetActive(false);
     }
 
     public void CheckUpgrade(int _x)
     {
-        levelWillupgrade += _x;
+        levelWillupgrade = level + _x;
         priceWillUpgrade = (long)(price * Mathf.Pow(GameConfig.Instance.Ri, _x));
-        capWillUpgrade = (int)(price * Mathf.Pow(GameConfig.Instance.Wi, _x));
+        capWillUpgrade = (int)(capWar * Mathf.Pow(GameConfig.Instance.Wi, _x));
         //capWillUpgrade = capWar;
         //priceWillUpgrade = price;
         //levelWillupgrade = level;
@@ -138,6 +168,7 @@ public class House : MonoBehaviour
 
         price = priceWillUpgrade;
         GameManager.Instance.AddGold(-(long)(price * GameConfig.Instance.Ri));
+        timeUpgrade = GameConfig.Instance.UpgradeTime * _x;
         typeState = TypeStateHouse.Upgrading;
         xUpgrade = _x;
         txtCountHero.gameObject.SetActive(false);
@@ -150,13 +181,18 @@ public class House : MonoBehaviour
         typeState = TypeStateHouse.None;
         level = levelWillupgrade;
         capWar = capWillUpgrade;
+        timeUpgrade = GameConfig.Instance.UpgradeTime;
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
+        txtLevel.text = "Lv " + level.ToString();
     }
 
     public void Build(int _id)
     {
+        this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
+        if (GameManager.Instance.gold < this.price)
+            return;
         GameManager.Instance.AddGold(-price);
         timeBuild = GameConfig.Instance.BuildTime * idHouse;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
@@ -174,13 +210,17 @@ public class House : MonoBehaviour
     {
         typeState = TypeStateHouse.None;
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
+        this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
         this.level = 1;
-        this.price = (int)GameConfig.Instance.lstInfoHero[idHero].price;
+        //this.price = (int)GameConfig.Instance.lstInfoHero[idHero].price;
         this.capWar = (int)GameConfig.Instance.lstInfoHero[idHero].capWar;
         this.countHero = 0;
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
+        txtLevel.text = "Lv " + level.ToString();
+        if (this.idHero == 11)
+            GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
     }
 
     public void SpawmHero()
@@ -191,6 +231,17 @@ public class House : MonoBehaviour
     public void OnNextDay()
     {
         SpawmHero();
+    }
+
+    public void OnClickHouse(object _param)
+    {
+        if (idHouse != (int)_param)
+        {
+            if (buttonUpgrade.gameObject.activeSelf)
+                buttonUpgrade.gameObject.SetActive(false);
+            if (buttonRelease.gameObject.activeSelf)
+                buttonRelease.gameObject.SetActive(false);
+        }
     }
 }
 

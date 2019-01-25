@@ -1,5 +1,5 @@
 {
-  "GoldStart" : 12000,
+  "GoldStart" : 120000,
   "CoinStart" : 10,
   "GoldMinerAmount" : 20,
   "RatioBorn" : [

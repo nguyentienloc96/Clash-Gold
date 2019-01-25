@@ -3,6 +3,7 @@
     None,
     ShowSpeech,
     NextDay,
+    ClickHouse,
     EnemyAttackPlayer,
     BeingAttacked,
     Win,
