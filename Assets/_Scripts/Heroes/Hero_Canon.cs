@@ -34,7 +34,7 @@ public class Hero_Canon : Hero {
         //this.infoHero.hitSpeed = 0.8f;
         //this.infoHero.speed = 0;
         //this.infoHero.price = 3000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Med;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Med;
         //this.infoHero.range = 5.5f;
         timeSurvive = GameConfig.Instance.Timecanonsurvive;
         //this.infoHero.counterDame = 0;

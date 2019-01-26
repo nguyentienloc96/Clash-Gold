@@ -33,7 +33,7 @@ public class Hero_TheFuriousQuartet : Hero
         //this.infoHero.hitSpeed = 1.4f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 5000;
-        this.infoHero.capWar = 40 * GameConfig.Instance.Lo;
+        //this.infoHero.capWar = 40 * GameConfig.Instance.Lo;
         //this.infoHero.range = 0;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;

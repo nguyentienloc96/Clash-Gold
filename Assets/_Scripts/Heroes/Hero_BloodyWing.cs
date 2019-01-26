@@ -36,7 +36,7 @@ public class Hero_BloodyWing : Hero {
         //this.infoHero.hitSpeed = 1.6f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 3000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Hi;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Hi;
         //this.infoHero.range = 0;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;

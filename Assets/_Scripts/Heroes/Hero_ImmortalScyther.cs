@@ -32,7 +32,7 @@ public class Hero_ImmortalScyther : Hero {
         //this.infoHero.hitSpeed = 1.5f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 5000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Lo;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Lo;
         //this.infoHero.range = 3;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = true;

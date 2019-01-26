@@ -111,7 +111,19 @@ public class LoadDataJson : MonoBehaviour
                 _info.range = objJson["heroes"][t]["range"].AsFloat;
                 _info.speed = objJson["heroes"][t]["speed1"].AsFloat;
                 _info.price = objJson["heroes"][t]["Price01"].AsInt;
-                _info.capWar = objJson["heroes"][t]["CapWar01"].AsInt;
+                int _t = objJson["heroes"][t]["xCapWar"].AsInt;
+                if (_t == 0)
+                {
+                    _info.capWar = objJson["heroes"][t]["CapWar01"].AsInt * GameConfig.Instance.Hi;
+                }
+                else if (_t == 1)
+                {
+                    _info.capWar = objJson["heroes"][t]["CapWar01"].AsInt * GameConfig.Instance.Med;
+                }
+                else if (_t == 2)
+                {
+                    _info.capWar = objJson["heroes"][t]["CapWar01"].AsInt * GameConfig.Instance.Lo;
+                }
                 _info.isMom = objJson["heroes"][t]["isMom"].AsBool;
                 _info.isBaby = objJson["heroes"][t]["isBaby"].AsBool;
                 _info.idMom = objJson["heroes"][t]["idMom"].AsInt;

@@ -37,7 +37,7 @@ public class Hero_DrunkenBomber : Hero {
         //this.infoHero.hitSpeed = 1.9f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 3000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Hi;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Hi;
         //this.infoHero.range = 5;
         spreadDame = 4 * GameConfig.Instance.UnitRange;
         //this.infoHero.counterDame = 0;

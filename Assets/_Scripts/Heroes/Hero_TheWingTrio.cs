@@ -36,7 +36,7 @@ public class Hero_TheWingTrio : Hero {
         //this.infoHero.hitSpeed = 1f;
         //this.infoHero.speed = 10;
         //this.infoHero.price = 5000;
-        this.infoHero.capWar = 30 * GameConfig.Instance.Lo;
+        //this.infoHero.capWar = 30 * GameConfig.Instance.Lo;
         //this.infoHero.range = 0;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;
