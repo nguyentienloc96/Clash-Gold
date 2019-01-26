@@ -64,7 +64,6 @@ public class DataPlayer : MonoBehaviour
         data.lstGoldMineEnemy = GameManager.Instance.lstGoldMineEnemy;
         data.lstBuildHouse = GameManager.Instance.lstBuildHouse;
         data.lstHouseInWall = GameManager.Instance.lstHousePlayer;
-        data.lstHero = GameManager.Instance.lsHero;
         //yield return new WaitForEndOfFrame();
         string _path = Path.Combine(Application.persistentDataPath, "DataPlayer.json");
         File.WriteAllText(_path, JsonUtility.ToJson(data, true));
