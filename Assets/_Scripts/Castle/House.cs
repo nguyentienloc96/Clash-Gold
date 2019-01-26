@@ -45,7 +45,7 @@ public class House : MonoBehaviour
     {
         if (typeState == TypeStateHouse.None && txtCountHero.gameObject.activeSelf)
         {
-            txtCountHero.text = countHero.ToString();
+            txtCountHero.text = UIManager.Instance.ConvertNumber(countHero);
         }
 
         if (typeState == TypeStateHouse.Building)
