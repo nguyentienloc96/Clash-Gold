@@ -33,7 +33,7 @@ public class Hero_Archer : Hero {
         //this.infoHero.hitSpeed = 1.4f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 5000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Hi;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Hi;
         //this.infoHero.range = 5.5f;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;

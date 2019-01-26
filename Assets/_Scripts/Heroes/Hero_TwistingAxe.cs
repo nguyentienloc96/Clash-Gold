@@ -32,7 +32,7 @@ public class Hero_TwistingAxe : Hero {
         //this.infoHero.hitSpeed = 1.6f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 4000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Med;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Med;
         //this.infoHero.range = 0;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;

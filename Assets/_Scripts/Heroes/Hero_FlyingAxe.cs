@@ -32,7 +32,7 @@ public class Hero_FlyingAxe : Hero {
         //this.infoHero.hitSpeed = 1.6f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 5000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Lo;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Lo;
         //this.infoHero.range = 0;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;

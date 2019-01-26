@@ -34,7 +34,7 @@ public class Hero_ExplosiveWing : Hero {
         //this.infoHero.hitSpeed = 1.5f;
         //this.infoHero.speed = 10;
         //this.infoHero.price = 4000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Med;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Med;
         //this.infoHero.range = 3.5f;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;

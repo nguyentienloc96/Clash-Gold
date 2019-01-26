@@ -34,7 +34,7 @@ public class Hero_FlyingGunner : Hero {
         //this.infoHero.hitSpeed = 2.2f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 5000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Lo;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Lo;
         //this.infoHero.range = 3;
         //this.infoHero.counterDame = 0;
         //this.infoHero.isMom = false;

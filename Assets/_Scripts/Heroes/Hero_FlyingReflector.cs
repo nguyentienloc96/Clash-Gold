@@ -34,7 +34,7 @@ public class Hero_FlyingReflector : Hero {
         //this.infoHero.hitSpeed = 1.8f;
         //this.infoHero.speed = 5;
         //this.infoHero.price = 4000;
-        this.infoHero.capWar = 10 * GameConfig.Instance.Med;
+        //this.infoHero.capWar = 10 * GameConfig.Instance.Med;
         //this.infoHero.range = 5;
         //this.infoHero.counterDame = 50;
         //this.infoHero.isMom = false;
