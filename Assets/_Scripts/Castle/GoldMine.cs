@@ -24,32 +24,31 @@ public class GoldMine : MonoBehaviour
 
     [Header("UI")]
     public Text txtLevel;
-    // Use this for initialization
+
     void Start()
     {
         level = Random.Range(0, 10);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             int typeEnemy = Random.Range(0, TestManager.Instance.lsPrefabsEnemy.Count);
             int numberEnemy = 1;
             StartCoroutine(IEInstantiate(
-                TestManager.Instance.lsPrefabsEnemy[typeEnemy], 
-                lsPos[i], 
-                numberEnemy, 
+                TestManager.Instance.lsPrefabsEnemy[typeEnemy],
+                lsPos[i],
+                numberEnemy,
                 "Enemy",
                 level));
         }
     }
 
-    public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name,int level)
+    public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name, int level)
     {
         Hero hero = Instantiate<Hero>(prafabs, posIns);
         hero.gameObject.name = name;
         lstHeroGoldMine.Add(hero);
         yield return new WaitForEndOfFrame();
-        //hero.infoHero.capWar = GameConfig.Instance.Wi * Mathf.Pow(hero.infoHero.capWar, level);   //Loc
-        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);     //DatDz
+        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
         hero.infoHero.numberHero = countHero;
         hero.txtCountHero.text = UIManager.Instance.ConvertNumber(hero.infoHero.numberHero);
         hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
@@ -67,7 +66,7 @@ public class GoldMine : MonoBehaviour
     //        timer += Time.deltaTime;
     //}
 
-    public void LoadDataGoldMine(int _id,float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
+    public void LoadDataGoldMine(int _id, float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
     {
         this.id = _id;
         this.health = _health;
@@ -119,15 +118,6 @@ public class GoldMine : MonoBehaviour
         capWillUpgrade = (int)(capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, _x));
         priceWillUpgrade = (long)(capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _x));
         levelWillUpgrade = level += _x;
-        //capWillUpgrade = capGold;
-        //priceWillUpgrade = capGold;
-        //levelWillUpgrade = level;
-        //for (int i = 1; i <= _x; i++)
-        //{
-        //    levelWillUpgrade++;
-        //    priceWillUpgrade = (long)(priceWillUpgrade * GameConfig.Instance.PriceGoldUp);
-        //    capWillUpgrade = (int)(capWillUpgrade * GameConfig.Instance.CapGoldUp);
-        //}
     }
 
     void UpgradeGoldMine()
@@ -146,6 +136,30 @@ public class GoldMine : MonoBehaviour
         {
             //Cho linh tu dong qua land nhan vat
         }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (typeGoleMine == TypeGoldMine.Enemy)
+        {
+            if (other.CompareTag("Hero"))
+            {
+
+            }
+
+        }
+        else
+        {
+            if (other.CompareTag("Hero"))
+            {
+
+            }
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+
     }
 }
 

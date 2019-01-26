@@ -35,6 +35,10 @@ public abstract class Hero : MonoBehaviour
     [Header("CHECK GOLD MINE")]
     public bool isInGoldMine;
 
+    [Header("CHECK MOVE")]
+    public Vector3 posMove;
+    public bool isMove;
+
     public abstract void SetInfoHero();
 
     public abstract void Attack();
@@ -117,25 +121,48 @@ public abstract class Hero : MonoBehaviour
 
     public void CheckEnemy()
     {
-        if (targetCompetitor == null)
+        if (isInGoldMine)
         {
-            List<Hero> lsCompetitor = new List<Hero>();
-            if (gameObject.CompareTag("Hero"))
+            if (targetCompetitor == null)
             {
-                lsCompetitor = TestManager.Instance.lsEnemy;
-            }
-            else if (gameObject.CompareTag("Enemy"))
-            {
-                lsCompetitor = TestManager.Instance.lsHero;
-            }
-            List<Hero> lsCompetitorTarget = new List<Hero>();
-            Hero targetAttack = null;
-            if (infoHero.typeHero == TypeHero.ChemThuong)
-            {
-
-                foreach (Hero obj in lsCompetitor)
+                List<Hero> lsCompetitor = new List<Hero>();
+                if (gameObject.CompareTag("Hero"))
                 {
-                    if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
+                    lsCompetitor = TestManager.Instance.lsEnemy;
+                }
+                else if (gameObject.CompareTag("Enemy"))
+                {
+                    lsCompetitor = TestManager.Instance.lsHero;
+                }
+                List<Hero> lsCompetitorTarget = new List<Hero>();
+                Hero targetAttack = null;
+                if (infoHero.typeHero == TypeHero.ChemThuong)
+                {
+
+                    foreach (Hero obj in lsCompetitor)
+                    {
+                        if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
+                        {
+                            if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
+                            {
+                                if (obj.infoHero.typeHero != TypeHero.Canon)
+                                {
+                                    lsCompetitorTarget.Add(obj);
+                                }
+                                else
+                                {
+                                    if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
+                                    {
+                                        lsCompetitorTarget.Add(obj);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Hero obj in lsCompetitor)
                     {
                         if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
                         {
@@ -153,36 +180,20 @@ public abstract class Hero : MonoBehaviour
                         }
                     }
                 }
-            }
-            else
-            {
-                foreach (Hero obj in lsCompetitor)
+                targetAttack = CheckCompetitorNear(lsCompetitorTarget);
+                if (targetAttack != null)
                 {
-                    if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
-                    {
-                        if (obj.infoHero.typeHero != TypeHero.Canon)
-                        {
-                            lsCompetitorTarget.Add(obj);
-                        }
-                        else
-                        {
-                            if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
-                            {
-                                lsCompetitorTarget.Add(obj);
-                            }
-                        }
-                    }
+                    targetCompetitor = targetAttack;
+                }
+                else
+                {
+                    targetCompetitor = null;
                 }
             }
-            targetAttack = CheckCompetitorNear(lsCompetitorTarget);
-            if (targetAttack != null)
-            {
-                targetCompetitor = targetAttack;
-            }
-            else
-            {
-                targetCompetitor = null;
-            }
+        }
+        else
+        {
+
         }
     }
 
@@ -192,7 +203,15 @@ public abstract class Hero : MonoBehaviour
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
+        if (!isMove)
+        {
+            if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
+                AnimRun();
+            }
+        }
+        else
         {
             transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
             AnimRun();
@@ -221,17 +240,41 @@ public abstract class Hero : MonoBehaviour
     public void HeroUpdate()
     {
         AnimtionUpdate();
-
-        CheckEnemy();
-
-        if (targetCompetitor != null)
+        if (gameObject.CompareTag("Hero"))
         {
-            AutoAttack();
-            if (infoHero.typeHero != TypeHero.Canon)
+            if (Input.GetMouseButtonDown(0))
             {
-                MoveToPosition(targetCompetitor.transform.position);
+                posMove = TestManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
+                posMove.z = 0f;
+                isMove = true;
             }
         }
+
+        if (!isMove)
+        {
+            if (isInGoldMine)
+            {
+                CheckEnemy();
+
+                if (targetCompetitor != null)
+                {
+                    AutoAttack();
+                    if (infoHero.typeHero != TypeHero.Canon)
+                    {
+                        MoveToPosition(targetCompetitor.transform.position);
+                    }
+                }
+            }
+        }
+        else
+        {
+            MoveToPosition(posMove);
+            if (transform.position == posMove)
+            {
+                isMove = false;
+            }
+        }
+
     }
 
     public void AddHero(int _numberHero)

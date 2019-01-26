@@ -1367,6 +1367,7 @@ MonoBehaviour:
   tgGoldMine: {fileID: 239366526}
   posHero: {fileID: 564364078}
   posEnemy: {fileID: 290096913}
+  cameraMain: {fileID: 1090152415}
 --- !u!4 &853692409
 Transform:
   m_ObjectHideFlags: 0
@@ -1916,6 +1917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1487263474}
+  isReset: 0
 --- !u!114 &1090152418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2178,11 +2180,6 @@ Prefab:
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_RootOrder
       value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114983053751308604, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-        type: 2}
-      propertyPath: colliderLand
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_IsActive
