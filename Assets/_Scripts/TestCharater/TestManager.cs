@@ -35,6 +35,9 @@ public class TestManager : MonoBehaviour
     public Transform posHero;
     public Transform posEnemy;
 
+    [Header("OTHER")]
+    public Camera cameraMain;
+
     private void Start()
     {
         List<string> lsNameHero = new List<string>();
@@ -69,6 +72,7 @@ public class TestManager : MonoBehaviour
             numberHero = 100;
             numberEnemy = 100;
         }
+
         StartCoroutine(IEInstantiate(lsPrefabsHero[typeHero], posHero, numberHero, "Hero"));
 
         if (tgGoldMine.isOn)
@@ -99,6 +103,10 @@ public class TestManager : MonoBehaviour
         hero.infoHero.numberHero = countHero;
         hero.txtCountHero.text = UIManager.Instance.ConvertNumber(hero.infoHero.numberHero);
         hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
+        if (tgGoldMine.isOn)
+        {
+            hero.isInGoldMine = true;
+        }
     }
 
     public void BackMenu()
