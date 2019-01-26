@@ -53,6 +53,7 @@ public class GameConfig : MonoBehaviour
     public float speed_hard;
     public long Price01;
     public int CapWar01;
+    public int[] xCapWar;
     public float TimeCanon;
     public float Timecanonsurvive;
     public List<string> lstSpeech = new List<string>();
