@@ -45,6 +45,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BackGround
+    uniqueID: 392613217
+    locked: 0
+  - name: Charater
+    uniqueID: 3581357471
+    locked: 0
+  - name: Sky
+    uniqueID: 783409035
+    locked: 0
   - name: UI
     uniqueID: 78723619
     locked: 0
