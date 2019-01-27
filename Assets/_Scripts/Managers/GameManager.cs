@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     [Header("INFO ENEMY")]
     public List<GoldMine> lstGoldMineEnemy = new List<GoldMine>();
 
+    public List<Hero> lsPrefabsHero;
+    public List<Hero> lsPrefabsEnemy;
+
     void Awake()
     {
         if (Instance != null)

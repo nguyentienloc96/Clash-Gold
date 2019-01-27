@@ -31,10 +31,10 @@ public class GoldMine : MonoBehaviour
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         for (int i = 0; i < 3; i++)
         {
-            int typeEnemy = Random.Range(0, TestManager.Instance.lsPrefabsEnemy.Count);
+            int typeEnemy = Random.Range(0, GameManager.Instance.lsPrefabsEnemy.Count);
             int numberEnemy = 1;
             StartCoroutine(IEInstantiate(
-                TestManager.Instance.lsPrefabsEnemy[typeEnemy],
+                GameManager.Instance.lsPrefabsEnemy[typeEnemy],
                 lsPos[i],
                 numberEnemy,
                 "Enemy",
