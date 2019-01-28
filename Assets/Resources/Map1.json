@@ -1,0 +1,40 @@
+{
+    "lstObjMap": [
+        {
+            "name": "Weapon",
+            "position_x": 0.0,
+            "position_y": 0.0,
+            "position_z": 0.0,
+            "rotation_x": 0.0,
+            "rotation_y": 0.0,
+            "rotation_z": 0.0,
+            "scale_x": 1.0,
+            "scale_y": 1.0,
+            "scale_z": 1.0
+        },
+        {
+            "name": "Castle",
+            "position_x": 0.0,
+            "position_y": -2.0999999046325685,
+            "position_z": 0.0,
+            "rotation_x": 0.0,
+            "rotation_y": 0.0,
+            "rotation_z": 0.0,
+            "scale_x": 1.0,
+            "scale_y": 1.0,
+            "scale_z": 1.0
+        },
+        {
+            "name": "Weapon E",
+            "position_x": 0.0,
+            "position_y": 0.2800000011920929,
+            "position_z": 0.0,
+            "rotation_x": 0.0,
+            "rotation_y": 0.0,
+            "rotation_z": 0.0,
+            "scale_x": 1.0,
+            "scale_y": 1.0,
+            "scale_z": 1.0
+        }
+    ]
+}
