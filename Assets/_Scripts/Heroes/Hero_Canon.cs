@@ -50,6 +50,7 @@ public class Hero_Canon : Hero {
     string nameBullet;
     public void Start()
     {
+        StartChild();
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);

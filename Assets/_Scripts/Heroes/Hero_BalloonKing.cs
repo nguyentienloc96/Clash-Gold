@@ -50,6 +50,8 @@ public class Hero_BalloonKing : Hero {
     string nameBullet;
     public void Start()
     {
+
+        StartChild();
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);

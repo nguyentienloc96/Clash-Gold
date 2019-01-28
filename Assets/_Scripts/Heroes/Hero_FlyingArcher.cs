@@ -51,6 +51,7 @@ public class Hero_FlyingArcher : Hero
     string nameBullet;
     public void Start()
     {
+        StartChild();
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
