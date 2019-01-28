@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveMapManager : MonoBehaviour {
     SaveMap sv = new SaveMap();
     private GameObject[] allObjects;
     public List<GameObject> prefabsObjectMap;
     public Transform parent;
+    public InputField txtName;
     public void Btn_Save()
     {
         sv.lstObjMap = new List<ItemObjectMap>();
@@ -32,7 +34,8 @@ public class SaveMapManager : MonoBehaviour {
         }
         string jsonString = JsonUtility.ToJson(sv, true);
         Debug.Log(jsonString);
-        System.IO.File.WriteAllText(Application.dataPath + "/Resources/Map1.json", JsonUtility.ToJson(sv,true));
+        string name = "/Resources/Map" + txtName.text + ".json";
+        System.IO.File.WriteAllText(Application.dataPath + name, JsonUtility.ToJson(sv,true));
     }
 
     public void Btn_Load()
