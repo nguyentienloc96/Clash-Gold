@@ -808,7 +808,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 78723619
   m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &562050069
@@ -1260,14 +1260,12 @@ MonoBehaviour:
   - {fileID: 114397630569948768, guid: b31fc29d4fce76d4b81d87ad801c6100, type: 2}
   lsHero: []
   lsEnemy: []
-  goldMine: {fileID: 0}
   pannelSelect: {fileID: 501167606}
   dropdownHero: {fileID: 289405651}
   dropdownEnemy: {fileID: 1607735695}
   txtCountHero: {fileID: 1493834506}
   txtCountEnemy: {fileID: 1996579668}
   btnPlay: {fileID: 1969062894}
-  tgGoldMine: {fileID: 0}
   posHero: {fileID: 564364078}
   posEnemy: {fileID: 290096913}
   cameraMain: {fileID: 1090152415}

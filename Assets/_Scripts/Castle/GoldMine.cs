@@ -31,7 +31,17 @@ public class GoldMine : MonoBehaviour
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         for (int i = 0; i < 3; i++)
         {
-            int typeEnemy = Random.Range(0, GameManager.Instance.lsPrefabsEnemy.Count);
+            int typeEnemy;
+            if (i == 0)
+            {
+                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
+                typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+            }
+            else
+            {
+                int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
+                typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
+            }
             int numberEnemy = 1;
             StartCoroutine(IEInstantiate(
                 GameManager.Instance.lsPrefabsEnemy[typeEnemy],
@@ -44,7 +54,7 @@ public class GoldMine : MonoBehaviour
 
     public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name, int level)
     {
-        Hero hero = Instantiate<Hero>(prafabs, posIns);
+        Hero hero = Instantiate<Hero>(prafabs, posIns.position,Quaternion.identity);
         hero.gameObject.name = name;
         lstHeroGoldMine.Add(hero);
         yield return new WaitForEndOfFrame();
