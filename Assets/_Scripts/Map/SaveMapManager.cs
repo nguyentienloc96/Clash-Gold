@@ -16,7 +16,7 @@ public class SaveMapManager : MonoBehaviour {
         allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject item in allObjects)
         {
-            if (item.name != "1")
+            if (item.name != "1" && item.name != "Map")
             {
                 ItemObjectMap obj = new ItemObjectMap();
                 obj.name = item.name;
