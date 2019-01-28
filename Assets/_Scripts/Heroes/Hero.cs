@@ -239,42 +239,46 @@ public abstract class Hero : MonoBehaviour
 
     public void HeroUpdate()
     {
-        AnimtionUpdate();
-        if (gameObject.CompareTag("Hero"))
+        if (GameManager.Instance.isPlay)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                posMove = TestManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
-                posMove.z = 0f;
-                isMove = true;
-            }
-        }
+            AnimtionUpdate();
 
-        if (!isMove)
-        {
-            if (isInGoldMine)
-            {
-                CheckEnemy();
 
-                if (targetCompetitor != null)
+            if (!isMove)
+            {
+                if (isInGoldMine)
                 {
-                    AutoAttack();
-                    if (infoHero.typeHero != TypeHero.Canon)
+                    CheckEnemy();
+
+                    if (targetCompetitor != null)
                     {
-                        MoveToPosition(targetCompetitor.transform.position);
+                        AutoAttack();
+                        if (infoHero.typeHero != TypeHero.Canon)
+                        {
+                            MoveToPosition(targetCompetitor.transform.position);
+                        }
                     }
                 }
             }
-        }
-        else
-        {
-            MoveToPosition(posMove);
-            if (transform.position == posMove)
+            else
             {
-                isMove = false;
+                MoveToPosition(posMove);
+                if (transform.position == posMove)
+                {
+                    isMove = false;
+                }
             }
         }
+    }
 
+    public void StartMoveToPosition(Vector3 _Pos)
+    {
+        if (gameObject.CompareTag("Hero"))
+        {
+            posMove = _Pos;
+            posMove.z = 0f;
+            isMove = true;
+        }
     }
 
     public void AddHero(int _numberHero)
@@ -282,5 +286,4 @@ public abstract class Hero : MonoBehaviour
         infoHero.numberHero += _numberHero;
         txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
     }
-
 }
