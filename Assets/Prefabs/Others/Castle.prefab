@@ -145,7 +145,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.013015449, y: -0.030369282}
   serializedVersion: 2
-  m_Radius: 0.75500005
+  m_Radius: 0.35
 --- !u!114 &114063830915801810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,12 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   repathRate: Infinity
-  target: {fileID: 0}
   canSearch: 1
   canMove: 1
   speed: 2
-  enableRotation: 1
-  rotationIn2D: 1
+  enableRotation: 0
+  rotationIn2D: 0
   rotationSpeed: 30
   interpolatePathSwitches: 1
   switchPathInterpolationSpeed: 10
@@ -178,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawGizmos: 1
+  drawGizmos: 0
   detailedGizmos: 0
   startEndModifier:
     addPoints: 0
@@ -217,8 +216,7 @@ MonoBehaviour:
   - {fileID: 4182129549998640}
   - {fileID: 4576455793482236}
   posMove: {x: 0, y: 0, z: 0}
-  isMove: 0
-  isChildMove: 0
+  iLerp: {fileID: 0}
 --- !u!212 &212650450561547668
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -52,6 +52,7 @@ public class Hero_BlastingDeath : Hero {
     // Use this for initialization
     public void Start()
     {
+        StartChild();
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);

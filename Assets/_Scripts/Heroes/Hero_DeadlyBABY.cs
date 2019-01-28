@@ -46,6 +46,7 @@ public class Hero_DeadlyBABY : Hero {
     // Use this for initialization
     public void Start()
     {
+        StartChild();
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);

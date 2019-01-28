@@ -47,6 +47,7 @@ public class Hero_FlyingAxe : Hero {
 
     public void Start()
     {
+        StartChild();
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);

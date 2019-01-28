@@ -48,6 +48,7 @@ public class Hero_TheFuriousQuartet : Hero
 
     public void Start()
     {
+        StartChild();
         SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);

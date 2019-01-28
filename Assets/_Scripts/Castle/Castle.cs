@@ -65,21 +65,21 @@ public class Castle : MonoBehaviour
     {
         if (GameManager.Instance.isPlay)
         {
-            //if (Input.GetMouseButtonDown(0))
-            //{
-            //    posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
-            //    posMove.z = 0f;
-            //    isMove = true;
-            //    isChildMove = true;
-            //}
-            //if (isMove)
-            //{
-            //    MoveToPosition(posMove);
-            //    if (transform.position == posMove)
-            //    {
-            //        isMove = false;
-            //    }
-            //}
+            if (Input.GetMouseButtonDown(0))
+            {
+                posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
+                posMove.z = 0f;
+                isMove = true;
+                isChildMove = true;
+            }
+            if (isMove)
+            {
+                MoveToPosition(posMove);
+                if (transform.position == posMove)
+                {
+                    isMove = false;
+                }
+            }
         }
     }
 
