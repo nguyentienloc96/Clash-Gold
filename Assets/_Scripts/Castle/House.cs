@@ -212,7 +212,6 @@ public class House : MonoBehaviour
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
         this.level = 1;
-        //this.price = (int)GameConfig.Instance.lstInfoHero[idHero].price;
         this.capWar = (int)GameConfig.Instance.lstInfoHero[idHero].capWar;
         this.countHero = 0;
         imgLoadingBuild.gameObject.SetActive(false);
@@ -226,6 +225,14 @@ public class House : MonoBehaviour
     public void SpawmHero()
     {
         countHero += capWar;
+        for (int i = 0; i < GameManager.Instance.castlePlayer.lstHeroRelease.Count; i++)
+        {
+            if (GameManager.Instance.castlePlayer.lstHeroRelease[i].infoHero.ID == idHero)
+            {
+                GameManager.Instance.castlePlayer.lstHeroRelease[i].AddHero(countHero);
+                countHero = 0;
+            }
+        }
     }
 
     public void OnNextDay()
