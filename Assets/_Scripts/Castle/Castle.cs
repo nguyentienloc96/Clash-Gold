@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using EventDispatcher;
 
 
 [System.Serializable]
@@ -24,6 +25,11 @@ public class Castle : MonoBehaviour
 
 
     void Start()
+    {
+        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());        
+    }
+
+    void OnStartGame()
     {
         healthMax = GameConfig.Instance.Bloodlv0;
         for (int i = 0; i < 3; i++)
