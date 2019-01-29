@@ -40,6 +40,8 @@ public abstract class Hero : MonoBehaviour
     public bool isMove;
     public bool isOneMove;
     public PolyNavAgent _agent;
+    public GoldMine goldMineAttacking;
+    public GoldMine goldMineProtecting;
 
     public abstract void SetInfoHero();
 
@@ -65,13 +67,9 @@ public abstract class Hero : MonoBehaviour
     {
         typeAction = TypeAction.DIE;
         parDie.Play();
-        if (gameObject.CompareTag("Enemy"))
+        if (goldMineAttacking != null)
         {
-            TestManager.Instance.lsEnemy.Remove(this);
-        }
-        else
-        {
-            TestManager.Instance.lsHero.Remove(this);
+            goldMineAttacking.lstCompetitorGoldMine.Remove(this);
         }
         Destroy(gameObject, 0.5f);
     }
@@ -84,6 +82,7 @@ public abstract class Hero : MonoBehaviour
     public void AnimIdle()
     {
         typeAction = TypeAction.IDLE;
+        _agent.OnDestinationReached -= CanMove;
     }
 
     protected Hero CheckCompetitorNear(List<Hero> lsCompetitor)
@@ -130,11 +129,17 @@ public abstract class Hero : MonoBehaviour
                 List<Hero> lsCompetitor = new List<Hero>();
                 if (gameObject.CompareTag("Hero"))
                 {
-                    lsCompetitor = TestManager.Instance.lsEnemy;
+                    if (goldMineAttacking != null)
+                    {
+                        lsCompetitor = goldMineAttacking.lstHeroGoldMine;
+                    }
                 }
                 else if (gameObject.CompareTag("Enemy"))
                 {
-                    lsCompetitor = TestManager.Instance.lsHero;
+                    if (goldMineAttacking != null)
+                    {
+                        lsCompetitor = goldMineAttacking.lstCompetitorGoldMine;
+                    }
                 }
                 List<Hero> lsCompetitorTarget = new List<Hero>();
                 Hero targetAttack = null;
@@ -204,6 +209,12 @@ public abstract class Hero : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         _agent.SetDestination(_toPos);
         _agent.maxSpeed = infoHero.speed / 5f;
+        _agent.OnDestinationReached += CanMove;
+    }
+
+    public void CanMove()
+    {
+        isMove = false;
     }
 
     public void AutoAttack()
