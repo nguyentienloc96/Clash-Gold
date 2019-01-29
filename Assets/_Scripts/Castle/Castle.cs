@@ -133,7 +133,7 @@ public class Castle : MonoBehaviour
                 }
             }
             _agent.SetDestination(posMove);
-            _agent.maxSpeed = speedMin / 2f;
+            _agent.maxSpeed = speedMin / 5f;
         }
     }
 }

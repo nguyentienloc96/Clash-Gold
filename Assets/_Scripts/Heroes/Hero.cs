@@ -203,7 +203,7 @@ public abstract class Hero : MonoBehaviour
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         _agent.SetDestination(_toPos);
-        _agent.maxSpeed = infoHero.speed / 2f;
+        _agent.maxSpeed = infoHero.speed / 5f;
     }
 
     public void AutoAttack()
