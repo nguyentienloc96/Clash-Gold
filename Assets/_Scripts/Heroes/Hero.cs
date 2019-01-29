@@ -38,17 +38,8 @@ public abstract class Hero : MonoBehaviour
     [Header("CHECK MOVE")]
     public Vector3 posMove;
     public bool isMove;
-    private bool isOneMove;
-    private PolyNavAgent _agent;
-    public PolyNavAgent agent
-    {
-        get
-        {
-            if (!_agent)
-                _agent = GetComponent<PolyNavAgent>();
-            return _agent;
-        }
-    }
+    public bool isOneMove;
+    public PolyNavAgent _agent;
 
     public abstract void SetInfoHero();
 
@@ -277,8 +268,8 @@ public abstract class Hero : MonoBehaviour
         {
             posMove = _Pos;
             posMove.z = 0f;
-            isMove = true;
             MoveToPosition(_Pos);
+            isMove = true;
         }
     }
 
@@ -290,6 +281,6 @@ public abstract class Hero : MonoBehaviour
 
     public void StartChild()
     {
-
+        _agent = GetComponent<PolyNavAgent>();
     }
 }

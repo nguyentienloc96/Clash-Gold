@@ -66,9 +66,8 @@ GameObject:
   - component: {fileID: 4920208662032262}
   - component: {fileID: 212650450561547668}
   - component: {fileID: 114434942514772356}
-  - component: {fileID: 58571802091773290}
-  - component: {fileID: 114246189653607294}
-  - component: {fileID: 114063830915801810}
+  - component: {fileID: 114599657914839642}
+  - component: {fileID: 60291840318629230}
   m_Layer: 0
   m_Name: Castle
   m_TagString: Untagged
@@ -131,8 +130,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &58571802091773290
-CircleCollider2D:
+--- !u!60 &60291840318629230
+PolygonCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -143,56 +142,72 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.013015449, y: -0.030369282}
-  serializedVersion: 2
-  m_Radius: 0.35
---- !u!114 &114063830915801810
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1689042427745408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 847a14d4dc9cc43679ab34fc78e0182f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  repathRate: Infinity
-  canSearch: 1
-  canMove: 1
-  speed: 2
-  enableRotation: 0
-  rotationIn2D: 0
-  rotationSpeed: 30
-  interpolatePathSwitches: 1
-  switchPathInterpolationSpeed: 10
---- !u!114 &114246189653607294
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1689042427745408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  drawGizmos: 0
-  detailedGizmos: 0
-  startEndModifier:
-    addPoints: 0
-    exactStartPoint: 4
-    exactEndPoint: 0
-    useRaycasting: 0
-    mask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    useGraphRaycasting: 0
-  traversableTags: -1
-  traversableTagsCompatibility:
-    tagsChange: -1
-    tagsSet: -1
-  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6711111, y: 0.6622222}
+    newSize: {x: 3.02, y: 2.98}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.13777778, y: -0.24222223}
+      - {x: 0.16666667, y: -0.25111112}
+      - {x: 0.22, y: -0.2488889}
+      - {x: 0.23777778, y: -0.22}
+      - {x: 0.23777778, y: -0.18666667}
+      - {x: 0.24444444, y: -0.14444445}
+      - {x: 0.27111113, y: -0.1}
+      - {x: 0.28222224, y: -0.075555556}
+      - {x: 0.30888888, y: -0.053333335}
+      - {x: 0.32444444, y: -0.031111112}
+      - {x: 0.32666668, y: -0.011111111}
+      - {x: 0.32666668, y: 0.0022222223}
+      - {x: 0.32222223, y: 0.015555556}
+      - {x: 0.31777778, y: 0.024444446}
+      - {x: 0.29555556, y: 0.046666667}
+      - {x: 0.25111112, y: 0.13555557}
+      - {x: 0.25777778, y: 0.17111112}
+      - {x: 0.25111112, y: 0.19111112}
+      - {x: 0.21555556, y: 0.22222222}
+      - {x: 0.17333333, y: 0.21777779}
+      - {x: 0.062222224, y: 0.26444444}
+      - {x: 0.053333335, y: 0.29333335}
+      - {x: 0.033333335, y: 0.30666667}
+      - {x: -0.017777778, y: 0.30666667}
+      - {x: -0.035555556, y: 0.2888889}
+      - {x: -0.055555556, y: 0.26222223}
+      - {x: -0.17555556, y: 0.22222222}
+      - {x: -0.20888889, y: 0.23555556}
+      - {x: -0.23555556, y: 0.23333333}
+      - {x: -0.25111112, y: 0.21777779}
+      - {x: -0.26000002, y: 0.17777778}
+      - {x: -0.25555557, y: 0.14444445}
+      - {x: -0.26666668, y: 0.12666667}
+      - {x: -0.2777778, y: 0.10666667}
+      - {x: -0.3, y: 0.055555556}
+      - {x: -0.31111112, y: 0.053333335}
+      - {x: -0.33555555, y: 0.024444446}
+      - {x: -0.33555555, y: -0.008888889}
+      - {x: -0.32666668, y: -0.022222223}
+      - {x: -0.31555557, y: -0.033333335}
+      - {x: -0.30666667, y: -0.037777778}
+      - {x: -0.26222223, y: -0.15777779}
+      - {x: -0.2688889, y: -0.1688889}
+      - {x: -0.27111113, y: -0.19111112}
+      - {x: -0.25333333, y: -0.22}
+      - {x: -0.2288889, y: -0.2288889}
+      - {x: -0.2, y: -0.22666667}
+      - {x: -0.15555556, y: -0.23777778}
+      - {x: -0.097777784, y: -0.2688889}
+      - {x: -0.037777778, y: -0.31777778}
+      - {x: 0, y: -0.31777778}
+      - {x: 0.026666667, y: -0.30666667}
+      - {x: 0.042222224, y: -0.28}
+      - {x: 0.091111116, y: -0.25777778}
 --- !u!114 &114434942514772356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,7 +231,31 @@ MonoBehaviour:
   - {fileID: 4182129549998640}
   - {fileID: 4576455793482236}
   posMove: {x: 0, y: 0, z: 0}
-  iLerp: {fileID: 0}
+  isMove: 0
+--- !u!114 &114599657914839642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689042427745408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 3
+  mass: 2
+  stoppingDistance: 0.1
+  slowingDistance: 1
+  decelerationRate: 2
+  rotateTransform: 0
+  rotateSpeed: 350
+  avoidRadius: 0
+  lookAheadDistance: 1
+  repath: 0
+  restrict: 0
+  closerPointOnInvalid: 0
+  debugPath: 0
 --- !u!212 &212650450561547668
 SpriteRenderer:
   m_ObjectHideFlags: 1

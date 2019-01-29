@@ -59,7 +59,7 @@ public class GoldMine : MonoBehaviour
 
     public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name, int level)
     {
-        Hero hero = Instantiate<Hero>(prafabs, posIns.position,Quaternion.identity);
+        Hero hero = Instantiate<Hero>(prafabs, posIns.position,Quaternion.identity, GameManager.Instance.enemyManager);
         hero.gameObject.name = name;
         lstHeroGoldMine.Add(hero);
         yield return new WaitForEndOfFrame();

@@ -21,7 +21,6 @@ public class Castle : MonoBehaviour
     [Header("CHECK MOVE")]
     public Vector3 posMove;
     public bool isMove;
-    public bool isChildMove;
     private PolyNavAgent _agent;
     public PolyNavAgent agent
     {
@@ -34,6 +33,7 @@ public class Castle : MonoBehaviour
     }
     void Start()
     {
+        _agent = GetComponent<PolyNavAgent>();
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());        
     }
 
@@ -65,7 +65,7 @@ public class Castle : MonoBehaviour
 
     public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name, int level)
     {
-        Hero hero = Instantiate<Hero>(prafabs, posIns.position,Quaternion.identity);
+        Hero hero = Instantiate<Hero>(prafabs, posIns.position,Quaternion.identity,GameManager.Instance.heroManager);
         hero.gameObject.name = name;
         lstHeroRelease.Add(hero);
         yield return new WaitForEndOfFrame();
@@ -120,13 +120,9 @@ public class Castle : MonoBehaviour
 
         if (lstHeroRelease.Count > 0)
         {
-            if (isChildMove)
+            for (int i = 0; i < lstHeroRelease.Count; i++)
             {
-                for (int i = 0; i < lstHeroRelease.Count; i++)
-                {
-                    lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent);
-                }
-                isChildMove = false;
+                lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent);
             }
             float speedMin = lstHeroRelease[0].infoHero.speed;
             for (int i = 1; i < lstHeroRelease.Count; i++)

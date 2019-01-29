@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Hero_FlyingArcher : Hero
 {
+    public PolyNavAgent agent
+    {
+        get
+        {
+            if (!_agent)
+                _agent = GetComponent<PolyNavAgent>();
+            return _agent;
+        }
+    }
     public override void Attack()
     {
         AnimAttack();

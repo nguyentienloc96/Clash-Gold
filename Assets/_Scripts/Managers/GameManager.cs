@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     [Header("OTHER")]
     public Camera cameraMain;
+    public Transform heroManager;
+    public Transform enemyManager;
 
     void Awake()
     {
