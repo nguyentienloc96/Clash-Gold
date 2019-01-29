@@ -21,10 +21,19 @@ public class Castle : MonoBehaviour
     public Vector3 posMove;
     public bool isMove;
     public bool isChildMove;
-
-
+    private PolyNavAgent _agent;
+    public PolyNavAgent agent
+    {
+        get
+        {
+            if (!_agent)
+                _agent = GetComponent<PolyNavAgent>();
+            return _agent;
+        }
+    }
     void Start()
     {
+        _agent = GetComponent<PolyNavAgent>();
         healthMax = GameConfig.Instance.Bloodlv0;
         for (int i = 0; i < 3; i++)
         {
@@ -69,16 +78,7 @@ public class Castle : MonoBehaviour
             {
                 posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
                 posMove.z = 0f;
-                isMove = true;
-                isChildMove = true;
-            }
-            if (isMove)
-            {
                 MoveToPosition(posMove);
-                if (transform.position == posMove)
-                {
-                    isMove = false;
-                }
             }
         }
     }
@@ -131,7 +131,8 @@ public class Castle : MonoBehaviour
                     speedMin = lstHeroRelease[i].infoHero.speed;
                 }
             }
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, speedMin / 10f * Time.deltaTime);
+            _agent.SetDestination(posMove);
+            _agent.maxSpeed = speedMin / 2f;
         }
     }
 }

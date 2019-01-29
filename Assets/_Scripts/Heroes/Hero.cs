@@ -38,6 +38,17 @@ public abstract class Hero : MonoBehaviour
     [Header("CHECK MOVE")]
     public Vector3 posMove;
     public bool isMove;
+    private bool isOneMove;
+    private PolyNavAgent _agent;
+    public PolyNavAgent agent
+    {
+        get
+        {
+            if (!_agent)
+                _agent = GetComponent<PolyNavAgent>();
+            return _agent;
+        }
+    }
 
     public abstract void SetInfoHero();
 
@@ -184,16 +195,13 @@ public abstract class Hero : MonoBehaviour
                 if (targetAttack != null)
                 {
                     targetCompetitor = targetAttack;
+                    isOneMove = true;
                 }
                 else
                 {
                     targetCompetitor = null;
                 }
             }
-        }
-        else
-        {
-
         }
     }
 
@@ -203,19 +211,8 @@ public abstract class Hero : MonoBehaviour
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        if (!isMove)
-        {
-            if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
-            {
-                transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
-                AnimRun();
-            }
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
-            AnimRun();
-        }
+        _agent.SetDestination(_toPos);
+        _agent.maxSpeed = infoHero.speed / 2f;
     }
 
     public void AutoAttack()
@@ -243,30 +240,33 @@ public abstract class Hero : MonoBehaviour
         {
             AnimtionUpdate();
 
-
             if (!isMove)
             {
                 if (isInGoldMine)
                 {
                     CheckEnemy();
-
                     if (targetCompetitor != null)
                     {
-                        AutoAttack();
-                        if (infoHero.typeHero != TypeHero.Canon)
+                        if (isOneMove)
                         {
                             MoveToPosition(targetCompetitor.transform.position);
+                            isOneMove = false;
                         }
+                        if (Vector3.Distance(transform.position, targetCompetitor.transform.position) <= ((infoHero.range / 5f) + 0.75f))
+                        {
+                            _agent.Stop();
+                        }
+                        else
+                        {
+                            AnimRun();
+                        }
+                        AutoAttack();
                     }
                 }
             }
             else
             {
-                MoveToPosition(posMove);
-                if (transform.position == posMove)
-                {
-                    isMove = false;
-                }
+                AnimRun();
             }
         }
     }
@@ -278,6 +278,7 @@ public abstract class Hero : MonoBehaviour
             posMove = _Pos;
             posMove.z = 0f;
             isMove = true;
+            MoveToPosition(_Pos);
         }
     }
 
