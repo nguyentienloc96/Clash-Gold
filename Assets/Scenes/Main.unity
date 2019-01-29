@@ -347,26 +347,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1822089730}
   m_Script: {fileID: 11500000, guid: ec4395aabb21dca4ab72c071c78f4699, type: 3}
---- !u!4 &43356659 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 178605457}
 --- !u!224 &54410729 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224409692808916844, guid: aac5d8464928a914e8ec5b117b85aa48,
     type: 2}
   m_PrefabInternal: {fileID: 451825142}
---- !u!4 &59218757 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1623504391}
---- !u!4 &66204978 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 2102680914}
 --- !u!1 &68130150
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,58 +925,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 162841190}
---- !u!1001 &178605457
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 17.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -34.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (16)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &178605458 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 178605457}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &206176327
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,63 +1322,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 245368959}
---- !u!4 &271710057 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 629535020}
---- !u!1001 &272279516
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 21.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (7)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &272279517 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 272279516}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &325227456
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,11 +1461,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 451825142}
   m_Script: {fileID: 11500000, guid: ec4395aabb21dca4ab72c071c78f4699, type: 3}
---- !u!4 &360108886 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1851239534}
 --- !u!1 &366055082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,120 +1704,6 @@ RectTransform:
   m_AnchoredPosition: {x: 37, y: 4}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1001 &409891338
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -10.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 23.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &409891339 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 409891338}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
---- !u!4 &417909366 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1143112097}
---- !u!4 &430849526 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 409891338}
---- !u!1001 &437692022
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 25.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -18.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (15)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &437692023 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 437692022}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &443966385
 GameObject:
   m_ObjectHideFlags: 0
@@ -3374,11 +3131,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -5.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -34.9
+      value: -21.4
       objectReference: {fileID: 0}
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -3402,11 +3159,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_Name
-      value: Gold Mine (17)
+      value: Gold Mine 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
@@ -3681,58 +3438,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac5d8464928a914e8ec5b117b85aa48, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &629535020
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 19.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 22.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &629535021 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 629535020}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &642212691
 GameObject:
   m_ObjectHideFlags: 0
@@ -4307,11 +4012,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224409692808916844, guid: aac5d8464928a914e8ec5b117b85aa48,
     type: 2}
   m_PrefabInternal: {fileID: 2075934665}
---- !u!4 &759574205 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1572687532}
 --- !u!1 &765838615
 GameObject:
   m_ObjectHideFlags: 0
@@ -4732,58 +4432,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 821913896}
---- !u!1001 &837388486
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -12.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -9.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (10)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &837388487 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 837388486}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &852013057
 GameObject:
   m_ObjectHideFlags: 0
@@ -6199,68 +5847,57 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac5d8464928a914e8ec5b117b85aa48, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1143112097
-Prefab:
+--- !u!1 &1074406323
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 23.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 5.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (5)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1143112098 stripped
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1074406325}
+  - component: {fileID: 1074406324}
+  m_Layer: 0
+  m_Name: ObjectsPooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1074406324
 MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1143112097}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
---- !u!4 &1150902495 stripped
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074406323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bc0ad3cd5ec7f6488a2dbaa116a3971, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  arrayPooledObjects:
+  - namePool: Hero
+    objectPrefab: {fileID: 1518318750879548, guid: e837be2456a39174392f369a3eb24914,
+      type: 2}
+    amountToBuffer: 0
+    pooledObjects: []
+  - namePool: Enemy
+    objectPrefab: {fileID: 1521122973746262, guid: 09a6f326f742a1e488b74a26fdab200b,
+      type: 2}
+    amountToBuffer: 0
+    pooledObjects: []
+--- !u!4 &1074406325
 Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1240550790}
---- !u!4 &1169867746 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 272279516}
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1074406323}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1175042369 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224409692808916844, guid: aac5d8464928a914e8ec5b117b85aa48,
@@ -6565,120 +6202,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!4 &1196157964 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1217514800}
 --- !u!4 &1205864862 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
     type: 2}
   m_PrefabInternal: {fileID: 617744498}
---- !u!1001 &1217514800
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -3.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 34.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1217514801 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1217514800}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
---- !u!1001 &1240550790
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 7.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -13.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (14)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1240550791 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1240550790}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &1272576133
 GameObject:
   m_ObjectHideFlags: 0
@@ -6995,59 +6523,6 @@ RectTransform:
   m_PrefabParentObject: {fileID: 224409692808916844, guid: aac5d8464928a914e8ec5b117b85aa48,
     type: 2}
   m_PrefabInternal: {fileID: 625826646}
---- !u!1001 &1373389613
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 33.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!4 &1373389614 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1373389613}
---- !u!114 &1373389615 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1373389613}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &1395698113
 GameObject:
   m_ObjectHideFlags: 0
@@ -7795,58 +7270,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1507246424}
---- !u!1001 &1509365287
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -22
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 17.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (8)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1509365288 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1509365287}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &1513939666
 GameObject:
   m_ObjectHideFlags: 0
@@ -8202,58 +7625,6 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1566643590}
---- !u!1001 &1572687532
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -20.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -18.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (12)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1572687533 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1572687532}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &1622856890
 GameObject:
   m_ObjectHideFlags: 0
@@ -8322,63 +7693,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1622856890}
---- !u!4 &1623291526 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1846082916}
---- !u!1001 &1623504391
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 18.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 34.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1623504392 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1623504391}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!114 &1640343748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9076,11 +8390,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!4 &1742142219 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 437692022}
 --- !u!1 &1742382354
 GameObject:
   m_ObjectHideFlags: 0
@@ -9505,162 +8814,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac5d8464928a914e8ec5b117b85aa48, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &1843962533
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 11.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 15.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (6)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1843962534 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1843962533}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
---- !u!1001 &1846082916
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -20.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (9)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1846082917 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1846082916}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
---- !u!1001 &1851239534
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -34.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (18)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1851239535 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1851239534}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &1856502965
 GameObject:
   m_ObjectHideFlags: 0
@@ -10034,26 +9187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateOnUpdate: 0
   navObstacles:
-  - {fileID: 2102680915}
-  - {fileID: 272279517}
-  - {fileID: 1916233340}
-  - {fileID: 1217514801}
-  - {fileID: 1623504392}
-  - {fileID: 178605458}
-  - {fileID: 1953274363}
-  - {fileID: 1843962534}
-  - {fileID: 1143112098}
-  - {fileID: 1240550791}
-  - {fileID: 1846082917}
-  - {fileID: 1572687533}
   - {fileID: 617744499}
-  - {fileID: 409891339}
-  - {fileID: 1509365288}
-  - {fileID: 437692023}
-  - {fileID: 1851239535}
-  - {fileID: 837388487}
-  - {fileID: 629535021}
-  - {fileID: 1373389615}
+  - {fileID: 1953274363}
   inflateRadius: 0.1
   regenerateFlag: 1
 --- !u!4 &1894323352
@@ -10194,63 +9329,6 @@ MonoBehaviour:
   lstBuildHouse: []
   lstHouseInWall: []
   lstHero: []
---- !u!4 &1913167433 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 837388486}
---- !u!1001 &1916233339
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 15.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -3.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (11)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &1916233340 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1916233339}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
 --- !u!1 &1930647653
 GameObject:
   m_ObjectHideFlags: 0
@@ -10421,11 +9499,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1933035429}
---- !u!4 &1937178561 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1843962533}
 --- !u!1 &1951405801
 GameObject:
   m_ObjectHideFlags: 0
@@ -10554,7 +9627,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 8.6
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_LocalPosition.z
@@ -10578,11 +9651,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_RootOrder
-      value: 19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
       propertyPath: m_Name
-      value: Gold Mine (19)
+      value: Gold Mine 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
@@ -10861,26 +9934,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1373389614}
-  - {fileID: 430849526}
-  - {fileID: 1196157964}
-  - {fileID: 59218757}
-  - {fileID: 271710057}
-  - {fileID: 417909366}
-  - {fileID: 1937178561}
-  - {fileID: 1169867746}
-  - {fileID: 2087622640}
-  - {fileID: 1623291526}
-  - {fileID: 1913167433}
-  - {fileID: 2107154102}
-  - {fileID: 759574205}
-  - {fileID: 66204978}
-  - {fileID: 1150902495}
-  - {fileID: 1742142219}
-  - {fileID: 43356659}
-  - {fileID: 1205864862}
-  - {fileID: 360108886}
   - {fileID: 1858174183}
+  - {fileID: 1205864862}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11156,11 +10211,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac5d8464928a914e8ec5b117b85aa48, type: 2}
   m_IsPrefabParent: 0
---- !u!4 &2087622640 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1509365287}
 --- !u!1001 &2096009472
 Prefab:
   m_ObjectHideFlags: 0
@@ -11329,63 +10379,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aac5d8464928a914e8ec5b117b85aa48, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &2102680914
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1972769697}
-    m_Modifications:
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -5.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -18.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_RootOrder
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1649741570400348, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-      propertyPath: m_Name
-      value: Gold Mine (13)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
-  m_IsPrefabParent: 0
---- !u!114 &2102680915 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114315393304010732, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 2102680914}
-  m_Script: {fileID: 11500000, guid: fc4f7f33d8fc7c0419b2308165807ce0, type: 3}
---- !u!4 &2107154102 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1916233339}
 --- !u!1 &2128753060
 GameObject:
   m_ObjectHideFlags: 0

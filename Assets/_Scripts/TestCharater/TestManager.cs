@@ -32,6 +32,7 @@ public class TestManager : MonoBehaviour
 
     public Transform posHero;
     public Transform posEnemy;
+    public GoldMine goldMine;
 
     [Header("OTHER")]
     public Camera cameraMain;
@@ -83,13 +84,19 @@ public class TestManager : MonoBehaviour
     public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name)
     {
         Hero hero = Instantiate<Hero>(prafabs, posIns);
+        hero.goldMineAttacking = goldMine;
         hero.gameObject.name = name;
         if (name == "Hero")
+        {
             lsHero.Add(hero);
+            goldMine.lstCompetitorGoldMine.Add(hero);
+        }
         else
         {
             lsEnemy.Add(hero);
             hero.transform.eulerAngles = new Vector3(0f, 0f, 180f);
+            goldMine.lstHeroGoldMine.Add(hero);
+
         }
         yield return new WaitForEndOfFrame();
         hero.infoHero.numberHero = countHero;

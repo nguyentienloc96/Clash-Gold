@@ -70,8 +70,7 @@ public class Castle : MonoBehaviour
         lstHeroRelease.Add(hero);
         yield return new WaitForEndOfFrame();
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.infoHero.numberHero = countHero;
-        hero.txtCountHero.text = UIManager.Instance.ConvertNumber(hero.infoHero.numberHero);
+        hero.AddHero(countHero);
         hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
     }
 

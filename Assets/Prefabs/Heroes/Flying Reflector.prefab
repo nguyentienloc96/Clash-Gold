@@ -38,6 +38,7 @@ GameObject:
   - component: {fileID: 4622709460819604}
   - component: {fileID: 23809554057539534}
   - component: {fileID: 102720686741579824}
+  - component: {fileID: 210610574593982702}
   m_Layer: 0
   m_Name: Count Hero
   m_TagString: Untagged
@@ -428,6 +429,10 @@ MonoBehaviour:
   isInGoldMine: 0
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
+  isOneMove: 0
+  _agent: {fileID: 0}
+  goldMineAttacking: {fileID: 0}
+  goldMineProtecting: {fileID: 0}
 --- !u!114 &114703131036998056
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -10853,6 +10858,16 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &210610574593982702
+SortingGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1454444257675388}
+  m_Enabled: 1
+  m_SortingLayerID: -713609825
+  m_SortingLayer: 2
+  m_SortingOrder: 4
 --- !u!212 &212106314452255902
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -18,7 +18,8 @@ public class GoldMine : MonoBehaviour
     public int level;
     public Collider2D colliderLand;
     public TypeGoldMine typeGoleMine;
-    public List<Hero> lstHeroGoldMine; //list hero trong mo vang
+    public List<Hero> lstHeroGoldMine;
+    public List<Hero> lstCompetitorGoldMine;
 
     public List<Transform> lsPos;
 
@@ -27,6 +28,7 @@ public class GoldMine : MonoBehaviour
 
     void Start()
     {
+        lstCompetitorGoldMine = new List<Hero>();
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
     }
 
@@ -59,27 +61,15 @@ public class GoldMine : MonoBehaviour
 
     public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name, int level)
     {
-        Hero hero = Instantiate<Hero>(prafabs, posIns.position,Quaternion.identity, GameManager.Instance.enemyManager);
+        Hero hero = Instantiate<Hero>(prafabs, posIns.position, Quaternion.identity, GameManager.Instance.enemyManager);
         hero.gameObject.name = name;
         lstHeroGoldMine.Add(hero);
         yield return new WaitForEndOfFrame();
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.infoHero.numberHero = countHero;
-        hero.txtCountHero.text = UIManager.Instance.ConvertNumber(hero.infoHero.numberHero);
+        hero.AddHero(countHero);
         hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
+        hero.goldMineProtecting = this;
     }
-
-    //public float timer = 0;
-    //void Update()
-    //{
-    //    if (timer >= 3f)
-    //    {
-    //        this.PostEvent(EventID.NextDay);
-    //        timer = 0;
-    //    }
-    //    else
-    //        timer += Time.deltaTime;
-    //}
 
     public void LoadDataGoldMine(int _id, float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
     {
@@ -119,7 +109,7 @@ public class GoldMine : MonoBehaviour
     {
         for (int i = 0; i < lstHeroGoldMine.Count; i++)
         {
-            lstHeroGoldMine[i].AddHero((int)lstHeroGoldMine[i].infoHero.capWar);
+            lstHeroGoldMine[i].AddHero((int)(lstHeroGoldMine[i].infoHero.capWar*GameManager.Instance.ratioBorn));
         }
     }
 
@@ -153,28 +143,93 @@ public class GoldMine : MonoBehaviour
         }
     }
 
+    public bool isBeingAttack;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
             if (other.CompareTag("Hero"))
             {
-
+                Hero heroCurrent = other.GetComponent<Hero>();
+                if (!isBeingAttack)
+                {
+                    foreach(Hero hero in lstHeroGoldMine)
+                    {
+                        hero.isInGoldMine = true;
+                    }
+                    isBeingAttack = true;
+                }
+                heroCurrent.goldMineAttacking = this;
+                heroCurrent.isInGoldMine = true;
+                lstCompetitorGoldMine.Add(heroCurrent);
             }
 
         }
         else
         {
-            if (other.CompareTag("Hero"))
+            if (other.CompareTag("Enemy"))
             {
-
+                Hero heroCurrent = other.GetComponent<Hero>();
+                if (!isBeingAttack)
+                {
+                    foreach (Hero hero in lstHeroGoldMine)
+                    {
+                        hero.isInGoldMine = true;
+                    }
+                    isBeingAttack = true;
+                }
+                heroCurrent.goldMineAttacking = this;
+                heroCurrent.isInGoldMine = true;
+                lstCompetitorGoldMine.Add(heroCurrent);
             }
         }
     }
 
     public void OnTriggerExit2D(Collider2D other)
     {
+        if (typeGoleMine == TypeGoldMine.Enemy)
+        {
+            if (other.CompareTag("Hero"))
+            {
+                Hero heroCurrent = other.GetComponent<Hero>();
+                heroCurrent.goldMineAttacking = null;
+                heroCurrent.isInGoldMine = false;
+                lstCompetitorGoldMine.Remove(heroCurrent);
+                if (lstCompetitorGoldMine.Count <= 0)
+                {
+                    if (isBeingAttack)
+                    {
+                        foreach (Hero hero in lstHeroGoldMine)
+                        {
+                            hero.isInGoldMine = true;
+                        }
+                        isBeingAttack = false;
+                    }
+                }
+            }
 
+        }
+        else
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                Hero heroCurrent = other.GetComponent<Hero>();
+                heroCurrent.goldMineAttacking = null;
+                heroCurrent.isInGoldMine = false;
+                lstCompetitorGoldMine.Remove(heroCurrent);
+                if (lstCompetitorGoldMine.Count <= 0)
+                {
+                    if (isBeingAttack)
+                    {
+                        foreach (Hero hero in lstHeroGoldMine)
+                        {
+                            hero.isInGoldMine = true;
+                        }
+                        isBeingAttack = false;
+                    }
+                }
+            }
+        }
     }
 }
 

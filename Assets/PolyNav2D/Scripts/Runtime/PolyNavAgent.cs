@@ -320,7 +320,7 @@ public class PolyNavAgent : MonoBehaviour{
 
 		Stop();
 
-		if (reachedCallback != null)
+        if (reachedCallback != null)
 			reachedCallback(true);
 
 		if (OnDestinationReached != null)
@@ -332,7 +332,7 @@ public class PolyNavAgent : MonoBehaviour{
 
 		Stop();
 
-		if (reachedCallback != null)
+        if (reachedCallback != null)
 			reachedCallback(false);
 
 		if (OnDestinationInvalid != null)
@@ -424,18 +424,19 @@ public class PolyNavAgent : MonoBehaviour{
     
     void OnDrawGizmos(){
 
-    	Gizmos.color = new Color(1,1,1,0.1f);
-    	Gizmos.DrawWireSphere(transform.position, avoidRadius);
+        Gizmos.color = new Color(1, 1, 1, 0.1f);
+        Gizmos.DrawWireSphere(transform.position, avoidRadius);
 
 
-    	if (!hasPath)
-    		return;
+        if (!hasPath)
+            return;
 
-		if (debugPath){
-			Gizmos.color = new Color(1f, 1f, 1f, 0.2f);
-			Gizmos.DrawLine(position, activePath[0]);
-			for (int i= 0; i < activePath.Count; i++)
-				Gizmos.DrawLine(activePath[i], activePath[(i == activePath.Count - 1)? i : i + 1]);
-		}	
+        if (debugPath)
+        {
+            Gizmos.color = new Color(1f, 1f, 1f, 0.2f);
+            Gizmos.DrawLine(position, activePath[0]);
+            for (int i = 0; i < activePath.Count; i++)
+                Gizmos.DrawLine(activePath[i], activePath[(i == activePath.Count - 1) ? i : i + 1]);
+        }
     }
 }
