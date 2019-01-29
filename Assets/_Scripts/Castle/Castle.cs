@@ -34,15 +34,11 @@ public class Castle : MonoBehaviour
     }
     void Start()
     {
-<<<<<<< HEAD
-        _agent = GetComponent<PolyNavAgent>();
-=======
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());        
     }
 
     void OnStartGame()
     {
->>>>>>> 08c58ae511a216d61a08b964c4c0358961b22bd4
         healthMax = GameConfig.Instance.Bloodlv0;
         for (int i = 0; i < 3; i++)
         {
