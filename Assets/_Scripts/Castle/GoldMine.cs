@@ -38,36 +38,34 @@ public class GoldMine : MonoBehaviour
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         for (int i = 0; i < 3; i++)
         {
-            int typeEnemy;
-            if (i == 0)
-            {
-                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
-                typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
-            }
-            else
-            {
-                int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
-                typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
-            }
-            int numberEnemy = 1;
-            StartCoroutine(IEInstantiate(
-                GameManager.Instance.lsPrefabsEnemy[typeEnemy],
-                lsPos[i],
-                numberEnemy,
-                "Enemy",
-                level));
+            InstantiateHero(i);
         }
     }
 
-    public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name, int level)
+    public void InstantiateHero(int i)
     {
-        Hero hero = Instantiate<Hero>(prafabs, posIns.position, Quaternion.identity, GameManager.Instance.enemyManager);
-        hero.gameObject.name = name;
+        int typeEnemy;
+        if (i == 0)
+        {
+            int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
+            typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+        }
+        else
+        {
+            int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
+            typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
+        }
+        int numberEnemy = 1;
+
+        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[typeEnemy]
+            , lsPos[i].position
+            , Quaternion.identity
+            , GameManager.Instance.enemyManager);
+        hero.gameObject.name = "Enemy";
         lstHeroGoldMine.Add(hero);
-        yield return new WaitForEndOfFrame();
+        hero.SetInfoHero();
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.AddHero(countHero);
-        hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
+        hero.AddHero(numberEnemy);
         hero.goldMineProtecting = this;
     }
 
@@ -193,6 +191,7 @@ public class GoldMine : MonoBehaviour
             {
                 Hero heroCurrent = other.GetComponent<Hero>();
                 heroCurrent.goldMineAttacking = null;
+                heroCurrent.targetCompetitor = null;
                 heroCurrent.isInGoldMine = false;
                 lstCompetitorGoldMine.Remove(heroCurrent);
                 if (lstCompetitorGoldMine.Count <= 0)
@@ -215,6 +214,7 @@ public class GoldMine : MonoBehaviour
             {
                 Hero heroCurrent = other.GetComponent<Hero>();
                 heroCurrent.goldMineAttacking = null;
+                heroCurrent.targetCompetitor = null;
                 heroCurrent.isInGoldMine = false;
                 lstCompetitorGoldMine.Remove(heroCurrent);
                 if (lstCompetitorGoldMine.Count <= 0)

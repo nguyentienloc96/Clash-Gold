@@ -21,7 +21,7 @@ public class Castle : MonoBehaviour
     [Header("CHECK MOVE")]
     public Vector3 posMove;
     public bool isMove;
-    private PolyNavAgent _agent;
+    public PolyNavAgent _agent;
     public PolyNavAgent agent
     {
         get
@@ -42,36 +42,34 @@ public class Castle : MonoBehaviour
         healthMax = GameConfig.Instance.Bloodlv0;
         for (int i = 0; i < 3; i++)
         {
-            int typeHero;
-            if (i == 0)
-            {
-                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
-                typeHero = GameManager.Instance.lsHeroFly[randomFly];
-            }
-            else
-            {
-                int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
-                typeHero = GameManager.Instance.lsHeroCanMove[randomCanMove];
-            }
-            int numberHero = 1;
-            StartCoroutine(IEInstantiate(
-                GameManager.Instance.lsPrefabsHero[typeHero],
-                lsPos[i],
-                numberHero,
-                "Hero",
-                1));
+            InstantiateHero(i);
         }
     }
 
-    public IEnumerator IEInstantiate(Hero prafabs, Transform posIns, int countHero, string name, int level)
+    public void InstantiateHero(int i)
     {
-        Hero hero = Instantiate<Hero>(prafabs, posIns.position,Quaternion.identity,GameManager.Instance.heroManager);
-        hero.gameObject.name = name;
-        lstHeroRelease.Add(hero);
-        yield return new WaitForEndOfFrame();
+        int typeHero;
+        if (i == 0)
+        {
+            int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
+            typeHero = GameManager.Instance.lsHeroFly[randomFly];
+        }
+        else
+        {
+            int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
+            typeHero = GameManager.Instance.lsHeroCanMove[randomCanMove];
+        }
+        int numberHero = 1;
+
+        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[typeHero]
+            , lsPos[i].position
+            , Quaternion.identity
+            , GameManager.Instance.heroManager);
+        hero.gameObject.name = "Hero";
+        hero.SetInfoHero();
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.AddHero(countHero);
-        hero.infoHero.healthAll = hero.infoHero.health * hero.infoHero.numberHero;
+        hero.AddHero(numberHero);
+        lstHeroRelease.Add(hero);
     }
 
     void Update()

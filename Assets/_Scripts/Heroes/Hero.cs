@@ -69,7 +69,7 @@ public abstract class Hero : MonoBehaviour
         parDie.Play();
         if (goldMineAttacking != null)
         {
-            goldMineAttacking.lstCompetitorGoldMine.Remove(this);
+            goldMineAttacking.lstHeroGoldMine.Remove(this);
         }
         Destroy(gameObject, 0.5f);
     }
@@ -215,6 +215,10 @@ public abstract class Hero : MonoBehaviour
     public void CanMove()
     {
         isMove = false;
+        if (targetCompetitor != null)
+        {
+            isOneMove = true;
+        }
     }
 
     public void AutoAttack()
@@ -280,7 +284,7 @@ public abstract class Hero : MonoBehaviour
             posMove = _Pos;
             posMove.z = 0f;
             MoveToPosition(_Pos);
-            isMove = true;
+            isMove = true;            
         }
     }
 
@@ -288,6 +292,7 @@ public abstract class Hero : MonoBehaviour
     {
         infoHero.numberHero += _numberHero;
         txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        infoHero.healthAll += infoHero.health * _numberHero;
     }
 
     public void StartChild()

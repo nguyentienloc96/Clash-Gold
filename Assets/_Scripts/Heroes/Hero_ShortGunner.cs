@@ -38,28 +38,12 @@ public class Hero_ShortGunner : Hero {
     {
         this.infoHero.ID = 7;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
-        //this.infoHero.health = 696;
-        //this.infoHero.dame = 620;
-        //this.infoHero.hitSpeed = 2.2f;
-        //this.infoHero.speed = 5;
-        //this.infoHero.price = 5000;
-        //this.infoHero.capWar = 10 * GameConfig.Instance.Lo;
-        //this.infoHero.range = 4;
-        //this.infoHero.counterDame = 0;
-        //this.infoHero.isMom = false;
-        //this.infoHero.isBaby = false;
-        //this.infoHero.idBaby = 0;
-        //this.infoHero.idMom = 0;
-        //this.infoHero.typeHero = TypeHero.CungThuong;
-        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
-        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }
 
     string nameBullet;
     public void Start()
     {
         StartChild();
-        SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
         nameBullet = gameObject.name;

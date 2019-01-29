@@ -37,28 +37,12 @@ public class Hero_AnimatedPuppets : Hero {
     {
         this.infoHero.ID = 19;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
-        //this.infoHero.health = 98;
-        //this.infoHero.dame = 98;
-        //this.infoHero.hitSpeed = 1.1f;
-        //this.infoHero.speed = 10;
-        //this.infoHero.price = 0;
-        //this.infoHero.capWar = 0;
-        //this.infoHero.range = 0;
-        //this.infoHero.counterDame = 0;
-        //this.infoHero.isMom = false;
-        //this.infoHero.isBaby = true;
-        //this.infoHero.idBaby = 0;
-        //this.infoHero.idMom = 18;
-        //this.infoHero.typeHero = TypeHero.ChemThuong;
-        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
-        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
     }
 
     // Use this for initialization
     public void Start()
     {
         StartChild();
-        SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
     }

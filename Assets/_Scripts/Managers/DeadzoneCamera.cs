@@ -54,8 +54,8 @@ public class DeadzoneCamera : MonoBehaviour
         }
 
         Rect camWorldRect = new Rect();
-        camWorldRect.min = new Vector2(smoothPos.x - _camera.aspect * _camera.orthographicSize, smoothPos.y - _camera.orthographicSize);
-        camWorldRect.max = new Vector2(smoothPos.x + _camera.aspect * _camera.orthographicSize, smoothPos.y + _camera.orthographicSize);
+        camWorldRect.min = new Vector2(smoothPos.x - _camera.aspect * _camera.orthographicSize, smoothPos.y - _camera.aspect * _camera.orthographicSize);
+        camWorldRect.max = new Vector2(smoothPos.x + _camera.aspect * _camera.orthographicSize, smoothPos.y + _camera.aspect * _camera.orthographicSize);
 
         for (int i = 0; i < limits.Length; ++i)
         {
@@ -75,7 +75,7 @@ public class DeadzoneCamera : MonoBehaviour
 
         Vector3 current = transform.position;
         current.x = smoothPos.x; // we don't smooth horizontal movement
-
+        current.y = smoothPos.y;
         transform.position = Vector3.SmoothDamp(current, smoothPos, ref _currentVelocity, 0.1f);
     }
 }

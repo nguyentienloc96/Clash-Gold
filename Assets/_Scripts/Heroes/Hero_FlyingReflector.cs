@@ -38,28 +38,12 @@ public class Hero_FlyingReflector : Hero {
     {
         this.infoHero.ID = 13;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
-        //this.infoHero.health = 590;
-        //this.infoHero.dame = 192;
-        //this.infoHero.hitSpeed = 1.8f;
-        //this.infoHero.speed = 5;
-        //this.infoHero.price = 4000;
-        //this.infoHero.capWar = 10 * GameConfig.Instance.Med;
-        //this.infoHero.range = 5;
-        //this.infoHero.counterDame = 50;
-        //this.infoHero.isMom = false;
-        //this.infoHero.isBaby = false;
-        //this.infoHero.idBaby = 0;
-        //this.infoHero.idMom = 0;
-        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
-        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
-
     }
 
     string nameBullet;
     public void Start()
     {
         StartChild();
-        SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
         nameBullet = gameObject.tag == "Hero" ? "Flying Archer" : "Flying Archer E";

@@ -9187,8 +9187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateOnUpdate: 0
   navObstacles:
-  - {fileID: 617744499}
   - {fileID: 1953274363}
+  - {fileID: 617744499}
   inflateRadius: 0.1
   regenerateFlag: 1
 --- !u!4 &1894323352
@@ -10531,6 +10531,11 @@ Prefab:
     - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
       propertyPath: m_RootOrder
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}

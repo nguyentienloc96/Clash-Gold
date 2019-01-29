@@ -38,22 +38,7 @@ public class Hero_BalloonKing : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 5;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
-        //this.infoHero.health = 750;
-        //this.infoHero.dame = 260;
-        //this.infoHero.hitSpeed = 1.5f;
-        //this.infoHero.speed = 5;
-        //this.infoHero.price = 4000;
-        //this.infoHero.capWar = 10 * GameConfig.Instance.Med;
-        //this.infoHero.range = 1.7f;
-        //this.infoHero.counterDame = 0;
-        //this.infoHero.isMom = true;
-        //this.infoHero.isBaby = false;
-        //this.infoHero.idBaby = 6;
-        //this.infoHero.idMom = 0;
-        //this.infoHero.typeHero = TypeHero.CungBay;        
-        this.txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
-        this.infoHero.healthAll = this.infoHero.health * this.infoHero.numberHero;
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];       
     }
 
     string nameBullet;
@@ -61,7 +46,6 @@ public class Hero_BalloonKing : Hero {
     {
 
         StartChild();
-        SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
         nameBullet = gameObject.name;
