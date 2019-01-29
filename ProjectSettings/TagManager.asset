@@ -8,6 +8,7 @@ TagManager:
   - Hero
   - Bullet Hero
   - Bullet Enemy
+  - Castle
   layers:
   - Default
   - TransparentFX

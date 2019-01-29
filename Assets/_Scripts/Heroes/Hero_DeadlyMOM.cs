@@ -26,7 +26,7 @@ public class Hero_DeadlyMOM : Hero {
     public override void Die()
     {
         AnimDie();
-        ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
+        //ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
     }
 
     public override void BeingAttacked(float _dame)

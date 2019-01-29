@@ -26,7 +26,7 @@ public class Hero_FlyingArcher : Hero
     public override void Die()
     {
         AnimDie();
-        ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
+        //ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
     }
 
     public override void BeingAttacked(float _dame)
@@ -47,7 +47,7 @@ public class Hero_FlyingArcher : Hero
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.tag == "Hero" ? "Flying Archer" : "Flying Archer E";
+        nameBullet = gameObject.name;
     }
 
     public void Update()

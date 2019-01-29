@@ -9657,6 +9657,18 @@ Prefab:
       propertyPath: m_Name
       value: Gold Mine 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4179925628120192, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a701b0ff8fc9ae4196b14be855be8e4, type: 2}
   m_IsPrefabParent: 0
@@ -10531,11 +10543,6 @@ Prefab:
     - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}

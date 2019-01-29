@@ -69,7 +69,15 @@ public abstract class Hero : MonoBehaviour
         parDie.Play();
         if (goldMineAttacking != null)
         {
-            goldMineAttacking.lstHeroGoldMine.Remove(this);
+            goldMineAttacking.lstCompetitorGoldMine.Remove(this);
+        }
+        if (goldMineProtecting != null)
+        {
+            goldMineProtecting.lstHeroGoldMine.Remove(this);
+        }
+        if (gameObject.CompareTag("Hero"))
+        {
+            GameManager.Instance.castlePlayer.lstHeroRelease.Remove(this);
         }
         Destroy(gameObject, 0.5f);
     }
@@ -132,13 +140,20 @@ public abstract class Hero : MonoBehaviour
                     if (goldMineAttacking != null)
                     {
                         lsCompetitor = goldMineAttacking.lstHeroGoldMine;
+                    }else if(goldMineProtecting != null)
+                    {
+                        lsCompetitor = goldMineProtecting.lstCompetitorGoldMine;
                     }
                 }
                 else if (gameObject.CompareTag("Enemy"))
                 {
                     if (goldMineAttacking != null)
                     {
-                        lsCompetitor = goldMineAttacking.lstCompetitorGoldMine;
+                        lsCompetitor = goldMineAttacking.lstHeroGoldMine;
+                    }
+                    else if (goldMineProtecting != null)
+                    {
+                        lsCompetitor = goldMineProtecting.lstCompetitorGoldMine;
                     }
                 }
                 List<Hero> lsCompetitorTarget = new List<Hero>();

@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 60291840318629230}
   m_Layer: 0
   m_Name: Castle
-  m_TagString: Untagged
+  m_TagString: Castle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   - {fileID: 4576455793482236}
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
+  _agent: {fileID: 0}
 --- !u!114 &114599657914839642
 MonoBehaviour:
   m_ObjectHideFlags: 1
