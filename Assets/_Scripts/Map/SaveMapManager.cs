@@ -16,7 +16,7 @@ public class SaveMapManager : MonoBehaviour {
         allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();
         foreach (GameObject item in allObjects)
         {
-            if (item.name != "1" && item.name != "Map")
+            if (item.name != "1")
             {
                 ItemObjectMap obj = new ItemObjectMap();
                 obj.name = item.name;
@@ -50,7 +50,11 @@ public class SaveMapManager : MonoBehaviour {
             {
                 if (prefabsObjectMap[j].name == _sv.lstObjMap[i].name)
                 {
-                    Instantiate(prefabsObjectMap[j], parent, false);
+                   GameObject g = Instantiate(prefabsObjectMap[j], parent, false);
+                   g.name = _sv.lstObjMap[i].name;
+                   g.transform.position = new Vector3(_sv.lstObjMap[i].position_x, _sv.lstObjMap[i].position_y, _sv.lstObjMap[i].position_z);
+                   g.transform.rotation = new Quaternion(_sv.lstObjMap[i].rotation_x, _sv.lstObjMap[i].rotation_y, _sv.lstObjMap[i].rotation_z,0);
+                   g.transform.localScale = new Vector3(_sv.lstObjMap[i].scale_x, _sv.lstObjMap[i].scale_y, _sv.lstObjMap[i].scale_z);
                 }
             }
             
