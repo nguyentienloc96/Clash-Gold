@@ -27,7 +27,12 @@ public class GoldMine : MonoBehaviour
 
     void Start()
     {
-        level = Random.Range(0, 10);//GameConfig.Instance.GoldMinerAmount);
+        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
+    }
+
+    void OnStartGame()
+    {
+        level = Random.Range(0, 20);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         for (int i = 0; i < 3; i++)
         {

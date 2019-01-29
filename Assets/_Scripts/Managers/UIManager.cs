@@ -169,7 +169,6 @@ public class UIManager : MonoBehaviour
         SetDeActivePanel(panelYesNoNewPlay);
         GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
         GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
-        buttonReleaseCanon.interactable = false;
     }
 
     public void Btn_NoNewPlay()
@@ -183,6 +182,9 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.ratioBorn = GameConfig.Instance.RatioBorn[_level];
         panelHome.SetActive(false);
         GameManager.Instance.isPlay = true;
+
+        this.PostEvent(EventID.StartGame);
+        buttonReleaseCanon.interactable = false; 
     }
 
     public void Btn_Continue()
@@ -194,6 +196,8 @@ public class UIManager : MonoBehaviour
             buttonReleaseCanon.interactable = true;
         else
             buttonReleaseCanon.interactable = false;
+
+        this.PostEvent(EventID.StartGame);
     }
 
     public void Btn_Tutorial()
