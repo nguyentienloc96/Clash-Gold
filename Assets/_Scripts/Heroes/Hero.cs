@@ -216,14 +216,14 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
-    public void MoveToPosition(Vector3 _toPos)
+    public void MoveToPosition(Vector3 _toPos, float speed)
     {
         Vector3 diff = _toPos - transform.position;
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
         _agent.SetDestination(_toPos);
-        _agent.maxSpeed = infoHero.speed / 5f;
+        _agent.maxSpeed = speed;
         _agent.OnDestinationReached += CanMove;
     }
 
@@ -270,7 +270,7 @@ public abstract class Hero : MonoBehaviour
                     {
                         if (isOneMove)
                         {
-                            MoveToPosition(targetCompetitor.transform.position);
+                            MoveToPosition(targetCompetitor.transform.position,infoHero.speed / 5f);
                             isOneMove = false;
                         }
                         if (Vector3.Distance(transform.position, targetCompetitor.transform.position) <= ((infoHero.range / 5f) + 0.75f))
@@ -292,13 +292,13 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
-    public void StartMoveToPosition(Vector3 _Pos)
+    public void StartMoveToPosition(Vector3 _Pos,float speed)
     {
         if (gameObject.CompareTag("Hero"))
         {
             posMove = _Pos;
             posMove.z = 0f;
-            MoveToPosition(_Pos);
+            MoveToPosition(_Pos, speed);
             isMove = true;            
         }
     }

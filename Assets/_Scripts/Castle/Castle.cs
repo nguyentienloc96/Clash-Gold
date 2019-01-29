@@ -117,18 +117,18 @@ public class Castle : MonoBehaviour
 
         if (lstHeroRelease.Count > 0)
         {
-            for (int i = 0; i < lstHeroRelease.Count; i++)
-            {
-                lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent);
-            }
             float speedMin = lstHeroRelease[0].infoHero.speed;
             for (int i = 1; i < lstHeroRelease.Count; i++)
             {
-                if(lstHeroRelease[i].infoHero.speed < speedMin)
+                if (lstHeroRelease[i].infoHero.speed < speedMin)
                 {
                     speedMin = lstHeroRelease[i].infoHero.speed;
                 }
             }
+            for (int i = 0; i < lstHeroRelease.Count; i++)
+            {
+                lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent, speedMin / 5f);
+            }          
             _agent.SetDestination(posMove);
             _agent.maxSpeed = speedMin / 5f;
         }

@@ -4,12 +4,14 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveMapManager : MonoBehaviour {
+public class SaveMapManager : MonoBehaviour
+{
     SaveMap sv = new SaveMap();
     private GameObject[] allObjects;
     public List<GameObject> prefabsObjectMap;
     public Transform parent;
     public InputField txtName;
+    public PolygonCollider2D polyNav2D;
     public void Btn_Save()
     {
         sv.lstObjMap = new List<ItemObjectMap>();
@@ -35,7 +37,7 @@ public class SaveMapManager : MonoBehaviour {
         string jsonString = JsonUtility.ToJson(sv, true);
         Debug.Log(jsonString);
         string name = "/Resources/Map" + txtName.text + ".json";
-        System.IO.File.WriteAllText(Application.dataPath + name, JsonUtility.ToJson(sv,true));
+        System.IO.File.WriteAllText(Application.dataPath + name, JsonUtility.ToJson(sv, true));
     }
 
     public void Btn_Load()
@@ -50,14 +52,18 @@ public class SaveMapManager : MonoBehaviour {
             {
                 if (prefabsObjectMap[j].name == _sv.lstObjMap[i].name)
                 {
-                   GameObject g = Instantiate(prefabsObjectMap[j], parent, false);
-                   g.name = _sv.lstObjMap[i].name;
-                   g.transform.position = new Vector3(_sv.lstObjMap[i].position_x, _sv.lstObjMap[i].position_y, _sv.lstObjMap[i].position_z);
-                   g.transform.rotation = new Quaternion(_sv.lstObjMap[i].rotation_x, _sv.lstObjMap[i].rotation_y, _sv.lstObjMap[i].rotation_z,0);
-                   g.transform.localScale = new Vector3(_sv.lstObjMap[i].scale_x, _sv.lstObjMap[i].scale_y, _sv.lstObjMap[i].scale_z);
+                    GameObject g = Instantiate(prefabsObjectMap[j], parent, false);
+                    g.name = _sv.lstObjMap[i].name;
+                    g.transform.position = new Vector3(_sv.lstObjMap[i].position_x, _sv.lstObjMap[i].position_y, _sv.lstObjMap[i].position_z);
+                    g.transform.rotation = new Quaternion(_sv.lstObjMap[i].rotation_x, _sv.lstObjMap[i].rotation_y, _sv.lstObjMap[i].rotation_z, 0);
+                    g.transform.localScale = new Vector3(_sv.lstObjMap[i].scale_x, _sv.lstObjMap[i].scale_y, _sv.lstObjMap[i].scale_z);
+                    if (g.name != "Map" && g.name != "bg2" && g.name != "bg3" && g.name != "bg4" && g.name != "Gold Mine")
+                    {
+                        g.AddComponent<PolyNavObstacle>();
+                    }
                 }
             }
-            
+
         }
         //Debug.Log("Whole JSON String 2: " + objJson["lstObjMap"]);
     }
