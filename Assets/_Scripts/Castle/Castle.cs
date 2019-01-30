@@ -1,8 +1,8 @@
-﻿using System.Collections;
+﻿using EventDispatcher;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using EventDispatcher;
 
 
 [System.Serializable]
@@ -21,20 +21,12 @@ public class Castle : MonoBehaviour
     [Header("CHECK MOVE")]
     public Vector3 posMove;
     public bool isMove;
-    public PolyNavAgent _agent;
-    public PolyNavAgent agent
-    {
-        get
-        {
-            if (!_agent)
-                _agent = GetComponent<PolyNavAgent>();
-            return _agent;
-        }
-    }
+    public bool isChildMove;
+
+
     void Start()
     {
-        _agent = GetComponent<PolyNavAgent>();
-        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());        
+        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
     }
 
     void OnStartGame()
@@ -80,7 +72,16 @@ public class Castle : MonoBehaviour
             {
                 posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
                 posMove.z = 0f;
+                isMove = true;
+                isChildMove = true;
+            }
+            if (isMove)
+            {
                 MoveToPosition(posMove);
+                if (transform.position == posMove)
+                {
+                    isMove = false;
+                }
             }
         }
     }
@@ -117,20 +118,23 @@ public class Castle : MonoBehaviour
 
         if (lstHeroRelease.Count > 0)
         {
+            if (isChildMove)
+            {
+                for (int i = 0; i < lstHeroRelease.Count; i++)
+                {
+                    lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent);
+                }
+                isChildMove = false;
+            }
             float speedMin = lstHeroRelease[0].infoHero.speed;
             for (int i = 1; i < lstHeroRelease.Count; i++)
             {
-                if (lstHeroRelease[i].infoHero.speed < speedMin)
+                if(lstHeroRelease[i].infoHero.speed < speedMin)
                 {
                     speedMin = lstHeroRelease[i].infoHero.speed;
                 }
             }
-            for (int i = 0; i < lstHeroRelease.Count; i++)
-            {
-                lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent, speedMin / 5f);
-            }          
-            _agent.SetDestination(posMove);
-            _agent.maxSpeed = speedMin / 5f;
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, speedMin / 10f * Time.deltaTime);
         }
     }
 }

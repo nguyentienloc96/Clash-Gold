@@ -3,15 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Hero_BalloonKing : Hero {
-    public PolyNavAgent agent
-    {
-        get
-        {
-            if (!_agent)
-                _agent = GetComponent<PolyNavAgent>();
-            return _agent;
-        }
-    }
+
     public override void Attack()
     {
         AnimAttack();

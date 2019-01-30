@@ -67,6 +67,7 @@ public class GoldMine : MonoBehaviour
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
         hero.AddHero(numberEnemy);
         hero.goldMineProtecting = this;
+        hero.posStart = lsPos[i].position;
     }
 
     public void LoadDataGoldMine(int _id, float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
@@ -200,7 +201,8 @@ public class GoldMine : MonoBehaviour
                     {
                         foreach (Hero hero in lstHeroGoldMine)
                         {
-                            hero.isInGoldMine = true;
+                            hero.targetCompetitor = null;
+                            hero.isInGoldMine = false;
                         }
                         isBeingAttack = false;
                     }
@@ -223,7 +225,8 @@ public class GoldMine : MonoBehaviour
                     {
                         foreach (Hero hero in lstHeroGoldMine)
                         {
-                            hero.isInGoldMine = true;
+                            hero.targetCompetitor = null;
+                            hero.isInGoldMine = false;
                         }
                         isBeingAttack = false;
                     }
