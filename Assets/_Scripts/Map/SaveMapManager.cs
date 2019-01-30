@@ -57,10 +57,6 @@ public class SaveMapManager : MonoBehaviour
                     g.transform.position = new Vector3(_sv.lstObjMap[i].position_x, _sv.lstObjMap[i].position_y, _sv.lstObjMap[i].position_z);
                     g.transform.rotation = new Quaternion(_sv.lstObjMap[i].rotation_x, _sv.lstObjMap[i].rotation_y, _sv.lstObjMap[i].rotation_z, 0);
                     g.transform.localScale = new Vector3(_sv.lstObjMap[i].scale_x, _sv.lstObjMap[i].scale_y, _sv.lstObjMap[i].scale_z);
-                    if (g.name != "Map" && g.name != "bg2" && g.name != "bg3" && g.name != "bg4" && g.name != "Gold Mine")
-                    {
-                        g.AddComponent<PolyNavObstacle>();
-                    }
                 }
             }
 

@@ -38,10 +38,10 @@ public abstract class Hero : MonoBehaviour
     [Header("CHECK MOVE")]
     public Vector3 posMove;
     public bool isMove;
-    public bool isOneMove;
-    public PolyNavAgent _agent;
     public GoldMine goldMineAttacking;
     public GoldMine goldMineProtecting;
+    public Vector3 posStart;
+    public float timeCheckCameBack;
 
     public abstract void SetInfoHero();
 
@@ -90,7 +90,6 @@ public abstract class Hero : MonoBehaviour
     public void AnimIdle()
     {
         typeAction = TypeAction.IDLE;
-        _agent.OnDestinationReached -= CanMove;
     }
 
     protected Hero CheckCompetitorNear(List<Hero> lsCompetitor)
@@ -140,7 +139,8 @@ public abstract class Hero : MonoBehaviour
                     if (goldMineAttacking != null)
                     {
                         lsCompetitor = goldMineAttacking.lstHeroGoldMine;
-                    }else if(goldMineProtecting != null)
+                    }
+                    else if (goldMineProtecting != null)
                     {
                         lsCompetitor = goldMineProtecting.lstCompetitorGoldMine;
                     }
@@ -206,7 +206,6 @@ public abstract class Hero : MonoBehaviour
                 if (targetAttack != null)
                 {
                     targetCompetitor = targetAttack;
-                    isOneMove = true;
                 }
                 else
                 {
@@ -216,23 +215,24 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
-    public void MoveToPosition(Vector3 _toPos, float speed)
+    public void MoveToPosition(Vector3 _toPos)
     {
         Vector3 diff = _toPos - transform.position;
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        _agent.SetDestination(_toPos);
-        _agent.maxSpeed = speed;
-        _agent.OnDestinationReached += CanMove;
-    }
-
-    public void CanMove()
-    {
-        isMove = false;
-        if (targetCompetitor != null)
+        if (!isMove)
         {
-            isOneMove = true;
+            if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
+                AnimRun();
+            }
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
+            AnimRun();
         }
     }
 
@@ -261,45 +261,57 @@ public abstract class Hero : MonoBehaviour
         {
             AnimtionUpdate();
 
+
             if (!isMove)
             {
                 if (isInGoldMine)
                 {
                     CheckEnemy();
+
                     if (targetCompetitor != null)
                     {
-                        if (isOneMove)
-                        {
-                            MoveToPosition(targetCompetitor.transform.position,infoHero.speed / 5f);
-                            isOneMove = false;
-                        }
-                        if (Vector3.Distance(transform.position, targetCompetitor.transform.position) <= ((infoHero.range / 5f) + 0.75f))
-                        {
-                            _agent.Stop();
-                        }
-                        else
-                        {
-                            AnimRun();
-                        }
                         AutoAttack();
+                        if (infoHero.typeHero != TypeHero.Canon)
+                        {
+                            MoveToPosition(targetCompetitor.transform.position);
+                        }
+                    }
+                }
+                else
+                {
+                    if (goldMineProtecting != null)
+                    {
+                        if (transform.position != posStart)
+                        {
+                            timeCheckCameBack += Time.deltaTime;
+                            if (timeCheckCameBack >= 3f)
+                            {
+                                posMove = posStart;
+                                timeCheckCameBack = 0f;
+                                isMove = true;
+                            }
+                        }
                     }
                 }
             }
             else
             {
-                AnimRun();
+                MoveToPosition(posMove);
+                if (transform.position == posMove)
+                {
+                    isMove = false;
+                }
             }
         }
     }
 
-    public void StartMoveToPosition(Vector3 _Pos,float speed)
+    public void StartMoveToPosition(Vector3 _Pos)
     {
         if (gameObject.CompareTag("Hero"))
         {
             posMove = _Pos;
             posMove.z = 0f;
-            MoveToPosition(_Pos, speed);
-            isMove = true;            
+            isMove = true;
         }
     }
 
@@ -307,11 +319,10 @@ public abstract class Hero : MonoBehaviour
     {
         infoHero.numberHero += _numberHero;
         txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
-        infoHero.healthAll += infoHero.health * _numberHero;
     }
 
     public void StartChild()
     {
-        _agent = GetComponent<PolyNavAgent>();
+
     }
 }
