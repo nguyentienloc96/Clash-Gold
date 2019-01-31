@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
     public Transform heroManager;
     public Transform enemyManager;
 
+    [Header("MAP")]
+    public Transform posMapParent;
+    public Transform[] posMap;
+    public GameObject[] prefabsBoxMap;
+    public Sprite[] sprBoxMap;
+
     void Awake()
     {
         if (Instance != null)
@@ -55,6 +61,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        GenerateMap();
         for (int i = 0; i < 9; i++)
         {
             BuildHouse bh = new BuildHouse();
@@ -101,6 +108,37 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region === MAP ===
+    public void GenerateMap()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            int a = (int)UnityEngine.Random.Range(0, 3.9f);
+            int b = UnityEngine.Random.Range(0, 4);
+            Vector3 _rotation;
+            if (b == 0)
+            {
+                _rotation = new Vector3(0, 0, 0);
+            }
+            else if (b == 1)
+            {
+                _rotation = new Vector3(180, 0, 0);
+            }
+            else if (b == 2)
+            {
+                _rotation = new Vector3(0, 180, 0);
+            }
+            else
+            {
+                _rotation = new Vector3(180, 180, 0);
+            }
+            Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]);
+        }
+    }
+    #endregion
+
+    #region === ADD GOLD, COIN ===
+
     public void AddGold(long _gold)
     {
         gold += _gold;
@@ -120,6 +158,7 @@ public class GameManager : MonoBehaviour
         }
         UIManager.Instance.txtCoin.text = UIManager.Instance.ConvertNumber(coin);
     }
+    #endregion
 
     #region === DATE GAME ===
     public void LoadDate()

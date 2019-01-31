@@ -68,6 +68,9 @@ public class Castle : MonoBehaviour
     {
         if (GameManager.Instance.isPlay)
         {
+            if (IsPointerOverGameObject())
+                return;
+
             if (Input.GetMouseButtonDown(0))
             {
                 posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
