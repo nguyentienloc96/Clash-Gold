@@ -42,6 +42,7 @@ public abstract class Hero : MonoBehaviour
     public GoldMine goldMineProtecting;
     public Vector3 posStart;
     public float timeCheckCameBack;
+    public float speedMin;
 
     public abstract void SetInfoHero();
 
@@ -217,6 +218,7 @@ public abstract class Hero : MonoBehaviour
 
     public void MoveToPosition(Vector3 _toPos)
     {
+        float speed = isMove ? speedMin : infoHero.speed;
         Vector3 diff = _toPos - transform.position;
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -225,13 +227,13 @@ public abstract class Hero : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
             {
-                transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
                 AnimRun();
             }
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, infoHero.speed / 10f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
             AnimRun();
         }
     }

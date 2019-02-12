@@ -38,10 +38,6 @@ public class GoldMine : MonoBehaviour
     {
         //level = Random.Range(0, 20);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-        for (int i = 0; i < 3; i++)
-        {
-            InstantiateHero(i);
-        }
     }
 
     public void SetLevel(int _l)
@@ -61,32 +57,50 @@ public class GoldMine : MonoBehaviour
         }
     }
 
-    public void InstantiateHero(int i)
+    public void InstantiateHero(bool isHero)
     {
-        int typeEnemy;
-        if (i == 0)
+        for (int i = 0; i < 3; i++)
         {
-            int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
-            typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+            int typeEnemy;
+            if (i == 0)
+            {
+                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
+                typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+            }
+            else
+            {
+                int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
+                typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
+            }
+            int numberEnemy = 1;
+            Hero hero;
+            if (!isHero)
+            {
+                hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[typeEnemy]
+                    , lsPos[i].position
+                    , Quaternion.identity
+                    , GameManager.Instance.enemyManager);
+                hero.gameObject.name = "Enemy";
+                lstHeroGoldMine.Add(hero);
+                hero.SetInfoHero();
+                hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+                hero.AddHero(numberEnemy);
+            }
+            else
+            {
+                hero = Instantiate(GameManager.Instance.lsPrefabsHero[typeEnemy]
+                   , lsPos[i].position
+                   , Quaternion.identity
+                   , GameManager.Instance.heroManager);
+                hero.gameObject.name = "Hero";
+                lstHeroGoldMine.Add(hero);
+                hero.SetInfoHero();
+                hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+                hero.AddHero(numberEnemy);
+            }
+            hero.goldMineProtecting = this;
+            hero.posStart = lsPos[i].position;
         }
-        else
-        {
-            int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
-            typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
-        }
-        int numberEnemy = 1;
-
-        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[typeEnemy]
-            , lsPos[i].position
-            , Quaternion.identity
-            , GameManager.Instance.enemyManager);
-        hero.gameObject.name = "Enemy";
-        lstHeroGoldMine.Add(hero);
-        hero.SetInfoHero();
-        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.AddHero(numberEnemy);
-        hero.goldMineProtecting = this;
-        hero.posStart = lsPos[i].position;
     }
 
     public void LoadDataGoldMine(int _id, float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
@@ -127,7 +141,7 @@ public class GoldMine : MonoBehaviour
     {
         for (int i = 0; i < lstHeroGoldMine.Count; i++)
         {
-            lstHeroGoldMine[i].AddHero((int)(lstHeroGoldMine[i].infoHero.capWar*GameManager.Instance.ratioBorn));
+            lstHeroGoldMine[i].AddHero((int)(lstHeroGoldMine[i].infoHero.capWar * GameManager.Instance.ratioBorn));
         }
     }
 
@@ -171,7 +185,7 @@ public class GoldMine : MonoBehaviour
                 Hero heroCurrent = other.GetComponent<Hero>();
                 if (!isBeingAttack)
                 {
-                    foreach(Hero hero in lstHeroGoldMine)
+                    foreach (Hero hero in lstHeroGoldMine)
                     {
                         hero.isInGoldMine = true;
                     }

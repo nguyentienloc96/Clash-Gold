@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4664417608931634}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PosE 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4662269881205208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PosE 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,8 @@ GameObject:
   - component: {fileID: 212202119933575502}
   - component: {fileID: 61782145146294228}
   - component: {fileID: 114346891115782570}
-  m_Layer: 0
+  - component: {fileID: 50489231816312064}
+  m_Layer: 9
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +68,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4041721462497984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: PosE 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +130,26 @@ Transform:
   m_Father: {fileID: 4572814366043158}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50489231816312064
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1509192715498752}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!61 &61782145146294228
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -138,7 +159,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -2.64, y: 2.65}
@@ -173,6 +194,7 @@ MonoBehaviour:
   capWillUpgrade: 0
   levelWillUpgrade: 0
   level: 0
+  numberBoxGoldMine: 0
   colliderLand: {fileID: 0}
   typeGoleMine: 0
   lstHeroGoldMine: []
@@ -182,6 +204,7 @@ MonoBehaviour:
   - {fileID: 4662269881205208}
   - {fileID: 4664417608931634}
   txtLevel: {fileID: 0}
+  sprGoldMine: {fileID: 0}
   isBeingAttack: 0
 --- !u!212 &212202119933575502
 SpriteRenderer:

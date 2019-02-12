@@ -118,25 +118,26 @@ public class Castle : MonoBehaviour
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-
+        float speedMin = lstHeroRelease[0].infoHero.speed;
+        for (int i = 1; i < lstHeroRelease.Count; i++)
+        {
+            if (lstHeroRelease[i].infoHero.speed < speedMin)
+            {
+                speedMin = lstHeroRelease[i].infoHero.speed;
+            }
+        }
         if (lstHeroRelease.Count > 0)
         {
             if (isChildMove)
             {
                 for (int i = 0; i < lstHeroRelease.Count; i++)
                 {
+                    lstHeroRelease[i].speedMin = speedMin;
                     lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent);
                 }
                 isChildMove = false;
             }
-            float speedMin = lstHeroRelease[0].infoHero.speed;
-            for (int i = 1; i < lstHeroRelease.Count; i++)
-            {
-                if(lstHeroRelease[i].infoHero.speed < speedMin)
-                {
-                    speedMin = lstHeroRelease[i].infoHero.speed;
-                }
-            }
+            
             transform.position = Vector3.MoveTowards(transform.position, _toPos, speedMin / 10f * Time.deltaTime);
         }
     }

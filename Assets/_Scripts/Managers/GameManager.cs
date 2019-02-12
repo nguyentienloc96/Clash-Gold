@@ -135,17 +135,21 @@ public class GameManager : MonoBehaviour
 
             if (i == 10)
             {
-                GameObject g = Instantiate(prefabsBoxMap[3], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]);
-                g.GetComponent<GoldMine>().SetLevel(1);
-                g.GetComponent<GoldMine>().numberBoxGoldMine = a;
-                lstGoldMinePlayer.Add(g.GetComponent<GoldMine>());
+                GoldMine g = Instantiate(prefabsBoxMap[3], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
+                g.SetLevel(1);
+                g.numberBoxGoldMine = a;
+                lstGoldMinePlayer.Add(g);
+                g.typeGoleMine = TypeGoldMine.Player;
+                g.InstantiateHero(true);
             }
             else
             {
-                GameObject g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]);
-                g.GetComponent<GoldMine>().SetLevel(UnityEngine.Random.Range(0, 20));
-                g.GetComponent<GoldMine>().numberBoxGoldMine = a;
-                lstGoldMineEnemy.Add(g.GetComponent<GoldMine>());
+                GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
+                g.SetLevel(UnityEngine.Random.Range(0, 20));
+                g.numberBoxGoldMine = a;
+                lstGoldMineEnemy.Add(g);
+                g.typeGoleMine = TypeGoldMine.Enemy;
+                g.InstantiateHero(false);
             }
         }
         //for (int i = 0; i < lstGoldMineEnemy.Count; i++)
