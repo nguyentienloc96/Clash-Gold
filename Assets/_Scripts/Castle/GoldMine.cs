@@ -16,6 +16,7 @@ public class GoldMine : MonoBehaviour
     public int capWillUpgrade;
     public int levelWillUpgrade;
     public int level;
+    public int numberBoxGoldMine;
     public Collider2D colliderLand;
     public TypeGoldMine typeGoleMine;
     public List<Hero> lstHeroGoldMine;
@@ -25,6 +26,7 @@ public class GoldMine : MonoBehaviour
 
     [Header("UI")]
     public Text txtLevel;
+    public Sprite sprGoldMine;
 
     void Start()
     {
@@ -34,11 +36,28 @@ public class GoldMine : MonoBehaviour
 
     void OnStartGame()
     {
-        level = Random.Range(0, 20);//GameConfig.Instance.GoldMinerAmount);
+        //level = Random.Range(0, 20);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         for (int i = 0; i < 3; i++)
         {
             InstantiateHero(i);
+        }
+    }
+
+    public void SetLevel(int _l)
+    {
+        level = _l;
+    }
+
+    public void SetSpriteBox(int _state)
+    {
+        if (_state == 0)
+        {
+            sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
+        }
+        else if (_state == 1)
+        {
+            sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
         }
     }
 
