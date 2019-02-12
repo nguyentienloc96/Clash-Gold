@@ -33,11 +33,6 @@ public class House : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //if (this.typeState == TypeStateHouse.None)
-        //{
-        //    this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-        //    this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
-        //}
     }
 
     // Update is called once per frame
@@ -166,6 +161,8 @@ public class House : MonoBehaviour
         if (GameManager.Instance.gold < price)
             return;
 
+        UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpLV_House);
+        Invoke("HideAnim", 2f);
         price = priceWillUpgrade;
         GameManager.Instance.AddGold(-(long)(price * GameConfig.Instance.Ri));
         timeUpgrade = GameConfig.Instance.UpgradeTime * _x;
@@ -173,7 +170,12 @@ public class House : MonoBehaviour
         xUpgrade = _x;
         txtCountHero.gameObject.SetActive(false);
         imgLoadingBuild.gameObject.SetActive(true);
-        panelHouse.SetActive(false);
+        panelHouse.SetActive(false);       
+    }
+
+    void HideAnim()
+    {
+        UIManager.Instance.SetDeActivePanel(UIManager.Instance.anim_UpLV_House);
     }
 
     void UpgradeComplete()
@@ -186,6 +188,11 @@ public class House : MonoBehaviour
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
         txtLevel.text = "Lv " + level.ToString();
+        if (level > GameManager.Instance.maxLevelHouse)
+        {
+            GameManager.Instance.maxLevelHouse = level;
+            this.PostEvent(EventID.UpLevelHouse);
+        }
     }
 
     public void Build(int _id)

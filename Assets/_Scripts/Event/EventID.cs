@@ -5,6 +5,7 @@
     ShowSpeech,
     NextDay,
     ClickHouse,
+    UpLevelHouse,
     EnemyAttackPlayer,
     BeingAttacked,
     Win,

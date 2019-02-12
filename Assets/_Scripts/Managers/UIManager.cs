@@ -46,6 +46,9 @@ public class UIManager : MonoBehaviour
     [Header("OTHERS")]
     public List<Sprite> lstSpriteHouse;
     public Button buttonReleaseCanon;
+    public GameObject anim_UpLV_House;
+    public GameObject anim_UpLV_GoldMine;
+    public GameObject anim_UpHealth;
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 

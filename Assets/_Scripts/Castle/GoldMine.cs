@@ -31,13 +31,19 @@ public class GoldMine : MonoBehaviour
     void Start()
     {
         lstCompetitorGoldMine = new List<Hero>();
-        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
+        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());        
     }
 
     void OnStartGame()
     {
         //level = Random.Range(0, 20);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
+        this.RegisterListener(EventID.UpLevelHouse, (param) => OnSetSpriteBox());
+    }
+
+    void OnSetSpriteBox()
+    {
+        SetSpriteBox(GameManager.Instance.maxLevelHouse);
     }
 
     public void SetLevel(int _l)
@@ -45,15 +51,18 @@ public class GoldMine : MonoBehaviour
         level = _l;
     }
 
-    public void SetSpriteBox(int _state)
+    public void SetSpriteBox(int _l)
     {
-        if (_state == 0)
+        if (typeGoleMine == TypeGoldMine.Enemy)
         {
-            sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
-        }
-        else if (_state == 1)
-        {
-            sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
+            if (_l > level || _l <= level - 3)
+            {
+                sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
+            }
+            else
+            {
+                sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
+            }
         }
     }
 
@@ -147,7 +156,19 @@ public class GoldMine : MonoBehaviour
 
     public void Btn_ShowPanelUpgrade()
     {
-        //
+        if (typeGoleMine == TypeGoldMine.Player)
+        {
+            CheckUpgrade(1);
+            UpgradeGoldMine();
+        }
+    }
+
+    public void Btn_Release()
+    {
+        if (typeGoleMine == TypeGoldMine.Player)
+        {
+
+        }
     }
 
     public void CheckUpgrade(int _x)

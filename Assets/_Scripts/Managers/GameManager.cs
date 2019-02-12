@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public List<House> lstHousePlayer = new List<House>();
     public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
     public DateTime dateEnemyAttack;
+    public int maxLevelHouse;
 
     [Header("INFO ENEMY")]
     public List<GoldMine> lstGoldMineEnemy = new List<GoldMine>();
@@ -152,10 +153,6 @@ public class GameManager : MonoBehaviour
                 g.InstantiateHero(false);
             }
         }
-        //for (int i = 0; i < lstGoldMineEnemy.Count; i++)
-        //{
-        //    lstGoldMineEnemy[i].SetLevel(UnityEngine.Random.Range(0, 20));
-        //}
     }
     #endregion
 
