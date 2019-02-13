@@ -6522,6 +6522,7 @@ MonoBehaviour:
   - {fileID: 470411025}
   - {fileID: 10743375}
   - {fileID: 25666715}
+  lstNumberHouseBuiled: 
   lstBuildHouse: []
   maxLevelHouse: 0
   lstGoldMineEnemy: []
@@ -11500,14 +11501,11 @@ Prefab:
       propertyPath: txtHealth
       value: 
       objectReference: {fileID: 852013058}
-    - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
+        type: 2}
+      propertyPath: cameraMain
+      value: 
+      objectReference: {fileID: 443966388}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
   m_IsPrefabParent: 0

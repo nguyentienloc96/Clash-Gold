@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4182129549998640}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PH2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4576455793482236}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PH3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4414080315528002}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PH1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 212650450561547668}
   - component: {fileID: 114434942514772356}
   - component: {fileID: 60291840318629230}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Castle
   m_TagString: Castle
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ Transform:
   m_GameObject: {fileID: 1689042427745408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 4414080315528002}
   - {fileID: 4182129549998640}
@@ -232,6 +232,8 @@ MonoBehaviour:
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
   isChildMove: 0
+  txtLevel: {fileID: 0}
+  txtHealth: {fileID: 0}
 --- !u!212 &212650450561547668
 SpriteRenderer:
   m_ObjectHideFlags: 1
