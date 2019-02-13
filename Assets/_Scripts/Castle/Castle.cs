@@ -12,7 +12,7 @@ public class Castle : MonoBehaviour
     public float health;
     public float healthMax;
     public long price;
-    public int level = 1;
+    private int level = 1;
     public bool isCanReleaseCanon = false;
     public Collider2D colliderLand;
     public List<Hero> lstHeroRelease = new List<Hero>();
@@ -28,10 +28,22 @@ public class Castle : MonoBehaviour
     [Header("UI")]
     public Text txtLevel;
     public Text txtHealth;
+    public Image[] lstAvatarHeroRelease;
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
     }
+
+    //void FixedUpdate()
+    //{
+    //    if (lstHeroRelease.Count < 3)
+    //    {
+    //        for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
+    //        {
+    //            OnBuildHouseComplete(GameManager.Instance.lstHousePlayer[i].idHero);
+    //        }
+    //    }
+    //}
 
     void OnStartGame()
     {
@@ -133,13 +145,18 @@ public class Castle : MonoBehaviour
 
     public void UpgradeCastle()
     {
+        price = (long)(price * GameConfig.Instance.PriceBloodUp);
+        if (price > GameManager.Instance.gold)
+            return;
+
         float deltaHelth = healthMax - health;
         UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpHealth);
         healthMax = healthMax * GameConfig.Instance.Bloodratio;
-        health = health + deltaHelth;
-        price = (long)(price * GameConfig.Instance.PriceBloodUp);
+        health = healthMax - deltaHelth;      
+        GameManager.Instance.AddGold(-price);
+        level++;
         SetUI();
-        Invoke("HideAnim", 1.5f);
+        Invoke("HideAnim", 1f);
     }
 
     void HideAnim()
@@ -150,7 +167,7 @@ public class Castle : MonoBehaviour
     public void SetUI()
     {
         txtLevel.text = level.ToString();
-        txtHealth.text = health.ToString() + "/" + healthMax.ToString();
+        txtHealth.text = ((int)health).ToString() + "/" + ((int)healthMax).ToString();
     }
 
     public void MoveToPosition(Vector3 _toPos)

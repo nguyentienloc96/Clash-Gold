@@ -229,7 +229,6 @@ public class House : MonoBehaviour
             GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
 
         this.PostEvent(EventID.BuildHouseComplete, idHero);
-        GameManager.Instance.lstNumberHouseBuiled.Add(idHouse);
     }
 
     public void SpawmHero()
@@ -248,6 +247,7 @@ public class House : MonoBehaviour
     public void OnNextDay()
     {
         SpawmHero();
+        //this.PostEvent(EventID.BuildHouseComplete, idHero);
     }
 
     public void OnClickHouse(object _param)

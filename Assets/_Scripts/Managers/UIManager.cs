@@ -27,7 +27,8 @@ public class UIManager : MonoBehaviour
     public GameObject panelRelease;
     public Text txtLevelCastle;
     public Text txtBlood;
-    public List<GameObject> lstHouse; //List nha de build
+    public List<BuildHouseObject> lstHouse; //List nha de build
+    public Sprite[] sprAvatarHero;
 
     [Header("UPGRADE")]
     public int xUpgrade = 1;
@@ -184,10 +185,12 @@ public class UIManager : MonoBehaviour
     public void Btn_ChooseLevel(int _level)
     {
         GameManager.Instance.ratioBorn = GameConfig.Instance.RatioBorn[_level];
+        GameManager.Instance.castlePlayer.price = GameConfig.Instance.PriceBlood0;
         panelHome.SetActive(false);
         GameManager.Instance.isPlay = true;
 
         this.PostEvent(EventID.StartGame);
+        this.PostEvent(EventID.UpLevelHouse);
         buttonReleaseCanon.interactable = false;
     }
 
@@ -206,7 +209,7 @@ public class UIManager : MonoBehaviour
 
     public void Btn_Tutorial()
     {
-
+        Debug.Log("Tutorial");
     }
 
     public void Btn_Share()
@@ -243,16 +246,8 @@ public class UIManager : MonoBehaviour
         SetActivePanel(panelBuild);
         for (int i = 0; i < lstHouse.Count; i++)
         {
-            if (!GameManager.Instance.lstBuildHouse[i].isUnlock)
-                lstHouse[i].transform.Find("Lock").gameObject.SetActive(true);
+            lstHouse[i].SetLock(GameManager.Instance.lstBuildHouse[i].isUnlock);
         }
-
-
-        //for (int i = 0; i < GameManager.Instance.lstNumberHouseBuiled.Count; i++)
-        //{
-        //    lstButtonBuildHouse[GameManager.Instance.lstNumberHouseBuiled[i]].interactable = false;
-        //}
-
     }
 
     public void ShowPanelRelease()
@@ -304,11 +299,6 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.lstHousePlayer[houseClick].Build(_id);
         SetDeActivePanel(panelBuild);
-    }
-
-    public void Btn_Btn_BuildHouse_2(int _id)
-    {
-        GameManager.Instance.lstNumberHouseBuiled.Add(_id);
     }
 
     public void Btn_CloseWall()

@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     public Castle castlePlayer;
     public List<GoldMine> lstGoldMinePlayer = new List<GoldMine>();
     public List<House> lstHousePlayer = new List<House>();
-    public List<int> lstNumberHouseBuiled = new List<int>();
     public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
     public DateTime dateEnemyAttack;
     public int maxLevelHouse;
@@ -149,7 +148,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
-                g.SetLevel(UnityEngine.Random.Range(0, 20));
+                g.SetLevel(UnityEngine.Random.Range(1, 20));
                 g.numberBoxGoldMine = a;
                 lstGoldMineEnemy.Add(g);
                 g.typeGoleMine = TypeGoldMine.Enemy;

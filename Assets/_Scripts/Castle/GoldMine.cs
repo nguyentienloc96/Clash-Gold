@@ -49,6 +49,7 @@ public class GoldMine : MonoBehaviour
     public void SetLevel(int _l)
     {
         level = _l;
+        txtLevel.text = "Lv " + level.ToString();
     }
 
     public void SetSpriteBox(int _l)
@@ -57,11 +58,11 @@ public class GoldMine : MonoBehaviour
         {
             if (_l > level || _l <= level - 3)
             {
-                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
+                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
             }
             else
             {
-                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
+                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
             }
         }
     }
@@ -178,6 +179,8 @@ public class GoldMine : MonoBehaviour
         priceGold = priceWillUpgrade;
         GameManager.Instance.AddGold(-(long)(priceGold * GameConfig.Instance.Ri));
         capGold = capWillUpgrade;
+        level++;
+        txtLevel.text = "Lv " + level.ToString();
     }
 
     public void AttackPlayer()
