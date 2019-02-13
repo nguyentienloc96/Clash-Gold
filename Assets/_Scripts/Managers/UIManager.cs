@@ -247,13 +247,15 @@ public class UIManager : MonoBehaviour
                 lstHouse[i].transform.Find("Lock").gameObject.SetActive(true);
         }
 
-        //for (int i = 0; i < lstButtonBuildHouse.Length; i++)
-        //{
-        //    for (int j = 0; j < GameManager.Instance.lstHousePlayer.Count; j++)
-        //    {
-                
-        //    }
-        //}
+
+        for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
+        {
+            if (GameManager.Instance.lstHousePlayer[i].typeState != TypeStateHouse.Lock)
+            {
+                lstButtonBuildHouse[GameManager.Instance.lstHousePlayer[i].idHouse].interactable = false;
+            }
+        }
+
     }
 
     public void ShowPanelRelease()
