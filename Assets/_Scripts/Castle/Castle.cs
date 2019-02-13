@@ -79,7 +79,7 @@ public class Castle : MonoBehaviour
     {
         if (GameManager.Instance.isPlay)
         {
-            if (CheckCastle())
+            if (CheckCastle() || IsPointerOverGameObject())
                 return;
 
             if (Input.GetMouseButtonDown(0))
