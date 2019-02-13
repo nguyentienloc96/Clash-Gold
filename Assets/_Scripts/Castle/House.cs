@@ -170,7 +170,7 @@ public class House : MonoBehaviour
         xUpgrade = _x;
         txtCountHero.gameObject.SetActive(false);
         imgLoadingBuild.gameObject.SetActive(true);
-        panelHouse.SetActive(false);       
+        panelHouse.SetActive(false);
     }
 
     void HideAnim()
@@ -204,7 +204,7 @@ public class House : MonoBehaviour
         timeBuild = GameConfig.Instance.BuildTime * idHouse;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
         typeState = TypeStateHouse.Building;
-        this.idHero = _id;
+        this.idHero = _id + 1;
         this.txtCountHero.gameObject.SetActive(false);
         this.imgHouse.sprite = UIManager.Instance.lstSpriteHouse[_id];
 
@@ -229,6 +229,7 @@ public class House : MonoBehaviour
             GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
 
         this.PostEvent(EventID.BuildHouseComplete, idHero);
+        GameManager.Instance.lstNumberHouseBuiled.Add(idHouse);
     }
 
     public void SpawmHero()
