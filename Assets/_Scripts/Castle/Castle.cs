@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
@@ -11,7 +12,7 @@ public class Castle : MonoBehaviour
     public float health;
     public float healthMax;
     public long price;
-    public int level;
+    public int level = 1;
     public bool isCanReleaseCanon = false;
     public Collider2D colliderLand;
     public List<Hero> lstHeroRelease;
@@ -23,7 +24,9 @@ public class Castle : MonoBehaviour
     public bool isMove;
     public bool isChildMove;
 
-
+    [Header("UI")]
+    public Text txtLevel;
+    public Text txtHealth;
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
@@ -32,10 +35,12 @@ public class Castle : MonoBehaviour
     void OnStartGame()
     {
         healthMax = GameConfig.Instance.Bloodlv0;
+        health = healthMax;
         for (int i = 0; i < 3; i++)
         {
             InstantiateHero(i);
         }
+        SetUI();
     }
 
     public void InstantiateHero(int i)
@@ -107,8 +112,24 @@ public class Castle : MonoBehaviour
 
     public void UpgradeCastle()
     {
+        float deltaHelth = healthMax - health;
+        UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpHealth);
         healthMax = healthMax * GameConfig.Instance.Bloodratio;
+        health = health + deltaHelth;
         price = (long)(price * GameConfig.Instance.PriceBloodUp);
+        SetUI();
+        Invoke("HideAnim", 1.5f);
+    }
+
+    void HideAnim()
+    {
+        UIManager.Instance.SetDeActivePanel(UIManager.Instance.anim_UpHealth);
+    }
+
+    public void SetUI()
+    {
+        txtLevel.text = level.ToString();
+        txtHealth.text = health.ToString() + "/" + healthMax.ToString();
     }
 
     public void MoveToPosition(Vector3 _toPos)
