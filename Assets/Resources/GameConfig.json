@@ -106,7 +106,7 @@
       "type": 3
     },
     "Balloon King": {
-      "id": 5,
+      "id": 4,
       "health1": 750,
       "dam1": 260,
       "hitspeed1": 1.5,
@@ -123,7 +123,7 @@
       "type": 4
     },
     "Short Gunner": {
-      "id": 7,
+      "id": 5,
       "health1": 696,
       "dam1": 620,
       "hitspeed1": 2.2,
@@ -140,7 +140,7 @@
       "type": 3
     },
     "Flying gunner": {
-      "id": 8,
+      "id": 6,
       "health1": 490,
       "dam1": 300,
       "hitspeed1": 2.2,
@@ -157,7 +157,7 @@
       "type": 4
     },
     "Drunken Bomber": {
-      "id": 9,
+      "id": 7,
       "health1": 311,
       "dam1": 271,
       "hitspeed1": 1.9,
@@ -174,7 +174,7 @@
       "type": 3
     },
     "Explosive Wing": {
-      "id": 10,
+      "id": 8,
       "health1": 1064,
       "dam1": 133,
       "hitspeed1": 1.5,
@@ -191,7 +191,7 @@
       "type": 4
     },
     "Canon": {
-      "id": 11,
+      "id": 9,
       "health1": 742,
       "dam1": 127,
       "hitspeed1": 0.8,
@@ -208,7 +208,7 @@
       "type": 5
     },
     "Reflector": {
-      "id": 12,
+      "id": 10,
       "health1": 598,
       "dam1": 176,
       "hitspeed1": 1.1,
@@ -226,7 +226,7 @@
       "type": 3
     },
     "Flying reflector": {
-      "id": 13,
+      "id": 11,
       "health1": 590,
       "dam1": 192,
       "hitspeed1": 1.8,
@@ -244,7 +244,7 @@
       "type": 4
     },
     "Archer": {
-      "id": 14,
+      "id": 12,
       "health1": 598,
       "dam1": 234,
       "hitspeed1": 1.4,
@@ -261,7 +261,7 @@
       "type": 3
     },
     "Flying archer": {
-      "id": 15,
+      "id": 13,
       "health1": 490,
       "dam1": 96,
       "hitspeed1": 1,
@@ -278,7 +278,7 @@
       "type": 4
     },
     "Bloody Swords": {
-      "id": 16,
+      "id": 14,
       "health1": 1129,
       "dam1": 598,
       "hitspeed1": 1.8,
@@ -295,7 +295,7 @@
       "type": 1
     },
     "Bloody wing": {
-      "id": 17,
+      "id": 15,
       "health1": 695,
       "dam1": 258,
       "hitspeed1": 1.6,
@@ -312,7 +312,7 @@
       "type": 2
     },
     "Immortal scyther": {
-      "id": 18,
+      "id": 16,
       "health1": 1095,
       "dam1": 379,
       "hitspeed1": 1.5,
@@ -329,7 +329,7 @@
       "type": 1
     },
     "Blasting death": {
-      "id": 20,
+      "id": 17,
       "health1": 1396,
       "dam1": 798,
       "hitspeed1": 3,
@@ -346,7 +346,7 @@
       "type": 2
     },
     "Twisting axe": {
-      "id": 21,
+      "id": 18,
       "health1": 1654,
       "dam1": 221,
       "hitspeed1": 1.6,
@@ -363,7 +363,7 @@
       "type": 1
     },
     "Flying axe": {
-      "id": 22,
+      "id": 19,
       "health1": 700,
       "dam1": 250,
       "hitspeed1": 1.6,
@@ -380,7 +380,7 @@
       "type": 2
     },
     "Deadly baby": {
-      "id": 4,
+      "id": 31,
       "health1": 32,
       "dam1": 32,
       "hitspeed1": 1,
@@ -396,7 +396,7 @@
       "type": 1
     },
     "Little soul": {
-      "id": 6,
+      "id": 32,
       "health1": 67,
       "dam1": 67,
       "hitspeed1": 1.1,
@@ -412,7 +412,7 @@
       "type": 2
     },
     "Animated puppets": {
-      "id": 19,
+      "id": 33,
       "health1": 98,
       "dam1": 98,
       "hitspeed1": 1.1,

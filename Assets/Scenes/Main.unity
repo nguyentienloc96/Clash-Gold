@@ -6532,6 +6532,7 @@ MonoBehaviour:
   - {fileID: 114639136503898450, guid: 424af88950a91bb488d47ab3218079b1, type: 2}
   - {fileID: 114314681793679118, guid: 34e313d47d307a84e8e2458146dc8273, type: 2}
   - {fileID: 114074384999454568, guid: 9da0798bf17cb6e42be1d82564424f15, type: 2}
+  - {fileID: 114243557171000512, guid: c7046a719d697724cbe3aee05dabffc2, type: 2}
   - {fileID: 114373422372987228, guid: c953a1111c8103c4a87e06d8d53b3788, type: 2}
   - {fileID: 114840607397310176, guid: 1174ea2f2e912d44584cc1b03c501113, type: 2}
   - {fileID: 114308609701518376, guid: 0b634314eab01154591592accd2fb978, type: 2}
@@ -6554,6 +6555,7 @@ MonoBehaviour:
   - {fileID: 114746589315087482, guid: e9387efea20d1e847aa0a0c7cbbd16a1, type: 2}
   - {fileID: 114364047443073702, guid: 798cb466e39bc134a97a6ea51eb7f404, type: 2}
   - {fileID: 114277957797013638, guid: 824ce5e0b496807478c5f8bdee630670, type: 2}
+  - {fileID: 114840655819556858, guid: ef5e46c7038bf4e40978c39699ae340e, type: 2}
   - {fileID: 114227594247358410, guid: bde5aae6061f91049adc4be8b7ddb477, type: 2}
   - {fileID: 114020820435863844, guid: 727cbf5d408f6ed4395f8e1b96afc086, type: 2}
   - {fileID: 114080327978736308, guid: 24f020680edf6094d8d3df9b28be26f1, type: 2}
@@ -6811,6 +6813,36 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1195812695 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1689042427745408, guid: 95ddd3af904eb91448acf7744ee504b1,
+    type: 2}
+  m_PrefabInternal: {fileID: 2139696384}
+--- !u!61 &1195812698
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1195812695}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.6711111, y: 0.6622222}
+    newSize: {x: 3.02, y: 2.98}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6711111, y: 0.6622222}
+  m_EdgeRadius: 0
 --- !u!1 &1264878424
 GameObject:
   m_ObjectHideFlags: 0
@@ -11519,6 +11551,19 @@ Prefab:
     - target: {fileID: 1689042427745408, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 60291840318629230, guid: 95ddd3af904eb91448acf7744ee504b1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
