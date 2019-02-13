@@ -15,7 +15,7 @@ public class Castle : MonoBehaviour
     public int level = 1;
     public bool isCanReleaseCanon = false;
     public Collider2D colliderLand;
-    public List<Hero> lstHeroRelease;
+    public List<Hero> lstHeroRelease = new List<Hero>();
 
     public List<Transform> lsPos;
 
@@ -37,44 +37,34 @@ public class Castle : MonoBehaviour
         healthMax = GameConfig.Instance.Bloodlv0;
         health = healthMax;
         this.RegisterListener(EventID.BuildHouseComplete, (param) => OnBuildHouseComplete(param));
-        //for (int i = 0; i < 3; i++)
-        //{
-        //    InstantiateHero(i);
-        //}
         SetUI();
     }
 
     void OnBuildHouseComplete(object _param)
     {
-        if (lstHeroRelease.Count < 3)
+        if(lstHeroRelease.Count == 0)
+        {
+            InstantiateHero((int)_param);
+        }
+        else if (lstHeroRelease.Count < 3)
         {
             for (int i = 0; i < lstHeroRelease.Count; i++)
             {
                 if ((int)_param != lstHeroRelease[i].infoHero.ID)
                 {
                     InstantiateHero((int)_param);
+                    break;
                 }
             }
         }
     }
 
-    public void InstantiateHero(int i)
+    public void InstantiateHero(int idHero)
     {
-        int typeHero;
-        if (i == 0)
-        {
-            int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
-            typeHero = GameManager.Instance.lsHeroFly[randomFly];
-        }
-        else
-        {
-            int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
-            typeHero = GameManager.Instance.lsHeroCanMove[randomCanMove];
-        }
         int numberHero = 1;
 
-        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[typeHero]
-            , lsPos[i].position
+        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+            , lsPos[lstHeroRelease.Count].position
             , Quaternion.identity
             , GameManager.Instance.heroManager);
         hero.gameObject.name = "Hero";
