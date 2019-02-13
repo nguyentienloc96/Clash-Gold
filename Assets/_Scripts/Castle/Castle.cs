@@ -42,7 +42,7 @@ public class Castle : MonoBehaviour
 
     void OnBuildHouseComplete(object _param)
     {
-        if(lstHeroRelease.Count == 0)
+        if (lstHeroRelease.Count == 0)
         {
             InstantiateHero((int)_param);
         }
@@ -63,7 +63,7 @@ public class Castle : MonoBehaviour
     {
         int numberHero = 1;
 
-        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero-1]
             , lsPos[lstHeroRelease.Count].position
             , Quaternion.identity
             , GameManager.Instance.heroManager);
@@ -144,7 +144,7 @@ public class Castle : MonoBehaviour
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        
+
         if (lstHeroRelease.Count > 0)
         {
             float speedMin = lstHeroRelease[0].infoHero.speed;
@@ -165,7 +165,7 @@ public class Castle : MonoBehaviour
                 }
                 isChildMove = false;
             }
-            
+
             transform.position = Vector3.MoveTowards(transform.position, _toPos, speedMin / 10f * Time.deltaTime);
         }
     }

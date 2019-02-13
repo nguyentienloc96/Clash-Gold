@@ -319,6 +319,7 @@ public abstract class Hero : MonoBehaviour
 
     public void AddHero(int _numberHero)
     {
+        Debug.Log("b");
         infoHero.numberHero += _numberHero;
         txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
     }

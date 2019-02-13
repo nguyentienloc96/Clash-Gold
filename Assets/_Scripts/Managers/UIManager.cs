@@ -22,6 +22,7 @@ public class UIManager : MonoBehaviour
     [Header("IN-WALL")]
     public GameObject panelInWall;
     public GameObject panelBuild;
+    public Button[] lstButtonBuildHouse;
     public GameObject panelUpgrade;
     public GameObject panelRelease;
     public Text txtLevelCastle;
@@ -187,7 +188,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.isPlay = true;
 
         this.PostEvent(EventID.StartGame);
-        buttonReleaseCanon.interactable = false; 
+        buttonReleaseCanon.interactable = false;
     }
 
     public void Btn_Continue()
@@ -244,6 +245,11 @@ public class UIManager : MonoBehaviour
         {
             if (!GameManager.Instance.lstBuildHouse[i].isUnlock)
                 lstHouse[i].transform.Find("Lock").gameObject.SetActive(true);
+        }
+
+        for (int i = 0; i < lstButtonBuildHouse.Length; i++)
+        {
+            lstButtonBuildHouse[GameManager.Instance.lstHousePlayer[i].idHouse + 1].interactable = false;
         }
     }
 
