@@ -27,7 +27,7 @@ public class Hero_DeadlyBABY : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 31;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 30 + GameConfig.Instance.lstInfoHero.Count - 3];
     }
     // Use this for initialization
     public void Start()

@@ -37,8 +37,10 @@ public class GameManager : MonoBehaviour
     public List<Hero> lsPrefabsHero;
     public List<Hero> lsPrefabsEnemy;
 
-    public int[] lsHeroFly = new int[] { 2, 4, 8, 9, 10, 11, 12, 17 };
-    public int[] lsHeroCanMove = new int[] { 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18 };
+    [HideInInspector]
+    public int[] lsHeroFly = new int[] { 1, 3, 6, 9, 11, 13, 15, 17 };
+    [HideInInspector]
+    public int[] lsHeroCanMove = new int[] { 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
 
     [Header("OTHER")]
     public Camera cameraMain;

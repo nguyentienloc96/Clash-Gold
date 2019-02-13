@@ -70,21 +70,23 @@ public class GoldMine : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            int typeEnemy;
+            int typeEnemy = 0;
             if (i == 0)
             {
-                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
-                typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+                //int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
+                //typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
             }
             else
             {
-                int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
-                typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
+                //int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
+                //typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
             }
+
             int numberEnemy = 1;
-            Hero hero;
             if (!isHero)
             {
+
+                Hero hero;
                 hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[typeEnemy]
                     , lsPos[i].position
                     , Quaternion.identity
@@ -94,21 +96,11 @@ public class GoldMine : MonoBehaviour
                 hero.SetInfoHero();
                 hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
                 hero.AddHero(numberEnemy);
+
+                hero.goldMineProtecting = this;
+                hero.posStart = lsPos[i].position;
             }
-            else
-            {
-                hero = Instantiate(GameManager.Instance.lsPrefabsHero[typeEnemy]
-                   , lsPos[i].position
-                   , Quaternion.identity
-                   , GameManager.Instance.heroManager);
-                hero.gameObject.name = "Hero";
-                lstHeroGoldMine.Add(hero);
-                hero.SetInfoHero();
-                hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-                hero.AddHero(numberEnemy);
-            }
-            hero.goldMineProtecting = this;
-            hero.posStart = lsPos[i].position;
+
         }
     }
 
