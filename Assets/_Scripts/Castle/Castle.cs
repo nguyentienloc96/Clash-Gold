@@ -23,6 +23,7 @@ public class Castle : MonoBehaviour
     public Vector3 posMove;
     public bool isMove;
     public bool isChildMove;
+    public Camera cameraMain;
 
     [Header("UI")]
     public Text txtLevel;
@@ -78,7 +79,7 @@ public class Castle : MonoBehaviour
     {
         if (GameManager.Instance.isPlay)
         {
-            if (IsPointerOverGameObject())
+            if (CheckCastle())
                 return;
 
             if (Input.GetMouseButtonDown(0))
@@ -113,6 +114,21 @@ public class Castle : MonoBehaviour
         List<RaycastResult> list = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventData, list);
         return list.Count > 0;
+    }
+
+    public bool CheckCastle()
+    {
+        bool CastRays = false;
+        Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        {
+
+            if (hit.transform.gameObject.layer == 10)
+                CastRays = true;
+        }
+        return CastRays;
     }
 
     public void UpgradeCastle()
