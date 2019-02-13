@@ -31,7 +31,7 @@ public class Hero_LittleSoul : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 32;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 30 + GameConfig.Instance.lstInfoHero.Count - 3];
     }
 
     // Use this for initialization
