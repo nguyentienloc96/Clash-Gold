@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public Castle castlePlayer;
     public List<GoldMine> lstGoldMinePlayer = new List<GoldMine>();
     public List<House> lstHousePlayer = new List<House>();
+    public List<int> lstNumberHouseBuiled = new List<int>();
     public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
     public DateTime dateEnemyAttack;
     public int maxLevelHouse;
