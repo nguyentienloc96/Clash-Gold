@@ -28,7 +28,7 @@ public class Hero_FlyingGunner : Hero {
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 8;
+        this.infoHero.ID = 6;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
 
 

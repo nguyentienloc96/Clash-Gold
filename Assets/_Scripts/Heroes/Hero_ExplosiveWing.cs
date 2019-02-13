@@ -28,7 +28,7 @@ public class Hero_ExplosiveWing : Hero {
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 10;
+        this.infoHero.ID = 8;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
     }
     string nameBullet;

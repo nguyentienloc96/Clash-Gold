@@ -234,9 +234,11 @@ public class House : MonoBehaviour
 
     public void SpawmHero()
     {
+        //Debug.Log(idHero);
         countHero += capWar;
         for (int i = 0; i < GameManager.Instance.castlePlayer.lstHeroRelease.Count; i++)
         {
+            //Debug.Log(GameManager.Instance.castlePlayer.lstHeroRelease);
             if (GameManager.Instance.castlePlayer.lstHeroRelease[i].infoHero.ID == idHero)
             {
                 GameManager.Instance.castlePlayer.lstHeroRelease[i].AddHero(countHero);

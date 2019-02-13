@@ -30,7 +30,7 @@ public class Hero_BloodyWing : Hero {
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 17;
+        this.infoHero.ID = 15;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
 
     }

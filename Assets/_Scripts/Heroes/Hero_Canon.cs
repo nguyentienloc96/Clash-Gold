@@ -28,7 +28,7 @@ public class Hero_Canon : Hero {
     public float timeSurvive = 0;
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 11;
+        this.infoHero.ID = 9;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
         timeSurvive = GameConfig.Instance.Timecanonsurvive;
     }

@@ -248,13 +248,10 @@ public class UIManager : MonoBehaviour
         }
 
 
-        for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
-        {
-            if (GameManager.Instance.lstHousePlayer[i].typeState != TypeStateHouse.Lock)
-            {
-                lstButtonBuildHouse[GameManager.Instance.lstHousePlayer[i].idHouse].interactable = false;
-            }
-        }
+        //for (int i = 0; i < GameManager.Instance.lstNumberHouseBuiled.Count; i++)
+        //{
+        //    lstButtonBuildHouse[GameManager.Instance.lstNumberHouseBuiled[i]].interactable = false;
+        //}
 
     }
 
@@ -307,6 +304,11 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.lstHousePlayer[houseClick].Build(_id);
         SetDeActivePanel(panelBuild);
+    }
+
+    public void Btn_Btn_BuildHouse_2(int _id)
+    {
+        GameManager.Instance.lstNumberHouseBuiled.Add(_id);
     }
 
     public void Btn_CloseWall()
