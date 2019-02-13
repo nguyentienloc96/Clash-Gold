@@ -204,7 +204,7 @@ public class House : MonoBehaviour
         timeBuild = GameConfig.Instance.BuildTime * idHouse;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
         typeState = TypeStateHouse.Building;
-        this.idHero = _id + 1;
+        this.idHero = _id;
         this.txtCountHero.gameObject.SetActive(false);
         this.imgHouse.sprite = UIManager.Instance.lstSpriteHouse[_id];
 
@@ -225,7 +225,7 @@ public class House : MonoBehaviour
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
         txtLevel.text = "Lv " + level.ToString();
-        if (this.idHero == 11)
+        if (this.idHero == 9)
             GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
 
         this.PostEvent(EventID.BuildHouseComplete, idHero);
@@ -234,11 +234,11 @@ public class House : MonoBehaviour
 
     public void SpawmHero()
     {
-        //Debug.Log(idHero);
+        Debug.Log(idHero);
         countHero += capWar;
         for (int i = 0; i < GameManager.Instance.castlePlayer.lstHeroRelease.Count; i++)
         {
-            //Debug.Log(GameManager.Instance.castlePlayer.lstHeroRelease);
+            Debug.Log(GameManager.Instance.castlePlayer.lstHeroRelease[i].infoHero.ID);
             if (GameManager.Instance.castlePlayer.lstHeroRelease[i].infoHero.ID == idHero)
             {
                 GameManager.Instance.castlePlayer.lstHeroRelease[i].AddHero(countHero);
