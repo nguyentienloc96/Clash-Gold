@@ -6,6 +6,7 @@
     NextDay,
     ClickHouse,
     UpLevelHouse,
+    BuildHouseComplete,
     EnemyAttackPlayer,
     BeingAttacked,
     Win,

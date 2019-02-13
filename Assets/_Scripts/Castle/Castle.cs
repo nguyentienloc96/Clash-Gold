@@ -36,11 +36,26 @@ public class Castle : MonoBehaviour
     {
         healthMax = GameConfig.Instance.Bloodlv0;
         health = healthMax;
-        for (int i = 0; i < 3; i++)
-        {
-            InstantiateHero(i);
-        }
+        this.RegisterListener(EventID.BuildHouseComplete, (param) => OnBuildHouseComplete(param));
+        //for (int i = 0; i < 3; i++)
+        //{
+        //    InstantiateHero(i);
+        //}
         SetUI();
+    }
+
+    void OnBuildHouseComplete(object _param)
+    {
+        if (lstHeroRelease.Count < 3)
+        {
+            for (int i = 0; i < lstHeroRelease.Count; i++)
+            {
+                if ((int)_param != lstHeroRelease[i].infoHero.ID)
+                {
+                    InstantiateHero((int)_param);
+                }
+            }
+        }
     }
 
     public void InstantiateHero(int i)

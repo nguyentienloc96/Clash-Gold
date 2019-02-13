@@ -25,8 +25,8 @@ public class GoldMine : MonoBehaviour
     public List<Transform> lsPos;
 
     [Header("UI")]
-    public Text txtLevel;
-    public Sprite sprGoldMine;
+    public TextMesh txtLevel;
+    public SpriteRenderer sprGoldMine;
 
     void Start()
     {
@@ -57,11 +57,11 @@ public class GoldMine : MonoBehaviour
         {
             if (_l > level || _l <= level - 3)
             {
-                sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
+                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
             }
             else
             {
-                sprGoldMine = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
+                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
             }
         }
     }

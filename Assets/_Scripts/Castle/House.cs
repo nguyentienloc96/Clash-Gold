@@ -227,6 +227,8 @@ public class House : MonoBehaviour
         txtLevel.text = "Lv " + level.ToString();
         if (this.idHero == 11)
             GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
+
+        this.PostEvent(EventID.BuildHouseComplete, idHero);
     }
 
     public void SpawmHero()
