@@ -28,7 +28,7 @@ public class Hero_ShortGunner : Hero {
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 7;
+        this.infoHero.ID = 5;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
     }
 

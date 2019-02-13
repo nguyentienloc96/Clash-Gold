@@ -26,7 +26,7 @@ public class Hero_ImmortalScyther : Hero {
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 18;
+        this.infoHero.ID = 16;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
     }
 

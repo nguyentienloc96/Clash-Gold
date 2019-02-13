@@ -31,7 +31,7 @@ public class Hero_BlastingDeath : Hero {
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 20;
+        this.infoHero.ID = 17;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];      
     }
 

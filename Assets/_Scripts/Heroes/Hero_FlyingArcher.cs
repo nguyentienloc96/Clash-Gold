@@ -28,7 +28,7 @@ public class Hero_FlyingArcher : Hero
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 15;
+        this.infoHero.ID = 13;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
 
     }

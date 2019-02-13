@@ -28,7 +28,7 @@ public class Hero_Reflector : Hero {
 
     public override void SetInfoHero()
     {
-        this.infoHero.ID = 12;
+        this.infoHero.ID = 10;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
     }
 
