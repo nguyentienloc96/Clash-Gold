@@ -404,6 +404,8 @@ MonoBehaviour:
   - {fileID: 4664417608931634}
   txtLevel: {fileID: 102427201392177066}
   sprGoldMine: {fileID: 212202119933575502}
+  buttonUp: {fileID: 1979722196759058}
+  buttonRelease: {fileID: 1204492694604498}
   isBeingAttack: 0
 --- !u!210 &210951547254852058
 SortingGroup:

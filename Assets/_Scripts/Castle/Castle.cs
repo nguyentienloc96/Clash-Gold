@@ -51,22 +51,29 @@ public class Castle : MonoBehaviour
         health = healthMax;
         this.RegisterListener(EventID.BuildHouseComplete, (param) => OnBuildHouseComplete(param));
         SetUI();
+        if (isCanReleaseCanon)
+        {
+            UIManager.Instance.buttonReleaseCanon.interactable = true;
+        }
     }
 
     void OnBuildHouseComplete(object _param)
     {
-        if (lstHeroRelease.Count == 0)
+        if ((int)_param != 9)
         {
-            InstantiateHero((int)_param);
-        }
-        else if (lstHeroRelease.Count < 3)
-        {
-            for (int i = 0; i < lstHeroRelease.Count; i++)
+            if (lstHeroRelease.Count == 0)
             {
-                if ((int)_param != lstHeroRelease[i].infoHero.ID)
+                InstantiateHero((int)_param);
+            }
+            else if (lstHeroRelease.Count < 3)
+            {
+                for (int i = 0; i < lstHeroRelease.Count; i++)
                 {
-                    InstantiateHero((int)_param);
-                    break;
+                    if ((int)_param != lstHeroRelease[i].infoHero.ID)
+                    {
+                        InstantiateHero((int)_param);
+                        break;
+                    }
                 }
             }
         }
@@ -85,6 +92,20 @@ public class Castle : MonoBehaviour
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
         hero.AddHero(numberHero);
         lstHeroRelease.Add(hero);
+        ShowAvatarHero(idHero - 1);
+    }
+
+    void ShowAvatarHero(int _id)
+    {
+        for (int i = 0; i < lstAvatarHeroRelease.Length; i++)
+        {
+            if (!lstAvatarHeroRelease[i].gameObject.activeSelf)
+            {
+                lstAvatarHeroRelease[i].gameObject.SetActive(true);
+                lstAvatarHeroRelease[i].sprite = UIManager.Instance.sprAvatarHero[_id];
+                break;
+            }
+        }
     }
 
     void Update()

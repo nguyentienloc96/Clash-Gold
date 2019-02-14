@@ -27,6 +27,8 @@ public class GoldMine : MonoBehaviour
     [Header("UI")]
     public TextMesh txtLevel;
     public SpriteRenderer sprGoldMine;
+    public GameObject buttonUp;
+    public GameObject buttonRelease;
 
     void Start()
     {
@@ -64,6 +66,14 @@ public class GoldMine : MonoBehaviour
             {
                 sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
             }
+            buttonUp.SetActive(false);
+            buttonRelease.SetActive(false);
+        }
+        else
+        {
+            sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine];
+            buttonUp.SetActive(true);
+            buttonRelease.SetActive(true);
         }
     }
 

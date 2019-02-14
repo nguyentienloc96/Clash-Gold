@@ -22,7 +22,6 @@ public class UIManager : MonoBehaviour
     [Header("IN-WALL")]
     public GameObject panelInWall;
     public GameObject panelBuild;
-    public Button[] lstButtonBuildHouse;
     public GameObject panelUpgrade;
     public GameObject panelRelease;
     public Text txtLevelCastle;
@@ -306,5 +305,10 @@ public class UIManager : MonoBehaviour
         panelInWall.GetComponent<Animator>().Play("DeActivePanel");
     }
 
+    public void Btn_ReleaseCannon()
+    {
+        GameManager.Instance.castlePlayer.InstantiateHero(9);
+        buttonReleaseCanon.interactable = false;
+    }
     #endregion
 }

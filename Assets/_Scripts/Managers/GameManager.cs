@@ -65,13 +65,15 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GenerateMap();
-        for (int i = 0; i < 9; i++)
+        for (int i = 0; i < UIManager.Instance.lstHouse.Count; i++)
         {
             BuildHouse bh = new BuildHouse();
             bh.ID = i;
             if (i >= 5)
                 bh.isUnlock = false;
             else
+                bh.isUnlock = true;
+            if(i == 8)
                 bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
@@ -136,14 +138,18 @@ public class GameManager : MonoBehaviour
                 _rotation = new Vector3(180, 180, 0);
             }
 
+            if (a == 3)
+                _rotation = new Vector3(0, 0, 0);
+
             if (i == 10)
             {
+                _rotation = new Vector3(0, 0, 0);
                 GoldMine g = Instantiate(prefabsBoxMap[3], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
                 g.SetLevel(1);
-                g.numberBoxGoldMine = a;
+                g.numberBoxGoldMine = 3;
                 lstGoldMinePlayer.Add(g);
                 g.typeGoleMine = TypeGoldMine.Player;
-                g.InstantiateHero(true);
+                g.InstantiateHero(true);              
             }
             else
             {
@@ -153,6 +159,9 @@ public class GameManager : MonoBehaviour
                 lstGoldMineEnemy.Add(g);
                 g.typeGoleMine = TypeGoldMine.Enemy;
                 g.InstantiateHero(false);
+                g.buttonRelease.transform.rotation = Quaternion.Euler(_rotation);
+                g.buttonUp.transform.rotation = Quaternion.Euler(_rotation);
+                g.txtLevel.transform.localRotation = Quaternion.Euler(_rotation);
             }
         }
     }

@@ -226,7 +226,10 @@ public class House : MonoBehaviour
         txtCountHero.gameObject.SetActive(true);
         txtLevel.text = "Lv " + level.ToString();
         if (this.idHero == 9)
+        {
             GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
+            UIManager.Instance.buttonReleaseCanon.interactable = true;
+        }
 
         this.PostEvent(EventID.BuildHouseComplete, idHero);
     }
