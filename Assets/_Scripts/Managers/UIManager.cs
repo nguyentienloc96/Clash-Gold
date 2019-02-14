@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EventDispatcher;
+using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
@@ -50,6 +51,9 @@ public class UIManager : MonoBehaviour
     public GameObject anim_UpLV_House;
     public GameObject anim_UpLV_GoldMine;
     public GameObject anim_UpHealth;
+    public GameObject mouseClick;
+    public Canvas parentCanvas;
+    [HideInInspector]
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
@@ -85,9 +89,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    
     void Update()
     {
-        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();
+        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();     
     }
 
     #region === SUPPORT ===
@@ -141,6 +146,20 @@ public class UIManager : MonoBehaviour
 
         _g.SetActive(false);
         //_g.GetComponent<Animator>().Play("DeActivePanel");
+    }
+
+    /// <summary>
+    /// Hien chuot khi click man hinh
+    /// </summary>
+    void ShowMouseClick()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            Vector2 click;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(parentCanvas.transform as RectTransform, Input.mousePosition, parentCanvas.worldCamera, out click);
+            Vector3 mousePos = parentCanvas.transform.TransformPoint(click) + new Vector3(0.2f, -0.3f, 0);
+            mouseClick.transform.position = mousePos;
+        }
     }
     #endregion
 

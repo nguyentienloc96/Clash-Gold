@@ -31,7 +31,7 @@ public class GameConfig : MonoBehaviour
     public float Timeday;
     public float TimeAd;
     public float Rgold;
-    public long CapGold0;
+    public int CapGold0;
     public float CapGoldUp;
     public int PriceGoldUp;
     public long Bloodlv0;

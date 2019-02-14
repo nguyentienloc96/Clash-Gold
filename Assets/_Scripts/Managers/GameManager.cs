@@ -146,22 +146,25 @@ public class GameManager : MonoBehaviour
                 _rotation = new Vector3(0, 0, 0);
                 GoldMine g = Instantiate(prefabsBoxMap[3], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
                 g.SetLevel(1);
-                g.numberBoxGoldMine = 3;
-                lstGoldMinePlayer.Add(g);
+                g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, 1);
+                g.numberBoxGoldMine = 3;                
                 g.typeGoleMine = TypeGoldMine.Player;
-                g.InstantiateHero(true);              
+                g.InstantiateHero(true);
+                lstGoldMinePlayer.Add(g);
             }
             else
             {
                 GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
-                g.SetLevel(UnityEngine.Random.Range(1, 20));
+                int _level = UnityEngine.Random.Range(1, 20);
+                g.SetLevel(_level);
                 g.numberBoxGoldMine = a;
-                lstGoldMineEnemy.Add(g);
+                g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);                
                 g.typeGoleMine = TypeGoldMine.Enemy;
                 g.InstantiateHero(false);
                 g.buttonRelease.transform.rotation = Quaternion.Euler(_rotation);
                 g.buttonUp.transform.rotation = Quaternion.Euler(_rotation);
                 g.txtLevel.transform.localRotation = Quaternion.Euler(_rotation);
+                lstGoldMineEnemy.Add(g);
             }
         }
     }

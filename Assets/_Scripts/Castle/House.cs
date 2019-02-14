@@ -158,13 +158,13 @@ public class House : MonoBehaviour
 
     public void YesUpgrade(int _x)
     {
-        if (GameManager.Instance.gold < price)
+        if (GameManager.Instance.gold < priceWillUpgrade)
             return;
 
         UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpLV_House);
         Invoke("HideAnim", 2f);
         price = priceWillUpgrade;
-        GameManager.Instance.AddGold(-(long)(price * GameConfig.Instance.Ri));
+        GameManager.Instance.AddGold(-price);
         timeUpgrade = GameConfig.Instance.UpgradeTime * _x;
         typeState = TypeStateHouse.Upgrading;
         xUpgrade = _x;
@@ -200,6 +200,7 @@ public class House : MonoBehaviour
         this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
         if (GameManager.Instance.gold < this.price)
             return;
+
         GameManager.Instance.AddGold(-price);
         timeBuild = GameConfig.Instance.BuildTime * idHouse;
         timeUpgrade = GameConfig.Instance.UpgradeTime;

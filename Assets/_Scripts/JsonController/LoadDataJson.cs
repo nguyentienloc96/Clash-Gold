@@ -63,7 +63,7 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.Timeday = objJson["Timeday"].AsFloat;
             GameConfig.Instance.TimeAd = objJson["TimeAd"].AsFloat;
             GameConfig.Instance.Rgold = objJson["Rgold"].AsFloat;
-            GameConfig.Instance.CapGold0 = objJson["CapGold0"].AsLong;
+            GameConfig.Instance.CapGold0 = objJson["CapGold0"].AsInt;
             GameConfig.Instance.CapGoldUp = objJson["CapGoldUp"].AsFloat;
             GameConfig.Instance.PriceGoldUp = objJson["PriceGoldUp"].AsInt;
             GameConfig.Instance.Bloodlv0 = objJson["Bloodlv0"].AsLong;

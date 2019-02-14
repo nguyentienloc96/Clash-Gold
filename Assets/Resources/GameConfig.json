@@ -16,7 +16,7 @@
   "Rgold" : 5,
   "CapGold0" : 100,
   "CapGoldUp" : 1.5,
-  "PriceGoldUp" : 20,
+  "PriceGoldUp" : 5,
   "Bloodlv0" : 12000,
   "Bloodratio" : 1.3,
   "PriceBlood0" : 500,

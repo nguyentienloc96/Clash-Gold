@@ -33,19 +33,19 @@ public class GoldMine : MonoBehaviour
     void Start()
     {
         lstCompetitorGoldMine = new List<Hero>();
-        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());        
+        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
     }
 
     void OnStartGame()
     {
         //level = Random.Range(0, 20);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-        this.RegisterListener(EventID.UpLevelHouse, (param) => OnSetSpriteBox());
+        this.RegisterListener(EventID.UpLevelHouse, (param) => OnSetSpriteBox());        
     }
 
     void OnSetSpriteBox()
     {
-        SetSpriteBox(GameManager.Instance.maxLevelHouse);
+        SetSpriteBox(GameManager.Instance.maxLevelHouse);       
     }
 
     public void SetLevel(int _l)
@@ -54,7 +54,13 @@ public class GoldMine : MonoBehaviour
         txtLevel.text = "Lv " + level.ToString();
     }
 
-    public void SetSpriteBox(int _l)
+    public void SetInfo(int _capGold, int _priceGoldUp, int _level)
+    {
+        capGold = (int)(_capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, _level));
+        priceGold = (long)(_capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _level));
+    }
+
+    void SetSpriteBox(int _l)
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
@@ -146,6 +152,7 @@ public class GoldMine : MonoBehaviour
         if (typeGoleMine == TypeGoldMine.Player)
         {
             GameManager.Instance.AddGold(capGold);
+            Debug.Log("Add Gold : " + capGold);
         }
     }
 
@@ -183,11 +190,11 @@ public class GoldMine : MonoBehaviour
 
     void UpgradeGoldMine()
     {
-        if (GameManager.Instance.gold < priceGold)
+        if (GameManager.Instance.gold < priceWillUpgrade)
             return;
 
         priceGold = priceWillUpgrade;
-        GameManager.Instance.AddGold(-(long)(priceGold * GameConfig.Instance.Ri));
+        GameManager.Instance.AddGold(-priceGold);
         capGold = capWillUpgrade;
         level++;
         txtLevel.text = "Lv " + level.ToString();

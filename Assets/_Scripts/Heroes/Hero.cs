@@ -124,8 +124,7 @@ public abstract class Hero : MonoBehaviour
             infoHero.numberHero = 0;
             Die();
         }
-        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero)
-;
+        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
     }
 
     public void CheckEnemy()
