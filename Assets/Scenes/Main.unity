@@ -7285,7 +7285,6 @@ MonoBehaviour:
   cameraMain: {fileID: 443966388}
   heroManager: {fileID: 1272576134}
   enemyManager: {fileID: 1478779965}
-  posMapParent: {fileID: 0}
   posMap:
   - {fileID: 862819103}
   - {fileID: 646267006}

@@ -25,8 +25,9 @@ public class GoldMine : MonoBehaviour
     public List<Transform> lsPos;
 
     [Header("UI")]
-    public TextMesh txtLevel;
+    public Text txtLevel;
     public SpriteRenderer sprGoldMine;
+    public GameObject Canvas;
     public GameObject buttonUp;
     public GameObject buttonRelease;
 
@@ -36,9 +37,17 @@ public class GoldMine : MonoBehaviour
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
     }
 
+    void Update()
+    {
+        if (typeGoleMine == TypeGoldMine.Enemy && this.lstHeroGoldMine.Count <= 0)
+        {
+            typeGoleMine = TypeGoldMine.Player;
+            SetSpriteBox(0);
+        }
+    }
+
     void OnStartGame()
     {
-        //level = Random.Range(0, 20);//GameConfig.Instance.GoldMinerAmount);
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         this.RegisterListener(EventID.UpLevelHouse, (param) => OnSetSpriteBox());        
     }
@@ -183,9 +192,9 @@ public class GoldMine : MonoBehaviour
 
     public void CheckUpgrade(int _x)
     {
+        levelWillUpgrade = level + _x;
         capWillUpgrade = (int)(capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, _x));
         priceWillUpgrade = (long)(capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _x));
-        levelWillUpgrade = level += _x;
     }
 
     void UpgradeGoldMine()
@@ -196,7 +205,7 @@ public class GoldMine : MonoBehaviour
         priceGold = priceWillUpgrade;
         GameManager.Instance.AddGold(-priceGold);
         capGold = capWillUpgrade;
-        level++;
+        level = levelWillUpgrade;
         txtLevel.text = "Lv " + level.ToString();
     }
 

@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
     public Transform enemyManager;
 
     [Header("MAP")]
-    public Transform posMapParent;
     public Transform[] posMap;
     public GameObject[] prefabsBoxMap;
     public Sprite[] sprBoxMap;
@@ -146,6 +145,7 @@ public class GameManager : MonoBehaviour
                 _rotation = new Vector3(0, 0, 0);
                 GoldMine g = Instantiate(prefabsBoxMap[3], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
                 g.SetLevel(1);
+                g.id = i;
                 g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, 1);
                 g.numberBoxGoldMine = 3;                
                 g.typeGoleMine = TypeGoldMine.Player;
@@ -157,13 +157,12 @@ public class GameManager : MonoBehaviour
                 GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
                 int _level = UnityEngine.Random.Range(1, 20);
                 g.SetLevel(_level);
+                g.id = i;
                 g.numberBoxGoldMine = a;
                 g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);                
                 g.typeGoleMine = TypeGoldMine.Enemy;
                 g.InstantiateHero(false);
-                g.buttonRelease.transform.rotation = Quaternion.Euler(_rotation);
-                g.buttonUp.transform.rotation = Quaternion.Euler(_rotation);
-                g.txtLevel.transform.localRotation = Quaternion.Euler(_rotation);
+                g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
                 lstGoldMineEnemy.Add(g);
             }
         }
