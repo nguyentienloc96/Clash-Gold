@@ -96,6 +96,19 @@ public class Castle : MonoBehaviour
         ShowAvatarHero(idHero - 1);
     }
 
+    public void InstantiateCanonToPos(int idHero,Vector3 _toPos)
+    {
+        int numberHero = 1;
+        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero - 1]
+            , _toPos
+            , Quaternion.identity
+            , GameManager.Instance.heroManager);
+        hero.gameObject.name = "Hero";
+        hero.SetInfoHero();
+        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+        hero.AddHero(numberHero);
+    }
+
     void ShowAvatarHero(int _id)
     {
         for (int i = 0; i < lstAvatarHeroRelease.Length; i++)
@@ -116,7 +129,7 @@ public class Castle : MonoBehaviour
             if (CheckCastle() || IsPointerOverGameObject())
                 return;
 
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !UIManager.Instance.isBuildCanon)
             {
                 posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
                 posMove.z = 0f;

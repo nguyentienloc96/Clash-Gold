@@ -79,7 +79,12 @@ public abstract class Hero : MonoBehaviour
         if (gameObject.CompareTag("Hero"))
         {
             GameManager.Instance.castlePlayer.lstHeroRelease.Remove(this);
+            if (infoHero.typeHero == TypeHero.Canon)
+            {
+                UIManager.Instance.buttonReleaseCanon.interactable = true;
+            }
         }
+        
         Destroy(gameObject, 0.5f);
     }
 
@@ -189,6 +194,14 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
+    public void RotationHero(Vector3 _toPos)
+    {
+        Vector3 diff = _toPos - transform.position;
+        diff.Normalize();
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+    }
+
     public void AutoAttack()
     {
         timeCheckAttack += Time.deltaTime;
@@ -208,13 +221,21 @@ public abstract class Hero : MonoBehaviour
 
     }
 
+    private float timeDeadCanon;
     public void HeroUpdate()
     {
         if (GameManager.Instance.isPlay)
         {
             AnimtionUpdate();
 
-
+            if(infoHero.typeHero == TypeHero.Canon)
+            {
+                timeDeadCanon += Time.deltaTime;
+                if(timeDeadCanon >= GameConfig.Instance.Timecanonsurvive)
+                {
+                    Die();
+                }
+            }
             if (!isMove)
             {
                 if (isInGoldMine)
@@ -227,6 +248,10 @@ public abstract class Hero : MonoBehaviour
                         if (infoHero.typeHero != TypeHero.Canon)
                         {
                             MoveToPosition(targetCompetitor.transform.position);
+                        }
+                        else
+                        {
+                            RotationHero(targetCompetitor.transform.position);
                         }
                     }
                 }

@@ -59,6 +59,11 @@ public class UIManager : MonoBehaviour
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
+    public GameObject mouseCanon;
+    public GameObject buildCanon;
+    public bool isBuildCanon;
+    public bool isWaitBuildCanon;
+
     public static UIManager Instance = new UIManager();
     void Awake()
     {
@@ -91,10 +96,35 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    
+    private float timeBuildCanon;
     void Update()
     {
-        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();     
+        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();
+        if (isBuildCanon)
+        {
+            Vector3 posMouse = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
+            posMouse.z = 0;
+            mouseCanon.transform.position = posMouse;
+            if (Input.GetMouseButtonDown(0))
+            {
+                mouseCanon.SetActive(false);
+                buildCanon.SetActive(true);
+                buildCanon.transform.position = posMouse;
+                isWaitBuildCanon = true;
+                isBuildCanon = false;
+            }
+        }
+        if (isWaitBuildCanon)
+        {
+            timeBuildCanon += Time.deltaTime;
+            if(timeBuildCanon >= GameConfig.Instance.TimeCanon)
+            {
+                GameManager.Instance.castlePlayer.InstantiateCanonToPos(9, buildCanon.transform.position);
+                buildCanon.SetActive(false);
+                isWaitBuildCanon = false;
+                timeBuildCanon = 0;
+            }
+        }
     }
 
     #region === SUPPORT ===
@@ -328,7 +358,8 @@ public class UIManager : MonoBehaviour
 
     public void Btn_ReleaseCannon()
     {
-        GameManager.Instance.castlePlayer.InstantiateHero(9);
+        isBuildCanon = true;
+        mouseCanon.SetActive(true);
         buttonReleaseCanon.interactable = false;
     }
     #endregion

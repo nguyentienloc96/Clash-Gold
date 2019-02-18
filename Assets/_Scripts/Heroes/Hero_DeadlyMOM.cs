@@ -40,8 +40,18 @@ public class Hero_DeadlyMOM : Hero {
         nameBullet = gameObject.name;
     }
 
+    private float timeInstanceChild;
     public void Update()
     {
         HeroUpdate();
+        if(targetCompetitor != null)
+        {
+            timeInstanceChild += Time.deltaTime;
+            if (timeInstanceChild >= 1f)
+            {
+                GameManager.Instance.castlePlayer.InstantiateHero(18);
+                timeInstanceChild = 0;
+            }
+        }
     }
 }

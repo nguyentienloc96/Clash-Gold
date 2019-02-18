@@ -32,6 +32,8 @@ public class GoldMine : MonoBehaviour
     public GameObject buttonUp;
     public GameObject buttonRelease;
 
+    public bool isCanon;
+    public float timeCanon;
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
@@ -45,6 +47,17 @@ public class GoldMine : MonoBehaviour
             typeGoleMine = TypeGoldMine.Player;
             GameManager.Instance.lstGoldMinePlayer.Add(this);
             SetSpriteBox(0);
+        }
+
+        if (lstCompetitorGoldMine.Count > 0 && !isCanon)
+        {
+            timeCanon += Time.deltaTime;
+            if (timeCanon >= 3)
+            {
+                Vector3 posCanon = (lstCompetitorGoldMine[0].transform.position + lstHeroGoldMine[0].transform.position) / 2;
+                InstantiateCanon(typeGoleMine == TypeGoldMine.Player, posCanon);
+                isCanon = true;
+            }
         }
     }
 
@@ -75,13 +88,13 @@ public class GoldMine : MonoBehaviour
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
-            if (_l > level || _l <= level - 3)
+            if (_l >= this.level || Mathf.Abs(_l - level) <= 3)
             {
-                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
+                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
             }
             else
             {
-                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
+                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
             }
             buttonUp.SetActive(false);
             buttonRelease.SetActive(false);
@@ -108,7 +121,7 @@ public class GoldMine : MonoBehaviour
             {
                 int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
                 typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
-            } 
+            }
             int numberEnemy = 1;
             if (!isHero)
             {
@@ -128,6 +141,41 @@ public class GoldMine : MonoBehaviour
                 hero.posStart = lsPos[i].position;
             }
 
+        }
+    }
+
+    public void InstantiateCanon(bool isHero, Vector3 _toPos)
+    {
+        int typeEnemy = 8;
+        int numberEnemy = Random.Range(50, 150);
+        if (!isHero)
+        {
+
+            Hero hero;
+            hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[typeEnemy]
+                , _toPos
+                , Quaternion.identity
+                , GameManager.Instance.enemyManager);
+            hero.gameObject.name = "Enemy";
+            lstHeroGoldMine.Add(hero);
+            hero.SetInfoHero();
+            hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+            hero.AddHero(numberEnemy);
+            hero.goldMineProtecting = this;
+        }
+        else
+        {
+            Hero hero;
+            hero = Instantiate(GameManager.Instance.lsPrefabsHero[typeEnemy]
+                , _toPos
+                , Quaternion.identity
+                , GameManager.Instance.enemyManager);
+            hero.gameObject.name = "Hero";
+            lstHeroGoldMine.Add(hero);
+            hero.SetInfoHero();
+            hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+            hero.AddHero(numberEnemy);
+            hero.goldMineProtecting = this;
         }
     }
 
@@ -225,7 +273,7 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Hero") || other.CompareTag("Castle"))
             {
-                if(other.tag == "Hero")
+                if (other.tag == "Hero")
                 {
                     other.GetComponent<Hero>().goldMineAttacking = this;
                     other.GetComponent<Hero>().isInGoldMine = true;
@@ -236,9 +284,9 @@ public class GoldMine : MonoBehaviour
                     castle = other.gameObject;
                 }
 
-                if(lstCompetitorGoldMine.Count > 0 || castle != null)
+                if (lstCompetitorGoldMine.Count > 0 || castle != null)
                 {
-                    foreach(Hero heroMine in lstHeroGoldMine)
+                    foreach (Hero heroMine in lstHeroGoldMine)
                     {
                         heroMine.isInGoldMine = true;
                     }
