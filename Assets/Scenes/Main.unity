@@ -7281,7 +7281,7 @@ MonoBehaviour:
   - {fileID: 114397214854234186, guid: 3cef416f891b5e549bd0b44bd7806ace, type: 2}
   - {fileID: 114243348638598256, guid: e5e4ae54bdbb45447bdbcadb33d27a2e, type: 2}
   lsHeroFly: 010000000300000006000000090000000b0000000d0000000f00000011000000
-  lsHeroCanMove: 0000000001000000020000000300000004000000050000000600000008000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000
+  lsHeroCanMove: 0000000001000000020000000300000004000000050000000600000007000000090000000a0000000b0000000c0000000d0000000e0000000f0000001000000011000000
   cameraMain: {fileID: 443966388}
   heroManager: {fileID: 1272576134}
   enemyManager: {fileID: 1478779965}
@@ -7521,36 +7521,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!1 &1195812695 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1689042427745408, guid: 95ddd3af904eb91448acf7744ee504b1,
-    type: 2}
-  m_PrefabInternal: {fileID: 2139696384}
---- !u!61 &1195812698
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1195812695}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6711111, y: 0.6622222}
-    newSize: {x: 3.02, y: 2.98}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.6711111, y: 0.6622222}
-  m_EdgeRadius: 0
 --- !u!1 &1264878424
 GameObject:
   m_ObjectHideFlags: 0
@@ -8306,6 +8276,8 @@ MonoBehaviour:
   panelChooseLevel: {fileID: 1503415119}
   panelMain: {fileID: 1640343752}
   panelYesNoNewPlay: {fileID: 927990420}
+  panelGameOver: {fileID: 545096500}
+  panelVictory: {fileID: 959462891}
   buttonContinue: {fileID: 68130152}
   txtGold: {fileID: 1933035431}
   txtCoin: {fileID: 494181815}
@@ -12807,11 +12779,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
-        type: 2}
-      propertyPath: lstAvatarHeroRelease.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -12846,6 +12813,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
         type: 2}
+      propertyPath: cameraMain
+      value: 
+      objectReference: {fileID: 443966388}
+    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
+        type: 2}
       propertyPath: txtLevel
       value: 
       objectReference: {fileID: 399415663}
@@ -12854,28 +12826,6 @@ Prefab:
       propertyPath: txtHealth
       value: 
       objectReference: {fileID: 852013058}
-    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
-        type: 2}
-      propertyPath: cameraMain
-      value: 
-      objectReference: {fileID: 443966388}
-    - target: {fileID: 1689042427745408, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 60291840318629230, guid: 95ddd3af904eb91448acf7744ee504b1,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
         type: 2}
       propertyPath: lstAvatarHeroRelease.Array.data[0]
@@ -12891,6 +12841,18 @@ Prefab:
       propertyPath: lstAvatarHeroRelease.Array.data[2]
       value: 
       objectReference: {fileID: 2087235781}
+    - target: {fileID: 4414080315528002, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182129549998640, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4576455793482236, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
   m_IsPrefabParent: 0

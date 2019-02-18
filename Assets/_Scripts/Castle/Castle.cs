@@ -16,7 +16,7 @@ public class Castle : MonoBehaviour
     public bool isCanReleaseCanon = false;
     public Collider2D colliderLand;
     public List<Hero> lstHeroRelease = new List<Hero>();
-
+    public float speed;
     public List<Transform> lsPos;
 
     [Header("CHECK MOVE")]
@@ -32,6 +32,7 @@ public class Castle : MonoBehaviour
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
+        speed = 0;
     }
 
     //void FixedUpdate()
@@ -83,7 +84,7 @@ public class Castle : MonoBehaviour
     {
         int numberHero = 1;
 
-        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero-1]
+        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero - 1]
             , lsPos[lstHeroRelease.Count].position
             , Quaternion.identity
             , GameManager.Instance.heroManager);
@@ -173,7 +174,7 @@ public class Castle : MonoBehaviour
         float deltaHelth = healthMax - health;
         UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpHealth);
         healthMax = healthMax * GameConfig.Instance.Bloodratio;
-        health = healthMax - deltaHelth;      
+        health = healthMax - deltaHelth;
         GameManager.Instance.AddGold(-price);
         level++;
         SetUI();
@@ -210,17 +211,28 @@ public class Castle : MonoBehaviour
                     speedMin = lstHeroRelease[i].infoHero.speed;
                 }
             }
+            speed = speedMin;
             if (isChildMove)
             {
                 for (int i = 0; i < lstHeroRelease.Count; i++)
                 {
-                    lstHeroRelease[i].speedMin = speedMin;
+                    lstHeroRelease[i].speedMin = speedMin * 2f;
                     lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent);
                 }
                 isChildMove = false;
             }
 
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, speedMin / 10f * Time.deltaTime);
+        }
+        transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
+
+    }
+
+    public void BeingAttacked(float _dame)
+    {
+        health -= _dame;
+        if (health <= 0)
+        {
+            UIManager.Instance.panelGameOver.SetActive(true);
         }
     }
 }

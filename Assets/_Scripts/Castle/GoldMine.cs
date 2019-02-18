@@ -20,7 +20,8 @@ public class GoldMine : MonoBehaviour
     public Collider2D colliderLand;
     public TypeGoldMine typeGoleMine;
     public List<Hero> lstHeroGoldMine;
-    public List<Hero> lstCompetitorGoldMine;
+    public List<GameObject> lstCompetitorGoldMine;
+    public GameObject castle;
 
     public List<Transform> lsPos;
 
@@ -33,7 +34,6 @@ public class GoldMine : MonoBehaviour
 
     void Start()
     {
-        lstCompetitorGoldMine = new List<Hero>();
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
     }
 
@@ -41,7 +41,9 @@ public class GoldMine : MonoBehaviour
     {
         if (typeGoleMine == TypeGoldMine.Enemy && this.lstHeroGoldMine.Count <= 0)
         {
+            GameManager.Instance.lstGoldMineEnemy.Remove(this);
             typeGoleMine = TypeGoldMine.Player;
+            GameManager.Instance.lstGoldMinePlayer.Add(this);
             SetSpriteBox(0);
         }
     }
@@ -49,12 +51,12 @@ public class GoldMine : MonoBehaviour
     void OnStartGame()
     {
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-        this.RegisterListener(EventID.UpLevelHouse, (param) => OnSetSpriteBox());        
+        this.RegisterListener(EventID.UpLevelHouse, (param) => OnSetSpriteBox());
     }
 
     void OnSetSpriteBox()
     {
-        SetSpriteBox(GameManager.Instance.maxLevelHouse);       
+        SetSpriteBox(GameManager.Instance.maxLevelHouse);
     }
 
     public void SetLevel(int _l)
@@ -96,18 +98,17 @@ public class GoldMine : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            int typeEnemy = 0;
+            int typeEnemy;
             if (i == 0)
             {
-                //int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
-                //typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
+                typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
             }
             else
             {
-                //int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
-                //typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
-            }
-
+                int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
+                typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
+            } 
             int numberEnemy = 1;
             if (!isHero)
             {
@@ -161,7 +162,7 @@ public class GoldMine : MonoBehaviour
         if (typeGoleMine == TypeGoldMine.Player)
         {
             GameManager.Instance.AddGold(capGold);
-            Debug.Log("Add Gold : " + capGold);
+            //Debug.Log("Add Gold : " + capGold);
         }
     }
 
@@ -222,39 +223,26 @@ public class GoldMine : MonoBehaviour
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
-            if (other.CompareTag("Hero"))
+            if (other.CompareTag("Hero") || other.CompareTag("Castle"))
             {
-                Hero heroCurrent = other.GetComponent<Hero>();
-                if (!isBeingAttack)
+                if(other.tag == "Hero")
                 {
-                    foreach (Hero hero in lstHeroGoldMine)
-                    {
-                        hero.isInGoldMine = true;
-                    }
-                    isBeingAttack = true;
+                    other.GetComponent<Hero>().goldMineAttacking = this;
+                    other.GetComponent<Hero>().isInGoldMine = true;
+                    lstCompetitorGoldMine.Add(other.gameObject);
                 }
-                heroCurrent.goldMineAttacking = this;
-                heroCurrent.isInGoldMine = true;
-                lstCompetitorGoldMine.Add(heroCurrent);
-            }
+                else
+                {
+                    castle = other.gameObject;
+                }
 
-        }
-        else
-        {
-            if (other.CompareTag("Enemy"))
-            {
-                Hero heroCurrent = other.GetComponent<Hero>();
-                if (!isBeingAttack)
+                if(lstCompetitorGoldMine.Count > 0 || castle != null)
                 {
-                    foreach (Hero hero in lstHeroGoldMine)
+                    foreach(Hero heroMine in lstHeroGoldMine)
                     {
-                        hero.isInGoldMine = true;
+                        heroMine.isInGoldMine = true;
                     }
-                    isBeingAttack = true;
                 }
-                heroCurrent.goldMineAttacking = this;
-                heroCurrent.isInGoldMine = true;
-                lstCompetitorGoldMine.Add(heroCurrent);
             }
         }
     }
@@ -263,47 +251,24 @@ public class GoldMine : MonoBehaviour
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
-            if (other.CompareTag("Hero"))
+            if (other.CompareTag("Hero") || other.CompareTag("Castle"))
             {
-                Hero heroCurrent = other.GetComponent<Hero>();
-                heroCurrent.goldMineAttacking = null;
-                heroCurrent.targetCompetitor = null;
-                heroCurrent.isInGoldMine = false;
-                lstCompetitorGoldMine.Remove(heroCurrent);
-                if (lstCompetitorGoldMine.Count <= 0)
+                if (other.tag == "Hero")
                 {
-                    if (isBeingAttack)
-                    {
-                        foreach (Hero hero in lstHeroGoldMine)
-                        {
-                            hero.targetCompetitor = null;
-                            hero.isInGoldMine = false;
-                        }
-                        isBeingAttack = false;
-                    }
+                    other.GetComponent<Hero>().goldMineAttacking = null;
+                    other.GetComponent<Hero>().isInGoldMine = false;
+                    lstCompetitorGoldMine.Remove(other.gameObject);
                 }
-            }
-
-        }
-        else
-        {
-            if (other.CompareTag("Enemy"))
-            {
-                Hero heroCurrent = other.GetComponent<Hero>();
-                heroCurrent.goldMineAttacking = null;
-                heroCurrent.targetCompetitor = null;
-                heroCurrent.isInGoldMine = false;
-                lstCompetitorGoldMine.Remove(heroCurrent);
-                if (lstCompetitorGoldMine.Count <= 0)
+                else
                 {
-                    if (isBeingAttack)
+                    castle = null;
+                }
+
+                if (lstCompetitorGoldMine.Count <= 0 && castle == null)
+                {
+                    foreach (Hero heroMine in lstHeroGoldMine)
                     {
-                        foreach (Hero hero in lstHeroGoldMine)
-                        {
-                            hero.targetCompetitor = null;
-                            hero.isInGoldMine = false;
-                        }
-                        isBeingAttack = false;
+                        heroMine.isInGoldMine = false;
                     }
                 }
             }

@@ -36,10 +36,8 @@ public class GameManager : MonoBehaviour
     public List<Hero> lsPrefabsHero;
     public List<Hero> lsPrefabsEnemy;
 
-    [HideInInspector]
-    public int[] lsHeroFly = new int[] { 1, 3, 6, 9, 11, 13, 15, 17 };
-    [HideInInspector]
-    public int[] lsHeroCanMove = new int[] { 0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+    public int[] lsHeroFly;
+    public int[] lsHeroCanMove;
 
     [Header("OTHER")]
     public Camera cameraMain;
@@ -72,7 +70,7 @@ public class GameManager : MonoBehaviour
                 bh.isUnlock = false;
             else
                 bh.isUnlock = true;
-            if(i == 8)
+            if (i == 8)
                 bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
@@ -108,6 +106,11 @@ public class GameManager : MonoBehaviour
                 int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
                 this.PostEvent(EventID.EnemyAttackPlayer, a);
                 dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+            }
+
+            if(lstGoldMineEnemy.Count <= 0)
+            {
+                UIManager.Instance.panelVictory.SetActive(true);
             }
         }
     }
@@ -147,7 +150,7 @@ public class GameManager : MonoBehaviour
                 g.SetLevel(1);
                 g.id = i;
                 g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, 1);
-                g.numberBoxGoldMine = 3;                
+                g.numberBoxGoldMine = 3;
                 g.typeGoleMine = TypeGoldMine.Player;
                 g.InstantiateHero(true);
                 lstGoldMinePlayer.Add(g);
@@ -155,11 +158,26 @@ public class GameManager : MonoBehaviour
             else
             {
                 GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
-                int _level = UnityEngine.Random.Range(1, 20);
+                int _level;
+                if (i >= 5 && i <= 15 && i != 8 && i != 12)
+                {
+                    if (UnityEngine.Random.Range(0f, 1f) >= 0.25f)
+                    {
+                        _level = UnityEngine.Random.Range(1, 3);
+                    }
+                    else
+                    {
+                        _level = UnityEngine.Random.Range(4, 15);
+                    }
+                }
+                else
+                {
+                    _level = UnityEngine.Random.Range(15, 20);
+                }
                 g.SetLevel(_level);
                 g.id = i;
                 g.numberBoxGoldMine = a;
-                g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);                
+                g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);
                 g.typeGoleMine = TypeGoldMine.Enemy;
                 g.InstantiateHero(false);
                 g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);

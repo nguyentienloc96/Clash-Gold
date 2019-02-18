@@ -28,7 +28,7 @@ public abstract class Hero : MonoBehaviour
 
     [Header("ATTACK HERO")]
     public Transform posShoot;
-    public Hero targetCompetitor;
+    public GameObject targetCompetitor;
     public float timeCheckAttack;
     public ParticleSystem parHit;
 
@@ -70,7 +70,7 @@ public abstract class Hero : MonoBehaviour
         parDie.Play();
         if (goldMineAttacking != null)
         {
-            goldMineAttacking.lstCompetitorGoldMine.Remove(this);
+            goldMineAttacking.lstCompetitorGoldMine.Remove(this.gameObject);
         }
         if (goldMineProtecting != null)
         {
@@ -93,13 +93,13 @@ public abstract class Hero : MonoBehaviour
         typeAction = TypeAction.IDLE;
     }
 
-    protected Hero CheckCompetitorNear(List<Hero> lsCompetitor)
+    protected GameObject CheckCompetitorNear(List<GameObject> lsCompetitor)
     {
         if (lsCompetitor.Count > 0)
         {
             float shortestDistance = Mathf.Infinity;
-            Hero nearestCompetitor = null;
-            foreach (Hero obj in lsCompetitor)
+            GameObject nearestCompetitor = null;
+            foreach (GameObject obj in lsCompetitor)
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, obj.transform.position);
                 if (distanceToEnemy < shortestDistance)
@@ -117,8 +117,8 @@ public abstract class Hero : MonoBehaviour
     protected void TakeDamage(float _dame)
     {
         parHit.Play();
-        infoHero.healthAll -= _dame;
-        infoHero.numberHero = Mathf.CeilToInt(infoHero.healthAll / infoHero.health);
+        int numberRemove = (int)(_dame / infoHero.health);
+        infoHero.numberHero -= numberRemove;
         if (infoHero.numberHero <= 0)
         {
             infoHero.numberHero = 0;
@@ -131,85 +131,37 @@ public abstract class Hero : MonoBehaviour
     {
         if (isInGoldMine)
         {
-            if (targetCompetitor == null)
+            if (targetCompetitor == null || targetCompetitor.tag == "Castle")
             {
-                List<Hero> lsCompetitor = new List<Hero>();
-                if (gameObject.CompareTag("Hero"))
+                if (gameObject.tag == "Hero")
                 {
                     if (goldMineAttacking != null)
                     {
-                        lsCompetitor = goldMineAttacking.lstHeroGoldMine;
-                    }
-                    else if (goldMineProtecting != null)
-                    {
-                        lsCompetitor = goldMineProtecting.lstCompetitorGoldMine;
-                    }
-                }
-                else if (gameObject.CompareTag("Enemy"))
-                {
-                    if (goldMineAttacking != null)
-                    {
-                        lsCompetitor = goldMineAttacking.lstHeroGoldMine;
-                    }
-                    else if (goldMineProtecting != null)
-                    {
-                        lsCompetitor = goldMineProtecting.lstCompetitorGoldMine;
-                    }
-                }
-                List<Hero> lsCompetitorTarget = new List<Hero>();
-                Hero targetAttack = null;
-                if (infoHero.typeHero == TypeHero.ChemThuong)
-                {
-
-                    foreach (Hero obj in lsCompetitor)
-                    {
-                        if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
+                        List<GameObject> lsTarget = new List<GameObject>();
+                        if (goldMineAttacking.lstHeroGoldMine.Count > 0)
                         {
-                            if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
+                            foreach (Hero obj in goldMineAttacking.lstHeroGoldMine)
                             {
-                                if (obj.infoHero.typeHero != TypeHero.Canon)
-                                {
-                                    lsCompetitorTarget.Add(obj);
-                                }
-                                else
-                                {
-                                    if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
-                                    {
-                                        lsCompetitorTarget.Add(obj);
-                                    }
-                                }
+                                lsTarget.Add(obj.gameObject);
                             }
+                            targetCompetitor = CheckCompetitorNear(lsTarget);
                         }
                     }
                 }
                 else
                 {
-                    foreach (Hero obj in lsCompetitor)
+                    if (goldMineProtecting != null)
                     {
-                        if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
+                        List<GameObject> lsTarget = new List<GameObject>();
+                        if (goldMineProtecting.lstCompetitorGoldMine.Count > 0)
                         {
-                            if (obj.infoHero.typeHero != TypeHero.Canon)
-                            {
-                                lsCompetitorTarget.Add(obj);
-                            }
-                            else
-                            {
-                                if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
-                                {
-                                    lsCompetitorTarget.Add(obj);
-                                }
-                            }
+                            targetCompetitor = CheckCompetitorNear(goldMineProtecting.lstCompetitorGoldMine);
+                        }
+                        else
+                        {
+                            targetCompetitor = goldMineProtecting.castle;
                         }
                     }
-                }
-                targetAttack = CheckCompetitorNear(lsCompetitorTarget);
-                if (targetAttack != null)
-                {
-                    targetCompetitor = targetAttack;
-                }
-                else
-                {
-                    targetCompetitor = null;
                 }
             }
         }

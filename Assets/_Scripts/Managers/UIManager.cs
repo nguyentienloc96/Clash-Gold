@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject panelChooseLevel;
     public GameObject panelMain;
     public GameObject panelYesNoNewPlay;
+    public GameObject panelGameOver;
+    public GameObject panelVictory;
     public Button buttonContinue;
 
     [Header("UI TOP")]

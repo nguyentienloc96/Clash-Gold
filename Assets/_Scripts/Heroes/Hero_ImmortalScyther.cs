@@ -7,11 +7,19 @@ public class Hero_ImmortalScyther : Hero {
     public override void Attack()
     {
         AnimAttack();
-        if (targetCompetitor.infoHero.ID == 12)
+        if (targetCompetitor.CompareTag("Castle"))
         {
-            targetCompetitor.BeingAttacked(targetCompetitor.infoHero.counterDame * targetCompetitor.infoHero.numberHero);
+            targetCompetitor.GetComponent<Castle>().BeingAttacked(infoHero.dame * infoHero.numberHero);
         }
-        targetCompetitor.BeingAttacked(infoHero.dame * infoHero.numberHero);
+        else
+        {
+            Hero hero = targetCompetitor.GetComponent<Hero>();
+            if (hero.infoHero.ID == 10)
+            {
+                hero.BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
+            }
+            hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
+        }
     }
 
     public override void Die()
