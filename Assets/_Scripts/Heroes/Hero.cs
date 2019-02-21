@@ -15,7 +15,6 @@ public abstract class Hero : MonoBehaviour
 {
     [Header("INFO HERO")]
     public InfoHero infoHero = new InfoHero();
-    public TextMesh txtCountHero;
 
     [Header("ANIM HERO")]
     public Animator animator;
@@ -24,25 +23,40 @@ public abstract class Hero : MonoBehaviour
     public int numAttack;
     public bool isFly;
     public bool isRelease;
-    public ParticleSystem parDie;
 
     [Header("ATTACK HERO")]
     public Transform posShoot;
     public GameObject targetCompetitor;
+    [HideInInspector]
     public float timeCheckAttack;
+
+    [Header("EFFECT")]
+    public TextMesh txtCountHero;
+    public ParticleSystem parDie;
     public ParticleSystem parHit;
 
-    [Header("CHECK GOLD MINE")]
-    public bool isInGoldMine;
+    [Header("CHECK ATTACK")]
+    public int IDGold;
+    [HideInInspector]
+    public bool isAttack;
 
     [Header("CHECK MOVE")]
-    public Vector3 posMove;
-    public bool isMove;
+    [HideInInspector]
     public GoldMine goldMineAttacking;
+    [HideInInspector]
     public GoldMine goldMineProtecting;
+    [HideInInspector]
     public Vector3 posStart;
+    [HideInInspector]
+    public Vector3 posMove;
+    [HideInInspector]
+    public bool isMove;
+    [HideInInspector]
     public float timeCheckCameBack;
+    [HideInInspector]
     public float speedMin;
+    [HideInInspector]
+    public List<Hero> lsChild;
 
     public abstract void SetInfoHero();
 
@@ -134,7 +148,7 @@ public abstract class Hero : MonoBehaviour
 
     public void CheckEnemy()
     {
-        if (isInGoldMine)
+        if (isAttack)
         {
             if (targetCompetitor == null || targetCompetitor.tag == "Castle")
             {
@@ -238,7 +252,7 @@ public abstract class Hero : MonoBehaviour
             }
             if (!isMove)
             {
-                if (isInGoldMine)
+                if (isAttack)
                 {
                     CheckEnemy();
 
@@ -302,5 +316,32 @@ public abstract class Hero : MonoBehaviour
     public void StartChild()
     {
 
+    }
+
+    public void ExitGoldMine()
+    {
+        if (lsChild.Count > 0)
+        {
+            foreach (Hero hero in lsChild)
+            {
+                hero.Die();
+            }
+            lsChild.Clear();
+        }
+    }
+
+    public void InstantiateChild(int idHero)
+    {
+        Hero hero = Instantiate(
+        GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity,
+        GameManager.Instance.heroManager);
+
+        hero.IDGold = IDGold;
+        hero.isAttack = true;
+        hero.gameObject.name = "Hero";
+        hero.SetInfoHero();
+        hero.infoHero.capWar = 0;
+        hero.AddHero(infoHero.numberHero);
+        lsChild.Add(hero);
     }
 }

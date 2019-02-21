@@ -66,7 +66,6 @@ GameObject:
   - component: {fileID: 4920208662032262}
   - component: {fileID: 212650450561547668}
   - component: {fileID: 114434942514772356}
-  - component: {fileID: 60291840318629230}
   - component: {fileID: 61142940918281668}
   m_Layer: 10
   m_Name: Castle
@@ -82,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1090330289169950}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.05, y: 0.35, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4920208662032262}
@@ -95,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1455130492282432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4920208662032262}
@@ -108,7 +107,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1206171008563010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.05, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4920208662032262}
@@ -121,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689042427745408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4414080315528002}
@@ -130,84 +129,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &60291840318629230
-PolygonCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1689042427745408}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6711111, y: 0.6622222}
-    newSize: {x: 3.02, y: 2.98}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.13777778, y: -0.24222223}
-      - {x: 0.16666667, y: -0.25111112}
-      - {x: 0.22, y: -0.2488889}
-      - {x: 0.23777778, y: -0.22}
-      - {x: 0.23777778, y: -0.18666667}
-      - {x: 0.24444444, y: -0.14444445}
-      - {x: 0.27111113, y: -0.1}
-      - {x: 0.28222224, y: -0.075555556}
-      - {x: 0.30888888, y: -0.053333335}
-      - {x: 0.32444444, y: -0.031111112}
-      - {x: 0.32666668, y: -0.011111111}
-      - {x: 0.32666668, y: 0.0022222223}
-      - {x: 0.32222223, y: 0.015555556}
-      - {x: 0.31777778, y: 0.024444446}
-      - {x: 0.29555556, y: 0.046666667}
-      - {x: 0.25111112, y: 0.13555557}
-      - {x: 0.25777778, y: 0.17111112}
-      - {x: 0.25111112, y: 0.19111112}
-      - {x: 0.21555556, y: 0.22222222}
-      - {x: 0.17333333, y: 0.21777779}
-      - {x: 0.062222224, y: 0.26444444}
-      - {x: 0.053333335, y: 0.29333335}
-      - {x: 0.033333335, y: 0.30666667}
-      - {x: -0.017777778, y: 0.30666667}
-      - {x: -0.035555556, y: 0.2888889}
-      - {x: -0.055555556, y: 0.26222223}
-      - {x: -0.17555556, y: 0.22222222}
-      - {x: -0.20888889, y: 0.23555556}
-      - {x: -0.23555556, y: 0.23333333}
-      - {x: -0.25111112, y: 0.21777779}
-      - {x: -0.26000002, y: 0.17777778}
-      - {x: -0.25555557, y: 0.14444445}
-      - {x: -0.26666668, y: 0.12666667}
-      - {x: -0.2777778, y: 0.10666667}
-      - {x: -0.3, y: 0.055555556}
-      - {x: -0.31111112, y: 0.053333335}
-      - {x: -0.33555555, y: 0.024444446}
-      - {x: -0.33555555, y: -0.008888889}
-      - {x: -0.32666668, y: -0.022222223}
-      - {x: -0.31555557, y: -0.033333335}
-      - {x: -0.30666667, y: -0.037777778}
-      - {x: -0.26222223, y: -0.15777779}
-      - {x: -0.2688889, y: -0.1688889}
-      - {x: -0.27111113, y: -0.19111112}
-      - {x: -0.25333333, y: -0.22}
-      - {x: -0.2288889, y: -0.2288889}
-      - {x: -0.2, y: -0.22666667}
-      - {x: -0.15555556, y: -0.23777778}
-      - {x: -0.097777784, y: -0.2688889}
-      - {x: -0.037777778, y: -0.31777778}
-      - {x: 0, y: -0.31777778}
-      - {x: 0.026666667, y: -0.30666667}
-      - {x: 0.042222224, y: -0.28}
-      - {x: 0.091111116, y: -0.25777778}
 --- !u!61 &61142940918281668
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -247,20 +168,19 @@ MonoBehaviour:
   health: 0
   healthMax: 0
   price: 0
-  isCanReleaseCanon: 0
-  colliderLand: {fileID: 0}
-  lstHeroRelease: []
   speed: 0
+  isCanReleaseCanon: 0
+  posMove: {x: 0, y: 0, z: 0}
+  isMove: 0
+  isChildMove: 0
+  txtLevel: {fileID: 0}
+  txtHealth: {fileID: 0}
+  cameraMain: {fileID: 0}
   lsPos:
   - {fileID: 4414080315528002}
   - {fileID: 4182129549998640}
   - {fileID: 4576455793482236}
-  posMove: {x: 0, y: 0, z: 0}
-  isMove: 0
-  isChildMove: 0
-  cameraMain: {fileID: 0}
-  txtLevel: {fileID: 0}
-  txtHealth: {fileID: 0}
+  lstHeroRelease: []
   lstAvatarHeroRelease:
   - {fileID: 0}
   - {fileID: 0}

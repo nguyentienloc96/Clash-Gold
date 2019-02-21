@@ -9,42 +9,39 @@ using UnityEngine.EventSystems;
 [System.Serializable]
 public class Castle : MonoBehaviour
 {
+    [Header("INFO CASTLE")]
     public float health;
     public float healthMax;
     public long price;
     private int level = 1;
-    public bool isCanReleaseCanon = false;
-    public Collider2D colliderLand;
-    public List<Hero> lstHeroRelease = new List<Hero>();
     public float speed;
-    public List<Transform> lsPos;
+    [HideInInspector]
+    public bool isCanReleaseCanon = false;
 
     [Header("CHECK MOVE")]
+    [HideInInspector]
     public Vector3 posMove;
+    [HideInInspector]
     public bool isMove;
+    [HideInInspector]
     public bool isChildMove;
-    public Camera cameraMain;
 
     [Header("UI")]
     public Text txtLevel;
     public Text txtHealth;
+    public Camera cameraMain;
+
+    [Header("LIST")]
+    public List<Transform> lsPos;
+    public List<Hero> lstHeroRelease;
     public Image[] lstAvatarHeroRelease;
+
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
         speed = 0;
+        lstHeroRelease = new List<Hero>();
     }
-
-    //void FixedUpdate()
-    //{
-    //    if (lstHeroRelease.Count < 3)
-    //    {
-    //        for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
-    //        {
-    //            OnBuildHouseComplete(GameManager.Instance.lstHousePlayer[i].idHero);
-    //        }
-    //    }
-    //}
 
     void OnStartGame()
     {
@@ -64,7 +61,7 @@ public class Castle : MonoBehaviour
         {
             if (lstHeroRelease.Count == 0)
             {
-                InstantiateHero((int)_param);
+                InstantiateHero((int)_param, lsPos[lstHeroRelease.Count].position);
             }
             else if (lstHeroRelease.Count < 3)
             {
@@ -72,7 +69,7 @@ public class Castle : MonoBehaviour
                 {
                     if ((int)_param != lstHeroRelease[i].infoHero.ID)
                     {
-                        InstantiateHero((int)_param);
+                        InstantiateHero((int)_param, lsPos[lstHeroRelease.Count].position);
                         break;
                     }
                 }
@@ -80,33 +77,19 @@ public class Castle : MonoBehaviour
         }
     }
 
-    public void InstantiateHero(int idHero)
+    public void InstantiateHero(int idHero, Vector3 posIns, int number = 1)
     {
-        int numberHero = 1;
+        Hero hero = Instantiate(
+        GameManager.Instance.lsPrefabsHero[idHero - 1], posIns, Quaternion.identity,
+        GameManager.Instance.heroManager);
 
-        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero - 1]
-            , lsPos[lstHeroRelease.Count].position
-            , Quaternion.identity
-            , GameManager.Instance.heroManager);
+        hero.IDGold = -1;
         hero.gameObject.name = "Hero";
         hero.SetInfoHero();
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.AddHero(numberHero);
+        hero.AddHero(number);
         lstHeroRelease.Add(hero);
         ShowAvatarHero(idHero - 1);
-    }
-
-    public void InstantiateCanonToPos(int idHero,Vector3 _toPos)
-    {
-        int numberHero = 1;
-        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero - 1]
-            , _toPos
-            , Quaternion.identity
-            , GameManager.Instance.heroManager);
-        hero.gameObject.name = "Hero";
-        hero.SetInfoHero();
-        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.AddHero(numberHero);
     }
 
     void ShowAvatarHero(int _id)
@@ -230,12 +213,14 @@ public class Castle : MonoBehaviour
                 for (int i = 0; i < lstHeroRelease.Count; i++)
                 {
                     lstHeroRelease[i].speedMin = speedMin * 2f;
-                    lstHeroRelease[i].StartMoveToPosition(lsPos[i].position + diffCurrent);
+                    Vector3 posIns = i < 3 ? lsPos[i].position : lsPos[2].position;
+                    lstHeroRelease[i].StartMoveToPosition(posIns + diffCurrent);
                 }
                 isChildMove = false;
             }
 
         }
+        _toPos.z = -2f;
         transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
 
     }

@@ -7302,6 +7302,8 @@ MonoBehaviour:
   lstBuildHouse: []
   maxLevelHouse: 0
   lstGoldMineEnemy: []
+  lsHero: []
+  lsEnemy: []
   lsPrefabsHero:
   - {fileID: 114695796664788622, guid: cf356bf6eee272449a66af5413aff048, type: 2}
   - {fileID: 114265223549625508, guid: ea31da01b2edba84c973ce84497cddaf, type: 2}
@@ -12931,7 +12933,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 4920208662032262, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12955,11 +12957,6 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
         type: 2}
-      propertyPath: cameraMain
-      value: 
-      objectReference: {fileID: 443966388}
-    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
-        type: 2}
       propertyPath: txtLevel
       value: 
       objectReference: {fileID: 399415663}
@@ -12968,6 +12965,11 @@ Prefab:
       propertyPath: txtHealth
       value: 
       objectReference: {fileID: 852013058}
+    - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
+        type: 2}
+      propertyPath: cameraMain
+      value: 
+      objectReference: {fileID: 443966388}
     - target: {fileID: 114434942514772356, guid: 95ddd3af904eb91448acf7744ee504b1,
         type: 2}
       propertyPath: lstAvatarHeroRelease.Array.data[0]
@@ -12983,18 +12985,6 @@ Prefab:
       propertyPath: lstAvatarHeroRelease.Array.data[2]
       value: 
       objectReference: {fileID: 2087235781}
-    - target: {fileID: 4414080315528002, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 4182129549998640, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4576455793482236, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 95ddd3af904eb91448acf7744ee504b1, type: 2}
   m_IsPrefabParent: 0

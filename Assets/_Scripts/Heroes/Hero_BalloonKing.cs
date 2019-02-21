@@ -53,7 +53,14 @@ public class Hero_BalloonKing : Hero {
             timeInstanceChild += Time.deltaTime;
             if (timeInstanceChild >= 1f)
             {
-                GameManager.Instance.castlePlayer.InstantiateHero(19);
+                if (gameObject.tag == "Hero")
+                {
+                    InstantiateChild(19);
+                }
+                else
+                {
+
+                }
                 timeInstanceChild = 0;
             }
         }

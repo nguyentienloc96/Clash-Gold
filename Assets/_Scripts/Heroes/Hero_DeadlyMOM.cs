@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Hero_DeadlyMOM : Hero {
 
+    string nameBullet;
+    float timeInstanceChild;
+
     public override void Attack()
     {
         AnimAttack();
@@ -31,16 +34,16 @@ public class Hero_DeadlyMOM : Hero {
         this.infoHero.ID = 3;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
     }
-    string nameBullet;
+
     public void Start()
     {
+        lsChild = new List<Hero>();
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
         nameBullet = gameObject.name;
     }
 
-    private float timeInstanceChild;
     public void Update()
     {
         HeroUpdate();
@@ -49,7 +52,14 @@ public class Hero_DeadlyMOM : Hero {
             timeInstanceChild += Time.deltaTime;
             if (timeInstanceChild >= 1f)
             {
-                GameManager.Instance.castlePlayer.InstantiateHero(18);
+                if (gameObject.tag == "Hero")
+                {
+                    InstantiateChild(20);
+                }
+                else
+                {
+
+                }
                 timeInstanceChild = 0;
             }
         }

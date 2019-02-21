@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     [Header("INFO ENEMY")]
     public List<GoldMine> lstGoldMineEnemy = new List<GoldMine>();
 
+    public List<Hero> lsHero;
+    public List<Hero> lsEnemy;
+
     public List<Hero> lsPrefabsHero;
     public List<Hero> lsPrefabsEnemy;
 
@@ -152,7 +155,7 @@ public class GameManager : MonoBehaviour
                 g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, 1);
                 g.numberBoxGoldMine = 3;
                 g.typeGoleMine = TypeGoldMine.Player;
-                g.InstantiateHero(true);
+                g.InstantiateHeroStart(true);
                 lstGoldMinePlayer.Add(g);
             }
             else
@@ -179,7 +182,7 @@ public class GameManager : MonoBehaviour
                 g.numberBoxGoldMine = a;
                 g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);
                 g.typeGoleMine = TypeGoldMine.Enemy;
-                g.InstantiateHero(false);
+                g.InstantiateHeroStart(false);
                 g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
                 lstGoldMineEnemy.Add(g);
             }
