@@ -64,6 +64,18 @@ public class UIManager : MonoBehaviour
     public bool isBuildCanon;
     public bool isWaitBuildCanon;
 
+    [Header("MINIMAP")]
+    public Image imgMagnifyingGlass;
+    public Animation animminiMap;
+    public Animation animBinoculars;
+    public Sprite spZoomInGlass;
+    public Sprite spZoomOutGlass;
+    public bool isZoomOut;
+    public bool isBinoculars;
+    public Canvas cavas;
+    public Camera cameraMain;
+    public Camera cameraMiniMap;
+
     public static UIManager Instance = new UIManager();
     void Awake()
     {
@@ -363,4 +375,39 @@ public class UIManager : MonoBehaviour
         buttonReleaseCanon.interactable = false;
     }
     #endregion
+
+    public void Btn_ZoomMiniMap()
+    {
+        isZoomOut = !isZoomOut;
+        if (isZoomOut)
+        {
+            animminiMap.Play("ZoomOutMiniMap");
+            imgMagnifyingGlass.sprite = spZoomInGlass;
+        }
+        else
+        {
+            animminiMap.Play("ZoomInMiniMap");
+            imgMagnifyingGlass.sprite = spZoomOutGlass;
+        }
+    }
+
+    public void Btn_BinocularsMiniMap()
+    {
+        isBinoculars = !isBinoculars;
+        if (isBinoculars)
+        {
+            cameraMiniMap.depth = 0;
+            cavas.worldCamera = cameraMiniMap;
+            animBinoculars.Play("Binoculars");
+            imgMagnifyingGlass.sprite = spZoomInGlass;
+        }
+        else
+        {
+            cameraMiniMap.depth = -2;
+            cavas.worldCamera = cameraMain;
+            cameraMiniMap.transform.position = cameraMain.transform.position;
+            animBinoculars.Play("BinocularsNormal");
+            imgMagnifyingGlass.sprite = spZoomOutGlass;
+        }
+    }
 }

@@ -18,6 +18,13 @@ public class DeadzoneCamera : MonoBehaviour
     float minFov = 5f;
     float maxFov = 25f;
 
+    float speed = 2.0f;
+    int boundary = 10;
+    int width;
+    int height;
+    public Camera cameraMap;
+    public Vector3 smoothPosMap;
+
     public void Start()
     {
         smoothPos = target.transform.position;
@@ -30,15 +37,19 @@ public class DeadzoneCamera : MonoBehaviour
             Debug.LogError("deadzone script require an orthographic camera!");
             Destroy(this);
         }
+
+        width = Screen.width;
+        height = Screen.height;
     }
 
     public void Update()
     {
-
+        #region CameraMain
         float fov = _camera.orthographicSize;
         fov += Input.GetAxis("Mouse ScrollWheel");
         fov = Mathf.Clamp(fov, minFov, maxFov);
         _camera.orthographicSize = fov;
+        cameraMap.orthographicSize = fov;
 
         float localX = target.transform.position.x - transform.position.x;
         float localY = target.transform.position.y - transform.position.y;
@@ -85,6 +96,59 @@ public class DeadzoneCamera : MonoBehaviour
         smoothPos.z = -10;
         current = smoothPos;
         transform.position = Vector3.SmoothDamp(current, smoothPos, ref _currentVelocity, 0.1f);
+        #endregion
+
+        #region CameraCheckMap
+        if (UIManager.Instance.isBinoculars)
+        {
+            Vector3 targetMap = cameraMap.transform.position;
+            if (Input.mousePosition.x > width - boundary)
+            {
+                targetMap += new Vector3(Time.deltaTime * speed, 0.0f);
+            }
+
+            if (Input.mousePosition.x < 0 + boundary)
+            {
+                targetMap -= new Vector3(Time.deltaTime * speed, 0.0f);
+            }
+
+            if (Input.mousePosition.y > height - boundary)
+            {
+                targetMap += new Vector3(0.0f, Time.deltaTime * speed);
+            }
+
+            if (Input.mousePosition.y < 0 + boundary)
+            {
+                targetMap -= new Vector3(0.0f, Time.deltaTime * speed);
+            }
+
+            smoothPosMap = targetMap;
+
+            Rect camWorldRectMap = new Rect();
+            camWorldRectMap.min = new Vector2(smoothPosMap.x - cameraMap.aspect * cameraMap.orthographicSize, smoothPosMap.y - cameraMap.orthographicSize);
+            camWorldRectMap.max = new Vector2(smoothPosMap.x + cameraMap.aspect * cameraMap.orthographicSize, smoothPosMap.y + cameraMap.orthographicSize);
+
+
+            for (int i = 0; i < limits.Length; ++i)
+            {
+                if (limits[i].Contains(targetMap))
+                {
+                    Vector3 localOffsetMin = limits[i].min + camWorldRectMap.size * 0.5f;
+                    Vector3 localOffsetMax = limits[i].max - camWorldRectMap.size * 0.5f;
+
+                    localOffsetMin.z = localOffsetMax.z = smoothPosMap.z;
+
+                    smoothPosMap = Vector3.Max(smoothPosMap, localOffsetMin);
+                    smoothPosMap = Vector3.Min(smoothPosMap, localOffsetMax);
+
+                    break;
+                }
+            }
+
+            smoothPosMap.z = -10;
+            cameraMap.transform.position = smoothPosMap;
+        }
+        #endregion
     }
 
 }

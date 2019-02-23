@@ -109,7 +109,7 @@ public class Castle : MonoBehaviour
     {
         if (GameManager.Instance.isPlay)
         {
-            if (CheckCastle() || IsPointerOverGameObject())
+            if (CheckCastle() || IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
                 return;
 
             if (Input.GetMouseButtonDown(0) && !UIManager.Instance.isBuildCanon)
