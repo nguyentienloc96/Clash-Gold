@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using EventDispatcher;
 
+[System.Serializable]
+public enum TypeGoldMine
+{
+    Enemy,
+    Player
+}
 
 [System.Serializable]
 public class GoldMine : MonoBehaviour
@@ -21,10 +27,7 @@ public class GoldMine : MonoBehaviour
 
     public Collider2D colliderLand;
 
-
     public List<Hero> lstHeroGoldMine;
-    public List<GameObject> lstCompetitorGoldMine;
-    public GameObject castle;
 
     public List<Transform> lsPos;
 
@@ -177,24 +180,28 @@ public class GoldMine : MonoBehaviour
 
     void Update()
     {
-        //if (typeGoleMine == TypeGoldMine.Enemy && this.lstHeroGoldMine.Count <= 0)
-        //{
-        //    GameManager.Instance.lstGoldMineEnemy.Remove(this);
-        //    typeGoleMine = TypeGoldMine.Player;
-        //    GameManager.Instance.lstGoldMinePlayer.Add(this);
-        //    SetSpriteBox(0);
-        //}
-
-        //if (lstCompetitorGoldMine.Count > 0 && !isCanon)
-        //{
-        //    timeCanon += Time.deltaTime;
-        //    if (timeCanon >= 3)
-        //    {
-        //        Vector3 posCanon = (lstCompetitorGoldMine[0].transform.position + lstHeroGoldMine[0].transform.position) / 2;
-        //        InstantiateCanon(typeGoleMine == TypeGoldMine.Player, posCanon);
-        //        isCanon = true;
-        //    }
-        //}
+        if (GameManager.Instance.isAttack)
+        {
+            if (GameManager.Instance.lsEnemy.Count <= 0)
+            {
+                UIManager.Instance.cameraAttack.gameObject.SetActive(false);
+                UIManager.Instance.cavas.worldCamera = UIManager.Instance.cameraMain;
+                GameManager.Instance.mapAttack.SetActive(false);
+                GameManager.Instance.mapMove.SetActive(true);
+                GameManager.Instance.enemyGold.SetActive(true);
+                typeGoleMine = TypeGoldMine.Player;
+                GameManager.Instance.isAttack = false;
+            }
+            if (GameManager.Instance.lsHero.Count <= 0)
+            {
+                UIManager.Instance.cameraAttack.gameObject.SetActive(false);
+                UIManager.Instance.cavas.worldCamera = UIManager.Instance.cameraMain;
+                GameManager.Instance.mapAttack.SetActive(false);
+                GameManager.Instance.mapMove.SetActive(true);
+                GameManager.Instance.enemyGold.SetActive(true);
+                GameManager.Instance.isAttack = false;
+            }
+        }
     }
 
     public void InstantiateHeroStart(bool isHero)
@@ -229,7 +236,6 @@ public class GoldMine : MonoBehaviour
                 hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
                 hero.AddHero(numberEnemy);
 
-                hero.goldMineProtecting = this;
                 hero.posStart = lsPos[i].position;
             }
 
@@ -266,7 +272,6 @@ public class GoldMine : MonoBehaviour
                 hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
                 hero.AddHero(numberEnemy);
 
-                hero.goldMineProtecting = this;
                 hero.posStart = lsPos[i].position;
             }
 
@@ -290,7 +295,6 @@ public class GoldMine : MonoBehaviour
             hero.SetInfoHero();
             hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
             hero.AddHero(numberEnemy);
-            hero.goldMineProtecting = this;
         }
         else
         {
@@ -304,72 +308,48 @@ public class GoldMine : MonoBehaviour
             hero.SetInfoHero();
             hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
             hero.AddHero(numberEnemy);
-            hero.goldMineProtecting = this;
         }
     }
 
-    public bool isBeingAttack;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
-            if (other.CompareTag("Hero") || other.CompareTag("Castle"))
+            if (other.CompareTag("Castle"))
             {
-                if (other.tag == "Hero")
-                {
-                    other.GetComponent<Hero>().goldMineAttacking = this;
-                    other.GetComponent<Hero>().isAttack = true;
-                    lstCompetitorGoldMine.Add(other.gameObject);
-                }
-                else
-                {
-                    castle = other.gameObject;
-                }
-
-                if (lstCompetitorGoldMine.Count > 0 || castle != null)
-                {
-                    foreach (Hero heroMine in lstHeroGoldMine)
-                    {
-                        heroMine.isAttack = true;
-                    }
-                }
+                Attack();
+                GameManager.Instance.isAttack = true;
             }
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
+    public void Attack()
     {
-        if (typeGoleMine == TypeGoldMine.Enemy)
+        UIManager.Instance.cameraAttack.gameObject.SetActive(true);
+        UIManager.Instance.cavas.worldCamera = UIManager.Instance.cameraAttack;
+        GameManager.Instance.mapAttack.SetActive(true);
+        GameManager.Instance.mapMove.SetActive(false);
+        GameManager.Instance.enemyGold.SetActive(false);
+        for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
         {
-            if (other.CompareTag("Hero") || other.CompareTag("Castle"))
-            {
-                if (other.tag == "Hero")
-                {
-                    other.GetComponent<Hero>().goldMineAttacking = null;
-                    other.GetComponent<Hero>().isAttack = false;
-                    other.GetComponent<Hero>().ExitGoldMine();
-                    lstCompetitorGoldMine.Remove(other.gameObject);
-                }
-                else
-                {
-                    castle = null;
-                }
+            Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID], GameManager.Instance.lsPosEnemy[i]);
+            hero.gameObject.name = "Enemy";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+            hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
+            hero.isAttack = true;
+            GameManager.Instance.lsEnemy.Add(hero);
+        }
 
-                if (lstCompetitorGoldMine.Count <= 0 && castle == null)
-                {
-                    foreach (Hero heroMine in lstHeroGoldMine)
-                    {
-                        heroMine.isAttack = false;
-                    }
-                }
-            }
+        for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count && i < 3; i++)
+        {
+            Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero], GameManager.Instance.lsPosHero[i]);
+            hero.gameObject.name = "Hero";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+            hero.AddHero(GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero);
+            hero.isAttack = true;
+            GameManager.Instance.lsHero.Add(hero);
         }
     }
-}
-
-[System.Serializable]
-public enum TypeGoldMine
-{
-    Enemy,
-    Player
 }

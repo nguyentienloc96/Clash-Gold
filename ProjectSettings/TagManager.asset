@@ -9,6 +9,7 @@ TagManager:
   - Bullet Hero
   - Bullet Enemy
   - Castle
+  - MapAttack
   layers:
   - Default
   - TransparentFX
@@ -21,8 +22,8 @@ TagManager:
   - Bullet
   - GoldMine
   - Castle
-  - 
-  - 
+  - MapAttack
+  - Hero
   - 
   - 
   - 

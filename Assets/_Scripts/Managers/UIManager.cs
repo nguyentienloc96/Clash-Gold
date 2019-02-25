@@ -75,6 +75,10 @@ public class UIManager : MonoBehaviour
     public Canvas cavas;
     public Camera cameraMain;
     public Camera cameraMiniMap;
+    public Camera cameraAttack;
+
+    public GameObject panelRelace;
+    public Transform contentRelace;
 
     public static UIManager Instance = new UIManager();
     void Awake()
@@ -131,7 +135,6 @@ public class UIManager : MonoBehaviour
             timeBuildCanon += Time.deltaTime;
             if(timeBuildCanon >= GameConfig.Instance.TimeCanon)
             {
-                GameManager.Instance.castlePlayer.InstantiateHero(9, buildCanon.transform.position);
                 buildCanon.SetActive(false);
                 isWaitBuildCanon = false;
                 timeBuildCanon = 0;

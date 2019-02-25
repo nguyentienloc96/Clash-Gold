@@ -30,12 +30,7 @@ public class House : MonoBehaviour
     public Image imgLoadingBuild;
     public Image imgLoadingBar;
     public Image imgNotBuild;
-    // Use this for initialization
-    void Start()
-    {
-    }
 
-    // Update is called once per frame
     void Update()
     {
         if (typeState == TypeStateHouse.None && txtCountHero.gameObject.activeSelf)
@@ -50,7 +45,7 @@ public class House : MonoBehaviour
                 BuildComplete();
                 timeBuild = 0;
             }
-            timeBuild -= Time.deltaTime;
+            timeBuild -= Time.deltaTime * 30f;
             imgLoadingBar.fillAmount += (1.0f / (2.2f * timeBuild)) * Time.deltaTime;
             txtCountTime.text = transformToTime(timeBuild);
         }
@@ -145,15 +140,6 @@ public class House : MonoBehaviour
         levelWillupgrade = level + _x;
         priceWillUpgrade = (long)(price * Mathf.Pow(GameConfig.Instance.Ri, _x));
         capWillUpgrade = (int)(capWar * Mathf.Pow(GameConfig.Instance.Wi, _x));
-        //capWillUpgrade = capWar;
-        //priceWillUpgrade = price;
-        //levelWillupgrade = level;
-        //for (int i = 1; i <= _x; i++)
-        //{
-        //    levelWillupgrade++;
-        //    priceWillUpgrade = (long)(priceWillUpgrade * GameConfig.Instance.Ri);
-        //    capWillUpgrade = (int)(capWillUpgrade * GameConfig.Instance.Wi);
-        //}
     }
 
     public void YesUpgrade(int _x)
@@ -231,21 +217,15 @@ public class House : MonoBehaviour
             GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
             UIManager.Instance.buttonReleaseCanon.interactable = true;
         }
-
-        this.PostEvent(EventID.BuildHouseComplete, idHero);
+        Dictionary<string, int> keyHouse = new Dictionary<string, int>();
+        keyHouse.Add("IdHouse", idHouse);
+        keyHouse.Add("IdHero", idHero);
+        this.PostEvent(EventID.BuildHouseComplete, keyHouse);
     }
 
     public void SpawmHero()
     {
         countHero += capWar;
-        for (int i = 0; i < GameManager.Instance.castlePlayer.lstHeroRelease.Count; i++)
-        {
-            if (GameManager.Instance.castlePlayer.lstHeroRelease[i].infoHero.ID == idHero)
-            {
-                GameManager.Instance.castlePlayer.lstHeroRelease[i].AddHero(countHero);
-                countHero = 0;
-            }
-        }
     }
 
     public void OnNextDay()

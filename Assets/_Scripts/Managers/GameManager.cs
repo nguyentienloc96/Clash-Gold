@@ -44,13 +44,20 @@ public class GameManager : MonoBehaviour
 
     [Header("OTHER")]
     public Camera cameraMain;
-    public Transform heroManager;
     public Transform enemyManager;
 
     [Header("MAP")]
     public Transform[] posMap;
     public GameObject[] prefabsBoxMap;
     public Sprite[] sprBoxMap;
+
+
+    public bool isAttack;
+    public List<Transform> lsPosHero;
+    public List<Transform> lsPosEnemy;
+    public GameObject mapAttack;
+    public GameObject mapMove;
+    public GameObject enemyGold;
 
     void Awake()
     {
@@ -88,7 +95,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (isPlay)
@@ -115,6 +121,7 @@ public class GameManager : MonoBehaviour
             {
                 UIManager.Instance.panelVictory.SetActive(true);
             }
+ 
         }
     }
 

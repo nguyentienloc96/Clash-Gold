@@ -26,7 +26,7 @@ public abstract class Hero : MonoBehaviour
 
     [Header("ATTACK HERO")]
     public Transform posShoot;
-    public GameObject targetCompetitor;
+    public Hero targetCompetitor;
     [HideInInspector]
     public float timeCheckAttack;
 
@@ -37,14 +37,9 @@ public abstract class Hero : MonoBehaviour
 
     [Header("CHECK ATTACK")]
     public int IDGold;
-    [HideInInspector]
     public bool isAttack;
 
     [Header("CHECK MOVE")]
-    [HideInInspector]
-    public GoldMine goldMineAttacking;
-    [HideInInspector]
-    public GoldMine goldMineProtecting;
     [HideInInspector]
     public Vector3 posStart;
     [HideInInspector]
@@ -82,23 +77,19 @@ public abstract class Hero : MonoBehaviour
     {
         typeAction = TypeAction.DIE;
         parDie.Play();
-        if (goldMineAttacking != null)
-        {
-            goldMineAttacking.lstCompetitorGoldMine.Remove(this.gameObject);
-        }
-        if (goldMineProtecting != null)
-        {
-            goldMineProtecting.lstHeroGoldMine.Remove(this);
-        }
         if (gameObject.CompareTag("Hero"))
         {
-            GameManager.Instance.castlePlayer.lstHeroRelease.Remove(this);
             if (infoHero.typeHero == TypeHero.Canon)
             {
                 UIManager.Instance.buttonReleaseCanon.interactable = true;
             }
+            GameManager.Instance.lsHero.Remove(this);
         }
-        
+        else
+        {
+            GameManager.Instance.lsEnemy.Remove(this);
+        }
+
         Destroy(gameObject, 0.5f);
     }
 
@@ -112,13 +103,13 @@ public abstract class Hero : MonoBehaviour
         typeAction = TypeAction.IDLE;
     }
 
-    protected GameObject CheckCompetitorNear(List<GameObject> lsCompetitor)
+    protected Hero CheckCompetitorNear(List<Hero> lsCompetitor)
     {
         if (lsCompetitor.Count > 0)
         {
             float shortestDistance = Mathf.Infinity;
-            GameObject nearestCompetitor = null;
-            foreach (GameObject obj in lsCompetitor)
+            Hero nearestCompetitor = null;
+            foreach (Hero obj in lsCompetitor)
             {
                 float distanceToEnemy = Vector3.Distance(transform.position, obj.transform.position);
                 if (distanceToEnemy < shortestDistance)
@@ -150,37 +141,71 @@ public abstract class Hero : MonoBehaviour
     {
         if (isAttack)
         {
-            if (targetCompetitor == null || targetCompetitor.tag == "Castle")
+            if (targetCompetitor == null)
             {
-                if (gameObject.tag == "Hero")
+                List<Hero> lsCompetitor = new List<Hero>();
+                if (gameObject.CompareTag("Hero"))
                 {
-                    if (goldMineAttacking != null)
+                    lsCompetitor = GameManager.Instance.lsEnemy;
+                }
+                else if (gameObject.CompareTag("Enemy"))
+                {
+                    lsCompetitor = GameManager.Instance.lsHero;
+                }
+                List<Hero> lsCompetitorTarget = new List<Hero>();
+                Hero targetAttack = null;
+                if (infoHero.typeHero == TypeHero.ChemThuong)
+                {
+
+                    foreach (Hero obj in lsCompetitor)
                     {
-                        List<GameObject> lsTarget = new List<GameObject>();
-                        if (goldMineAttacking.lstHeroGoldMine.Count > 0)
+                        if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
                         {
-                            foreach (Hero obj in goldMineAttacking.lstHeroGoldMine)
+                            if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
                             {
-                                lsTarget.Add(obj.gameObject);
+                                if (obj.infoHero.typeHero != TypeHero.Canon)
+                                {
+                                    lsCompetitorTarget.Add(obj);
+                                }
+                                else
+                                {
+                                    if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
+                                    {
+                                        lsCompetitorTarget.Add(obj);
+                                    }
+                                }
                             }
-                            targetCompetitor = CheckCompetitorNear(lsTarget);
                         }
                     }
                 }
                 else
                 {
-                    if (goldMineProtecting != null)
+                    foreach (Hero obj in lsCompetitor)
                     {
-                        List<GameObject> lsTarget = new List<GameObject>();
-                        if (goldMineProtecting.lstCompetitorGoldMine.Count > 0)
+                        if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
                         {
-                            targetCompetitor = CheckCompetitorNear(goldMineProtecting.lstCompetitorGoldMine);
-                        }
-                        else
-                        {
-                            targetCompetitor = goldMineProtecting.castle;
+                            if (obj.infoHero.typeHero != TypeHero.Canon)
+                            {
+                                lsCompetitorTarget.Add(obj);
+                            }
+                            else
+                            {
+                                if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
+                                {
+                                    lsCompetitorTarget.Add(obj);
+                                }
+                            }
                         }
                     }
+                }
+                targetAttack = CheckCompetitorNear(lsCompetitorTarget);
+                if (targetAttack != null)
+                {
+                    targetCompetitor = targetAttack;
+                }
+                else
+                {
+                    targetCompetitor = null;
                 }
             }
         }
@@ -242,10 +267,10 @@ public abstract class Hero : MonoBehaviour
         {
             AnimtionUpdate();
 
-            if(infoHero.typeHero == TypeHero.Canon)
+            if (infoHero.typeHero == TypeHero.Canon)
             {
                 timeDeadCanon += Time.deltaTime;
-                if(timeDeadCanon >= GameConfig.Instance.Timecanonsurvive)
+                if (timeDeadCanon >= GameConfig.Instance.Timecanonsurvive)
                 {
                     Die();
                 }
@@ -266,22 +291,6 @@ public abstract class Hero : MonoBehaviour
                         else
                         {
                             RotationHero(targetCompetitor.transform.position);
-                        }
-                    }
-                }
-                else
-                {
-                    if (goldMineProtecting != null)
-                    {
-                        if (transform.position != posStart)
-                        {
-                            timeCheckCameBack += Time.deltaTime;
-                            if (timeCheckCameBack >= 3f)
-                            {
-                                posMove = posStart;
-                                timeCheckCameBack = 0f;
-                                isMove = true;
-                            }
                         }
                     }
                 }
@@ -318,23 +327,10 @@ public abstract class Hero : MonoBehaviour
 
     }
 
-    public void ExitGoldMine()
-    {
-        if (lsChild.Count > 0)
-        {
-            foreach (Hero hero in lsChild)
-            {
-                hero.Die();
-            }
-            lsChild.Clear();
-        }
-    }
-
     public void InstantiateChild(int idHero)
     {
         Hero hero = Instantiate(
-        GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity,
-        GameManager.Instance.heroManager);
+        GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity);
 
         hero.IDGold = IDGold;
         hero.isAttack = true;

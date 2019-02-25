@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4555304258047578}
   - component: {fileID: 212668536655551394}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4990215625100776}
   - component: {fileID: 198908034814088560}
   - component: {fileID: 199560154830889370}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Par Die 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4898109147851684}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PosShoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 23041076865376372}
   - component: {fileID: 102531738572629134}
   - component: {fileID: 210879682408767410}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Count Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 4985293081100586}
   - component: {fileID: 198116492645607078}
   - component: {fileID: 199414059196420032}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Par Hit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4971690465841450}
   - component: {fileID: 212681370868387624}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4799230129072598}
   - component: {fileID: 212789365864527656}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Supply
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4540463451825340}
   - component: {fileID: 212525682498888662}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 95630540014960528}
   - component: {fileID: 61048960512886952}
   - component: {fileID: 114937086762557776}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Little Soul
   m_TagString: Hero
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4508347954712218}
   - component: {fileID: 198673410331333806}
   - component: {fileID: 199984135331248026}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Par Die
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,7 +428,6 @@ MonoBehaviour:
     ID: 0
     numberHero: 0
     health: 0
-    healthAll: 0
     dame: 0
     range: 0
     hitSpeed: 0
@@ -442,26 +441,28 @@ MonoBehaviour:
     idMom: 0
     idBaby: 0
     typeHero: 0
-  txtCountHero: {fileID: 102531738572629134}
   animator: {fileID: 95630540014960528}
   typeAction: 0
   numRun: 0
   numAttack: 0
   isFly: 1
   isRelease: 0
-  parDie: {fileID: 198673410331333806}
   posShoot: {fileID: 0}
   targetCompetitor: {fileID: 0}
   timeCheckAttack: 0
+  txtCountHero: {fileID: 102531738572629134}
+  parDie: {fileID: 198673410331333806}
   parHit: {fileID: 198116492645607078}
-  isInGoldMine: 0
-  posMove: {x: 0, y: 0, z: 0}
-  isMove: 0
+  IDGold: 0
+  isAttack: 0
   goldMineAttacking: {fileID: 0}
   goldMineProtecting: {fileID: 0}
   posStart: {x: 0, y: 0, z: 0}
+  posMove: {x: 0, y: 0, z: 0}
+  isMove: 0
   timeCheckCameBack: 0
   speedMin: 0
+  lsChild: []
 --- !u!198 &198116492645607078
 ParticleSystem:
   m_ObjectHideFlags: 1

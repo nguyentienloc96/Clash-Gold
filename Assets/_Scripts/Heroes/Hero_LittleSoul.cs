@@ -7,19 +7,12 @@ public class Hero_LittleSoul : Hero {
     public override void Attack()
     {
         AnimAttack();
-        if (targetCompetitor.CompareTag("Castle"))
+        Hero hero = targetCompetitor;
+        if (hero.infoHero.ID == 10 || hero.infoHero.ID == 11)
         {
-            targetCompetitor.GetComponent<Castle>().BeingAttacked(infoHero.dame * infoHero.numberHero);
+            hero.BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
         }
-        else
-        {
-            Hero hero = targetCompetitor.GetComponent<Hero>();
-            if (hero.infoHero.ID == 10 || hero.infoHero.ID == 11)
-            {
-                hero.BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
-            }
-            hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
-        }
+        hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
     }
 
     public override void Die()

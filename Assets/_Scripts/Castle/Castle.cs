@@ -23,8 +23,6 @@ public class Castle : MonoBehaviour
     public Vector3 posMove;
     [HideInInspector]
     public bool isMove;
-    [HideInInspector]
-    public bool isChildMove;
 
     [Header("UI")]
     public Text txtLevel;
@@ -33,14 +31,15 @@ public class Castle : MonoBehaviour
 
     [Header("LIST")]
     public List<Transform> lsPos;
-    public List<Hero> lstHeroRelease;
     public Image[] lstAvatarHeroRelease;
+
+    public List<House> lsHouseRelease = new List<House>();
+
+    public GameObject itemHero;
 
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
-        speed = 0;
-        lstHeroRelease = new List<Hero>();
     }
 
     void OnStartGame()
@@ -57,39 +56,12 @@ public class Castle : MonoBehaviour
 
     void OnBuildHouseComplete(object _param)
     {
-        if ((int)_param != 9)
+        Dictionary<string, int> keyHouse = (Dictionary<string, int>)_param;
+        if (keyHouse["IdHero"] != 9 && lsHouseRelease.Count < 3)
         {
-            if (lstHeroRelease.Count == 0)
-            {
-                InstantiateHero((int)_param, lsPos[lstHeroRelease.Count].position);
-            }
-            else if (lstHeroRelease.Count < 3)
-            {
-                for (int i = 0; i < lstHeroRelease.Count; i++)
-                {
-                    if ((int)_param != lstHeroRelease[i].infoHero.ID)
-                    {
-                        InstantiateHero((int)_param, lsPos[lstHeroRelease.Count].position);
-                        break;
-                    }
-                }
-            }
+            lsHouseRelease.Add(GameManager.Instance.lstHousePlayer[keyHouse["IdHouse"]]);
+            ShowAvatarHero(keyHouse["IdHero"] - 1);
         }
-    }
-
-    public void InstantiateHero(int idHero, Vector3 posIns, int number = 1)
-    {
-        Hero hero = Instantiate(
-        GameManager.Instance.lsPrefabsHero[idHero - 1], posIns, Quaternion.identity,
-        GameManager.Instance.heroManager);
-
-        hero.IDGold = -1;
-        hero.gameObject.name = "Hero";
-        hero.SetInfoHero();
-        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.AddHero(number);
-        lstHeroRelease.Add(hero);
-        ShowAvatarHero(idHero - 1);
     }
 
     void ShowAvatarHero(int _id)
@@ -112,12 +84,11 @@ public class Castle : MonoBehaviour
             if (CheckCastle() || IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
                 return;
 
-            if (Input.GetMouseButtonDown(0) && !UIManager.Instance.isBuildCanon)
+            if (Input.GetMouseButtonDown(0) && !GameManager.Instance.isAttack)
             {
                 posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
                 posMove.z = 0f;
                 isMove = true;
-                isChildMove = true;
             }
             if (isMove)
             {
@@ -195,42 +166,51 @@ public class Castle : MonoBehaviour
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-
-        if (lstHeroRelease.Count > 0)
-        {
-            float speedMin = lstHeroRelease[0].infoHero.speed;
-
-            for (int i = 1; i < lstHeroRelease.Count; i++)
-            {
-                if (lstHeroRelease[i].infoHero.speed < speedMin)
-                {
-                    speedMin = lstHeroRelease[i].infoHero.speed;
-                }
-            }
-            speed = speedMin;
-            if (isChildMove)
-            {
-                for (int i = 0; i < lstHeroRelease.Count; i++)
-                {
-                    lstHeroRelease[i].speedMin = speedMin * 2f;
-                    Vector3 posIns = i < 3 ? lsPos[i].position : lsPos[2].position;
-                    lstHeroRelease[i].StartMoveToPosition(posIns + diffCurrent);
-                }
-                isChildMove = false;
-            }
-
-        }
         _toPos.z = -2f;
         transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
 
     }
 
-    public void BeingAttacked(float _dame)
+    public void RelaceHero(int idLocation)
     {
-        health -= _dame;
-        if (health <= 0)
+        UIManager.Instance.panelRelace.SetActive(true);
+        for (int k = 0; k < UIManager.Instance.contentRelace.childCount; k++)
         {
-            UIManager.Instance.panelGameOver.SetActive(true);
+            Destroy(UIManager.Instance.contentRelace.GetChild(k).gameObject);
         }
+        for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
+        {
+            if (GameManager.Instance.lstHousePlayer[i].typeState == TypeStateHouse.None)
+            {
+                bool isCheckHero = false;
+                for (int j = 0; j < lsHouseRelease.Count; j++)
+                {
+                    if (GameManager.Instance.lstHousePlayer[i].idHero == lsHouseRelease[j].idHero)
+                        isCheckHero = true;
+                }
+                if (!isCheckHero)
+                {
+                    int m = i;
+                    GameObject obj = Instantiate(itemHero, UIManager.Instance.contentRelace);
+                    obj.transform.GetChild(0).gameObject.SetActive(true);
+                    obj.transform.GetChild(0).GetComponent<Image>().sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[m].idHero - 1];
+                    obj.GetComponent<Button>().onClick.AddListener(() => RelaceItemHero(idLocation, GameManager.Instance.lstHousePlayer[m].idHouse));
+                }
+            }
+        }
+    }
+
+    public void CloseRelace()
+    {
+        UIManager.Instance.panelRelace.SetActive(false);
+    }
+
+    public void RelaceItemHero(int idLocation, int idHouseRelace)
+    {
+        int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero;
+        lsHouseRelease[idLocation] = GameManager.Instance.lstHousePlayer[idHouseRelace];
+        lstAvatarHeroRelease[idLocation].gameObject.SetActive(true);
+        lstAvatarHeroRelease[idLocation].sprite = UIManager.Instance.sprAvatarHero[idHero - 1];
+        UIManager.Instance.panelRelace.SetActive(false);
     }
 }

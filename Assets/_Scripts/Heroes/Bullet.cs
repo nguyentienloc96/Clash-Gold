@@ -29,12 +29,6 @@ public class Bullet : MonoBehaviour
                 hero.BeingAttacked(dameBullet);
                 gameObject.SetActive(false);
             }
-            else if (collision.tag == "Castle")
-            {
-                Castle hero = collision.GetComponent<Castle>();
-                hero.BeingAttacked(dameBullet);
-                gameObject.SetActive(false);
-            }
         }
     }
 
