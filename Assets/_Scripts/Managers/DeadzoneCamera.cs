@@ -6,13 +6,27 @@ using UnityEditor;
 [RequireComponent(typeof(Camera))]
 public class DeadzoneCamera : MonoBehaviour
 {
+    public static DeadzoneCamera Instance;
+    void Awake()
+    {
+        if (Instance != null)
+        {
+            return;
+        }
+        Instance = this;
+    }
+
     public Renderer target;
+    public Camera _camera;
+    public Camera cameraMap;
+    public Camera cameraAttack;
+
     public Rect deadzone;
     public Vector3 smoothPos;
+    public Vector3 smoothPosMap;
 
     public Rect[] limits;
 
-    protected Camera _camera;
     protected Vector3 _currentVelocity;
 
     float minFov = 5f;
@@ -22,8 +36,6 @@ public class DeadzoneCamera : MonoBehaviour
     int boundary = 10;
     int width;
     int height;
-    public Camera cameraMap;
-    public Vector3 smoothPosMap;
 
     public void Start()
     {

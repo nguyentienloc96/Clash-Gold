@@ -28,10 +28,10 @@ public class GameManager : MonoBehaviour
     public List<House> lstHousePlayer = new List<House>();
     public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
     public DateTime dateEnemyAttack;
-    public int maxLevelHouse = 0;
+    public int maxLevelHouse;
 
     [Header("INFO ENEMY")]
-    public List<GoldMine> lstGoldMineEnemy = new List<GoldMine>();
+    public List<GoldMine> lstGoldMineEnemy;
 
     public List<Hero> lsHero;
     public List<Hero> lsEnemy;
