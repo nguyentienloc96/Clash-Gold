@@ -161,14 +161,16 @@ public class Castle : MonoBehaviour
 
     public void MoveToPosition(Vector3 _toPos)
     {
-        Vector3 diff = _toPos - transform.position;
-        Vector3 diffCurrent = diff;
-        diff.Normalize();
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        _toPos.z = -2f;
-        transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
-
+        if (lsHouseRelease.Count > 0)
+        {
+            Vector3 diff = _toPos - transform.position;
+            Vector3 diffCurrent = diff;
+            diff.Normalize();
+            float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+            _toPos.z = -2f;
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
+        }
     }
 
     public void RelaceHero(int idLocation)

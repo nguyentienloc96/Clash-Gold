@@ -50,8 +50,6 @@ public abstract class Hero : MonoBehaviour
     public float timeCheckCameBack;
     [HideInInspector]
     public float speedMin;
-    [HideInInspector]
-    public List<Hero> lsChild;
 
     public abstract void SetInfoHero();
 
@@ -131,8 +129,8 @@ public abstract class Hero : MonoBehaviour
         infoHero.numberHero -= numberRemove;
         if (infoHero.numberHero <= 0)
         {
-            infoHero.numberHero = 0;
             Die();
+            infoHero.numberHero = 0;
         }
         txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
     }
@@ -327,17 +325,35 @@ public abstract class Hero : MonoBehaviour
 
     }
 
-    public void InstantiateChild(int idHero)
+    public void InstantiateChild(int idHero,bool ishero)
     {
-        Hero hero = Instantiate(
-        GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity);
+        if (ishero)
+        {
+            Hero hero = Instantiate(
+            GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity);
 
-        hero.IDGold = IDGold;
-        hero.isAttack = true;
-        hero.gameObject.name = "Hero";
-        hero.SetInfoHero();
-        hero.infoHero.capWar = 0;
-        hero.AddHero(infoHero.numberHero);
-        lsChild.Add(hero);
+            hero.IDGold = IDGold;
+            hero.isAttack = true;
+            hero.gameObject.name = "Hero";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = 0;
+            hero.AddHero(infoHero.numberHero);
+            GameManager.Instance.lsChild.Add(hero);
+            GameManager.Instance.lsHero.Add(hero);
+        }
+        else
+        {
+            Hero hero = Instantiate(
+            GameManager.Instance.lsPrefabsEnemy[idHero], transform.position, Quaternion.identity);
+
+            hero.IDGold = IDGold;
+            hero.isAttack = true;
+            hero.gameObject.name = "Enemy";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = 0;
+            hero.AddHero(infoHero.numberHero);
+            GameManager.Instance.lsChild.Add(hero);
+            GameManager.Instance.lsEnemy.Add(hero);
+        }
     }
 }

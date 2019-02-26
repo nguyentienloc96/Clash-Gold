@@ -68,7 +68,7 @@ public class GoldMine : MonoBehaviour
         priceGold = (long)(_capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _level));
     }
 
-    void SetSpriteBox(int _l)
+    public void SetSpriteBox(int _l)
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
@@ -178,37 +178,12 @@ public class GoldMine : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (GameManager.Instance.isAttack)
-        {
-            if (GameManager.Instance.lsEnemy.Count <= 0)
-            {
-                UIManager.Instance.cameraAttack.gameObject.SetActive(false);
-                UIManager.Instance.cavas.worldCamera = UIManager.Instance.cameraMain;
-                GameManager.Instance.mapAttack.SetActive(false);
-                GameManager.Instance.mapMove.SetActive(true);
-                GameManager.Instance.enemyGold.SetActive(true);
-                typeGoleMine = TypeGoldMine.Player;
-                GameManager.Instance.isAttack = false;
-            }
-            if (GameManager.Instance.lsHero.Count <= 0)
-            {
-                UIManager.Instance.cameraAttack.gameObject.SetActive(false);
-                UIManager.Instance.cavas.worldCamera = UIManager.Instance.cameraMain;
-                GameManager.Instance.mapAttack.SetActive(false);
-                GameManager.Instance.mapMove.SetActive(true);
-                GameManager.Instance.enemyGold.SetActive(true);
-                GameManager.Instance.isAttack = false;
-            }
-        }
-    }
-
     public void InstantiateHeroStart(bool isHero)
     {
         for (int i = 0; i < 3; i++)
         {
             int typeEnemy;
+            int numberEnemy = 1;
             if (i == 0)
             {
                 int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
@@ -219,7 +194,6 @@ public class GoldMine : MonoBehaviour
                 int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
                 typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
             }
-            int numberEnemy = 1;
             if (!isHero)
             {
 
@@ -235,7 +209,6 @@ public class GoldMine : MonoBehaviour
                 hero.SetInfoHero();
                 hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
                 hero.AddHero(numberEnemy);
-
                 hero.posStart = lsPos[i].position;
             }
 
@@ -317,6 +290,7 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
+                GameManager.Instance.idGold = id;
                 Attack();
                 GameManager.Instance.isAttack = true;
             }
@@ -325,11 +299,10 @@ public class GoldMine : MonoBehaviour
 
     public void Attack()
     {
-        UIManager.Instance.cameraAttack.gameObject.SetActive(true);
-        UIManager.Instance.cavas.worldCamera = UIManager.Instance.cameraAttack;
-        GameManager.Instance.mapAttack.SetActive(true);
-        GameManager.Instance.mapMove.SetActive(false);
-        GameManager.Instance.enemyGold.SetActive(false);
+        DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(true);
+        UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance.cameraAttack;
+        UIManager.Instance.mapAttack.SetActive(true);
+        UIManager.Instance.mapMove.SetActive(false);
         for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
         {
             Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID], GameManager.Instance.lsPosEnemy[i]);
@@ -351,5 +324,14 @@ public class GoldMine : MonoBehaviour
             hero.isAttack = true;
             GameManager.Instance.lsHero.Add(hero);
         }
+    }
+
+    public void DeleteHero()
+    {
+        foreach(Hero h in lstHeroGoldMine)
+        {
+            Destroy(h.gameObject);
+        }
+        lstHeroGoldMine.Clear();
     }
 }

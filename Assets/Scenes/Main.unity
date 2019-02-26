@@ -1860,7 +1860,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 321484218}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -6, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1207413565}
@@ -5049,7 +5049,7 @@ Transform:
   - {fileID: 248297215}
   - {fileID: 1478779965}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &748817120 stripped
 RectTransform:
@@ -6739,7 +6739,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1003449874}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1662210928}
@@ -7799,6 +7799,7 @@ MonoBehaviour:
   lstGoldMineEnemy: []
   lsHero: []
   lsEnemy: []
+  lsChild: []
   lsPrefabsHero:
   - {fileID: 114695796664788622, guid: cf356bf6eee272449a66af5413aff048, type: 2}
   - {fileID: 114265223549625508, guid: ea31da01b2edba84c973ce84497cddaf, type: 2}
@@ -7897,9 +7898,7 @@ MonoBehaviour:
   - {fileID: 1662210928}
   - {fileID: 432514337}
   - {fileID: 1113326961}
-  mapAttack: {fileID: 2052754602}
-  mapMove: {fileID: 248297214}
-  enemyGold: {fileID: 1478779964}
+  idGold: 0
 --- !u!1 &1183669000
 GameObject:
   m_ObjectHideFlags: 0
@@ -9025,11 +9024,10 @@ MonoBehaviour:
   isZoomOut: 0
   isBinoculars: 0
   cavas: {fileID: 1640343756}
-  cameraMain: {fileID: 443966388}
-  cameraMiniMap: {fileID: 1620822261}
-  cameraAttack: {fileID: 26193051}
   panelRelace: {fileID: 966063807}
   contentRelace: {fileID: 1013858545}
+  mapMove: {fileID: 727603919}
+  mapAttack: {fileID: 2052754602}
   houseClick: 0
 --- !u!4 &1423240709
 Transform:
@@ -13222,7 +13220,7 @@ Transform:
   - {fileID: 1003449875}
   - {fileID: 321484219}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2053710873 stripped
 MonoBehaviour:

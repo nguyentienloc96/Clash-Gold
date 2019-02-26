@@ -51,18 +51,12 @@ public class Hero_BalloonKing : Hero {
         if (targetCompetitor != null)
         {
             timeInstanceChild += Time.deltaTime;
-            if (timeInstanceChild >= 1f)
+            if (timeInstanceChild >= 3f)
             {
-                if (gameObject.tag == "Hero")
-                {
-                    InstantiateChild(19);
-                }
-                else
-                {
-
-                }
+                InstantiateChild(19,gameObject.tag == "Hero");
                 timeInstanceChild = 0;
             }
         }
     }
+
 }

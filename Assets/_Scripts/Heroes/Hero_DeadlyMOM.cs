@@ -37,7 +37,6 @@ public class Hero_DeadlyMOM : Hero {
 
     public void Start()
     {
-        lsChild = new List<Hero>();
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
@@ -50,16 +49,9 @@ public class Hero_DeadlyMOM : Hero {
         if(targetCompetitor != null)
         {
             timeInstanceChild += Time.deltaTime;
-            if (timeInstanceChild >= 1f)
+            if (timeInstanceChild >= 3f)
             {
-                if (gameObject.tag == "Hero")
-                {
-                    InstantiateChild(20);
-                }
-                else
-                {
-
-                }
+                InstantiateChild(20, gameObject.tag == "Hero");
                 timeInstanceChild = 0;
             }
         }

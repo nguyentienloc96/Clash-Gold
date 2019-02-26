@@ -7,6 +7,8 @@ using UnityEngine.EventSystems;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager Instance = new UIManager();
+
     [Header("UI HOME")]
     public GameObject panelHome;
     public GameObject panelGroupHome;
@@ -63,6 +65,7 @@ public class UIManager : MonoBehaviour
     public GameObject buildCanon;
     public bool isBuildCanon;
     public bool isWaitBuildCanon;
+    private float timeBuildCanon;
 
     [Header("MINIMAP")]
     public Image imgMagnifyingGlass;
@@ -73,14 +76,14 @@ public class UIManager : MonoBehaviour
     public bool isZoomOut;
     public bool isBinoculars;
     public Canvas cavas;
-    public Camera cameraMain;
-    public Camera cameraMiniMap;
-    public Camera cameraAttack;
 
     public GameObject panelRelace;
     public Transform contentRelace;
 
-    public static UIManager Instance = new UIManager();
+    [Header("ATTACK")]
+    public GameObject mapMove;
+    public GameObject mapAttack;
+
     void Awake()
     {
         if (Instance != null)
@@ -112,7 +115,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    private float timeBuildCanon;
     void Update()
     {
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();
@@ -399,16 +401,16 @@ public class UIManager : MonoBehaviour
         isBinoculars = !isBinoculars;
         if (isBinoculars)
         {
-            cameraMiniMap.depth = 0;
-            cavas.worldCamera = cameraMiniMap;
+            DeadzoneCamera.Instance.cameraMap.depth = 0;
+            cavas.worldCamera = DeadzoneCamera.Instance.cameraMap;
             animBinoculars.Play("Binoculars");
             imgMagnifyingGlass.sprite = spZoomInGlass;
         }
         else
         {
-            cameraMiniMap.depth = -2;
-            cavas.worldCamera = cameraMain;
-            cameraMiniMap.transform.position = cameraMain.transform.position;
+            DeadzoneCamera.Instance.cameraMap.depth = -2;
+            cavas.worldCamera = DeadzoneCamera.Instance._camera;
+            DeadzoneCamera.Instance.cameraMap.transform.position = DeadzoneCamera.Instance._camera.transform.position;
             animBinoculars.Play("BinocularsNormal");
             imgMagnifyingGlass.sprite = spZoomOutGlass;
         }

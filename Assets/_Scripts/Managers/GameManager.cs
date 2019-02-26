@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     public List<Hero> lsHero;
     public List<Hero> lsEnemy;
+    public List<Hero> lsChild;
 
     public List<Hero> lsPrefabsHero;
     public List<Hero> lsPrefabsEnemy;
@@ -55,9 +56,7 @@ public class GameManager : MonoBehaviour
     public bool isAttack;
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
-    public GameObject mapAttack;
-    public GameObject mapMove;
-    public GameObject enemyGold;
+    public int idGold;
 
     void Awake()
     {
@@ -117,13 +116,68 @@ public class GameManager : MonoBehaviour
                 dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
             }
 
-            if(lstGoldMineEnemy.Count <= 0)
+            if (lstGoldMineEnemy.Count <= 0)
             {
                 UIManager.Instance.panelVictory.SetActive(true);
             }
- 
+
+
+            if (isAttack)
+            {
+                if (lsEnemy.Count <= 0)
+                {
+                    EndAttack();
+                    foreach(GoldMine g in lstGoldMineEnemy) {
+                        if (g.id == idGold)
+                        {
+                            g.typeGoleMine = TypeGoldMine.Player;
+                            g.DeleteHero();
+                            g.SetSpriteBox(0);
+                            break;
+                        }
+                    }
+                }
+                if (lsHero.Count <= 0)
+                {
+                    EndAttack();
+                    castlePlayer.transform.localPosition = Vector3.zero;
+                }
+            }
         }
     }
+
+    public void EndAttack()
+    {
+        DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(false);
+        UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
+        UIManager.Instance.mapAttack.SetActive(false);
+        UIManager.Instance.mapMove.SetActive(true);
+        GameManager.Instance.OnEndAttack();
+        GameManager.Instance.isAttack = false;
+    }
+
+
+    public void OnEndAttack()
+    {
+        foreach (Hero hero in lsChild)
+        {
+            Destroy(hero.gameObject);
+        }
+        lsChild.Clear();
+
+        foreach (Hero hero in lsHero)
+        {
+            Destroy(hero.gameObject);
+        }
+        lsHero.Clear();
+
+        foreach (Hero hero in lsEnemy)
+        {
+            Destroy(hero.gameObject);
+        }
+        lsEnemy.Clear();
+    }
+
 
     #region === MAP ===
     public void GenerateMap()
