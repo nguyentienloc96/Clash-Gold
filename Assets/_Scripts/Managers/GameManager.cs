@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     public int[] lsHeroCanMove;
 
     [Header("OTHER")]
-    public Camera cameraMain;
     public Transform enemyManager;
 
     [Header("MAP")]
@@ -141,6 +140,7 @@ public class GameManager : MonoBehaviour
                 {
                     EndAttack();
                     castlePlayer.transform.localPosition = Vector3.zero;
+                    castlePlayer.posMove = Vector3.zero;
                 }
             }
         }
@@ -153,6 +153,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.mapAttack.SetActive(false);
         UIManager.Instance.mapMove.SetActive(true);
         OnEndAttack();
+        UIManager.Instance.btnReleaseCanon.SetActive(false);
         isAttack = false;
     }
 

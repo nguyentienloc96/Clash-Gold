@@ -83,6 +83,7 @@ public class UIManager : MonoBehaviour
     [Header("ATTACK")]
     public GameObject mapMove;
     public GameObject mapAttack;
+    public GameObject btnReleaseCanon;
 
     void Awake()
     {
@@ -120,28 +121,43 @@ public class UIManager : MonoBehaviour
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();
         if (isBuildCanon)
         {
-            Vector3 posMouse = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 posMouse = DeadzoneCamera.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
             posMouse.z = 0;
             mouseCanon.transform.position = posMouse;
             if (Input.GetMouseButtonDown(0))
             {
                 mouseCanon.SetActive(false);
-                buildCanon.SetActive(true);
-                buildCanon.transform.position = posMouse;
-                isWaitBuildCanon = true;
+                //buildCanon.SetActive(true);
+                //buildCanon.transform.position = posMouse;
+                //isWaitBuildCanon = true;
+                Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[8], posMouse,Quaternion.identity);
+                hero.gameObject.name = "Hero";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                for(int i = 0;i< GameManager.Instance.lstHousePlayer.Count; i++)
+                {
+                    if(GameManager.Instance.lstHousePlayer[i].idHero == 9)
+                    {
+                        hero.AddHero(GameManager.Instance.lstHousePlayer[i].countHero);
+                        break;
+                    }
+                }                
+                hero.isAttack = true;
+                GameManager.Instance.lsHero.Add(hero);
                 isBuildCanon = false;
             }
         }
-        if (isWaitBuildCanon)
-        {
-            timeBuildCanon += Time.deltaTime;
-            if(timeBuildCanon >= GameConfig.Instance.TimeCanon)
-            {
-                buildCanon.SetActive(false);
-                isWaitBuildCanon = false;
-                timeBuildCanon = 0;
-            }
-        }
+        //if (isWaitBuildCanon)
+        //{
+        //    timeBuildCanon += Time.deltaTime;
+        //    if(timeBuildCanon >= GameConfig.Instance.TimeCanon)
+        //    {
+
+        //        buildCanon.SetActive(false);
+        //        isWaitBuildCanon = false;
+        //        timeBuildCanon = 0;
+        //    }
+        //}
     }
 
     #region === SUPPORT ===

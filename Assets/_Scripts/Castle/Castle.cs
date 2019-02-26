@@ -57,7 +57,7 @@ public class Castle : MonoBehaviour
     void OnBuildHouseComplete(object _param)
     {
         Dictionary<string, int> keyHouse = (Dictionary<string, int>)_param;
-        if (keyHouse["IdHero"] != 9 && lsHouseRelease.Count < 3)
+        if (lsHouseRelease.Count < 3)
         {
             lsHouseRelease.Add(GameManager.Instance.lstHousePlayer[keyHouse["IdHouse"]]);
             ShowAvatarHero(keyHouse["IdHero"] - 1);
@@ -86,7 +86,7 @@ public class Castle : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0) && !GameManager.Instance.isAttack)
             {
-                posMove = GameManager.Instance.cameraMain.ScreenToWorldPoint(Input.mousePosition);
+                posMove = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(Input.mousePosition);
                 posMove.z = 0f;
                 isMove = true;
             }

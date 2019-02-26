@@ -50,8 +50,6 @@ public abstract class Hero : MonoBehaviour
     public float timeCheckCameBack;
     [HideInInspector]
     public float speedMin;
-    private float timeDeadCanon;
-    private bool isDead;
 
     public abstract void SetInfoHero();
 
@@ -140,7 +138,10 @@ public abstract class Hero : MonoBehaviour
         {
             if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
             {
-                GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
+                if (GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > numberSub)
+                    GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
+                else
+                    GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero = 0;
                 break;
             }
         }
@@ -238,13 +239,13 @@ public abstract class Hero : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
             {
-                transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 5f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
                 AnimRun();
             }
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 5f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
             AnimRun();
         }
     }
@@ -281,15 +282,6 @@ public abstract class Hero : MonoBehaviour
         if (GameManager.Instance.isPlay)
         {
             AnimtionUpdate();
-
-            if (infoHero.typeHero == TypeHero.Canon)
-            {
-                timeDeadCanon += Time.deltaTime;
-                if (timeDeadCanon >= GameConfig.Instance.Timecanonsurvive)
-                {
-                    Die();
-                }
-            }
             if (!isMove)
             {
                 if (isAttack)
