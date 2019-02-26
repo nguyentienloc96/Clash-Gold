@@ -50,6 +50,8 @@ public abstract class Hero : MonoBehaviour
     public float timeCheckCameBack;
     [HideInInspector]
     public float speedMin;
+    private float timeDeadCanon;
+    private bool isDead;
 
     public abstract void SetInfoHero();
 
@@ -129,8 +131,8 @@ public abstract class Hero : MonoBehaviour
         infoHero.numberHero -= numberRemove;
         if (infoHero.numberHero <= 0)
         {
-            Die();
             infoHero.numberHero = 0;
+            Die();
         }
         txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
     }
@@ -159,7 +161,7 @@ public abstract class Hero : MonoBehaviour
                     {
                         if (obj.infoHero.typeHero != TypeHero.ChemBay && obj.infoHero.typeHero != TypeHero.CungBay)
                         {
-                            if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
+                            if (obj.typeAction != TypeAction.DIE)
                             {
                                 if (obj.infoHero.typeHero != TypeHero.Canon)
                                 {
@@ -180,7 +182,7 @@ public abstract class Hero : MonoBehaviour
                 {
                     foreach (Hero obj in lsCompetitor)
                     {
-                        if (obj.typeAction != TypeAction.DIE && obj.infoHero.numberHero > 0)
+                        if (obj.typeAction != TypeAction.DIE)
                         {
                             if (obj.infoHero.typeHero != TypeHero.Canon)
                             {
@@ -220,13 +222,13 @@ public abstract class Hero : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, _toPos) > ((infoHero.range / 5f) + 0.75f))
             {
-                transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 5f * Time.deltaTime);
                 AnimRun();
             }
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 10f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, _toPos, speed / 5f * Time.deltaTime);
             AnimRun();
         }
     }
@@ -258,7 +260,6 @@ public abstract class Hero : MonoBehaviour
 
     }
 
-    private float timeDeadCanon;
     public void HeroUpdate()
     {
         if (GameManager.Instance.isPlay)
@@ -301,6 +302,12 @@ public abstract class Hero : MonoBehaviour
                     isMove = false;
                 }
             }
+
+            //if (infoHero.numberHero <= 0 && !isDead)
+            //{
+            //    Die();
+            //    isDead = true;
+            //}
         }
     }
 

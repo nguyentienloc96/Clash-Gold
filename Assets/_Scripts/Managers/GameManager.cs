@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                if (lsHero.Count <= 0)
+                else if (lsHero.Count <= 0)
                 {
                     EndAttack();
                     castlePlayer.transform.localPosition = Vector3.zero;
@@ -152,8 +152,8 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.mapAttack.SetActive(false);
         UIManager.Instance.mapMove.SetActive(true);
-        GameManager.Instance.OnEndAttack();
-        GameManager.Instance.isAttack = false;
+        OnEndAttack();
+        isAttack = false;
     }
 
 
