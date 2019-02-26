@@ -128,7 +128,23 @@ public abstract class Hero : MonoBehaviour
     {
         parHit.Play();
         int numberRemove = (int)(_dame / infoHero.health);
+        int numberSub = numberRemove;
+
         infoHero.numberHero -= numberRemove;
+        if (numberRemove > infoHero.numberHero)
+        {
+            numberSub = infoHero.numberHero;
+        }
+
+        for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count; i++)
+        {
+            if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
+            {
+                GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
+                break;
+            }
+        }
+
         if (infoHero.numberHero <= 0)
         {
             infoHero.numberHero = 0;
@@ -302,12 +318,6 @@ public abstract class Hero : MonoBehaviour
                     isMove = false;
                 }
             }
-
-            //if (infoHero.numberHero <= 0 && !isDead)
-            //{
-            //    Die();
-            //    isDead = true;
-            //}
         }
     }
 
@@ -332,7 +342,7 @@ public abstract class Hero : MonoBehaviour
 
     }
 
-    public void InstantiateChild(int idHero,bool ishero)
+    public void InstantiateChild(int idHero, bool ishero)
     {
         if (ishero)
         {
