@@ -340,7 +340,7 @@ public abstract class Hero : MonoBehaviour
         {
             Hero hero = Instantiate(
             GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity);
-
+            hero.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             hero.IDGold = IDGold;
             hero.isAttack = true;
             hero.gameObject.name = "Hero";
@@ -354,7 +354,7 @@ public abstract class Hero : MonoBehaviour
         {
             Hero hero = Instantiate(
             GameManager.Instance.lsPrefabsEnemy[idHero], transform.position, Quaternion.identity);
-
+            hero.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             hero.IDGold = IDGold;
             hero.isAttack = true;
             hero.gameObject.name = "Enemy";

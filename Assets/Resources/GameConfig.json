@@ -199,7 +199,7 @@
       "Price01": 3000,
       "CapWar01": 10,
       "xCapWar": 1,
-      "range": 500,
+      "range": 1000,
       "isMom": false,
       "isBaby": false,
       "idBaby": 0,

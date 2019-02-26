@@ -249,24 +249,77 @@ public class GoldMine : MonoBehaviour
         UIManager.Instance.mapMove.SetActive(false);
         for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
         {
-            Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID -1], GameManager.Instance.lsPosEnemy[i]);
-            hero.gameObject.name = "Enemy";
-            hero.SetInfoHero();
-            hero.infoHero.capWar = 0;
-            hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
-            hero.isAttack = true;
-            GameManager.Instance.lsEnemy.Add(hero);
+            if (lstHeroGoldMine[i].infoHero.ID != 2)
+            {
+                Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
+                hero.gameObject.name = "Enemy";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
+                hero.isAttack = true;
+                GameManager.Instance.lsEnemy.Add(hero);
+            }
+            else
+            {
+                float XADD = -0.5f;
+                for (int j = 0; j < 3; j++)
+                {
+                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
+                    if (j == 1)
+                    {
+                        hero.transform.position += new Vector3(XADD, -0.5f, 0f);
+                    }
+                    else
+                    {
+                        hero.transform.position += new Vector3(XADD, 0f, 0f);
+                    }
+                    XADD += 0.5f;
+                    hero.gameObject.name = "Enemy";
+                    hero.SetInfoHero();
+                    hero.infoHero.capWar = 0;
+                    hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
+                    hero.isAttack = true;
+                    GameManager.Instance.lsEnemy.Add(hero);
+
+                }
+            }
         }
 
         for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count && i < 3; i++)
         {
-            Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero - 1], GameManager.Instance.lsPosHero[i]);
-            hero.gameObject.name = "Hero";
-            hero.SetInfoHero();
-            hero.infoHero.capWar = 0;
-            hero.AddHero(GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero);
-            hero.isAttack = true;
-            GameManager.Instance.lsHero.Add(hero);
+            if (GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero != 2)
+            {
+                Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero - 1], GameManager.Instance.lsPosHero[i]);
+                hero.gameObject.name = "Hero";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                hero.AddHero(GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero);
+                hero.isAttack = true;
+                GameManager.Instance.lsHero.Add(hero);
+            }
+            else
+            {
+                float XADD = -0.5f;
+                for (int j = 0; j < 3; j++)
+                {
+                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[1], GameManager.Instance.lsPosHero[i]);
+                    if (j == 1)
+                    {
+                        hero.transform.position += new Vector3(XADD, -0.5f, 0f);
+                    }
+                    else
+                    {
+                        hero.transform.position += new Vector3(XADD, 0f, 0f);
+                    }
+                    XADD += 0.5f;
+                    hero.gameObject.name = "Hero";
+                    hero.SetInfoHero();
+                    hero.infoHero.capWar = 0;
+                    hero.AddHero(GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero);
+                    hero.isAttack = true;
+                    GameManager.Instance.lsHero.Add(hero);
+                }
+            }
         }
     }
 

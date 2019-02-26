@@ -187,6 +187,7 @@ public class GameManager : MonoBehaviour
         {
             int a = (int)UnityEngine.Random.Range(0, 3.9f);
             int b = UnityEngine.Random.Range(0, 4);
+            int numberMin = 0;
             Vector3 _rotation;
             if (b == 0)
             {
@@ -226,18 +227,19 @@ public class GameManager : MonoBehaviour
                 int _level;
                 if (i >= 5 && i <= 15 && i != 8 && i != 12)
                 {
-                    if (UnityEngine.Random.Range(0f, 1f) >= 0.25f)
+                    if (UnityEngine.Random.Range(0f, 1f) >= 0.5f && numberMin < 3)
                     {
                         _level = UnityEngine.Random.Range(1, 3);
+                        numberMin++;
                     }
                     else
                     {
-                        _level = UnityEngine.Random.Range(4, 15);
+                        _level = UnityEngine.Random.Range(4, 10);
                     }
                 }
                 else
                 {
-                    _level = UnityEngine.Random.Range(15, 20);
+                    _level = UnityEngine.Random.Range(10, 20);
                 }
                 g.SetLevel(_level);
                 g.id = i;
