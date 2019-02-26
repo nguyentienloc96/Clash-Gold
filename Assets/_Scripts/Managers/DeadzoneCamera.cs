@@ -57,11 +57,11 @@ public class DeadzoneCamera : MonoBehaviour
     public void Update()
     {
         #region CameraMain
-        float fov = _camera.orthographicSize;
-        fov += Input.GetAxis("Mouse ScrollWheel");
-        fov = Mathf.Clamp(fov, minFov, maxFov);
-        _camera.orthographicSize = fov;
-        cameraMap.orthographicSize = fov;
+        //float fov = _camera.orthographicSize;
+        //fov += Input.GetAxis("Mouse ScrollWheel");
+        //fov = Mathf.Clamp(fov, minFov, maxFov);
+        //_camera.orthographicSize = fov;
+        //cameraMap.orthographicSize = fov;
 
         float localX = target.transform.position.x - transform.position.x;
         float localY = target.transform.position.y - transform.position.y;
