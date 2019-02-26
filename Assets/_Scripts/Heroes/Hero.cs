@@ -127,12 +127,16 @@ public abstract class Hero : MonoBehaviour
         parHit.Play();
         int numberRemove = (int)(_dame / infoHero.health);
         int numberSub = numberRemove;
-
-        infoHero.numberHero -= numberRemove;
-        if (numberRemove > infoHero.numberHero)
+        if (numberSub > infoHero.numberHero)
         {
             numberSub = infoHero.numberHero;
         }
+        if (infoHero.numberHero <= 0)
+        {
+            numberSub = 0;
+        }
+        infoHero.numberHero -= numberRemove;
+
 
         for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count; i++)
         {

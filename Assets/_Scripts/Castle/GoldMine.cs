@@ -180,6 +180,7 @@ public class GoldMine : MonoBehaviour
 
     public void InstantiateHeroStart(bool isHero)
     {
+        List<int> lsIdHero = new List<int>() {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
         for (int i = 0; i < 3; i++)
         {
             int typeEnemy;
@@ -188,11 +189,13 @@ public class GoldMine : MonoBehaviour
             {
                 int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
                 typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+                lsIdHero.Remove(typeEnemy);
             }
             else
             {
-                int randomCanMove = Random.Range(0, GameManager.Instance.lsHeroCanMove.Length);
-                typeEnemy = GameManager.Instance.lsHeroCanMove[randomCanMove];
+                int randomCanMove = Random.Range(0, lsIdHero.Count);
+                typeEnemy = lsIdHero[randomCanMove];
+                lsIdHero.Remove(typeEnemy);
             }
 
             if (!isHero)
