@@ -45,7 +45,7 @@ public class House : MonoBehaviour
                 BuildComplete();
                 timeBuild = 0;
             }
-            timeBuild -= Time.deltaTime * 30f;
+            timeBuild -= Time.deltaTime;
             imgLoadingBar.fillAmount += (1.0f / (2.2f * timeBuild)) * Time.deltaTime;
             txtCountTime.text = transformToTime(timeBuild);
         }

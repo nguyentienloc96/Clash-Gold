@@ -296,4 +296,11 @@ public class GameManager : MonoBehaviour
         txtDate.text = "Date: " + dateGame.Day.ToString("00") + "/" + dateGame.Month.ToString("00") + "/" + dateGame.Year.ToString("0000");
     }
     #endregion
+
+    public void ResetGame()
+    {
+#pragma warning disable CS0618 // Type or member is obsolete
+        Application.LoadLevel(0);
+#pragma warning restore CS0618 // Type or member is obsolete
+    }
 }
