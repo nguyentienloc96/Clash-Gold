@@ -137,16 +137,39 @@ public abstract class Hero : MonoBehaviour
         }
         infoHero.numberHero -= numberRemove;
 
-
-        for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count; i++)
+        if (gameObject.tag == "Hero")
         {
-            if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
+            for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count; i++)
             {
-                if (GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > numberSub)
-                    GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
-                else
-                    GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero = 0;
-                break;
+                if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
+                {
+                    if (GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > numberSub)
+                        GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
+                    else
+                        GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero = 0;
+                    break;
+                }
+            }
+        }
+        else
+        {
+            foreach (GoldMine g in GameManager.Instance.lstGoldMineEnemy)
+            {
+                if (g.id == GameManager.Instance.idGold)
+                {
+                    for (int i = 0; i < g.lstHeroGoldMine.Count; i++)
+                    {
+                        if (infoHero.ID == g.lstHeroGoldMine[i].infoHero.ID)
+                        {
+                            if (g.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
+                                g.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
+                            else
+                                g.lstHeroGoldMine[i].infoHero.numberHero = 0;
+                            break;
+                        }
+                    }
+                    break;
+                }
             }
         }
 

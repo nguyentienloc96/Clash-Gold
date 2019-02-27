@@ -226,19 +226,7 @@ public class GoldMine : MonoBehaviour
             if (other.CompareTag("Castle"))
             {
                 GameManager.Instance.idGold = id;
-                Attack();
-                //for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
-                //{
-                //    if (GameManager.Instance.lstHousePlayer[i].idHero == 9)
-                //    {
-                //        if (GameManager.Instance.lstHousePlayer[i].typeState == TypeStateHouse.None)
-                //        {
-                //            UIManager.Instance.btnReleaseCanon.SetActive(true);
-                //            UIManager.Instance.btnReleaseCanon.GetComponent<Button>().interactable = true;
-                //            break;
-                //        }
-                //    }
-                //}               
+                Attack();            
                 GameManager.Instance.isAttack = true;
             }
         }

@@ -48,7 +48,7 @@ public class Hero_BalloonKing : Hero {
     public void Update()
     {
         HeroUpdate();
-        if (targetCompetitor != null)
+        if (targetCompetitor != null && infoHero.numberHero > 0)
         {
             timeInstanceChild += Time.deltaTime;
             if (timeInstanceChild >= 3f)
