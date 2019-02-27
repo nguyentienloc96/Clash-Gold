@@ -79,6 +79,13 @@ public class Castle : MonoBehaviour
 
     void Update()
     {
+        if (lsHouseRelease.Count > 0)
+        {
+            for (int i = 0; i < lsHouseRelease.Count; i++)
+            {
+                lstAvatarHeroRelease[i].transform.GetChild(0).GetComponent<Text>().text = lsHouseRelease[i].countHero.ToString();
+            }
+        }
         if (GameManager.Instance.isPlay)
         {
             if (CheckCastle() || IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
