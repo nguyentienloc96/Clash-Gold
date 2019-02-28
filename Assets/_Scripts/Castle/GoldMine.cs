@@ -38,6 +38,9 @@ public class GoldMine : MonoBehaviour
     public GameObject buttonUp;
     public GameObject buttonRelease;
 
+    private List<ItemThrowHero> lsIconHero = new List<ItemThrowHero>();
+    private List<int> lsIconHeroOn = new List<int>();
+
     public bool isCanon;
     public float timeCanon;
     void Start()
@@ -147,7 +150,106 @@ public class GoldMine : MonoBehaviour
     {
         if (typeGoleMine == TypeGoldMine.Player)
         {
+            GameManager.Instance.goldMineCurrent = this;
+            UIManager.Instance.panelThrowHero.SetActive(true);
+            lsIconHero.Clear();
+            lsIconHeroOn.Clear();
+            for (int k = 0; k < UIManager.Instance.contentThrowHero.childCount; k++)
+            {
+                Destroy(UIManager.Instance.contentThrowHero.GetChild(k).gameObject);
+            }
+            if (this.lstHeroGoldMine.Count < 3)
+            {
+                for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
+                {
+                    if (GameManager.Instance.lstHousePlayer[i].typeState == TypeStateHouse.None)
+                    {
+                        GameObject obj = Instantiate(UIManager.Instance.itemThrowHero, UIManager.Instance.contentThrowHero);
+                        ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
+                        item.houseHero = GameManager.Instance.lstHousePlayer[i];
+                        item.iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[i].idHero - 1];
+                        lsIconHero.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < this.lstHeroGoldMine.Count; i++)
+                {
+                    GameObject obj = Instantiate(UIManager.Instance.itemThrowHero, UIManager.Instance.contentThrowHero);
+                    ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
+                    for (int j = 0; j < GameManager.Instance.lstHousePlayer.Count; j++)
+                    {
+                        if (GameManager.Instance.lstHousePlayer[j].idHero == lstHeroGoldMine[i].infoHero.ID)
+                        {
+                            item.houseHero = GameManager.Instance.lstHousePlayer[j];
+                        }
+                    }
+                    item.iconHero.sprite = UIManager.Instance.sprAvatarHero[lstHeroGoldMine[i].infoHero.ID - 1];
+                    lsIconHero.Add(item);
+                }
+            }
+        }
+    }
 
+    public void ThrowHero()
+    {
+        for (int i = 0; i < lsIconHero.Count; i++)
+        {
+            if (lsIconHero[i].sliderHero.value > 0)
+            {
+                int numberadd = (int)(lsIconHero[i].houseHero.countHero * lsIconHero[i].sliderHero.value);
+                InstantiateHero(lsIconHero[i].houseHero.idHero - 1, numberadd);
+                lsIconHero[i].houseHero.countHero -= numberadd;
+            }
+        }
+        lsIconHero.Clear();
+    }
+
+    public void Update()
+    {
+        if (lsIconHero.Count > 0)
+        {
+            int countOn = 0;
+            for (int i = 0; i < lsIconHero.Count; i++)
+            {
+                if (countOn >= 3 - lstHeroGoldMine.Count)
+                {
+                    break;
+                }
+                if (lsIconHero[i].sliderHero.value > 0)
+                {
+                    countOn++;
+                }
+            }
+            if (countOn >= 3 - lstHeroGoldMine.Count)
+            {
+                foreach (ItemThrowHero item in lsIconHero)
+                {
+                    if (item.sliderHero.value == 0)
+                    {
+                        bool isHeroGoldMine = false;
+                        foreach(Hero h in lstHeroGoldMine)
+                        {
+                            if(h.infoHero.ID == item.houseHero.idHero)
+                            {
+                                isHeroGoldMine = true;
+                            }
+                        }
+                        if (!isHeroGoldMine)
+                        {
+                            item.sliderHero.interactable = false;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (ItemThrowHero item in lsIconHero)
+                {
+                    item.sliderHero.interactable = true;
+                }
+            }
         }
     }
 
@@ -180,7 +282,7 @@ public class GoldMine : MonoBehaviour
 
     public void InstantiateHeroStart(bool isHero)
     {
-        List<int> lsIdHero = new List<int>() {0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17};
+        List<int> lsIdHero = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
         for (int i = 0; i < 3; i++)
         {
             int typeEnemy;
@@ -219,6 +321,21 @@ public class GoldMine : MonoBehaviour
         }
     }
 
+    public void InstantiateHero(int idHero, int number)
+    {
+        Hero hero;
+        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+            , lsPos[lstHeroGoldMine.Count].position
+            , Quaternion.identity
+            , GameManager.Instance.enemyManager);
+        hero.gameObject.name = "Enemy";
+        hero.SetInfoHero();
+        hero.infoHero.capWar = 0;
+        hero.AddHero(number);
+        hero.posStart = lsPos[lstHeroGoldMine.Count].position;
+        lstHeroGoldMine.Add(hero);
+    }
+
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
@@ -226,7 +343,7 @@ public class GoldMine : MonoBehaviour
             if (other.CompareTag("Castle"))
             {
                 GameManager.Instance.idGold = id;
-                Attack();            
+                Attack();
                 GameManager.Instance.isAttack = true;
             }
         }
@@ -316,7 +433,7 @@ public class GoldMine : MonoBehaviour
 
     public void DeleteHero()
     {
-        foreach(Hero h in lstHeroGoldMine)
+        foreach (Hero h in lstHeroGoldMine)
         {
             Destroy(h.gameObject);
         }

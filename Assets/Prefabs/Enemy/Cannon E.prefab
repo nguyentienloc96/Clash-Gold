@@ -414,6 +414,7 @@ MonoBehaviour:
     typeHero: 0
   animator: {fileID: 95377331476036394}
   typeAction: 0
+  numIdle: 1
   numRun: -1
   numAttack: 6
   isFly: 0

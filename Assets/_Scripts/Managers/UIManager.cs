@@ -83,7 +83,9 @@ public class UIManager : MonoBehaviour
     [Header("ATTACK")]
     public GameObject mapMove;
     public GameObject mapAttack;
-    public GameObject btnReleaseCanon;
+    public GameObject panelThrowHero;
+    public Transform contentThrowHero;
+    public GameObject itemThrowHero;
 
     void Awake()
     {
@@ -130,18 +132,18 @@ public class UIManager : MonoBehaviour
                 //buildCanon.SetActive(true);
                 //buildCanon.transform.position = posMouse;
                 //isWaitBuildCanon = true;
-                Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[8], posMouse,Quaternion.identity);
+                Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[8], posMouse, Quaternion.identity);
                 hero.gameObject.name = "Hero";
                 hero.SetInfoHero();
                 hero.infoHero.capWar = 0;
-                for(int i = 0;i< GameManager.Instance.lstHousePlayer.Count; i++)
+                for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
                 {
-                    if(GameManager.Instance.lstHousePlayer[i].idHero == 9)
+                    if (GameManager.Instance.lstHousePlayer[i].idHero == 9)
                     {
                         hero.AddHero(GameManager.Instance.lstHousePlayer[i].countHero);
                         break;
                     }
-                }                
+                }
                 hero.isAttack = true;
                 GameManager.Instance.lsHero.Add(hero);
                 isBuildCanon = false;
@@ -420,7 +422,6 @@ public class UIManager : MonoBehaviour
             DeadzoneCamera.Instance.cameraMap.depth = 0;
             cavas.worldCamera = DeadzoneCamera.Instance.cameraMap;
             animBinoculars.Play("Binoculars");
-            imgMagnifyingGlass.sprite = spZoomInGlass;
         }
         else
         {
@@ -428,7 +429,17 @@ public class UIManager : MonoBehaviour
             cavas.worldCamera = DeadzoneCamera.Instance._camera;
             DeadzoneCamera.Instance.cameraMap.transform.position = DeadzoneCamera.Instance._camera.transform.position;
             animBinoculars.Play("BinocularsNormal");
-            imgMagnifyingGlass.sprite = spZoomOutGlass;
         }
+    }
+
+    public void CloseThrowHero()
+    {
+        panelThrowHero.SetActive(false);
+    }
+
+    public void ThrowHero()
+    {
+        GameManager.Instance.goldMineCurrent.ThrowHero();
+        GameManager.Instance.goldMineCurrent = null;
     }
 }

@@ -83,7 +83,7 @@ public class Castle : MonoBehaviour
         {
             for (int i = 0; i < lsHouseRelease.Count; i++)
             {
-                lstAvatarHeroRelease[i].transform.GetChild(0).GetComponent<Text>().text = lsHouseRelease[i].countHero.ToString();
+                lstAvatarHeroRelease[i].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsHouseRelease[i].countHero.ToString();
             }
         }
         if (GameManager.Instance.isPlay)

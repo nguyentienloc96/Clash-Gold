@@ -19,6 +19,7 @@ public abstract class Hero : MonoBehaviour
     [Header("ANIM HERO")]
     public Animator animator;
     public TypeAction typeAction;
+    public int numIdle;
     public int numRun;
     public int numAttack;
     public bool isFly;
@@ -75,20 +76,20 @@ public abstract class Hero : MonoBehaviour
     {
         typeAction = TypeAction.DIE;
         parDie.Play();
+        Invoke("RemoveObj", 0.5f);
+        Destroy(gameObject, 0.5f);
+    }
+
+    public void RemoveObj()
+    {
         if (gameObject.CompareTag("Hero"))
         {
-            if (infoHero.typeHero == TypeHero.Canon)
-            {
-                UIManager.Instance.buttonReleaseCanon.interactable = true;
-            }
             GameManager.Instance.lsHero.Remove(this);
         }
         else
         {
             GameManager.Instance.lsEnemy.Remove(this);
         }
-
-        Destroy(gameObject, 0.5f);
     }
 
     public void AnimRun()
@@ -207,17 +208,7 @@ public abstract class Hero : MonoBehaviour
                         {
                             if (obj.typeAction != TypeAction.DIE)
                             {
-                                if (obj.infoHero.typeHero != TypeHero.Canon)
-                                {
-                                    lsCompetitorTarget.Add(obj);
-                                }
-                                else
-                                {
-                                    if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
-                                    {
-                                        lsCompetitorTarget.Add(obj);
-                                    }
-                                }
+                                lsCompetitorTarget.Add(obj);
                             }
                         }
                     }
@@ -228,10 +219,7 @@ public abstract class Hero : MonoBehaviour
                     {
                         if (obj.typeAction != TypeAction.DIE)
                         {
-                            if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
-                            {
-                                lsCompetitorTarget.Add(obj);
-                            }
+                            lsCompetitorTarget.Add(obj);
                         }
                     }
                 }
@@ -351,7 +339,7 @@ public abstract class Hero : MonoBehaviour
 
     public void StartChild()
     {
-
+        animator.SetFloat("IndexIdle", numIdle);
     }
 
     public void InstantiateChild(int idHero, bool ishero)

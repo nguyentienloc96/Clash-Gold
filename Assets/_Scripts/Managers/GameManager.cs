@@ -57,6 +57,8 @@ public class GameManager : MonoBehaviour
     public List<Transform> lsPosEnemy;
     public int idGold;
 
+    public GoldMine goldMineCurrent;
+
     void Awake()
     {
         if (Instance != null)
@@ -74,11 +76,11 @@ public class GameManager : MonoBehaviour
         {
             BuildHouse bh = new BuildHouse();
             bh.ID = i;
-            if (i >= 5)
-                bh.isUnlock = false;
-            else
-                bh.isUnlock = true;
-            if (i == 8)
+            //if (i >= 5)
+            //    bh.isUnlock = false;
+            //else
+            //    bh.isUnlock = true;
+            //if (i == 8)
                 bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
@@ -153,7 +155,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.mapAttack.SetActive(false);
         UIManager.Instance.mapMove.SetActive(true);
         OnEndAttack();
-        UIManager.Instance.btnReleaseCanon.SetActive(false);
         isAttack = false;
     }
 
