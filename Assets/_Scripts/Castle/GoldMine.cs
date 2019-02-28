@@ -289,7 +289,36 @@ public class GoldMine : MonoBehaviour
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
-            //Cho linh tu dong qua land nhan vat
+            int check = 0;
+            float dis = Vector3.Distance(transform.position,GameManager.Instance.lstGoldMinePlayer[0].transform.position);
+            for(int i = 1; i < GameManager.Instance.lstGoldMinePlayer.Count; i++)
+            {
+                if(Vector3.Distance(transform.position, GameManager.Instance.lstGoldMinePlayer[i].transform.position) < dis)
+                {
+                    check = i;
+                }
+            }
+            GameManager.Instance.GolEnemyIsAttack = this;
+            GameManager.Instance.GolEnemyIsAttack = GameManager.Instance.lstGoldMinePlayer[check];
+
+            for(int i = 0; i < lstHeroGoldMine.Count; i++)
+            {
+                Hero hero;
+                hero = Instantiate(GameManager.Instance.lsPrefabsHero[lstHeroGoldMine[i].infoHero.ID - 1]
+                    , lsPos[lstHeroGoldMine.Count].position
+                    , Quaternion.identity
+                    , GameManager.Instance.enemyManager);
+                hero.gameObject.name = "Enemy";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                int numberAttack = (int)(lstHeroGoldMine[i].infoHero.numberHero * 0.5f);
+                hero.AddHero(numberAttack);
+                lstHeroGoldMine[i].AddHero(-numberAttack);
+                hero.posStart = lsPos[lstHeroGoldMine.Count].position;
+                hero.posMove = GameManager.Instance.lstGoldMinePlayer[check].transform.position;
+                GameManager.Instance.lsEnemyAttackGoldMine.Add(hero);
+            }
+            Debug.LogError("EnemyAttack");
         }
     }
 
@@ -355,8 +384,18 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
-                GameManager.Instance.idGold = id;
+                GameManager.Instance.GolEnemyBeingAttack = this;
+                GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 Attack();
+                GameManager.Instance.isAttack = true;
+            }
+        }
+        else
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                GameManager.Instance.GolHeroBeingAttack = this;
+                GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 GameManager.Instance.isAttack = true;
             }
         }

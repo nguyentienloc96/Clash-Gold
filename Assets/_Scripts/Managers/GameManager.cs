@@ -55,9 +55,16 @@ public class GameManager : MonoBehaviour
     public bool isAttack;
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
-    public int idGold;
+
+    public GoldMine GolEnemyBeingAttack;
+
+    public GoldMine GolHeroBeingAttack;
+    public GoldMine GolEnemyIsAttack;
+
+    public List<Hero> lsEnemyAttackGoldMine = new List<Hero>();
 
     public GoldMine goldMineCurrent;
+    public Vector3 posTriggerGoldMine;
 
     void Awake()
     {
@@ -128,21 +135,20 @@ public class GameManager : MonoBehaviour
                 if (lsEnemy.Count <= 0)
                 {
                     EndAttack();
-                    foreach(GoldMine g in lstGoldMineEnemy) {
-                        if (g.id == idGold)
-                        {
-                            g.typeGoleMine = TypeGoldMine.Player;
-                            g.DeleteHero();
-                            g.SetSpriteBox(0);
-                            break;
-                        }
-                    }
+                    GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
+                    lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
+                    lstGoldMinePlayer.Add(GolEnemyBeingAttack);
+                    GolEnemyBeingAttack.DeleteHero();
+                    GolEnemyBeingAttack.SetSpriteBox(0);
                 }
                 else if (lsHero.Count <= 0)
                 {
+                    Vector3 posGoldMine = Vector3.zero;
+                    posGoldMine = GolEnemyBeingAttack.transform.position;
                     EndAttack();
-                    castlePlayer.transform.localPosition = Vector3.zero;
-                    castlePlayer.posMove = Vector3.zero;
+                    Vector3 posMoveEnd = posTriggerGoldMine - (posGoldMine - posTriggerGoldMine).normalized;
+                    castlePlayer.transform.localPosition = posMoveEnd;
+                    castlePlayer.posMove = posMoveEnd;
                 }
             }
         }

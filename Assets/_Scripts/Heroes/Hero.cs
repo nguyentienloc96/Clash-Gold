@@ -154,21 +154,14 @@ public abstract class Hero : MonoBehaviour
         }
         else
         {
-            foreach (GoldMine g in GameManager.Instance.lstGoldMineEnemy)
+            for (int i = 0; i < GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine.Count; i++)
             {
-                if (g.id == GameManager.Instance.idGold)
+                if (infoHero.ID == GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.ID)
                 {
-                    for (int i = 0; i < g.lstHeroGoldMine.Count; i++)
-                    {
-                        if (infoHero.ID == g.lstHeroGoldMine[i].infoHero.ID)
-                        {
-                            if (g.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
-                                g.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
-                            else
-                                g.lstHeroGoldMine[i].infoHero.numberHero = 0;
-                            break;
-                        }
-                    }
+                    if (GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
+                        GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
+                    else
+                        GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero = 0;
                     break;
                 }
             }
