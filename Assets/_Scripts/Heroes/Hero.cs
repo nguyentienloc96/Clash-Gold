@@ -228,16 +228,9 @@ public abstract class Hero : MonoBehaviour
                     {
                         if (obj.typeAction != TypeAction.DIE)
                         {
-                            if (obj.infoHero.typeHero != TypeHero.Canon)
+                            if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
                             {
                                 lsCompetitorTarget.Add(obj);
-                            }
-                            else
-                            {
-                                if (Vector3.Distance(transform.position, obj.transform.position) > infoHero.range / 5f)
-                                {
-                                    lsCompetitorTarget.Add(obj);
-                                }
                             }
                         }
                     }
