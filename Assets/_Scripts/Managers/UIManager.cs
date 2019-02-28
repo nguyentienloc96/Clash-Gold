@@ -441,5 +441,6 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.goldMineCurrent.ThrowHero();
         GameManager.Instance.goldMineCurrent = null;
+        panelThrowHero.SetActive(false);
     }
 }

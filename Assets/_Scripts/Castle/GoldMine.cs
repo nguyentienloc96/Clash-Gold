@@ -199,7 +199,20 @@ public class GoldMine : MonoBehaviour
             if (lsIconHero[i].sliderHero.value > 0)
             {
                 int numberadd = (int)(lsIconHero[i].houseHero.countHero * lsIconHero[i].sliderHero.value);
-                InstantiateHero(lsIconHero[i].houseHero.idHero - 1, numberadd);
+                bool isHeroOn = false;
+                foreach (Hero hr in lstHeroGoldMine)
+                {
+                    if (hr.infoHero.ID == lsIconHero[i].houseHero.idHero)
+                    {
+                        hr.AddHero(+numberadd);
+                        isHeroOn = true;
+                        break;
+                    }
+                }
+                if (!isHeroOn)
+                {
+                    InstantiateHero(lsIconHero[i].houseHero.idHero - 1, numberadd);
+                }
                 lsIconHero[i].houseHero.countHero -= numberadd;
             }
         }
@@ -229,9 +242,9 @@ public class GoldMine : MonoBehaviour
                     if (item.sliderHero.value == 0)
                     {
                         bool isHeroGoldMine = false;
-                        foreach(Hero h in lstHeroGoldMine)
+                        foreach (Hero h in lstHeroGoldMine)
                         {
-                            if(h.infoHero.ID == item.houseHero.idHero)
+                            if (h.infoHero.ID == item.houseHero.idHero)
                             {
                                 isHeroGoldMine = true;
                             }
