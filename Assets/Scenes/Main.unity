@@ -8495,7 +8495,10 @@ MonoBehaviour:
   - {fileID: 1662210928}
   - {fileID: 432514337}
   - {fileID: 1113326961}
-  idGold: 0
+  GolEnemyBeingAttack: {fileID: 0}
+  GolHeroBeingAttack: {fileID: 0}
+  GolEnemyIsAttack: {fileID: 0}
+  lsEnemyAttackGoldMine: []
   goldMineCurrent: {fileID: 0}
   posTriggerGoldMine: {x: 0, y: 0, z: 0}
 --- !u!1 &1183669000
@@ -10978,7 +10981,7 @@ GameObject:
   - component: {fileID: 1625111975}
   - component: {fileID: 1625111976}
   m_Layer: 0
-  m_Name: Map (1)
+  m_Name: MapGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

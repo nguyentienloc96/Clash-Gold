@@ -316,12 +316,9 @@ public abstract class Hero : MonoBehaviour
 
     public void StartMoveToPosition(Vector3 _Pos)
     {
-        if (gameObject.CompareTag("Hero"))
-        {
-            posMove = _Pos;
-            posMove.z = 0f;
-            isMove = true;
-        }
+        posMove = _Pos;
+        posMove.z = 0f;
+        isMove = true;
     }
 
     public void AddHero(int _numberHero)

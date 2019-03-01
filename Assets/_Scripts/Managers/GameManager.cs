@@ -53,6 +53,8 @@ public class GameManager : MonoBehaviour
 
 
     public bool isAttack;
+    public bool isBeingAttack;
+
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
 
@@ -120,7 +122,7 @@ public class GameManager : MonoBehaviour
             if (lstGoldMinePlayer.Count >= 2 && dateGame >= dateEnemyAttack)
             {
                 int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
-                this.PostEvent(EventID.EnemyAttackPlayer, a);
+                lstGoldMineEnemy[a].AttackPlayer();
                 dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
             }
 
@@ -132,23 +134,35 @@ public class GameManager : MonoBehaviour
 
             if (isAttack)
             {
-                if (lsEnemy.Count <= 0)
+                if (!isBeingAttack)
                 {
-                    EndAttack();
-                    GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
-                    lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
-                    lstGoldMinePlayer.Add(GolEnemyBeingAttack);
-                    GolEnemyBeingAttack.DeleteHero();
-                    GolEnemyBeingAttack.SetSpriteBox(0);
+                    if (lsEnemy.Count <= 0)
+                    {
+                        EndAttack();
+                        lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
+                        lstGoldMinePlayer.Add(GolEnemyBeingAttack);
+                        GolEnemyBeingAttack.DeleteHero();
+                        GolEnemyBeingAttack.SetSpriteBox(0);
+                        GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
+                    }
+                    else if (lsHero.Count <= 0)
+                    {
+                        Vector3 posGoldMine = Vector3.zero;
+                        posGoldMine = GolEnemyBeingAttack.transform.position;
+                        EndAttack();
+                        Vector3 posMoveEnd = posTriggerGoldMine - (posGoldMine - posTriggerGoldMine).normalized;
+                        castlePlayer.transform.localPosition = posMoveEnd;
+                        castlePlayer.posMove = posMoveEnd;
+                    }
                 }
-                else if (lsHero.Count <= 0)
+                else
                 {
-                    Vector3 posGoldMine = Vector3.zero;
-                    posGoldMine = GolEnemyBeingAttack.transform.position;
-                    EndAttack();
-                    Vector3 posMoveEnd = posTriggerGoldMine - (posGoldMine - posTriggerGoldMine).normalized;
-                    castlePlayer.transform.localPosition = posMoveEnd;
-                    castlePlayer.posMove = posMoveEnd;
+                    if (lsHero.Count <= 0)
+                    {
+                        EndAttack();
+                        GolEnemyBeingAttack.SetSpriteBox(1);
+                        GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                    }
                 }
             }
         }
