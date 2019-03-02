@@ -88,14 +88,26 @@ public class Castle : MonoBehaviour
         }
         if (GameManager.Instance.isPlay)
         {
-            if (CheckCastle() || IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
-                return;
-
-            if (Input.GetMouseButtonDown(0) && !GameManager.Instance.isAttack)
+            if (Input.GetMouseButtonDown(0))
             {
-                posMove = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(Input.mousePosition);
-                posMove.z = 0f;
-                isMove = true;
+                if (CheckCastle() || !IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
+                {
+                    if (!GameManager.Instance.isAttack)
+                    {
+                        posMove = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(Input.mousePosition);
+                    }
+                }
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                if (CheckCastle() || !IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
+                {
+                    if (!GameManager.Instance.isAttack)
+                    {
+                        posMove.z = 0f;
+                        isMove = true;
+                    }
+                }
             }
             if (isMove)
             {

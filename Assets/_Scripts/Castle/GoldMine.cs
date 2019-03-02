@@ -605,10 +605,11 @@ public class GoldMine : MonoBehaviour
     public void AddLevel()
     {
         level++;
-        foreach(Hero hero in lstHeroGoldMine)
+        SetLevel(level);
+        foreach (Hero hero in lstHeroGoldMine)
         {
             hero.infoHero.capWar = GameConfig.Instance.lstInfoHero[hero.infoHero.ID - 1].capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
         }
-        SetSpriteBox(level);
+        SetSpriteBox(GameManager.Instance.maxLevelHouse);
     }
 }

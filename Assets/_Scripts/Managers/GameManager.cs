@@ -217,7 +217,7 @@ public class GameManager : MonoBehaviour
                         lstGoldMineEnemy.Add(GolHeroBeingAttack);
                         GolEnemyBeingAttack.DeleteHero();
                         GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
-                        GolHeroBeingAttack.SetSpriteBox(GolHeroBeingAttack.level);
+                        GolHeroBeingAttack.SetSpriteBox(GameManager.Instance.maxLevelHouse);
                         int i = 0;
                         foreach (Hero h in lsEnemyAttackGoldMine)
                         {
