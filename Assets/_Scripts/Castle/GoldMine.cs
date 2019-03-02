@@ -43,6 +43,7 @@ public class GoldMine : MonoBehaviour
 
     public bool isCanon;
     public float timeCanon;
+
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
@@ -168,6 +169,7 @@ public class GoldMine : MonoBehaviour
                         ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
                         item.houseHero = GameManager.Instance.lstHousePlayer[i];
                         item.iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[i].idHero - 1];
+                        item.txtCountHero.text = "Count Hero : " + GameManager.Instance.lstHousePlayer[i].countHero;
                         lsIconHero.Add(item);
                     }
                 }

@@ -68,12 +68,7 @@ public class UIManager : MonoBehaviour
     private float timeBuildCanon;
 
     [Header("MINIMAP")]
-    public Image imgMagnifyingGlass;
-    public Animation animminiMap;
     public Animation animBinoculars;
-    public Sprite spZoomInGlass;
-    public Sprite spZoomOutGlass;
-    public bool isZoomOut;
     public bool isBinoculars;
     public Canvas cavas;
 
@@ -86,6 +81,8 @@ public class UIManager : MonoBehaviour
     public GameObject panelThrowHero;
     public Transform contentThrowHero;
     public GameObject itemThrowHero;
+
+    public List<Button> lsBtnIconHouse = new List<Button>();
 
     void Awake()
     {
@@ -398,21 +395,6 @@ public class UIManager : MonoBehaviour
         buttonReleaseCanon.interactable = false;
     }
     #endregion
-
-    public void Btn_ZoomMiniMap()
-    {
-        isZoomOut = !isZoomOut;
-        if (isZoomOut)
-        {
-            animminiMap.Play("ZoomOutMiniMap");
-            imgMagnifyingGlass.sprite = spZoomInGlass;
-        }
-        else
-        {
-            animminiMap.Play("ZoomInMiniMap");
-            imgMagnifyingGlass.sprite = spZoomOutGlass;
-        }
-    }
 
     public void Btn_BinocularsMiniMap()
     {

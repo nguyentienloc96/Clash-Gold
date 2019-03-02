@@ -7,7 +7,6 @@ public class BuildHouseObject : MonoBehaviour
 {
     public bool isLock;
     public int ID_Hero;
-    public Button thisButton;
     public Image imgLock;
 
     public void Btn_Click()
@@ -15,7 +14,6 @@ public class BuildHouseObject : MonoBehaviour
         if (!isLock)
         {
             UIManager.Instance.Btn_BuildHouse(ID_Hero);
-            thisButton.interactable = false;
         }
     }
 

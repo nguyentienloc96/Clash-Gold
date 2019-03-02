@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689042427745408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalPosition: {x: 0, y: 2, z: -2}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4414080315528002}
@@ -172,7 +172,6 @@ MonoBehaviour:
   isCanReleaseCanon: 0
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
-  isChildMove: 0
   txtLevel: {fileID: 0}
   txtHealth: {fileID: 0}
   cameraMain: {fileID: 0}
@@ -180,11 +179,12 @@ MonoBehaviour:
   - {fileID: 4414080315528002}
   - {fileID: 4182129549998640}
   - {fileID: 4576455793482236}
-  lstHeroRelease: []
   lstAvatarHeroRelease:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  lsHouseRelease: []
+  itemHero: {fileID: 1899145358730652, guid: 7d1c8ea2909b0d64997f35012ff616b7, type: 2}
 --- !u!212 &212650450561547668
 SpriteRenderer:
   m_ObjectHideFlags: 1

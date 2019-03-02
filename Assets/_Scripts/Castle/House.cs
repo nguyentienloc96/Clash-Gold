@@ -197,6 +197,7 @@ public class House : MonoBehaviour
         imgNotBuild.enabled = false;
         imgLoadingBuild.gameObject.SetActive(true);
         panelHouse.SetActive(false);
+        UIManager.Instance.lsBtnIconHouse[_id].interactable = false;
     }
 
     void BuildComplete()

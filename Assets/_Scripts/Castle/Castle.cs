@@ -211,11 +211,11 @@ public class Castle : MonoBehaviour
                 }
                 if (!isCheckHero)
                 {
-                    int m = i;
                     GameObject obj = Instantiate(itemHero, UIManager.Instance.contentRelace);
-                    obj.transform.GetChild(0).gameObject.SetActive(true);
-                    obj.transform.GetChild(0).GetComponent<Image>().sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[m].idHero - 1];
-                    obj.GetComponent<Button>().onClick.AddListener(() => RelaceItemHero(idLocation, GameManager.Instance.lstHousePlayer[m].idHouse));
+                    ItemHeroRelace item = obj.GetComponent<ItemHeroRelace>();
+                    item.idLocation = idLocation;
+                    item.idHouseRelace = i;
+                    item.iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[item.idHouseRelace].idHero - 1];
                 }
             }
         }
@@ -223,15 +223,6 @@ public class Castle : MonoBehaviour
 
     public void CloseRelace()
     {
-        UIManager.Instance.panelRelace.SetActive(false);
-    }
-
-    public void RelaceItemHero(int idLocation, int idHouseRelace)
-    {
-        int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero;
-        lsHouseRelease[idLocation] = GameManager.Instance.lstHousePlayer[idHouseRelace];
-        lstAvatarHeroRelease[idLocation].gameObject.SetActive(true);
-        lstAvatarHeroRelease[idLocation].sprite = UIManager.Instance.sprAvatarHero[idHero - 1];
         UIManager.Instance.panelRelace.SetActive(false);
     }
 }
