@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     public List<Hero> lsPrefabsEnemy;
 
     public int[] lsHeroFly;
-    public int[] lsHeroCanMove;
     public DateTime dateUpGoldMine;
 
 
