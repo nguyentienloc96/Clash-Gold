@@ -129,9 +129,12 @@ public class GameManager : MonoBehaviour
 
             if (lstGoldMinePlayer.Count >= 2 && dateGame >= dateEnemyAttack)
             {
-                int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
-                lstGoldMineEnemy[a].AttackPlayer();
-                dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                if (lsEnemyAttackGoldMine.Count <= 0)
+                {
+                    int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
+                    lstGoldMineEnemy[a].AttackPlayer();
+                    dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                }
             }
 
             if (dateGame >= dateUpGoldMine)
@@ -166,7 +169,6 @@ public class GameManager : MonoBehaviour
             {
                 UIManager.Instance.panelVictory.SetActive(true);
             }
-
 
             if (isAttack)
             {
@@ -230,8 +232,26 @@ public class GameManager : MonoBehaviour
                     }
                     else if (lsEnemy.Count <= 0)
                     {
+                        foreach (Hero h in lsEnemyAttackGoldMine)
+                        {
+                            Destroy(h.gameObject);
+                        }
+                        lsEnemyAttackGoldMine.Clear();
                         EndAttack();
                     }
+                }
+            }
+            else
+            {
+                if (lsEnemyAttackGoldMine.Count > 0)
+                {
+                    lineEnemyAttack.enabled = true;
+                    lineEnemyAttack.SetPosition(0, lsEnemyAttackGoldMine[0].transform.position);
+                    lineEnemyAttack.SetPosition(1, GolHeroBeingAttack.transform.position);
+                }
+                else
+                {
+                    lineEnemyAttack.enabled = false;
                 }
             }
         }

@@ -300,8 +300,6 @@ public class GoldMine : MonoBehaviour
             }
             GameManager.Instance.GolEnemyIsAttack = this;
             GameManager.Instance.GolHeroBeingAttack = GameManager.Instance.lstGoldMinePlayer[check];
-            GameManager.Instance.lineEnemyAttack.SetPosition(0, this.transform.position);
-            GameManager.Instance.lineEnemyAttack.SetPosition(1, GameManager.Instance.GolHeroBeingAttack.transform.position);
             float speed = 10f;
             for (int i = 0; i < lstHeroGoldMine.Count; i++)
             {
@@ -426,9 +424,7 @@ public class GoldMine : MonoBehaviour
                 {
                     GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
                     GameManager.Instance.lsEnemyAttackGoldMine[i].GetComponent<BoxCollider2D>().enabled = false;
-                }
-                GameManager.Instance.lineEnemyAttack.SetPosition(0, Vector3.zero);
-                GameManager.Instance.lineEnemyAttack.SetPosition(1, Vector3.zero);
+                }                
             }
         }
     }
