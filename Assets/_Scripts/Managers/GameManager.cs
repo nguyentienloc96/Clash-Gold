@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
 
 
     public bool isAttack;
-    public bool isBeingAttack;
+    public bool isAttackGoldMineEnemy;
 
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             //else
             //    bh.isUnlock = true;
             //if (i == 8)
-                bh.isUnlock = true;
+            bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
 
@@ -134,16 +134,24 @@ public class GameManager : MonoBehaviour
 
             if (isAttack)
             {
-                if (!isBeingAttack)
+                if (isAttackGoldMineEnemy)
                 {
                     if (lsEnemy.Count <= 0)
                     {
+                        dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                         EndAttack();
                         lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
                         lstGoldMinePlayer.Add(GolEnemyBeingAttack);
                         GolEnemyBeingAttack.DeleteHero();
-                        GolEnemyBeingAttack.SetSpriteBox(0);
                         GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
+                        GolEnemyBeingAttack.SetSpriteBox(0);
+                        if (lsEnemyAttackGoldMine.Count > 0)
+                        {
+                            for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                            {
+                                lsEnemyAttackGoldMine[i].isPause = false;
+                            }
+                        }
                     }
                     else if (lsHero.Count <= 0)
                     {
@@ -153,6 +161,13 @@ public class GameManager : MonoBehaviour
                         Vector3 posMoveEnd = posTriggerGoldMine - (posGoldMine - posTriggerGoldMine).normalized;
                         castlePlayer.transform.localPosition = posMoveEnd;
                         castlePlayer.posMove = posMoveEnd;
+                        if (lsEnemyAttackGoldMine.Count > 0)
+                        {
+                            for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                            {
+                                lsEnemyAttackGoldMine[i].isPause = false;
+                            }
+                        }
                     }
                 }
                 else
@@ -160,8 +175,26 @@ public class GameManager : MonoBehaviour
                     if (lsHero.Count <= 0)
                     {
                         EndAttack();
-                        GolEnemyBeingAttack.SetSpriteBox(1);
-                        GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                        lstGoldMinePlayer.Remove(GolHeroBeingAttack);
+                        lstGoldMineEnemy.Add(GolHeroBeingAttack);
+                        GolEnemyBeingAttack.DeleteHero();
+                        GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                        GolHeroBeingAttack.SetSpriteBox(GolHeroBeingAttack.level);
+                        int i = 0;
+                        foreach (Hero h in lsEnemyAttackGoldMine)
+                        {
+                            GolHeroBeingAttack.InstantiateEnemy(h.infoHero.ID - 1, h.infoHero.numberHero,i);
+                            i++;
+                        }
+                        foreach (Hero h in lsEnemyAttackGoldMine)
+                        {
+                            Destroy(h.gameObject);
+                        }
+                        lsEnemyAttackGoldMine.Clear();
+                    }
+                    else if (lsEnemy.Count <= 0)
+                    {
+                        EndAttack();
                     }
                 }
             }

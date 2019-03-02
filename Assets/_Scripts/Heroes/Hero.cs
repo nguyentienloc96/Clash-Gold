@@ -48,6 +48,8 @@ public abstract class Hero : MonoBehaviour
     [HideInInspector]
     public bool isMove;
     [HideInInspector]
+    public bool isPause;
+    [HideInInspector]
     public float timeCheckCameBack;
     [HideInInspector]
     public float speedMin;
@@ -137,32 +139,65 @@ public abstract class Hero : MonoBehaviour
             numberSub = 0;
         }
         infoHero.numberHero -= numberRemove;
-
-        if (gameObject.tag == "Hero")
+        if (GameManager.Instance.isAttackGoldMineEnemy)
         {
-            for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count; i++)
+            if (gameObject.tag == "Hero")
             {
-                if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
+                for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count; i++)
                 {
-                    if (GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > numberSub)
-                        GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
-                    else
-                        GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero = 0;
-                    break;
+                    if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
+                    {
+                        if (GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > numberSub)
+                            GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
+                        else
+                            GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero = 0;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine.Count; i++)
+                {
+                    if (infoHero.ID == GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.ID)
+                    {
+                        if (GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
+                            GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
+                        else
+                            GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero = 0;
+                        break;
+                    }
                 }
             }
         }
         else
         {
-            for (int i = 0; i < GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine.Count; i++)
+            if (gameObject.tag == "Hero")
             {
-                if (infoHero.ID == GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.ID)
+                for (int i = 0; i < GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine.Count; i++)
                 {
-                    if (GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
-                        GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
-                    else
-                        GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero = 0;
-                    break;
+                    if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
+                    {
+                        if (GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
+                            GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
+                        else
+                            GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine[i].infoHero.numberHero = 0;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
+                {
+                    if (infoHero.ID == GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID)
+                    {
+                        if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero > numberSub)
+                            GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero -= numberSub;
+                        else
+                            GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero = 0;
+                        break;
+                    }
                 }
             }
         }
@@ -280,7 +315,7 @@ public abstract class Hero : MonoBehaviour
 
     public void HeroUpdate()
     {
-        if (GameManager.Instance.isPlay)
+        if (GameManager.Instance.isPlay && !isPause)
         {
             AnimtionUpdate();
             if (!isMove)
