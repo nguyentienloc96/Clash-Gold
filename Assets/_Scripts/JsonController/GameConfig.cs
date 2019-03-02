@@ -55,6 +55,9 @@ public class GameConfig : MonoBehaviour
     public int CapWar01;
     public float TimeCanon;
     public float Timecanonsurvive;
+    public int TimeUp;
+    public int LandUP;
+    public int LandDiv;
     public List<string> lstSpeech = new List<string>();
     public List<InfoHero> lstInfoHero = new List<InfoHero>();
 

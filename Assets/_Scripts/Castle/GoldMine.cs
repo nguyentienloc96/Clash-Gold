@@ -299,8 +299,10 @@ public class GoldMine : MonoBehaviour
                 }
             }
             GameManager.Instance.GolEnemyIsAttack = this;
-            GameManager.Instance.GolEnemyIsAttack = GameManager.Instance.lstGoldMinePlayer[check];
-            float speed = 15f;
+            GameManager.Instance.GolHeroBeingAttack = GameManager.Instance.lstGoldMinePlayer[check];
+            GameManager.Instance.lineEnemyAttack.SetPosition(0, this.transform.position);
+            GameManager.Instance.lineEnemyAttack.SetPosition(1, GameManager.Instance.GolHeroBeingAttack.transform.position);
+            float speed = 10f;
             for (int i = 0; i < lstHeroGoldMine.Count; i++)
             {
                 Hero hero;
@@ -314,7 +316,7 @@ public class GoldMine : MonoBehaviour
                 hero.AddHero(numberAttack);
                 lstHeroGoldMine[i].AddHero(-numberAttack);
                 hero.speedMin = speed;
-                hero.StartMoveToPosition(GameManager.Instance.lstGoldMinePlayer[check].transform.position);
+                hero.StartMoveToPosition(GameManager.Instance.GolHeroBeingAttack.transform.position);
                 GameManager.Instance.lsEnemyAttackGoldMine.Add(hero);
             }
         }
@@ -425,6 +427,8 @@ public class GoldMine : MonoBehaviour
                     GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
                     GameManager.Instance.lsEnemyAttackGoldMine[i].GetComponent<BoxCollider2D>().enabled = false;
                 }
+                GameManager.Instance.lineEnemyAttack.SetPosition(0, Vector3.zero);
+                GameManager.Instance.lineEnemyAttack.SetPosition(1, Vector3.zero);
             }
         }
     }
@@ -600,5 +604,15 @@ public class GoldMine : MonoBehaviour
             Destroy(h.gameObject);
         }
         lstHeroGoldMine.Clear();
+    }
+
+    public void AddLevel()
+    {
+        level++;
+        foreach(Hero hero in lstHeroGoldMine)
+        {
+            hero.infoHero.capWar = GameConfig.Instance.lstInfoHero[hero.infoHero.ID - 1].capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
+        }
+        SetSpriteBox(level);
     }
 }

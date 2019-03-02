@@ -42,6 +42,8 @@ public class GameManager : MonoBehaviour
 
     public int[] lsHeroFly;
     public int[] lsHeroCanMove;
+    public DateTime dateUpGoldMine;
+
 
     [Header("OTHER")]
     public Transform enemyManager;
@@ -51,22 +53,27 @@ public class GameManager : MonoBehaviour
     public GameObject[] prefabsBoxMap;
     public Sprite[] sprBoxMap;
 
-
+    [HideInInspector]
     public bool isAttack;
+    [HideInInspector]
     public bool isAttackGoldMineEnemy;
 
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
-
+    [HideInInspector]
     public GoldMine GolEnemyBeingAttack;
-
+    [HideInInspector]
     public GoldMine GolHeroBeingAttack;
+    [HideInInspector]
     public GoldMine GolEnemyIsAttack;
-
+    [HideInInspector]
     public List<Hero> lsEnemyAttackGoldMine = new List<Hero>();
-
+    [HideInInspector]
     public GoldMine goldMineCurrent;
+    [HideInInspector]
     public Vector3 posTriggerGoldMine;
+
+    public LineRenderer lineEnemyAttack;
 
     void Awake()
     {
@@ -102,6 +109,7 @@ public class GameManager : MonoBehaviour
         {
 
         }
+        dateUpGoldMine = dateGame.AddDays(GameConfig.Instance.TimeUp);
     }
 
     void Update()
@@ -124,6 +132,34 @@ public class GameManager : MonoBehaviour
                 int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
                 lstGoldMineEnemy[a].AttackPlayer();
                 dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+            }
+
+            if (dateGame >= dateUpGoldMine)
+            {
+                int landUpMax = (lstGoldMineEnemy.Count / GameConfig.Instance.LandDiv);
+                int landUp;
+                if (landUpMax >= GameConfig.Instance.LandUP)
+                {
+                    landUp = UnityEngine.Random.Range(GameConfig.Instance.LandUP, landUpMax);
+                }
+                else
+                {
+                    landUp = UnityEngine.Random.Range(landUpMax, GameConfig.Instance.LandUP);
+                }
+
+                int numberGoldMine = 0;
+                if (numberGoldMine < landUp)
+                {
+                    for (int i = 0; i < lstGoldMineEnemy.Count; i++)
+                    {
+                        if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
+                        {
+                            lstGoldMineEnemy[i].AddLevel();
+                            numberGoldMine++;
+                        }
+                    }
+                }
+                dateUpGoldMine = dateGame.AddDays(GameConfig.Instance.TimeUp);
             }
 
             if (lstGoldMineEnemy.Count <= 0)
@@ -183,7 +219,7 @@ public class GameManager : MonoBehaviour
                         int i = 0;
                         foreach (Hero h in lsEnemyAttackGoldMine)
                         {
-                            GolHeroBeingAttack.InstantiateEnemy(h.infoHero.ID - 1, h.infoHero.numberHero,i);
+                            GolHeroBeingAttack.InstantiateEnemy(h.infoHero.ID - 1, h.infoHero.numberHero, i);
                             i++;
                         }
                         foreach (Hero h in lsEnemyAttackGoldMine)
@@ -210,7 +246,6 @@ public class GameManager : MonoBehaviour
         OnEndAttack();
         isAttack = false;
     }
-
 
     public void OnEndAttack()
     {
@@ -241,7 +276,6 @@ public class GameManager : MonoBehaviour
         {
             int a = (int)UnityEngine.Random.Range(0, 3.9f);
             int b = UnityEngine.Random.Range(0, 4);
-            int numberMin = 0;
             Vector3 _rotation;
             if (b == 0)
             {
@@ -278,23 +312,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
-                int _level;
-                if (i >= 5 && i <= 15 && i != 8 && i != 12)
-                {
-                    if (UnityEngine.Random.Range(0f, 1f) >= 0.5f && numberMin < 3)
-                    {
-                        _level = UnityEngine.Random.Range(1, 3);
-                        numberMin++;
-                    }
-                    else
-                    {
-                        _level = UnityEngine.Random.Range(4, 10);
-                    }
-                }
-                else
-                {
-                    _level = UnityEngine.Random.Range(10, 20);
-                }
+                int _level = UnityEngine.Random.Range(1, 5);
                 g.SetLevel(_level);
                 g.id = i;
                 g.numberBoxGoldMine = a;

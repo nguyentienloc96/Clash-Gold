@@ -87,6 +87,9 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.CapWar01 = objJson["CapWar01"].AsInt;
             GameConfig.Instance.TimeCanon = objJson["TimeCanon"].AsFloat;
             GameConfig.Instance.Timecanonsurvive = objJson["Timecanonsurvive"].AsFloat;
+            GameConfig.Instance.TimeUp = objJson["TimeUp"].AsInt;
+            GameConfig.Instance.LandUP = objJson["LandUP"].AsInt;
+            GameConfig.Instance.LandDiv = objJson["LandDiv"].AsInt;
             GameConfig.Instance.ID_UnityAds_ios = objJson["ID_UnityAds_ios"];
             GameConfig.Instance.ID_Inter_android = objJson["ID_Inter_android"];
             GameConfig.Instance.ID_Inter_ios = objJson["ID_Inter_ios"];
