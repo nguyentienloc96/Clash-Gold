@@ -192,6 +192,37 @@ public class GameManager : MonoBehaviour
                             numberThrowHero++;
                         }
                     }
+                    else
+                    {
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            if (UIManager.Instance.lsItemHeroAttack[0].gameObject.activeSelf || UIManager.Instance.lsItemHeroAttack[1].gameObject.activeSelf || UIManager.Instance.lsItemHeroAttack[2].gameObject.activeSelf)
+                            {
+                                Vector3 posIns = DeadzoneCamera.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
+                                posIns.z = 0f;
+                                if (posIns.y > 0)
+                                {
+                                    posIns.y = 0;
+                                }
+                                ItemHeroAttack item;
+                                if (UIManager.Instance.lsItemHeroAttack[0].gameObject.activeSelf)
+                                {
+                                    item = UIManager.Instance.lsItemHeroAttack[0];
+                                }else if (UIManager.Instance.lsItemHeroAttack[1].gameObject.activeSelf)
+                                {
+                                    item = UIManager.Instance.lsItemHeroAttack[1];
+                                }
+                                else
+                                {
+                                    item = UIManager.Instance.lsItemHeroAttack[2];
+                                }
+                                ThrowHero(item.houseHero, item.countHero, posIns);
+                                item.gameObject.SetActive(false);
+                                itemSelectHero = null;
+                                numberThrowHero++;
+                            }
+                        }
+                    }
 
                     if (lsEnemy.Count <= 0)
                     {
@@ -356,7 +387,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
-                int _level = UnityEngine.Random.Range(1, 5);
+                int _level = UnityEngine.Random.Range(1, 6);
                 g.SetLevel(_level);
                 g.id = i;
                 g.numberBoxGoldMine = a;
@@ -454,6 +485,10 @@ public class GameManager : MonoBehaviour
                 hero.isAttack = true;
                 lsHero.Add(hero);
             }
+        }
+        for (int i = 0; i < GolEnemyBeingAttack.lstHeroGoldMine.Count; i++)
+        {
+            lsEnemy[i].targetCompetitor = null;
         }
     }
 }

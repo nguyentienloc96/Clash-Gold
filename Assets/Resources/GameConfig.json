@@ -1,5 +1,5 @@
 {
-  "GoldStart": 120000,
+  "GoldStart": 20000,
   "CoinStart": 10,
   "GoldMinerAmount": 20,
   "RatioBorn": [
@@ -38,9 +38,9 @@
   "CapWar01": 40,
   "TimeCanon": 10,
   "Timecanonsurvive": 60,
-  "TimeUp": 3,
+  "TimeUp": 10,
   "LandUP": 2,
-  "LandDiv": 5,
+  "LandDiv": 7,
   "ID_UnityAds_ios": "",
   "ID_Inter_android": "",
   "ID_Inter_ios": "",
