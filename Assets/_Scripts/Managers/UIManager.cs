@@ -399,24 +399,6 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
-    public void Btn_BinocularsMiniMap()
-    {
-        isBinoculars = !isBinoculars;
-        if (isBinoculars)
-        {
-            DeadzoneCamera.Instance.cameraMap.depth = 0;
-            cavas.worldCamera = DeadzoneCamera.Instance.cameraMap;
-            animBinoculars.Play("Binoculars");
-        }
-        else
-        {
-            DeadzoneCamera.Instance.cameraMap.depth = -2;
-            cavas.worldCamera = DeadzoneCamera.Instance._camera;
-            DeadzoneCamera.Instance.cameraMap.transform.position = DeadzoneCamera.Instance._camera.transform.position;
-            animBinoculars.Play("BinocularsNormal");
-        }
-    }
-
     public void CloseThrowHero()
     {
         panelThrowHero.SetActive(false);

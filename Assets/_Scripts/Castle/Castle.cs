@@ -19,9 +19,7 @@ public class Castle : MonoBehaviour
     public bool isCanReleaseCanon = false;
 
     [Header("CHECK MOVE")]
-    [HideInInspector]
     public Vector3 posMove;
-    [HideInInspector]
     public bool isMove;
 
     [Header("UI")]
@@ -88,34 +86,28 @@ public class Castle : MonoBehaviour
         }
         if (GameManager.Instance.isPlay)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (CheckCastle() || !IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
-                {
-                    if (!GameManager.Instance.isAttack)
-                    {
-                        posMove = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(Input.mousePosition);
-                    }
-                }
-            }
-            else if (Input.GetMouseButtonUp(0))
-            {
-                if (CheckCastle() || !IsPointerOverGameObject() || UIManager.Instance.isBinoculars)
-                {
-                    if (!GameManager.Instance.isAttack)
-                    {
-                        posMove.z = 0f;
-                        isMove = true;
-                    }
-                }
-            }
             if (isMove)
             {
                 MoveToPosition(posMove);
-                if (transform.position == posMove)
+                Vector3 posMoveZ = posMove;
+                posMoveZ.z = -2f;
+                if (transform.position == posMoveZ)
                 {
                     isMove = false;
                 }
+            }
+        }
+    }
+
+    public void MoveCastle(Vector3 posMouse)
+    {
+        if (GameManager.Instance.isPlay)
+        {
+            if (!GameManager.Instance.isAttack)
+            {
+                posMove = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(posMouse);
+                posMove.z = 0f;
+                isMove = true;
             }
         }
     }
