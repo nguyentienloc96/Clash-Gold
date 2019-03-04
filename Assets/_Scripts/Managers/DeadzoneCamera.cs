@@ -35,26 +35,25 @@ public class DeadzoneCamera : MonoBehaviour
     private bool wasZoomingLastFrame; // Touch mode only
     private Vector2[] lastZoomPositions; // Touch mode only
 
+    private Vector3 pos1;
+
     void Update()
     {
         if (GameManager.Instance.isPlay)
         {
-            if (GameManager.Instance.castlePlayer.isMove)
+            //if (GameManager.Instance.castlePlayer.isMove)
+            //{
+            //    //Vector3 posMoveCamera = GameManager.Instance.castlePlayer.transform.position;
+            //    //posMoveCamera.z = -10;
+            //    //transform.position = posMoveCamera;
+            //}
+            if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
             {
-                Vector3 posMoveCamera = GameManager.Instance.castlePlayer.transform.position;
-                posMoveCamera.z = -10;
-                transform.position = posMoveCamera;
+                HandleTouch();
             }
             else
             {
-                if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
-                {
-                    HandleTouch();
-                }
-                else
-                {
-                    HandleMouse();
-                }
+                HandleMouse();
             }
         }
     }
@@ -73,11 +72,23 @@ public class DeadzoneCamera : MonoBehaviour
                 if (touch.phase == TouchPhase.Began)
                 {
                     lastPanPosition = touch.position;
+                    pos1 = _camera.ScreenToWorldPoint(lastPanPosition);
                     panFingerId = touch.fingerId;
                 }
                 else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Moved)
                 {
                     PanCamera(touch.position);
+                }
+                else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Ended)
+                {
+                    if (!GameManager.Instance.castlePlayer.CheckCastle() && !Castle.IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0)
+                    {
+                        Vector3 pos2 = _camera.ScreenToWorldPoint(touch.position);
+                        if (Vector3.Distance(pos1, pos2) <= 0.05f)
+                        {
+                            GameManager.Instance.castlePlayer.MoveCastle(touch.position);
+                        }
+                    }
                 }
                 break;
 
@@ -115,6 +126,7 @@ public class DeadzoneCamera : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             lastPanPosition = Input.mousePosition;
+            pos1 = _camera.ScreenToWorldPoint(lastPanPosition);
         }
         else if (Input.GetMouseButton(0))
         {
@@ -124,7 +136,8 @@ public class DeadzoneCamera : MonoBehaviour
         {
             if (!GameManager.Instance.castlePlayer.CheckCastle() && !Castle.IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0)
             {
-                if (Vector3.Distance(lastPanPosition, Input.mousePosition) <= 1.5f)
+                Vector3 pos2 = _camera.ScreenToWorldPoint(Input.mousePosition);
+                if (Vector3.Distance(pos1, pos2) <= 0.05f)
                 {
                     GameManager.Instance.castlePlayer.MoveCastle(Input.mousePosition);
                 }
