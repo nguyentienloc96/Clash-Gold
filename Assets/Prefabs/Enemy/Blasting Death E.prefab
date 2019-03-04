@@ -330,7 +330,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -412,8 +412,10 @@ MonoBehaviour:
     idMom: 0
     idBaby: 0
     typeHero: 0
+  rb: {fileID: 0}
   animator: {fileID: 95034598240572502}
   typeAction: 0
+  numIdle: 0
   numRun: 3
   numAttack: 5
   isFly: 1
@@ -426,14 +428,12 @@ MonoBehaviour:
   parHit: {fileID: 198273349071942626}
   IDGold: 0
   isAttack: 0
-  goldMineAttacking: {fileID: 0}
-  goldMineProtecting: {fileID: 0}
   posStart: {x: 0, y: 0, z: 0}
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
+  isPause: 0
   timeCheckCameBack: 0
   speedMin: 0
-  lsChild: []
 --- !u!198 &198273349071942626
 ParticleSystem:
   m_ObjectHideFlags: 1

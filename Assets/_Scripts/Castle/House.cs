@@ -96,23 +96,25 @@ public class House : MonoBehaviour
         {
             this.PostEvent(EventID.ClickHouse, idHouse);
 
-            if (!buttonUpgrade.gameObject.activeSelf)
-            {
-                buttonUpgrade.gameObject.SetActive(true);
-            }
-            else
-            {
-                buttonUpgrade.gameObject.SetActive(false);
-            }
+            //if (!buttonUpgrade.gameObject.activeSelf)
+            //{
+            //    buttonUpgrade.gameObject.SetActive(true);
+            //}
+            //else
+            //{
+            //    buttonUpgrade.gameObject.SetActive(false);
+            //}
 
-            if (!buttonRelease.gameObject.activeSelf)
-            {
-                buttonRelease.gameObject.SetActive(true);
-            }
-            else
-            {
-                buttonRelease.gameObject.SetActive(false);
-            }
+            //if (!buttonRelease.gameObject.activeSelf)
+            //{
+            //    buttonRelease.gameObject.SetActive(true);
+            //}
+            //else
+            //{
+            //    buttonRelease.gameObject.SetActive(false);
+            //}
+            CheckUpgrade(1);
+            YesUpgrade(1);
         }
         else if (typeState == TypeStateHouse.Lock)
         {

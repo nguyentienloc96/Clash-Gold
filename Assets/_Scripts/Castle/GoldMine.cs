@@ -358,6 +358,7 @@ public class GoldMine : MonoBehaviour
                 hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
                 hero.AddHero(numberEnemy);
                 hero.posStart = lsPos[i].position;
+                hero.GetComponent<BoxCollider2D>().enabled = false;
             }
 
         }

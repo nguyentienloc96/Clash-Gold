@@ -195,11 +195,12 @@ public class GameManager : MonoBehaviour
 
                     if (lsEnemy.Count <= 0)
                     {
+                        isAttack = false;
                         dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                        GolEnemyBeingAttack.DeleteHero();
                         EndAttack();
                         lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
                         lstGoldMinePlayer.Add(GolEnemyBeingAttack);
-                        GolEnemyBeingAttack.DeleteHero();
                         GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
                         GolEnemyBeingAttack.SetSpriteBox(0);
                         if (lsEnemyAttackGoldMine.Count > 0)
@@ -278,13 +279,16 @@ public class GameManager : MonoBehaviour
 
     public void EndAttack()
     {
+        isAttack = false;
         DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(false);
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.mapAttack.SetActive(false);
         UIManager.Instance.mapMove.SetActive(true);
         UIManager.Instance.panelThrowHeroAttack.SetActive(false);
         OnEndAttack();
-        isAttack = false;
+        Vector3 posCastle = castlePlayer.transform.position;
+        posCastle.z = -10f;
+        DeadzoneCamera.Instance._camera.transform.position = posCastle;
     }
 
     public void OnEndAttack()
