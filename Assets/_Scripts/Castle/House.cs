@@ -71,20 +71,20 @@ public class House : MonoBehaviour
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void LoadDataHouse(int _idHero, int _level, int _capWar, long _price, TypeStateHouse _type, int _countHero)
-    {
-        this.idHero = _idHero;
-        this.level = _level;
-        this.capWar = _capWar;
-        this.price = _price;
-        this.typeState = _type;
-        this.countHero = _countHero;
-        if (this.typeState == TypeStateHouse.None)
-        {
-            this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-            this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
-        }
-    }
+    //public void LoadDataHouse(int _idHero, int _level, int _capWar, long _price, TypeStateHouse _type, int _countHero)
+    //{
+    //    this.idHero = _idHero;
+    //    this.level = _level;
+    //    this.capWar = _capWar;
+    //    this.price = _price;
+    //    this.typeState = _type;
+    //    this.countHero = _countHero;
+    //    if (this.typeState == TypeStateHouse.None)
+    //    {
+    //        this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
+    //        this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
+    //    }
+    //}
 
     public void Btn_OnClick()
     {
@@ -113,8 +113,7 @@ public class House : MonoBehaviour
             //{
             //    buttonRelease.gameObject.SetActive(false);
             //}
-            CheckUpgrade(1);
-            YesUpgrade(1);
+            UIManager.Instance.ShowPanelUpgrade();
         }
         else if (typeState == TypeStateHouse.Lock)
         {
@@ -208,7 +207,7 @@ public class House : MonoBehaviour
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
         this.level = 1;
-        this.capWar = (int)GameConfig.Instance.lstInfoHero[idHero].capWar;
+        this.capWar = (int)GameConfig.Instance.lstInfoHero[idHero - 1].capWar;
         this.countHero = 0;
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);

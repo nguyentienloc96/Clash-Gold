@@ -36,14 +36,12 @@ public class UIManager : MonoBehaviour
 
     [Header("UPGRADE")]
     public int xUpgrade = 1;
-    public Sprite[] sprX1X10;
-    public Image imgX1;
-    public Image imgX10;
     public Text txtLevelCurrent;
     public Text txtLevelUpgrade;
     public Text txtCapCurrent;
     public Text txtCapUpgrade;
     public Text txtPrice;
+    public Image iconHero;
 
     [Header("UI SHOWSPEECH")]
     public GameObject panelShowSpeech;
@@ -349,16 +347,7 @@ public class UIManager : MonoBehaviour
     public void Btn_x1x10_Upgrade(int _x)
     {
         xUpgrade = _x;
-        if (xUpgrade == 1)
-        {
-            imgX1.sprite = sprX1X10[0];
-            imgX10.sprite = sprX1X10[1];
-        }
-        else
-        {
-            imgX1.sprite = sprX1X10[1];
-            imgX10.sprite = sprX1X10[0];
-        }
+        iconHero.sprite = sprAvatarHero[GameManager.Instance.lstHousePlayer[houseClick].idHero - 1];
         GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(xUpgrade);
         txtLevelCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].level.ToString();
         txtLevelUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].levelWillupgrade.ToString();

@@ -71,7 +71,10 @@ public class DeadzoneCamera : MonoBehaviour
                 }
                 else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Moved)
                 {
-                    PanCamera(touch.position);
+                    if (!Castle.IsPointerOverGameObject())
+                    {
+                        PanCamera(touch.position);
+                    }
                 }
                 else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Ended)
                 {
@@ -100,9 +103,10 @@ public class DeadzoneCamera : MonoBehaviour
                     float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
                     float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
                     float offset = newDistance - oldDistance;
-
-                    ZoomCamera(offset, ZoomSpeedTouch);
-
+                    if (!Castle.IsPointerOverGameObject())
+                    {
+                        ZoomCamera(offset, ZoomSpeedTouch);
+                    }
                     lastZoomPositions = newPositions;
                 }
                 break;
@@ -124,7 +128,10 @@ public class DeadzoneCamera : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            PanCamera(Input.mousePosition);
+            if (!Castle.IsPointerOverGameObject())
+            {
+                PanCamera(Input.mousePosition);
+            }
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -140,7 +147,10 @@ public class DeadzoneCamera : MonoBehaviour
 
         // Check for scrolling to zoom the camera
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        ZoomCamera(scroll, ZoomSpeedMouse);
+        if (!Castle.IsPointerOverGameObject())
+        {
+            ZoomCamera(scroll, ZoomSpeedMouse);
+        }
     }
 
     void PanCamera(Vector3 newPanPosition)
