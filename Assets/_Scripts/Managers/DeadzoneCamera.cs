@@ -27,7 +27,7 @@ public class DeadzoneCamera : MonoBehaviour
 
     private static readonly float[] BoundsX = new float[] { -25f, 14f };
     private static readonly float[] BoundsY = new float[] { -21f, 21f };
-    private static readonly float[] ZoomBounds = new float[] { 5f, 15f };
+    private static readonly float[] ZoomBounds = new float[] { 10f, 20f };
 
     private Vector3 lastPanPosition;
     private int panFingerId; // Touch mode only
@@ -41,12 +41,6 @@ public class DeadzoneCamera : MonoBehaviour
     {
         if (GameManager.Instance.isPlay)
         {
-            //if (GameManager.Instance.castlePlayer.isMove)
-            //{
-            //    //Vector3 posMoveCamera = GameManager.Instance.castlePlayer.transform.position;
-            //    //posMoveCamera.z = -10;
-            //    //transform.position = posMoveCamera;
-            //}
             if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
             {
                 HandleTouch();

@@ -378,7 +378,7 @@ public class GoldMine : MonoBehaviour
         lstHeroGoldMine.Add(hero);
     }
 
-    public void InstantiateEnemy(int idHero, int number,int i)
+    public void InstantiateEnemy(int idHero, int number, int i)
     {
         Hero hero;
         hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
@@ -426,7 +426,7 @@ public class GoldMine : MonoBehaviour
                 {
                     GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
                     GameManager.Instance.lsEnemyAttackGoldMine[i].GetComponent<BoxCollider2D>().enabled = false;
-                }                
+                }
             }
         }
     }
@@ -477,13 +477,20 @@ public class GoldMine : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count && i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
-            UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(true);
-            UIManager.Instance.lsItemHeroAttack[i].countHero = GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero;
-            UIManager.Instance.lsItemHeroAttack[i].houseHero = GameManager.Instance.castlePlayer.lsHouseRelease[i];
-            UIManager.Instance.lsItemHeroAttack[i].iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero - 1];
-            UIManager.Instance.lsItemHeroAttack[i].txtCountHero.text = UIManager.Instance.lsItemHeroAttack[i].countHero.ToString();
+            if (i < GameManager.Instance.castlePlayer.lsHouseRelease.Count)
+            {
+                UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(true);
+                UIManager.Instance.lsItemHeroAttack[i].countHero = GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero;
+                UIManager.Instance.lsItemHeroAttack[i].houseHero = GameManager.Instance.castlePlayer.lsHouseRelease[i];
+                UIManager.Instance.lsItemHeroAttack[i].iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero - 1];
+                UIManager.Instance.lsItemHeroAttack[i].txtCountHero.text = UIManager.Instance.lsItemHeroAttack[i].countHero.ToString();
+            }
+            else
+            {
+                UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(false);
+            }
         }
     }
 
