@@ -437,6 +437,8 @@ public class GoldMine : MonoBehaviour
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance.cameraAttack;
         UIManager.Instance.mapAttack.SetActive(true);
         UIManager.Instance.mapMove.SetActive(false);
+        UIManager.Instance.panelThrowHeroAttack.SetActive(true);
+        GameManager.Instance.numberThrowHero = 0;
         for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
         {
             if (lstHeroGoldMine[i].infoHero.ID != 2)
@@ -477,39 +479,11 @@ public class GoldMine : MonoBehaviour
 
         for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count && i < 3; i++)
         {
-            if (GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero != 2)
-            {
-                Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero - 1], GameManager.Instance.lsPosHero[i]);
-                hero.gameObject.name = "Hero";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                hero.AddHero(GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero);
-                hero.isAttack = true;
-                GameManager.Instance.lsHero.Add(hero);
-            }
-            else
-            {
-                float XADD = -0.5f;
-                for (int j = 0; j < 3; j++)
-                {
-                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[1], GameManager.Instance.lsPosHero[i]);
-                    if (j == 1)
-                    {
-                        hero.transform.position += new Vector3(XADD, -0.5f, 0f);
-                    }
-                    else
-                    {
-                        hero.transform.position += new Vector3(XADD, 0f, 0f);
-                    }
-                    XADD += 0.5f;
-                    hero.gameObject.name = "Hero";
-                    hero.SetInfoHero();
-                    hero.infoHero.capWar = 0;
-                    hero.AddHero(GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero / 3);
-                    hero.isAttack = true;
-                    GameManager.Instance.lsHero.Add(hero);
-                }
-            }
+            UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(true);
+            UIManager.Instance.lsItemHeroAttack[i].countHero = GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero;
+            UIManager.Instance.lsItemHeroAttack[i].houseHero = GameManager.Instance.castlePlayer.lsHouseRelease[i];
+            UIManager.Instance.lsItemHeroAttack[i].iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero - 1];
+            UIManager.Instance.lsItemHeroAttack[i].txtCountHero.text = UIManager.Instance.lsItemHeroAttack[i].countHero.ToString();
         }
     }
 

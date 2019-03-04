@@ -84,6 +84,9 @@ public class UIManager : MonoBehaviour
 
     public List<Button> lsBtnIconHouse = new List<Button>();
 
+    public GameObject panelThrowHeroAttack;
+    public List<ItemHeroAttack> lsItemHeroAttack = new List<ItemHeroAttack>();
+
     void Awake()
     {
         if (Instance != null)

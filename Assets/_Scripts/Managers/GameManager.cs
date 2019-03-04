@@ -74,6 +74,9 @@ public class GameManager : MonoBehaviour
 
     public LineRenderer lineEnemyAttack;
 
+    public ItemHeroAttack itemSelectHero;
+    public int numberThrowHero;
+
     void Awake()
     {
         if (Instance != null)
@@ -173,6 +176,23 @@ public class GameManager : MonoBehaviour
             {
                 if (isAttackGoldMineEnemy)
                 {
+                    if(itemSelectHero != null)
+                    {
+                        if (Input.GetMouseButtonUp(0))
+                        {
+                            Vector3 posIns = DeadzoneCamera.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
+                            posIns.z = 0f;
+                            if (posIns.y > 0)
+                            {
+                                posIns.y = 0;
+                            }
+                            ThrowHero(itemSelectHero.houseHero, itemSelectHero.countHero, posIns);
+                            itemSelectHero.gameObject.SetActive(false);
+                            itemSelectHero = null;
+                            numberThrowHero++;
+                        }
+                    }
+
                     if (lsEnemy.Count <= 0)
                     {
                         dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
@@ -190,7 +210,7 @@ public class GameManager : MonoBehaviour
                             }
                         }
                     }
-                    else if (lsHero.Count <= 0)
+                    else if (lsHero.Count <= 0 && numberThrowHero >= 3)
                     {
                         Vector3 posGoldMine = Vector3.zero;
                         posGoldMine = GolEnemyBeingAttack.transform.position;
@@ -262,6 +282,7 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.mapAttack.SetActive(false);
         UIManager.Instance.mapMove.SetActive(true);
+        UIManager.Instance.panelThrowHeroAttack.SetActive(false);
         OnEndAttack();
         isAttack = false;
     }
@@ -393,5 +414,42 @@ public class GameManager : MonoBehaviour
 #pragma warning disable CS0618 // Type or member is obsolete
         Application.LoadLevel(0);
 #pragma warning restore CS0618 // Type or member is obsolete
+    }
+
+    public void ThrowHero(House houseHero, int countHero, Vector3 posIns)
+    {
+        if (houseHero.idHero != 2)
+        {
+            Hero hero = Instantiate(lsPrefabsHero[houseHero.idHero - 1], posIns, Quaternion.identity);
+            hero.gameObject.name = "Hero";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = 0;
+            hero.AddHero(countHero);
+            hero.isAttack = true;
+            lsHero.Add(hero);
+        }
+        else
+        {
+            float XADD = -0.5f;
+            for (int j = 0; j < 3; j++)
+            {
+                Hero hero = Instantiate(lsPrefabsHero[1], posIns, Quaternion.identity);
+                if (j == 1)
+                {
+                    hero.transform.position += new Vector3(XADD, -0.5f, 0f);
+                }
+                else
+                {
+                    hero.transform.position += new Vector3(XADD, 0f, 0f);
+                }
+                XADD += 0.5f;
+                hero.gameObject.name = "Hero";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                hero.AddHero(countHero / 3);
+                hero.isAttack = true;
+                lsHero.Add(hero);
+            }
+        }
     }
 }
