@@ -246,7 +246,8 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            SetActivePanel(panelYesNoNewPlay);
+            SetActivePanel(panelChooseLevel);
+            //SetActivePanel(panelYesNoNewPlay);
         }
         SetDeActivePanel(panelGroupHome);
     }
@@ -273,7 +274,6 @@ public class UIManager : MonoBehaviour
         SetDeActivePanel(panelChooseLevel);
         SetActivePanel(panelYesNoNewPlay);
         GameManager.Instance.isPlay = true;
-
         this.PostEvent(EventID.StartGame);
         this.PostEvent(EventID.UpLevelHouse);
         buttonReleaseCanon.interactable = false;

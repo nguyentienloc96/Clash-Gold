@@ -302,6 +302,9 @@ public class GoldMine : MonoBehaviour
             }
             GameManager.Instance.GolEnemyIsAttack = this;
             GameManager.Instance.GolHeroBeingAttack = GameManager.Instance.lstGoldMinePlayer[check];
+            Box boxStart = this.transform.parent.GetComponent<Box>();
+            Box boxEnd = GameManager.Instance.lstGoldMinePlayer[check].transform.parent.GetComponent<Box>();
+            List<Box> lsPosMove = GameManager.Instance.PathFinding(boxStart, boxEnd);
             float speed = 10f;
             for (int i = 0; i < lstHeroGoldMine.Count; i++)
             {
@@ -316,7 +319,7 @@ public class GoldMine : MonoBehaviour
                 hero.AddHero(numberAttack);
                 lstHeroGoldMine[i].AddHero(-numberAttack);
                 hero.speedMin = speed;
-                hero.StartMoveToPosition(GameManager.Instance.GolHeroBeingAttack.transform.position);
+                hero.StartMoveToLsPosition(lsPosMove);
                 GameManager.Instance.lsEnemyAttackGoldMine.Add(hero);
             }
         }

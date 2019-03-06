@@ -48,6 +48,10 @@ public abstract class Hero : MonoBehaviour
     [HideInInspector]
     public bool isMove;
     [HideInInspector]
+    public List<Box> lsBoxPlayer;
+    [HideInInspector]
+    public bool isLsMove;
+    [HideInInspector]
     public bool isPause;
     [HideInInspector]
     public float timeCheckCameBack;
@@ -357,10 +361,22 @@ public abstract class Hero : MonoBehaviour
             }
             else
             {
-                MoveToPosition(posMove);
-                if (transform.position == posMove)
+                if (!isLsMove)
                 {
-                    isMove = false;
+                    MoveToPosition(posMove);
+                    if (transform.position == posMove)
+                    {
+                        isMove = false;
+                    }
+                }
+                else
+                {
+                    MoveToLsPosition(lsBoxPlayer);
+                    if (transform.position == lsBoxPlayer[lsBoxPlayer.Count - 1].transform.position)
+                    {
+                        isMove = false;
+                        isLsMove = false;
+                    }
                 }
             }
         }
@@ -370,6 +386,13 @@ public abstract class Hero : MonoBehaviour
     {
         posMove = _Pos;
         posMove.z = 0f;
+        isMove = true;
+    }
+
+    public void StartMoveToLsPosition(List<Box> lsPos)
+    {
+        lsBoxPlayer = lsPos;
+        isLsMove = true;
         isMove = true;
     }
 

@@ -305,8 +305,6 @@ public class GameManager : MonoBehaviour
                 if (lsEnemyAttackGoldMine.Count > 0)
                 {
                     lineEnemyAttack.enabled = true;
-                    lineEnemyAttack.SetPosition(0, lsEnemyAttackGoldMine[0].transform.position);
-                    lineEnemyAttack.SetPosition(1, GolHeroBeingAttack.transform.position);
                 }
                 else
                 {
@@ -448,6 +446,101 @@ public class GameManager : MonoBehaviour
             g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
             lstGoldMineEnemy.Add(g);
         }
+    }
+
+    public List<Box> PathFinding(Box boxStart,Box boxEnd)
+    {
+        List<Box> lsPathFinding = new List<Box>();
+        Box boxNext = boxStart;
+        lsPathFinding.Add(boxStart);
+        while (boxNext != boxEnd)
+        {
+            Box boxCheck = CheckBoxNext(boxNext, boxEnd);
+            if (boxCheck != null)
+            {
+                boxNext = boxCheck;
+                lsPathFinding.Add(boxNext);
+            }
+            else
+            {
+                lsPathFinding.RemoveAt(lsPathFinding.Count - 1);
+                boxNext = lsPathFinding[lsPathFinding.Count - 1];
+            }
+        }
+
+        if (boxNext == boxEnd)
+        {
+            lineEnemyAttack.positionCount = lsPathFinding.Count;
+            for (int i = lsPathFinding.Count - 1; i >= 0; i--)
+            {
+                lineEnemyAttack.SetPosition(lsPathFinding.Count - 1 - i, lsPathFinding[i].transform.position);
+            }
+        }
+        return lsPathFinding;
+    }
+
+    public Box CheckBoxNext(Box box, Box boxEnd)
+    {
+        List<Box> lsBoxSelect = new List<Box>();
+        List<int> lsPosBox = new List<int>();
+        if (box.col != 9 && !box.isTop && !arrBox[box.col + 1, box.row].isLock)
+        {
+            lsBoxSelect.Add(arrBox[box.col + 1, box.row]);
+            lsPosBox.Add(1);
+        }
+        if (box.row != 9 && !box.isRight && !arrBox[box.col, box.row + 1].isLock)
+        {
+            lsBoxSelect.Add(arrBox[box.col, box.row + 1]);
+            lsPosBox.Add(4);
+        }
+        if (box.col != 0 && !box.isBottom && !arrBox[box.col - 1, box.row].isLock)
+        {
+            lsBoxSelect.Add(arrBox[box.col - 1, box.row]);
+            lsPosBox.Add(2);
+        }
+        if (box.row != 0 && !box.isLeft && !arrBox[box.col, box.row - 1].isLock)
+        {
+            lsBoxSelect.Add(arrBox[box.col, box.row - 1]);
+            lsPosBox.Add(3);
+        }
+
+        if (lsBoxSelect.Count > 0)
+        {
+            int check = 0;
+
+            float dis = Vector3.Distance(boxEnd.transform.position, lsBoxSelect[0].transform.position);
+            for (int i = 1; i < lsBoxSelect.Count; i++)
+            {
+                if (dis > Vector3.Distance(boxEnd.transform.position, lsBoxSelect[i].transform.position))
+                {
+                    check = i;
+                    dis = Vector3.Distance(boxEnd.transform.position, lsBoxSelect[i].transform.position);
+                }
+            }
+
+            if (lsPosBox[check] == 1)
+            {
+                box.isTop = true;
+                lsBoxSelect[check].isBottom = true;
+            }
+            else if (lsPosBox[check] == 2)
+            {
+                box.isBottom = true;
+                lsBoxSelect[check].isTop = true;
+            }
+            else if (lsPosBox[check] == 3)
+            {
+                box.isLeft = true;
+                lsBoxSelect[check].isRight = true;
+            }
+            else if (lsPosBox[check] == 4)
+            {
+                box.isRight = true;
+                lsBoxSelect[check].isLeft = true;
+            }
+            return lsBoxSelect[check];
+        }
+        return null;
     }
     #endregion
 
