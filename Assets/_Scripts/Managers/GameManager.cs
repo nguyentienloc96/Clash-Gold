@@ -48,9 +48,16 @@ public class GameManager : MonoBehaviour
     public Transform enemyManager;
 
     [Header("MAP")]
-    public Transform[] posMap;
     public GameObject[] prefabsBoxMap;
     public Sprite[] sprBoxMap;
+    public GameObject prefabsBox;
+    public int row;
+    public int col;
+    public int weight;
+    public Transform boxManager;
+    private Box[,] arrBox = new Box[9, 9];
+    private Vector2[] PosGolds = new Vector2[] { new Vector2(3, 3), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, 2), new Vector2(1, 0), new Vector2(1, 2), new Vector2(2, 2), new Vector2(2, 3), new Vector2(2, 4), new Vector2(2, 5), new Vector2(2, 6), new Vector2(3, 6), new Vector2(4, 1), new Vector2(4, 2), new Vector2(4, 3), new Vector2(4, 4), new Vector2(4, 5), new Vector2(4, 6), new Vector2(5, 3), new Vector2(5, 4) };
+
 
     [HideInInspector]
     public bool isAttack;
@@ -89,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        GenerateMap();
+        GenerateMapBox();
         for (int i = 0; i < UIManager.Instance.lstHouse.Count; i++)
         {
             BuildHouse bh = new BuildHouse();
@@ -176,7 +183,7 @@ public class GameManager : MonoBehaviour
             {
                 if (isAttackGoldMineEnemy)
                 {
-                    if(itemSelectHero != null)
+                    if (itemSelectHero != null)
                     {
                         if (Input.GetMouseButtonUp(0))
                         {
@@ -208,7 +215,8 @@ public class GameManager : MonoBehaviour
                                 if (UIManager.Instance.lsItemHeroAttack[0].gameObject.activeSelf)
                                 {
                                     item = UIManager.Instance.lsItemHeroAttack[0];
-                                }else if (UIManager.Instance.lsItemHeroAttack[1].gameObject.activeSelf)
+                                }
+                                else if (UIManager.Instance.lsItemHeroAttack[1].gameObject.activeSelf)
                                 {
                                     item = UIManager.Instance.lsItemHeroAttack[1];
                                 }
@@ -345,58 +353,100 @@ public class GameManager : MonoBehaviour
 
 
     #region === MAP ===
-    public void GenerateMap()
+    public void GenerateMapBox()
     {
-        for (int i = 0; i < 20; i++)
+        int numberID = 0;
+        for (int i = 0; i < row; i++)
         {
-            int a = (int)UnityEngine.Random.Range(0, 3.9f);
-            int b = UnityEngine.Random.Range(0, 4);
-            Vector3 _rotation;
-            if (b == 0)
+            for (int j = 0; j < col; j++)
             {
-                _rotation = new Vector3(0, 0, 0);
+                Box b = Instantiate(prefabsBox, boxManager.position + new Vector3(j * weight, -i * weight), Quaternion.identity, boxManager).GetComponent<Box>();
+                b.col = j;
+                b.row = i;
+                arrBox[j, i] = b;
+                if (!CheckPos(i, j))
+                {
+                    b.transform.GetChild(0).gameObject.SetActive(false);
+                    b.isLock = true;
+                }
+                else
+                {
+                    if (i == 4 && j == 4)
+                    {
+                        GenerateMap(b.transform, numberID, true);
+                    }
+                    else
+                    {
+                        GenerateMap(b.transform, numberID);
+                    }
+                    numberID++;
+                }
             }
-            else if (b == 1)
-            {
-                _rotation = new Vector3(180, 0, 0);
-            }
-            else if (b == 2)
-            {
-                _rotation = new Vector3(0, 180, 0);
-            }
-            else
-            {
-                _rotation = new Vector3(180, 180, 0);
-            }
+        }
+    }
 
-            if (a == 3)
-                _rotation = new Vector3(0, 0, 0);
+    public bool CheckPos(int row, int col)
+    {
+        bool isCheck = false;
+        foreach (Vector2 v2 in PosGolds)
+        {
+            if (v2 == new Vector2(col, row))
+            {
+                isCheck = true;
+            }
+        }
+        return isCheck;
+    }
 
-            if (i == 10)
-            {
-                _rotation = new Vector3(0, 0, 0);
-                GoldMine g = Instantiate(prefabsBoxMap[3], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
-                g.SetLevel(1);
-                g.id = i;
-                g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, 1);
-                g.numberBoxGoldMine = 3;
-                g.typeGoleMine = TypeGoldMine.Player;
-                g.InstantiateHeroStart(true);
-                lstGoldMinePlayer.Add(g);
-            }
-            else
-            {
-                GoldMine g = Instantiate(prefabsBoxMap[a], posMap[i].position, Quaternion.Euler(_rotation), posMap[i]).GetComponent<GoldMine>();
-                int _level = UnityEngine.Random.Range(1, 6);
-                g.SetLevel(_level);
-                g.id = i;
-                g.numberBoxGoldMine = a;
-                g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);
-                g.typeGoleMine = TypeGoldMine.Enemy;
-                g.InstantiateHeroStart(false);
-                g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
-                lstGoldMineEnemy.Add(g);
-            }
+    public void GenerateMap(Transform toPos, int id, bool isGoldPlayer = false)
+    {
+
+        int a = (int)UnityEngine.Random.Range(0, 3.9f);
+        int b = UnityEngine.Random.Range(0, 4);
+        Vector3 _rotation;
+        if (b == 0)
+        {
+            _rotation = new Vector3(0, 0, 0);
+        }
+        else if (b == 1)
+        {
+            _rotation = new Vector3(180, 0, 0);
+        }
+        else if (b == 2)
+        {
+            _rotation = new Vector3(0, 180, 0);
+        }
+        else
+        {
+            _rotation = new Vector3(180, 180, 0);
+        }
+
+        if (a == 3)
+            _rotation = new Vector3(0, 0, 0);
+        if (isGoldPlayer)
+        {
+            _rotation = new Vector3(0, 0, 0);
+            GoldMine g = Instantiate(prefabsBoxMap[3], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
+            g.SetLevel(1);
+            g.id = id;
+            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, 1);
+            g.numberBoxGoldMine = 3;
+            g.typeGoleMine = TypeGoldMine.Player;
+            g.InstantiateHeroStart(true);
+            lstGoldMinePlayer.Add(g);
+        }
+        else
+        {
+            GoldMine g = Instantiate(prefabsBoxMap[a], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
+            int _level = UnityEngine.Random.Range(1, 6);
+            g.SetLevel(_level);
+            g.id = id;
+            g.numberBoxGoldMine = a;
+            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);
+            g.typeGoleMine = TypeGoldMine.Enemy;
+            g.InstantiateHeroStart(false);
+            g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
+            lstGoldMineEnemy.Add(g);
         }
     }
     #endregion

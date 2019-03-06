@@ -286,6 +286,23 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
+    public int check;
+
+    public void MoveToLsPosition(List<Box> lsPos)
+    {
+        float speed = isMove ? speedMin : infoHero.speed;
+        Vector3 diff = lsPos[check].transform.position - transform.position;
+        diff.Normalize();
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+        if (transform.position == lsPos[check].transform.position)
+        {
+            check++;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, lsPos[check].transform.position, speed / 10f * Time.deltaTime);
+        AnimRun();
+    }
+
     public void RotationHero(Vector3 _toPos)
     {
         Vector3 diff = _toPos - transform.position;

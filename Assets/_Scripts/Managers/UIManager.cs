@@ -253,10 +253,11 @@ public class UIManager : MonoBehaviour
 
     public void Btn_YesNewPlay()
     {
-        SetActivePanel(panelChooseLevel);
         SetDeActivePanel(panelYesNoNewPlay);
+        SetActivePanel(panelGroupHome);
         GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
         GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+        panelHome.SetActive(false);
     }
 
     public void Btn_NoNewPlay()
@@ -269,7 +270,8 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.ratioBorn = GameConfig.Instance.RatioBorn[_level];
         GameManager.Instance.castlePlayer.price = GameConfig.Instance.PriceBlood0;
-        panelHome.SetActive(false);
+        SetDeActivePanel(panelChooseLevel);
+        SetActivePanel(panelYesNoNewPlay);
         GameManager.Instance.isPlay = true;
 
         this.PostEvent(EventID.StartGame);

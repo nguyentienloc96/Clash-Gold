@@ -394,10 +394,9 @@ MonoBehaviour:
   levelWillUpgrade: 0
   level: 0
   numberBoxGoldMine: 0
-  colliderLand: {fileID: 61666815827883712}
   typeGoleMine: 0
+  colliderLand: {fileID: 61666815827883712}
   lstHeroGoldMine: []
-  lstCompetitorGoldMine: []
   lsPos:
   - {fileID: 4026249924519954}
   - {fileID: 4797895865562212}
@@ -407,7 +406,8 @@ MonoBehaviour:
   Canvas: {fileID: 1309451618722116}
   buttonUp: {fileID: 1892520723967356}
   buttonRelease: {fileID: 1380764483821566}
-  isBeingAttack: 0
+  isCanon: 0
+  timeCanon: 0
 --- !u!114 &114344641156692680
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -520,7 +520,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 392613217
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: e3ac902c6eb506449b5f14be0fb6e3bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -35,8 +35,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4266147258560938}
-  - component: {fileID: 212650834279647232}
   - component: {fileID: 114990976403442356}
+  - component: {fileID: 212769363710943278}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -50,8 +50,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580299882265666}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3000, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4789882583572636}
@@ -66,7 +66,7 @@ Transform:
   m_GameObject: {fileID: 1314123335181252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.3, y: 6.65, z: 1}
+  m_LocalScale: {x: 0.68, y: 0.52, z: 1}
   m_Children: []
   m_Father: {fileID: 4266147258560938}
   m_RootOrder: 0
@@ -82,7 +82,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe96784b522e274690b40f8d0c69ea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!212 &212650834279647232
+  col: 0
+  row: 0
+  isLock: 0
+  isLeft: 0
+  isRight: 0
+  isTop: 0
+  isBottom: 0
+--- !u!212 &212769363710943278
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -113,15 +120,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 392613217
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e3ac902c6eb506449b5f14be0fb6e3bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10.64, y: 10.657143}
+  m_Size: {x: 14.872001, y: 26.368}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -157,10 +164,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5685ca8d7f0299d4f8e54a2325e28356, type: 3}
+  m_SortingLayerID: 392613217
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: fdc5210d5c4b2204c89904effadc7e33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

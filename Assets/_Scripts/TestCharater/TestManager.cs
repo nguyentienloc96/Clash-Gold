@@ -13,6 +13,7 @@ public class TestManager : MonoBehaviour
     public Transform boxManager;
     private Box[,] arrBox = new Box[9, 9];
     private Vector2[] PosGolds = new Vector2[] { new Vector2(3, 3), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, 2), new Vector2(1, 0), new Vector2(1, 2), new Vector2(2, 2), new Vector2(2, 3), new Vector2(2, 4), new Vector2(2, 5), new Vector2(2, 6), new Vector2(3, 6), new Vector2(4, 1), new Vector2(4, 2), new Vector2(4, 3), new Vector2(4, 4), new Vector2(4, 5), new Vector2(4, 6), new Vector2(5, 3), new Vector2(5, 4) };
+
     public GameObject[] prefabsBoxBuildMap;
     public Sprite[] sprBoxMap;
     public List<Box> lsPathFinding = new List<Box>();
@@ -95,12 +96,11 @@ public class TestManager : MonoBehaviour
     public void PathFinding()
     {
         Box boxStart = arrBox[1, 0];
-        Box boxEnd = arrBox[4, 2];
+        Box boxEnd = arrBox[4, 6];
         Box boxNext = boxStart;
         lsPathFinding.Add(boxStart);
         while (boxNext != boxEnd)
         {
-            Debug.Log("aa");
             Box boxCheck = CheckBoxNext(boxNext, boxEnd);
             if (boxCheck != null)
             {
@@ -117,9 +117,9 @@ public class TestManager : MonoBehaviour
         if (boxNext == boxEnd)
         {
             lineRendererPath.positionCount = lsPathFinding.Count;
-            for (int i = 0; i < lsPathFinding.Count; i++)
+            for (int i = lsPathFinding.Count - 1; i >= 0; i--)
             {
-                lineRendererPath.SetPosition(i, lsPathFinding[i].transform.position);
+                lineRendererPath.SetPosition(lsPathFinding.Count - 1 - i, lsPathFinding[i].transform.position);
             }
         }
     }
@@ -130,71 +130,61 @@ public class TestManager : MonoBehaviour
         List<int> lsPosBox = new List<int>();
         if (box.col != 9 && !box.isTop && !arrBox[box.col + 1, box.row].isLock)
         {
-            lsPosBox.Add(1);
             lsBoxSelect.Add(arrBox[box.col + 1, box.row]);
+            lsPosBox.Add(1);
         }
         if (box.row != 9 && !box.isRight && !arrBox[box.col, box.row + 1].isLock)
         {
-            lsPosBox.Add(4);
             lsBoxSelect.Add(arrBox[box.col, box.row + 1]);
+            lsPosBox.Add(4);
         }
         if (box.col != 0 && !box.isBottom && !arrBox[box.col - 1, box.row].isLock)
         {
-            lsPosBox.Add(2);
             lsBoxSelect.Add(arrBox[box.col - 1, box.row]);
+            lsPosBox.Add(2);
         }
         if (box.row != 0 && !box.isLeft && !arrBox[box.col, box.row - 1].isLock)
         {
-            lsPosBox.Add(3);
             lsBoxSelect.Add(arrBox[box.col, box.row - 1]);
+            lsPosBox.Add(3);
         }
-
-
 
         if (lsBoxSelect.Count > 0)
         {
             int check = 0;
-            if (lsBoxSelect.Count > 1)
+
+            float dis = Vector3.Distance(boxEnd.transform.position, lsBoxSelect[0].transform.position);
+            for (int i = 1; i < lsBoxSelect.Count; i++)
             {
-                float dis = Vector3.Distance(boxEnd.transform.position, lsBoxSelect[0].transform.position);
-                for (int i = 1; i < lsBoxSelect.Count; i++)
+                if (dis > Vector3.Distance(boxEnd.transform.position, lsBoxSelect[i].transform.position))
                 {
-                    if (dis > Vector3.Distance(boxEnd.transform.position, lsBoxSelect[i].transform.position))
-                    {
-                        check = i;
-                        dis = Vector3.Distance(boxEnd.transform.position, lsBoxSelect[i].transform.position);
-                    }
+                    check = i;
+                    dis = Vector3.Distance(boxEnd.transform.position, lsBoxSelect[i].transform.position);
                 }
             }
 
-            if (check == 1)
+            if (lsPosBox[check] == 1)
             {
                 box.isTop = true;
                 lsBoxSelect[check].isBottom = true;
-                return lsBoxSelect[check];
             }
-            else if(check == 2)
+            else if (lsPosBox[check] == 2)
             {
                 box.isBottom = true;
                 lsBoxSelect[check].isTop = true;
-                return lsBoxSelect[check];
             }
-            else if (check == 3)
+            else if (lsPosBox[check] == 3)
             {
                 box.isLeft = true;
                 lsBoxSelect[check].isRight = true;
-                return lsBoxSelect[check];
             }
-            else
+            else if (lsPosBox[check] == 4)
             {
-                box.isLeft = true;
-                lsBoxSelect[check].isRight = true;
-                return lsBoxSelect[check];
+                box.isRight = true;
+                lsBoxSelect[check].isLeft = true;
             }
+            return lsBoxSelect[check];
         }
-        else
-        {
-            return null;
-        }
+        return null;
     }
 }

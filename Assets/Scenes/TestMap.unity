@@ -346,7 +346,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 622cf49266f30e1419c445852e966f35, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -363,13 +363,13 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 783409035
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Positions: []
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -753,7 +753,5 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fdddeab017ca2984cbdc9057c9ebcd53, type: 3}
   - {fileID: 21300000, guid: 83492c20d77ba9248a1190d8ecb188bc, type: 3}
   - {fileID: 21300000, guid: 6f350e2baa7c51546955d72486dc7497, type: 3}
-  lsGoldMineEnemy: []
-  lsGoldMinePlayer: []
   lsPathFinding: []
   lineRendererPath: {fileID: 883461480}

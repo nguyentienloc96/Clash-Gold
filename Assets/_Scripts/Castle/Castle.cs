@@ -25,7 +25,6 @@ public class Castle : MonoBehaviour
     [Header("UI")]
     public Text txtLevel;
     public Text txtHealth;
-    public Camera cameraMain;
 
     [Header("LIST")]
     public List<Transform> lsPos;
@@ -131,7 +130,7 @@ public class Castle : MonoBehaviour
     public bool CheckCastle()
     {
         bool CastRays = false;
-        Ray ray = cameraMain.ScreenPointToRay(Input.mousePosition);
+        Ray ray = DeadzoneCamera.Instance._camera.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity))
