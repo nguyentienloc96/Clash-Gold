@@ -137,7 +137,7 @@ public class Castle : MonoBehaviour
     public void UpgradeCastle()
     {
         price = (long)(price * GameConfig.Instance.PriceBloodUp);
-        if (price > GameManager.Instance.gold)
+        if (price > GameManager. Instance.gold)
             return;
 
         float deltaHelth = healthMax - health;

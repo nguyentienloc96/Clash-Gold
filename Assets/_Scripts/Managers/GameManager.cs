@@ -450,7 +450,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public List<Box> PathFinding(Box boxStart,Box boxEnd)
+    public List<Box> PathFinding(Box boxStart, Box boxEnd)
     {
         List<Box> lsPathFinding = new List<Box>();
         Box boxNext = boxStart;
@@ -598,6 +598,7 @@ public class GameManager : MonoBehaviour
 
     public void ThrowHero(House houseHero, int countHero, Vector3 posIns)
     {
+        Debug.Log(countHero);
         if (houseHero.idHero != 2)
         {
             Hero hero = Instantiate(lsPrefabsHero[houseHero.idHero - 1], posIns, Quaternion.identity);
@@ -611,12 +612,16 @@ public class GameManager : MonoBehaviour
         else
         {
             float XADD = -0.5f;
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < 4; j++)
             {
                 Hero hero = Instantiate(lsPrefabsHero[1], posIns, Quaternion.identity);
                 if (j == 1)
                 {
-                    hero.transform.position += new Vector3(XADD, -0.5f, 0f);
+                    hero.transform.position += new Vector3(0, -0.5f, 0f);
+                }
+                else if (j == 3)
+                {
+                    hero.transform.position += new Vector3(0, 0.5f, 0f);
                 }
                 else
                 {
@@ -626,7 +631,7 @@ public class GameManager : MonoBehaviour
                 hero.gameObject.name = "Hero";
                 hero.SetInfoHero();
                 hero.infoHero.capWar = 0;
-                hero.AddHero(countHero / 3);
+                hero.AddHero(countHero / 4);
                 hero.isAttack = true;
                 lsHero.Add(hero);
             }

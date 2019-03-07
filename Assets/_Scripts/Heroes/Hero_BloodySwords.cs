@@ -29,14 +29,11 @@ public class Hero_BloodySwords : Hero {
     {
         this.infoHero.ID = 14;
         this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
-
-
     }
 
     public void Start()
     {
         StartChild();
-        SetInfoHero();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
 

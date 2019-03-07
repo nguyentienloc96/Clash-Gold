@@ -458,12 +458,16 @@ public class GoldMine : MonoBehaviour
             else
             {
                 float XADD = -0.5f;
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
                     if (j == 1)
                     {
-                        hero.transform.position += new Vector3(XADD, -0.5f, 0f);
+                        hero.transform.position += new Vector3(0, -0.5f, 0f);
+                    }
+                    else if (j == 3)
+                    {
+                        hero.transform.position += new Vector3(0, 0.5f, 0f);
                     }
                     else
                     {
@@ -519,12 +523,16 @@ public class GoldMine : MonoBehaviour
             else
             {
                 float XADD = -0.5f;
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < 4; j++)
                 {
                     Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[1], GameManager.Instance.lsPosHero[i]);
                     if (j == 1)
                     {
-                        hero.transform.position += new Vector3(XADD, -0.5f, 0f);
+                        hero.transform.position += new Vector3(0, -0.5f, 0f);
+                    }
+                    else if (j == 3)
+                    {
+                        hero.transform.position += new Vector3(0, 0.5f, 0f);
                     }
                     else
                     {
