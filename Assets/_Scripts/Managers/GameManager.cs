@@ -631,7 +631,8 @@ public class GameManager : MonoBehaviour
                 lsHero.Add(hero);
             }
         }
-        for (int i = 0; i < GolEnemyBeingAttack.lstHeroGoldMine.Count; i++)
+
+        for (int i = 0; i < lsEnemy.Count; i++)
         {
             lsEnemy[i].targetCompetitor = null;
         }
