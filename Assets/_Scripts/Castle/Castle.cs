@@ -113,32 +113,24 @@ public class Castle : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (!IsPointerOverGameObject())
+        if (!DeadzoneCamera.Instance.IsPointerOverGameObject())
             UIManager.Instance.ShowInWall();
-    }
-
-    public static bool IsPointerOverGameObject()
-    {
-        PointerEventData eventData = new PointerEventData(EventSystem.current);
-        eventData.pressPosition = Input.mousePosition;
-        eventData.position = Input.mousePosition;
-        List<RaycastResult> list = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventData, list);
-        return list.Count > 0;
     }
 
     public bool CheckCastle()
     {
         bool CastRays = false;
         Ray ray = DeadzoneCamera.Instance._camera.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+        Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
+        if (Physics2D.Raycast(ray.origin,ray.direction,Mathf.Infinity,1<<10))
         {
-
-            if (hit.transform.gameObject.layer == 10)
-                CastRays = true;
+            CastRays = true;
         }
+        else if (Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, 1 << 13))
+        {
+            CastRays = true;
+        }
+
         return CastRays;
     }
 

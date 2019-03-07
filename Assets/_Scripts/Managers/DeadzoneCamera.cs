@@ -71,14 +71,14 @@ public class DeadzoneCamera : MonoBehaviour
                 }
                 else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Moved)
                 {
-                    if (!Castle.IsPointerOverGameObject())
+                    if (!IsPointerOverGameObject())
                     {
                         PanCamera(touch.position);
                     }
                 }
                 else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Ended)
                 {
-                    if (!GameManager.Instance.castlePlayer.CheckCastle() && !Castle.IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0)
+                    if (!GameManager.Instance.castlePlayer.CheckCastle() && !IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0)
                     {
                         Vector3 pos2 = _camera.ScreenToWorldPoint(touch.position);
                         if (Vector3.Distance(pos1, pos2) <= 0.05f)
@@ -103,7 +103,7 @@ public class DeadzoneCamera : MonoBehaviour
                     float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
                     float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
                     float offset = newDistance - oldDistance;
-                    if (!Castle.IsPointerOverGameObject())
+                    if (!IsPointerOverGameObject())
                     {
                         ZoomCamera(offset, ZoomSpeedTouch);
                     }
@@ -128,14 +128,14 @@ public class DeadzoneCamera : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            if (!Castle.IsPointerOverGameObject())
+            if (!IsPointerOverGameObject())
             {
                 PanCamera(Input.mousePosition);
             }
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (!GameManager.Instance.castlePlayer.CheckCastle() && !Castle.IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0)
+            if (!GameManager.Instance.castlePlayer.CheckCastle() && !IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0 && GameManager.Instance.castlePlayer.lsHouseRelease[0].countHero > 0)
             {
                 Vector3 pos2 = _camera.ScreenToWorldPoint(Input.mousePosition);
                 if (Vector3.Distance(pos1, pos2) <= 0.05f)
@@ -147,10 +147,19 @@ public class DeadzoneCamera : MonoBehaviour
 
         // Check for scrolling to zoom the camera
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (!Castle.IsPointerOverGameObject())
+        if (!IsPointerOverGameObject())
         {
             ZoomCamera(scroll, ZoomSpeedMouse);
         }
+    }
+    public bool IsPointerOverGameObject()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.pressPosition = Input.mousePosition;
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> list = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, list);
+        return list.Count > 0;
     }
 
     void PanCamera(Vector3 newPanPosition)

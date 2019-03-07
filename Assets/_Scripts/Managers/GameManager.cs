@@ -364,11 +364,13 @@ public class GameManager : MonoBehaviour
                 arrBox[j, i] = b;
                 if (!CheckPos(i, j))
                 {
+                    b.gameObject.layer = 13;
                     b.transform.GetChild(0).gameObject.SetActive(false);
                     b.isLock = true;
                 }
                 else
                 {
+                    b.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                     if (i == 4 && j == 4)
                     {
                         GenerateMap(b.transform, numberID, true);
