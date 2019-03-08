@@ -45,10 +45,6 @@ public class Castle : MonoBehaviour
         health = healthMax;
         this.RegisterListener(EventID.BuildHouseComplete, (param) => OnBuildHouseComplete(param));
         SetUI();
-        if (isCanReleaseCanon)
-        {
-            UIManager.Instance.buttonReleaseCanon.interactable = true;
-        }
     }
 
     void OnBuildHouseComplete(object _param)

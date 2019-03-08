@@ -403,6 +403,7 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
+                ScenesManager.Instance.GoToScene();
                 GameManager.Instance.GolEnemyBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineEnemy();
@@ -421,6 +422,7 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Enemy"))
             {
+                ScenesManager.Instance.GoToScene();
                 GameManager.Instance.GolHeroBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineHero();

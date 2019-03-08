@@ -234,6 +234,7 @@ public class GameManager : MonoBehaviour
 
                     if (lsEnemy.Count <= 0)
                     {
+                        ScenesManager.Instance.GoToScene();
                         isAttack = false;
                         dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                         GolEnemyBeingAttack.DeleteHero();
@@ -252,6 +253,7 @@ public class GameManager : MonoBehaviour
                     }
                     else if (lsHero.Count <= 0 && numberThrowHero >= 3)
                     {
+                        ScenesManager.Instance.GoToScene();
                         Vector3 posGoldMine = Vector3.zero;
                         posGoldMine = GolEnemyBeingAttack.transform.position;
                         EndAttack();
@@ -271,6 +273,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (lsHero.Count <= 0)
                     {
+                        ScenesManager.Instance.GoToScene();
                         EndAttack();
                         lstGoldMinePlayer.Remove(GolHeroBeingAttack);
                         lstGoldMineEnemy.Add(GolHeroBeingAttack);
@@ -291,6 +294,7 @@ public class GameManager : MonoBehaviour
                     }
                     else if (lsEnemy.Count <= 0)
                     {
+                        ScenesManager.Instance.GoToScene();
                         foreach (Hero h in lsEnemyAttackGoldMine)
                         {
                             Destroy(h.gameObject);
@@ -598,7 +602,6 @@ public class GameManager : MonoBehaviour
 
     public void ThrowHero(House houseHero, int countHero, Vector3 posIns)
     {
-        Debug.Log(countHero);
         if (houseHero.idHero != 2)
         {
             Hero hero = Instantiate(lsPrefabsHero[houseHero.idHero - 1], posIns, Quaternion.identity);

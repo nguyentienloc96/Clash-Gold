@@ -213,11 +213,6 @@ public class House : MonoBehaviour
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
         txtLevel.text = "Lv " + level.ToString();
-        if (this.idHero == 9)
-        {
-            GameManager.Instance.castlePlayer.isCanReleaseCanon = true;
-            UIManager.Instance.buttonReleaseCanon.interactable = true;
-        }
         Dictionary<string, int> keyHouse = new Dictionary<string, int>();
         keyHouse.Add("IdHouse", idHouse);
         keyHouse.Add("IdHero", idHero);

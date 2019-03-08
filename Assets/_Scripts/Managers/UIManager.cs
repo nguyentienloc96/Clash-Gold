@@ -49,7 +49,6 @@ public class UIManager : MonoBehaviour
 
     [Header("OTHERS")]
     public List<Sprite> lstSpriteHouse;
-    public Button buttonReleaseCanon;
     public GameObject anim_UpLV_House;
     public GameObject anim_UpLV_GoldMine;
     public GameObject anim_UpHealth;
@@ -256,6 +255,7 @@ public class UIManager : MonoBehaviour
     {
         SetDeActivePanel(panelYesNoNewPlay);
         SetActivePanel(panelGroupHome);
+        ScenesManager.Instance.GoToScene();
         GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
         GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
         panelHome.SetActive(false);
@@ -276,7 +276,6 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.isPlay = true;
         this.PostEvent(EventID.StartGame);
         this.PostEvent(EventID.UpLevelHouse);
-        buttonReleaseCanon.interactable = false;
     }
 
     public void Btn_Continue()
@@ -284,10 +283,6 @@ public class UIManager : MonoBehaviour
         DataPlayer.Instance.LoadDataPlayer();
         panelHome.SetActive(false);
         GameManager.Instance.isPlay = true;
-        if (GameManager.Instance.castlePlayer.isCanReleaseCanon)
-            buttonReleaseCanon.interactable = true;
-        else
-            buttonReleaseCanon.interactable = false;
 
         this.PostEvent(EventID.StartGame);
     }
@@ -382,12 +377,6 @@ public class UIManager : MonoBehaviour
         panelInWall.GetComponent<Animator>().Play("DeActivePanel");
     }
 
-    public void Btn_ReleaseCannon()
-    {
-        isBuildCanon = true;
-        mouseCanon.SetActive(true);
-        buttonReleaseCanon.interactable = false;
-    }
     #endregion
 
     public void CloseThrowHero()
