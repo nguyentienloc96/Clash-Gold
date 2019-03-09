@@ -403,36 +403,41 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
-                ScenesManager.Instance.GoToScene();
                 GameManager.Instance.GolEnemyBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineEnemy();
-                GameManager.Instance.isAttack = true;
-                GameManager.Instance.isAttackGoldMineEnemy = true;
-                if (GameManager.Instance.lsEnemyAttackGoldMine.Count > 0)
+                ScenesManager.Instance.GoToScene(()=>
                 {
-                    for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
+                    GameManager.Instance.isAttack = true;
+                    GameManager.Instance.isAttackGoldMineEnemy = true;
+                    if (GameManager.Instance.lsEnemyAttackGoldMine.Count > 0)
                     {
-                        GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
+                        for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
+                        {
+                            GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
+                        }
                     }
-                }
+                });     
             }
         }
         else
         {
             if (other.CompareTag("Enemy"))
             {
-                ScenesManager.Instance.GoToScene();
+                foreach (Hero hero in GameManager.Instance.lsEnemyAttackGoldMine)
+                {
+                    hero.isPause = true;
+                    hero.GetComponent<BoxCollider2D>().enabled = false;
+                    hero.transform.position = new Vector3(3000, 3000, 3000);
+                }
                 GameManager.Instance.GolHeroBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineHero();
-                GameManager.Instance.isAttack = true;
-                GameManager.Instance.isAttackGoldMineEnemy = false;
-                for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
+                ScenesManager.Instance.GoToScene(()=>
                 {
-                    GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
-                    GameManager.Instance.lsEnemyAttackGoldMine[i].GetComponent<BoxCollider2D>().enabled = false;
-                }
+                    GameManager.Instance.isAttack = true;
+                    GameManager.Instance.isAttackGoldMineEnemy = false;
+                });
             }
         }
     }

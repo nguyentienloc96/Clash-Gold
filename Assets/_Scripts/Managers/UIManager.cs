@@ -58,12 +58,6 @@ public class UIManager : MonoBehaviour
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-    public GameObject mouseCanon;
-    public GameObject buildCanon;
-    public bool isBuildCanon;
-    public bool isWaitBuildCanon;
-    private float timeBuildCanon;
-
     [Header("MINIMAP")]
     public Canvas cavas;
     public Canvas canvasLoading;
@@ -116,45 +110,6 @@ public class UIManager : MonoBehaviour
     void Update()
     {
         txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();
-        if (isBuildCanon)
-        {
-            Vector3 posMouse = DeadzoneCamera.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
-            posMouse.z = 0;
-            mouseCanon.transform.position = posMouse;
-            if (Input.GetMouseButtonDown(0))
-            {
-                mouseCanon.SetActive(false);
-                //buildCanon.SetActive(true);
-                //buildCanon.transform.position = posMouse;
-                //isWaitBuildCanon = true;
-                Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[8], posMouse, Quaternion.identity);
-                hero.gameObject.name = "Hero";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
-                {
-                    if (GameManager.Instance.lstHousePlayer[i].idHero == 9)
-                    {
-                        hero.AddHero(GameManager.Instance.lstHousePlayer[i].countHero);
-                        break;
-                    }
-                }
-                hero.isAttack = true;
-                GameManager.Instance.lsHero.Add(hero);
-                isBuildCanon = false;
-            }
-        }
-        //if (isWaitBuildCanon)
-        //{
-        //    timeBuildCanon += Time.deltaTime;
-        //    if(timeBuildCanon >= GameConfig.Instance.TimeCanon)
-        //    {
-
-        //        buildCanon.SetActive(false);
-        //        isWaitBuildCanon = false;
-        //        timeBuildCanon = 0;
-        //    }
-        //}
     }
 
     #region === SUPPORT ===
@@ -253,10 +208,15 @@ public class UIManager : MonoBehaviour
     {
         SetDeActivePanel(panelYesNoNewPlay);
         SetActivePanel(panelGroupHome);
-        ScenesManager.Instance.GoToScene();
-        GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
-        GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+        GameManager.Instance.isPlay = true;
+        this.PostEvent(EventID.StartGame);
+        this.PostEvent(EventID.UpLevelHouse);
         panelHome.SetActive(false);
+        ScenesManager.Instance.GoToScene(() =>
+         {
+             GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
+             GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+         });
     }
 
     public void Btn_NoNewPlay()
@@ -271,9 +231,6 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.castlePlayer.price = GameConfig.Instance.PriceBlood0;
         SetDeActivePanel(panelChooseLevel);
         SetActivePanel(panelYesNoNewPlay);
-        GameManager.Instance.isPlay = true;
-        this.PostEvent(EventID.StartGame);
-        this.PostEvent(EventID.UpLevelHouse);
     }
 
     public void Btn_Continue()
@@ -281,8 +238,8 @@ public class UIManager : MonoBehaviour
         DataPlayer.Instance.LoadDataPlayer();
         panelHome.SetActive(false);
         GameManager.Instance.isPlay = true;
-
         this.PostEvent(EventID.StartGame);
+        ScenesManager.Instance.GoToScene();
     }
 
     public void Btn_Tutorial()

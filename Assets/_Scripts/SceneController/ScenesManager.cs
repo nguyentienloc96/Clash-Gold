@@ -39,11 +39,10 @@ public class ScenesManager : MonoBehaviour
         Fade.Instance.StartFade();
         yield return new WaitUntil(() => Fade.Instance.state == Fade.FadeState.FadeInDone);
 
-        //secenes[0].objects.SetActive(false);
         if (actionLoadScenesDone != null)
             actionLoadScenesDone();
         yield return new WaitForSeconds(1.5f);
-        //Hazz
+        //
         yield return new WaitUntil(() => isNextScene = true);
         Fade.Instance.EndFade();
     }
