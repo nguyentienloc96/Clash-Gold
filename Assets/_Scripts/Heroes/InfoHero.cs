@@ -20,6 +20,8 @@ public struct InfoHero {
     public int idMom;
     public int idBaby;
     public TypeHero typeHero;
+    public float rangeBoom;
+    public float dameDead;
 }
 
 public enum TypeHero

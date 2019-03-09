@@ -10,7 +10,7 @@ public class Hero_BloodySwords : Hero {
         Hero hero = targetCompetitor;
         if (hero.infoHero.ID == 10)
         {
-            hero.BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
+            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
         }
         hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
     }

@@ -455,7 +455,7 @@ public class GoldMine : MonoBehaviour
         {
             if (lstHeroGoldMine[i].infoHero.numberHero > 0)
             {
-                if (lstHeroGoldMine[i].infoHero.ID != 2)
+                if (lstHeroGoldMine[i].infoHero.ID != 2 && lstHeroGoldMine[i].infoHero.ID != 1)
                 {
                     Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
                     hero.gameObject.name = "Enemy";
@@ -466,7 +466,7 @@ public class GoldMine : MonoBehaviour
                     hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
-                else
+                else if(lstHeroGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -487,7 +487,32 @@ public class GoldMine : MonoBehaviour
                         hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
                         hero.isAttack = true;
                         GameManager.Instance.lsEnemy.Add(hero);
-
+                    }
+                }else if(lstHeroGoldMine[i].infoHero.ID == 1)
+                {
+                    float XADD = -0.5f;
+                    for (int j = 0; j < 4; j++)
+                    {
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
+                        if (j == 1)
+                        {
+                            hero.transform.position += new Vector3(0, -0.5f, 0f);
+                        }
+                        else if (j == 3)
+                        {
+                            hero.transform.position += new Vector3(0, 0.5f, 0f);
+                        }
+                        else
+                        {
+                            hero.transform.position += new Vector3(XADD, 0f, 0f);
+                        }
+                        XADD += 0.5f;
+                        hero.gameObject.name = "Enemy";
+                        hero.SetInfoHero();
+                        hero.infoHero.capWar = 0;
+                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 4);
+                        hero.isAttack = true;
+                        GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
             }
@@ -517,7 +542,7 @@ public class GoldMine : MonoBehaviour
         {
             if (lstHeroGoldMine[i].infoHero.numberHero > 0)
             {
-                if (lstHeroGoldMine[i].infoHero.ID != 2)
+                if (lstHeroGoldMine[i].infoHero.ID != 2 && lstHeroGoldMine[i].infoHero.ID != 1)
                 {
                     Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosHero[i]);
                     hero.gameObject.name = "Hero";
@@ -528,7 +553,7 @@ public class GoldMine : MonoBehaviour
                     hero.isAttack = true;
                     GameManager.Instance.lsHero.Add(hero);
                 }
-                else
+                else if(lstHeroGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -551,6 +576,33 @@ public class GoldMine : MonoBehaviour
                         GameManager.Instance.lsHero.Add(hero);
 
                     }
+                }else if(lstHeroGoldMine[i].infoHero.ID == 1)
+                {
+                    float XADD = -0.5f;
+                    for (int j = 0; j < 4; j++)
+                    {
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[1], GameManager.Instance.lsPosHero[i]);
+                        if (j == 1)
+                        {
+                            hero.transform.position += new Vector3(0, -0.5f, 0f);
+                        }
+                        else if (j == 3)
+                        {
+                            hero.transform.position += new Vector3(0, 0.5f, 0f);
+                        }
+                        else
+                        {
+                            hero.transform.position += new Vector3(XADD, 0f, 0f);
+                        }
+                        XADD += 0.5f;
+                        hero.gameObject.name = "Hero";
+                        hero.SetInfoHero();
+                        hero.infoHero.capWar = 0;
+                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 4);
+                        hero.isAttack = true;
+                        GameManager.Instance.lsHero.Add(hero);
+
+                    }
                 }
             }
         }
@@ -559,7 +611,7 @@ public class GoldMine : MonoBehaviour
         {
             if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero > 0)
             {
-                if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID != 2)
+                if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID != 2 && GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID != 1)
                 {
                     Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
                     hero.gameObject.name = "Enemy";
@@ -570,7 +622,7 @@ public class GoldMine : MonoBehaviour
                     hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
-                else
+                else if(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -589,6 +641,33 @@ public class GoldMine : MonoBehaviour
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
                         hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 3);
+                        hero.isAttack = true;
+                        GameManager.Instance.lsEnemy.Add(hero);
+                    }
+                }
+                else if(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 1)
+                {
+                    float XADD = -0.5f;
+                    for (int j = 0; j < 4; j++)
+                    {
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
+                        if (j == 1)
+                        {
+                            hero.transform.position += new Vector3(0, -0.5f, 0f);
+                        }
+                        else if (j == 3)
+                        {
+                            hero.transform.position += new Vector3(0, 0.5f, 0f);
+                        }
+                        else
+                        {
+                            hero.transform.position += new Vector3(XADD, 0f, 0f);
+                        }
+                        XADD += 0.5f;
+                        hero.gameObject.name = "Enemy";
+                        hero.SetInfoHero();
+                        hero.infoHero.capWar = 0;
+                        hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 4);
                         hero.isAttack = true;
                         GameManager.Instance.lsEnemy.Add(hero);
                     }

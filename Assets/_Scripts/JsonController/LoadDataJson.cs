@@ -113,6 +113,8 @@ public class LoadDataJson : MonoBehaviour
                 _info.hitSpeed = objJson["heroes"][t]["hitspeed1"].AsFloat;
                 _info.range = objJson["heroes"][t]["range"].AsFloat;
                 _info.speed = objJson["heroes"][t]["speed1"].AsFloat;
+                _info.rangeBoom = objJson["heroes"][t]["rangeBoom"].AsFloat;
+                _info.dameDead = objJson["heroes"][t]["dameDead"].AsFloat;
                 _info.price = objJson["heroes"][t]["Price01"].AsInt;
                 int _t = objJson["heroes"][t]["xCapWar"].AsInt;
                 if (_t == 0)

@@ -603,7 +603,7 @@ public class GameManager : MonoBehaviour
 
     public void ThrowHero(House houseHero, int countHero, Vector3 posIns)
     {
-        if (houseHero.idHero != 2)
+        if (houseHero.idHero != 2 && houseHero.idHero != 1)
         {
             Hero hero = Instantiate(lsPrefabsHero[houseHero.idHero - 1], posIns, Quaternion.identity);
             hero.gameObject.name = "Hero";
@@ -614,7 +614,7 @@ public class GameManager : MonoBehaviour
             hero.isAttack = true;
             lsHero.Add(hero);
         }
-        else
+        else if (houseHero.idHero == 2)
         {
             float XADD = -0.5f;
             for (int j = 0; j < 3; j++)
@@ -637,6 +637,34 @@ public class GameManager : MonoBehaviour
                 lsHero.Add(hero);
             }
         }
+        else if (houseHero.idHero == 1)
+        {
+            float XADD = -0.5f;
+            for (int j = 0; j < 4; j++)
+            {
+                Hero hero = Instantiate(lsPrefabsHero[1], posIns, Quaternion.identity);
+                if (j == 1)
+                {
+                    hero.transform.position += new Vector3(0, -0.5f, 0f);
+                }
+                else if (j == 3)
+                {
+                    hero.transform.position += new Vector3(0, 0.5f, 0f);
+                }
+                else
+                {
+                    hero.transform.position += new Vector3(XADD, 0f, 0f);
+                }
+                XADD += 0.5f;
+                hero.gameObject.name = "Hero";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                hero.AddHero(countHero / 4);
+                hero.isAttack = true;
+                lsHero.Add(hero);
+            }
+        }
+
 
         for (int i = 0; i < lsEnemy.Count; i++)
         {

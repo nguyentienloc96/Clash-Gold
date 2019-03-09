@@ -19,15 +19,14 @@ public class Hero_BlastingDeath : Hero
     public override void Die()
     {
         AnimDie();
-        Collider2D[] arrCol = Physics2D.OverlapCircleAll(transform.position, 4f / 5f, 1 << 12);
+        Collider2D[] arrCol = Physics2D.OverlapCircleAll(transform.position, infoHero.rangeBoom, 1 << 12);
         if (arrCol.Length > 0)
         {
             foreach (Collider2D col in arrCol)
             {
                 if ((gameObject.tag == "Hero" && col.tag == "Enemy") || (gameObject.tag == "Enemy" && col.tag == "Hero"))
                 {
-                    col.GetComponent<Hero>().BeingAttacked(infoHero.dame * countHeroStart);
-                    Debug.Log("aaa");
+                    col.GetComponent<Hero>().BeingAttacked(infoHero.dameDead * countHeroStart);
                 }
             }
         }

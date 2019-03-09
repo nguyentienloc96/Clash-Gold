@@ -72,7 +72,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 1
+      "type": 1,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "The Wing Trio": {
       "id": 2,
@@ -89,7 +91,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 2
+      "type": 2,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Deadly MOM": {
       "id": 3,
@@ -106,7 +110,9 @@
       "idBaby": 4,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 3
+      "type": 3,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Balloon King": {
       "id": 4,
@@ -123,12 +129,14 @@
       "idBaby": 6,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 4
+      "type": 4,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Short Gunner": {
       "id": 5,
       "health1": 696,
-      "dam1": 620,
+      "dam1": 62,
       "hitspeed1": 2.2,
       "speed1": 5,
       "Price01": 5000,
@@ -140,12 +148,14 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 3
+      "type": 3,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Flying gunner": {
       "id": 6,
       "health1": 490,
-      "dam1": 300,
+      "dam1": 30,
       "hitspeed1": 2.2,
       "speed1": 5,
       "Price01": 5000,
@@ -157,7 +167,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 4
+      "type": 4,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Drunken Bomber": {
       "id": 7,
@@ -174,7 +186,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 3
+      "type": 3,
+	  "rangeBoom": 2.5,
+	  "dameDead": 0
     },
     "Explosive Wing": {
       "id": 8,
@@ -191,7 +205,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 4
+      "type": 4,
+	  "rangeBoom": 2.5,
+	  "dameDead": 0
     },
     "Canon": {
       "id": 9,
@@ -208,7 +224,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 5
+      "type": 5,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Reflector": {
       "id": 10,
@@ -226,7 +244,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 3
+      "type": 3,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Flying reflector": {
       "id": 11,
@@ -244,7 +264,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 4
+      "type": 4,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Archer": {
       "id": 12,
@@ -261,7 +283,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 3
+      "type": 3,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Flying archer": {
       "id": 13,
@@ -278,7 +302,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 10,
-      "type": 4
+      "type": 4,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Bloody Swords": {
       "id": 14,
@@ -295,7 +321,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 1
+      "type": 1,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Bloody wing": {
       "id": 15,
@@ -312,7 +340,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 2
+      "type": 2,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Immortal scyther": {
       "id": 16,
@@ -329,7 +359,9 @@
       "idBaby": 19,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 1
+      "type": 1,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Blasting death": {
       "id": 17,
@@ -346,7 +378,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 2
+      "type": 2,
+	  "rangeBoom": 4,
+	  "dameDead": 272
     },
     "Twisting axe": {
       "id": 18,
@@ -363,7 +397,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 1
+      "type": 1,
+	  "rangeBoom": 1.25,
+	  "dameDead": 0
     },
     "Flying axe": {
       "id": 19,
@@ -380,7 +416,9 @@
       "idBaby": 0,
       "idMom": 0,
       "speedBullet": 0,
-      "type": 2
+      "type": 2,
+	  "rangeBoom": 1.25,
+	  "dameDead": 0
     },
     "Deadly baby": {
       "id": 31,
@@ -396,7 +434,9 @@
       "idBaby": 0,
       "idMom": 3,
       "speedBullet": 0,
-      "type": 1
+      "type": 1,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Little soul": {
       "id": 32,
@@ -412,7 +452,9 @@
       "idBaby": 0,
       "idMom": 5,
       "speedBullet": 0,
-      "type": 2
+      "type": 2,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     },
     "Animated puppets": {
       "id": 33,
@@ -428,7 +470,9 @@
       "idBaby": 0,
       "idMom": 18,
       "speedBullet": 0,
-      "type": 1
+      "type": 1,
+	  "rangeBoom": 0,
+	  "dameDead": 0
     }
   }
 }

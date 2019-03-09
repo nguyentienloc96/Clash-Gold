@@ -10,9 +10,19 @@ public class Hero_FlyingAxe : Hero {
         Hero hero = targetCompetitor;
         if (hero.infoHero.ID == 10)
         {
-            hero.BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
+            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
         }
-        hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
+        Collider2D[] arrCol = Physics2D.OverlapCircleAll(transform.position, infoHero.rangeBoom, 1 << 12);
+        if (arrCol.Length > 0)
+        {
+            foreach (Collider2D col in arrCol)
+            {
+                if ((gameObject.tag == "Hero" && col.tag == "Enemy") || (gameObject.tag == "Enemy" && col.tag == "Hero"))
+                {
+                    col.GetComponent<Hero>().BeingAttacked(infoHero.dame * countHeroStart);
+                }
+            }
+        }
     }
 
     public override void Die()

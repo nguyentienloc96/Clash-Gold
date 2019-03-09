@@ -12,7 +12,11 @@ public class Hero_ShortGunner : Hero {
         _bullet.SetActive(true);
         _bullet.transform.up = diff;
         _bullet.GetComponent<Rigidbody2D>().velocity = diff * infoHero.speedBullet;
-        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
+        float pX = ((infoHero.range / 5f) + 0.75f) / 5f;
+        int xExp = (int)(Vector3.Distance(transform.position, targetCompetitor.transform.position) / pX);
+        if (xExp <= 0)
+            xExp = 1;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero * xExp;
     }
 
     public override void Die()

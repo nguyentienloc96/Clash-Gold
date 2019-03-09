@@ -10,7 +10,7 @@ public class Hero_AnimatedPuppets : Hero {
         Hero hero = targetCompetitor.GetComponent<Hero>();
         if (hero.infoHero.ID == 10)
         {
-            hero.BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
+            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
         }
         hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
     }
