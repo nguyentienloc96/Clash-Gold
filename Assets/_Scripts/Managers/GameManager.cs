@@ -196,7 +196,7 @@ public class GameManager : MonoBehaviour
                             ThrowHero(itemSelectHero.houseHero, itemSelectHero.countHero, posIns);
                             itemSelectHero.gameObject.SetActive(false);
                             itemSelectHero = null;
-                            numberThrowHero++;
+                            numberThrowHero--;
                         }
                     }
                     else
@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
                                 ThrowHero(item.houseHero, item.countHero, posIns);
                                 item.gameObject.SetActive(false);
                                 itemSelectHero = null;
-                                numberThrowHero++;
+                                numberThrowHero--;
                             }
                         }
                     }
@@ -251,7 +251,7 @@ public class GameManager : MonoBehaviour
                             }
                         }
                     }
-                    else if (lsHero.Count <= 0 && numberThrowHero >= 3)
+                    else if (lsHero.Count <= 0 && numberThrowHero <= 0)
                     {
                         ScenesManager.Instance.GoToScene();
                         Vector3 posGoldMine = Vector3.zero;

@@ -450,7 +450,7 @@ public class GoldMine : MonoBehaviour
     {
         BeginAttack();
         UIManager.Instance.panelThrowHeroAttack.SetActive(true);
-        GameManager.Instance.numberThrowHero = 0;
+        GameManager.Instance.numberThrowHero = 3;
         for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
         {
             if (lstHeroGoldMine[i].infoHero.numberHero > 0)
@@ -517,11 +517,12 @@ public class GoldMine : MonoBehaviour
                 }
             }
         }
-
+        int countHero = 0;
         for (int i = 0; i < 3; i++)
         {
             if (i < GameManager.Instance.castlePlayer.lsHouseRelease.Count && GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > 0)
             {
+                countHero++;
                 UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(true);
                 UIManager.Instance.lsItemHeroAttack[i].countHero = GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero;
                 UIManager.Instance.lsItemHeroAttack[i].houseHero = GameManager.Instance.castlePlayer.lsHouseRelease[i];
@@ -533,6 +534,7 @@ public class GoldMine : MonoBehaviour
                 UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(false);
             }
         }
+        GameManager.Instance.numberThrowHero = countHero;
     }
 
     public void AttackGoldMineHero()
