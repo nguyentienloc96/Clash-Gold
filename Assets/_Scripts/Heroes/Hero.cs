@@ -57,6 +57,8 @@ public abstract class Hero : MonoBehaviour
     public float timeCheckCameBack;
     [HideInInspector]
     public float speedMin;
+    [HideInInspector]
+    public int countHeroStart;
 
     public abstract void SetInfoHero();
 
@@ -407,7 +409,7 @@ public abstract class Hero : MonoBehaviour
         animator.SetFloat("IndexIdle", numIdle);
     }
 
-    public void InstantiateChild(int idHero, bool ishero)
+    public void InstantiateChild(int idHero,int numberHero, bool ishero)
     {
         if (ishero)
         {
@@ -419,7 +421,7 @@ public abstract class Hero : MonoBehaviour
             hero.gameObject.name = "Hero";
             hero.SetInfoHero();
             hero.infoHero.capWar = 0;
-            hero.AddHero(infoHero.numberHero);
+            hero.AddHero(numberHero);
             GameManager.Instance.lsChild.Add(hero);
             GameManager.Instance.lsHero.Add(hero);
         }
@@ -433,7 +435,7 @@ public abstract class Hero : MonoBehaviour
             hero.gameObject.name = "Enemy";
             hero.SetInfoHero();
             hero.infoHero.capWar = 0;
-            hero.AddHero(infoHero.numberHero);
+            hero.AddHero(numberHero);
             GameManager.Instance.lsChild.Add(hero);
             GameManager.Instance.lsEnemy.Add(hero);
         }

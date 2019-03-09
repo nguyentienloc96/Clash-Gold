@@ -65,10 +65,8 @@ public class UIManager : MonoBehaviour
     private float timeBuildCanon;
 
     [Header("MINIMAP")]
-    public Animation animBinoculars;
-    public bool isBinoculars;
     public Canvas cavas;
-
+    public Canvas canvasLoading;
     public GameObject panelRelace;
     public Transform contentRelace;
 

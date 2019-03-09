@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_BlastingDeath : Hero {
+public class Hero_BlastingDeath : Hero
+{
 
     public override void Attack()
     {
@@ -18,6 +19,18 @@ public class Hero_BlastingDeath : Hero {
     public override void Die()
     {
         AnimDie();
+        Collider2D[] arrCol = Physics2D.OverlapCircleAll(transform.position, 4f / 5f, 1 << 12);
+        if (arrCol.Length > 0)
+        {
+            foreach (Collider2D col in arrCol)
+            {
+                if ((gameObject.tag == "Hero" && col.tag == "Enemy") || (gameObject.tag == "Enemy" && col.tag == "Hero"))
+                {
+                    col.GetComponent<Hero>().BeingAttacked(infoHero.dame * countHeroStart);
+                    Debug.Log("aaa");
+                }
+            }
+        }
     }
 
 
@@ -29,7 +42,7 @@ public class Hero_BlastingDeath : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 17;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];      
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
     }
 
     // Use this for initialization

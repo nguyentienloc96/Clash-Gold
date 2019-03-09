@@ -385,7 +385,7 @@ public class GoldMine : MonoBehaviour
     public void InstantiateEnemy(int idHero, int number, int i)
     {
         Hero hero;
-        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero]
             , lsPos[i].position
             , Quaternion.identity
             , GameManager.Instance.enemyManager);
@@ -437,59 +437,65 @@ public class GoldMine : MonoBehaviour
         }
     }
 
-    public void AttackGoldMineEnemy()
+    public void BeginAttack()
     {
         DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(true);
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance.cameraAttack;
+        UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance.cameraAttack;
         UIManager.Instance.mapAttack.SetActive(true);
         UIManager.Instance.mapMove.SetActive(false);
+    }
+
+    public void AttackGoldMineEnemy()
+    {
+        BeginAttack();
         UIManager.Instance.panelThrowHeroAttack.SetActive(true);
         GameManager.Instance.numberThrowHero = 0;
         for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
         {
-            if (lstHeroGoldMine[i].infoHero.ID != 2)
+            if (lstHeroGoldMine[i].infoHero.numberHero > 0)
             {
-                Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
-                hero.gameObject.name = "Enemy";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
-                hero.isAttack = true;
-                GameManager.Instance.lsEnemy.Add(hero);
-            }
-            else
-            {
-                float XADD = -0.5f;
-                for (int j = 0; j < 4; j++)
+                if (lstHeroGoldMine[i].infoHero.ID != 2)
                 {
-                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
-                    if (j == 1)
-                    {
-                        hero.transform.position += new Vector3(0, -0.5f, 0f);
-                    }
-                    else if (j == 3)
-                    {
-                        hero.transform.position += new Vector3(0, 0.5f, 0f);
-                    }
-                    else
-                    {
-                        hero.transform.position += new Vector3(XADD, 0f, 0f);
-                    }
-                    XADD += 0.5f;
+                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
                     hero.gameObject.name = "Enemy";
                     hero.SetInfoHero();
                     hero.infoHero.capWar = 0;
-                    hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
+                    hero.countHeroStart = lstHeroGoldMine[i].infoHero.numberHero;
+                    hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
                     hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
+                }
+                else
+                {
+                    float XADD = -0.5f;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
+                        if (j == 1)
+                        {
+                            hero.transform.position += new Vector3(0, -0.5f, 0f);
+                        }
+                        else
+                        {
+                            hero.transform.position += new Vector3(XADD, 0f, 0f);
+                        }
+                        XADD += 0.5f;
+                        hero.gameObject.name = "Enemy";
+                        hero.SetInfoHero();
+                        hero.infoHero.capWar = 0;
+                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
+                        hero.isAttack = true;
+                        GameManager.Instance.lsEnemy.Add(hero);
 
+                    }
                 }
             }
         }
 
         for (int i = 0; i < 3; i++)
         {
-            if (i < GameManager.Instance.castlePlayer.lsHouseRelease.Count)
+            if (i < GameManager.Instance.castlePlayer.lsHouseRelease.Count && GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > 0)
             {
                 UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(true);
                 UIManager.Instance.lsItemHeroAttack[i].countHero = GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero;
@@ -506,85 +512,86 @@ public class GoldMine : MonoBehaviour
 
     public void AttackGoldMineHero()
     {
-        DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(true);
-        UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance.cameraAttack;
-        UIManager.Instance.mapAttack.SetActive(true);
-        UIManager.Instance.mapMove.SetActive(false);
+        BeginAttack();
         for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
         {
-            if (lstHeroGoldMine[i].infoHero.ID != 2)
+            if (lstHeroGoldMine[i].infoHero.numberHero > 0)
             {
-                Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosHero[i]);
-                hero.gameObject.name = "Hero";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
-                hero.isAttack = true;
-                GameManager.Instance.lsHero.Add(hero);
-            }
-            else
-            {
-                float XADD = -0.5f;
-                for (int j = 0; j < 4; j++)
+                if (lstHeroGoldMine[i].infoHero.ID != 2)
                 {
-                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[1], GameManager.Instance.lsPosHero[i]);
-                    if (j == 1)
-                    {
-                        hero.transform.position += new Vector3(0, -0.5f, 0f);
-                    }
-                    else if (j == 3)
-                    {
-                        hero.transform.position += new Vector3(0, 0.5f, 0f);
-                    }
-                    else
-                    {
-                        hero.transform.position += new Vector3(XADD, 0f, 0f);
-                    }
-                    XADD += 0.5f;
+                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosHero[i]);
                     hero.gameObject.name = "Hero";
                     hero.SetInfoHero();
                     hero.infoHero.capWar = 0;
-                    hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
+                    hero.countHeroStart = lstHeroGoldMine[i].infoHero.numberHero;
+                    hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
                     hero.isAttack = true;
                     GameManager.Instance.lsHero.Add(hero);
+                }
+                else
+                {
+                    float XADD = -0.5f;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[1], GameManager.Instance.lsPosHero[i]);
+                        if (j == 1)
+                        {
+                            hero.transform.position += new Vector3(0, -0.5f, 0f);
+                        }
+                        else
+                        {
+                            hero.transform.position += new Vector3(XADD, 0f, 0f);
+                        }
+                        XADD += 0.5f;
+                        hero.gameObject.name = "Hero";
+                        hero.SetInfoHero();
+                        hero.infoHero.capWar = 0;
+                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
+                        hero.isAttack = true;
+                        GameManager.Instance.lsHero.Add(hero);
 
+                    }
                 }
             }
         }
 
         for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count && i < 3; i++)
         {
-            if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID != 2)
+            if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero > 0)
             {
-                Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
-                hero.gameObject.name = "Enemy";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero);
-                hero.isAttack = true;
-                GameManager.Instance.lsEnemy.Add(hero);
-            }
-            else
-            {
-                float XADD = -0.5f;
-                for (int j = 0; j < 3; j++)
+                if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID != 2)
                 {
-                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
-                    if (j == 1)
-                    {
-                        hero.transform.position += new Vector3(XADD, -0.5f, 0f);
-                    }
-                    else
-                    {
-                        hero.transform.position += new Vector3(XADD, 0f, 0f);
-                    }
-                    XADD += 0.5f;
+                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
                     hero.gameObject.name = "Enemy";
                     hero.SetInfoHero();
                     hero.infoHero.capWar = 0;
-                    hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 3);
+                    hero.countHeroStart = GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero;
+                    hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero);
                     hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
+                }
+                else
+                {
+                    float XADD = -0.5f;
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
+                        if (j == 1)
+                        {
+                            hero.transform.position += new Vector3(0, -0.5f, 0f);
+                        }
+                        else
+                        {
+                            hero.transform.position += new Vector3(XADD, 0f, 0f);
+                        }
+                        XADD += 0.5f;
+                        hero.gameObject.name = "Enemy";
+                        hero.SetInfoHero();
+                        hero.infoHero.capWar = 0;
+                        hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 3);
+                        hero.isAttack = true;
+                        GameManager.Instance.lsEnemy.Add(hero);
+                    }
                 }
             }
         }

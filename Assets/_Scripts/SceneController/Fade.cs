@@ -4,7 +4,6 @@ using DG.Tweening;
 public class Fade : MonoBehaviour {
 
     public static Fade Instance;
-    private Vector3 sizeObject;
 
     public enum FadeState
     {
@@ -16,12 +15,11 @@ public class Fade : MonoBehaviour {
     void Awake()
     {
         Instance = this;
-        sizeObject = new Vector3(0.015625f, 0.015625f, 0.015625f);
     }
 
     public void StartFade()
     {
-        transform.localScale = sizeObject;
+        transform.localScale = new Vector3(1f, 1f, 1f);
         FadeInDone();
     }
 

@@ -323,6 +323,7 @@ public class GameManager : MonoBehaviour
         isAttack = false;
         DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(false);
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
+        UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.mapAttack.SetActive(false);
         UIManager.Instance.mapMove.SetActive(true);
         UIManager.Instance.panelThrowHeroAttack.SetActive(false);
@@ -608,6 +609,7 @@ public class GameManager : MonoBehaviour
             hero.gameObject.name = "Hero";
             hero.SetInfoHero();
             hero.infoHero.capWar = 0;
+            hero.countHeroStart = countHero;
             hero.AddHero(countHero);
             hero.isAttack = true;
             lsHero.Add(hero);
@@ -615,16 +617,12 @@ public class GameManager : MonoBehaviour
         else
         {
             float XADD = -0.5f;
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < 3; j++)
             {
                 Hero hero = Instantiate(lsPrefabsHero[1], posIns, Quaternion.identity);
                 if (j == 1)
                 {
                     hero.transform.position += new Vector3(0, -0.5f, 0f);
-                }
-                else if (j == 3)
-                {
-                    hero.transform.position += new Vector3(0, 0.5f, 0f);
                 }
                 else
                 {
@@ -634,7 +632,7 @@ public class GameManager : MonoBehaviour
                 hero.gameObject.name = "Hero";
                 hero.SetInfoHero();
                 hero.infoHero.capWar = 0;
-                hero.AddHero(countHero / 4);
+                hero.AddHero(countHero / 3);
                 hero.isAttack = true;
                 lsHero.Add(hero);
             }

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_ImmortalScyther : Hero {
+public class Hero_ImmortalScyther : Hero
+{
 
     public override void Attack()
     {
@@ -18,7 +19,7 @@ public class Hero_ImmortalScyther : Hero {
     public override void Die()
     {
         AnimDie();
-        InstantiateChild(20, gameObject.tag == "Hero");
+        InstantiateChild(20, countHeroStart, gameObject.tag == "Hero");
     }
 
     public override void BeingAttacked(float _dame)
