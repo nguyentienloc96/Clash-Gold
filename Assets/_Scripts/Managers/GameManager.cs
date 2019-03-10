@@ -114,10 +114,6 @@ public class GameManager : MonoBehaviour
         {
             dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
         }
-        else
-        {
-
-        }
         dateUpGoldMine = dateGame.AddDays(GameConfig.Instance.TimeUp);
     }
 
@@ -360,7 +356,6 @@ public class GameManager : MonoBehaviour
         lsEnemy.Clear();
     }
 
-
     #region === MAP ===
     public void GenerateMapBox()
     {
@@ -384,11 +379,15 @@ public class GameManager : MonoBehaviour
                     b.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                     if (i == 4 && j == 4)
                     {
-                        GenerateMap(b.transform, numberID, true);
+                        GenerateMap(b.transform, numberID, 1, true);
+                    }
+                    else if (i == 4 && j == 3)
+                    {
+                        GenerateMap(b.transform, numberID, 1, true);
                     }
                     else
                     {
-                        GenerateMap(b.transform, numberID);
+                        GenerateMap(b.transform, numberID, UnityEngine.Random.Range(1, 6));
                     }
                     numberID++;
                 }
@@ -409,7 +408,7 @@ public class GameManager : MonoBehaviour
         return isCheck;
     }
 
-    public void GenerateMap(Transform toPos, int id, bool isGoldPlayer = false)
+    public void GenerateMap(Transform toPos, int id, int level, bool isGoldPlayer = false)
     {
 
         int a = (int)UnityEngine.Random.Range(0, 3.9f);
@@ -438,9 +437,9 @@ public class GameManager : MonoBehaviour
         {
             _rotation = new Vector3(0, 0, 0);
             GoldMine g = Instantiate(prefabsBoxMap[3], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
-            g.SetLevel(1);
+            g.SetLevel(level);
             g.id = id;
-            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, 1);
+            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, level);
             g.numberBoxGoldMine = 3;
             g.typeGoleMine = TypeGoldMine.Player;
             g.InstantiateHeroStart(true);
@@ -449,11 +448,10 @@ public class GameManager : MonoBehaviour
         else
         {
             GoldMine g = Instantiate(prefabsBoxMap[a], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
-            int _level = UnityEngine.Random.Range(1, 6);
-            g.SetLevel(_level);
+            g.SetLevel(level);
             g.id = id;
             g.numberBoxGoldMine = a;
-            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, _level);
+            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, level);
             g.typeGoleMine = TypeGoldMine.Enemy;
             g.InstantiateHeroStart(false);
             g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
