@@ -406,18 +406,18 @@ public class GoldMine : MonoBehaviour
                 GameManager.Instance.GolEnemyBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineEnemy();
-                ScenesManager.Instance.GoToScene(()=>
-                {
-                    GameManager.Instance.isAttack = true;
-                    GameManager.Instance.isAttackGoldMineEnemy = true;
-                    if (GameManager.Instance.lsEnemyAttackGoldMine.Count > 0)
-                    {
-                        for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
-                        {
-                            GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
-                        }
-                    }
-                });     
+                ScenesManager.Instance.GoToScene(() =>
+                 {
+                     GameManager.Instance.isAttack = true;
+                     GameManager.Instance.isAttackGoldMineEnemy = true;
+                     if (GameManager.Instance.lsEnemyAttackGoldMine.Count > 0)
+                     {
+                         for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
+                         {
+                             GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
+                         }
+                     }
+                 });
             }
         }
         else
@@ -433,11 +433,11 @@ public class GoldMine : MonoBehaviour
                 GameManager.Instance.GolHeroBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineHero();
-                ScenesManager.Instance.GoToScene(()=>
-                {
-                    GameManager.Instance.isAttack = true;
-                    GameManager.Instance.isAttackGoldMineEnemy = false;
-                });
+                ScenesManager.Instance.GoToScene(() =>
+                 {
+                     GameManager.Instance.isAttack = true;
+                     GameManager.Instance.isAttackGoldMineEnemy = false;
+                 });
             }
         }
     }
@@ -471,7 +471,7 @@ public class GoldMine : MonoBehaviour
                     hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
-                else if(lstHeroGoldMine[i].infoHero.ID == 2)
+                else if (lstHeroGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -493,7 +493,8 @@ public class GoldMine : MonoBehaviour
                         hero.isAttack = true;
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
-                }else if(lstHeroGoldMine[i].infoHero.ID == 1)
+                }
+                else if (lstHeroGoldMine[i].infoHero.ID == 1)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)
@@ -560,7 +561,7 @@ public class GoldMine : MonoBehaviour
                     hero.isAttack = true;
                     GameManager.Instance.lsHero.Add(hero);
                 }
-                else if(lstHeroGoldMine[i].infoHero.ID == 2)
+                else if (lstHeroGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -583,7 +584,8 @@ public class GoldMine : MonoBehaviour
                         GameManager.Instance.lsHero.Add(hero);
 
                     }
-                }else if(lstHeroGoldMine[i].infoHero.ID == 1)
+                }
+                else if (lstHeroGoldMine[i].infoHero.ID == 1)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)
@@ -629,7 +631,7 @@ public class GoldMine : MonoBehaviour
                     hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
-                else if(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 2)
+                else if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -652,7 +654,7 @@ public class GoldMine : MonoBehaviour
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
-                else if(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 1)
+                else if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 1)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)

@@ -238,19 +238,19 @@ public class GameManager : MonoBehaviour
                         GolEnemyBeingAttack.DeleteHero();
                         dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                         ScenesManager.Instance.GoToScene(() =>
-                        {
-                            GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
-                            GolEnemyBeingAttack.SetSpriteBox(0);
-                            lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
-                            lstGoldMinePlayer.Add(GolEnemyBeingAttack);
-                            if (lsEnemyAttackGoldMine.Count > 0)
-                            {
-                                for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
-                                {
-                                    lsEnemyAttackGoldMine[i].isPause = false;
-                                }
-                            }
-                        });
+                         {
+                             GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
+                             GolEnemyBeingAttack.SetSpriteBox(0);
+                             lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
+                             lstGoldMinePlayer.Add(GolEnemyBeingAttack);
+                             if (lsEnemyAttackGoldMine.Count > 0)
+                             {
+                                 for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                                 {
+                                     lsEnemyAttackGoldMine[i].isPause = false;
+                                 }
+                             }
+                         });
                     }
                     else if (lsHero.Count <= 0 && numberThrowHero <= 0)
                     {
@@ -261,15 +261,15 @@ public class GameManager : MonoBehaviour
                         castlePlayer.transform.localPosition = posMoveEnd;
                         castlePlayer.posMove = posMoveEnd;
                         ScenesManager.Instance.GoToScene(() =>
-                        {
-                            if (lsEnemyAttackGoldMine.Count > 0)
-                            {
-                                for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
-                                {
-                                    lsEnemyAttackGoldMine[i].isPause = false;
-                                }
-                            }
-                        });
+                         {
+                             if (lsEnemyAttackGoldMine.Count > 0)
+                             {
+                                 for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                                 {
+                                     lsEnemyAttackGoldMine[i].isPause = false;
+                                 }
+                             }
+                         });
                     }
                 }
                 else
@@ -279,34 +279,34 @@ public class GameManager : MonoBehaviour
                         EndAttack();
                         GolHeroBeingAttack.DeleteHero();
                         ScenesManager.Instance.GoToScene(() =>
-                        {
-                            GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
-                            GolHeroBeingAttack.SetSpriteBox(maxLevelHouse);
-                            lstGoldMinePlayer.Remove(GolHeroBeingAttack);
-                            lstGoldMineEnemy.Add(GolHeroBeingAttack);
-                            for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
-                            {
-                                GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
-                                    , lsEnemyAttackGoldMine[i].infoHero.numberHero, i);
-                            }
-                            foreach (Hero h in lsEnemyAttackGoldMine)
-                            {
-                                Destroy(h.gameObject);
-                            }
-                            lsEnemyAttackGoldMine.Clear();
-                        });
+                         {
+                             GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                             GolHeroBeingAttack.SetSpriteBox(maxLevelHouse);
+                             lstGoldMinePlayer.Remove(GolHeroBeingAttack);
+                             lstGoldMineEnemy.Add(GolHeroBeingAttack);
+                             for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                             {
+                                 GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
+                                     , lsEnemyAttackGoldMine[i].infoHero.numberHero, i);
+                             }
+                             foreach (Hero h in lsEnemyAttackGoldMine)
+                             {
+                                 Destroy(h.gameObject);
+                             }
+                             lsEnemyAttackGoldMine.Clear();
+                         });
                     }
                     else if (lsEnemy.Count <= 0)
                     {
                         EndAttack();
                         ScenesManager.Instance.GoToScene(() =>
-                        {
-                            foreach (Hero h in lsEnemyAttackGoldMine)
-                            {
-                                Destroy(h.gameObject);
-                            }
-                            lsEnemyAttackGoldMine.Clear();
-                        });
+                         {
+                             foreach (Hero h in lsEnemyAttackGoldMine)
+                             {
+                                 Destroy(h.gameObject);
+                             }
+                             lsEnemyAttackGoldMine.Clear();
+                         });
                     }
                 }
             }

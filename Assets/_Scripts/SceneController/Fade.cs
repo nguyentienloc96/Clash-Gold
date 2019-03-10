@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using DG.Tweening;
 
-public class Fade : MonoBehaviour {
-
+public class Fade : MonoBehaviour
+{
     public static Fade Instance;
 
     public enum FadeState
@@ -38,5 +38,4 @@ public class Fade : MonoBehaviour {
     {
         state = FadeState.FadeOutDone;
     }
-
 }

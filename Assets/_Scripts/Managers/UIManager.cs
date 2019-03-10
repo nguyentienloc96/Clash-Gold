@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     public GameObject panelRelease;
     public Text txtLevelCastle;
     public Text txtBlood;
-    public List<BuildHouseObject> lstHouse; //List nha de build
+    public List<BuildHouseObject> lstHouse;
     public Sprite[] sprAvatarHero;
 
     [Header("UPGRADE")]
@@ -213,10 +213,10 @@ public class UIManager : MonoBehaviour
         this.PostEvent(EventID.UpLevelHouse);
         panelHome.SetActive(false);
         ScenesManager.Instance.GoToScene(() =>
-         {
-             GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
-             GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
-         });
+          {
+              GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
+              GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+          });
     }
 
     public void Btn_NoNewPlay()
@@ -331,7 +331,6 @@ public class UIManager : MonoBehaviour
     {
         panelInWall.GetComponent<Animator>().Play("DeActivePanel");
     }
-
     #endregion
 
     public void CloseThrowHero()

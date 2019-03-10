@@ -5,9 +5,10 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float dameBullet;
-    public bool isBoom;
     public float rangeBoom;
-    public void OnTriggerEnter2D(Collider2D collision)
+    public bool isBoom;
+
+    void OnTriggerEnter2D(Collider2D collision)
     {
         if (gameObject.CompareTag("Bullet Hero"))
         {
@@ -69,4 +70,8 @@ public class Bullet : MonoBehaviour
         }
     }
 
+    void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }
 }

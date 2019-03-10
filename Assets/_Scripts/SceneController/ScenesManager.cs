@@ -5,20 +5,6 @@ using UnityEngine.Events;
 
 public class ScenesManager : MonoBehaviour
 {
-
-    public enum TypeScene
-    {
-        Home, Main
-    }
-
-    [System.Serializable]
-    public struct Scenes
-    {
-        public string name;
-        public TypeScene type;
-        public GameObject objects;
-    }
-
     public static ScenesManager Instance;
 
     void Awake()
@@ -26,7 +12,6 @@ public class ScenesManager : MonoBehaviour
         Instance = this;
     }
 
-    //public Scenes[] secenes;
     public bool isNextScene;
 
     public void GoToScene(UnityAction actionLoadScenesDone = null)
@@ -41,10 +26,9 @@ public class ScenesManager : MonoBehaviour
 
         if (actionLoadScenesDone != null)
             actionLoadScenesDone();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         //
         yield return new WaitUntil(() => isNextScene = true);
         Fade.Instance.EndFade();
     }
-
 }
