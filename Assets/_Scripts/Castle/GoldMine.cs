@@ -428,6 +428,10 @@ public class GoldMine : MonoBehaviour
         }
         else
         {
+            if (other.CompareTag("Castle"))
+            {
+                //
+            }
             if (other.CompareTag("Enemy"))
             {
                 foreach (Hero hero in GameManager.Instance.lsEnemyAttackGoldMine)

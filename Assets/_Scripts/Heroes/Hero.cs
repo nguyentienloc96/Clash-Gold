@@ -424,6 +424,10 @@ public abstract class Hero : MonoBehaviour
             hero.AddHero(numberHero);
             GameManager.Instance.lsChild.Add(hero);
             GameManager.Instance.lsHero.Add(hero);
+            for (int i = 0; i < GameManager.Instance.lsEnemy.Count; i++)
+            {
+                GameManager.Instance.lsEnemy[i].targetCompetitor = null;
+            }
         }
         else
         {
@@ -438,6 +442,10 @@ public abstract class Hero : MonoBehaviour
             hero.AddHero(numberHero);
             GameManager.Instance.lsChild.Add(hero);
             GameManager.Instance.lsEnemy.Add(hero);
+            for (int i = 0; i < GameManager.Instance.lsHero.Count; i++)
+            {
+                GameManager.Instance.lsHero[i].targetCompetitor = null;
+            }
         }
     }
 }
