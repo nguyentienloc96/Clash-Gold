@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
     public Text txtCapUpgrade;
     public Text txtPrice;
     public Image iconHero;
+    public Text txtNameHero;
 
     [Header("UI SHOWSPEECH")]
     public GameObject panelShowSpeech;
@@ -300,6 +301,7 @@ public class UIManager : MonoBehaviour
     {
         xUpgrade = _x;
         iconHero.sprite = sprAvatarHero[GameManager.Instance.lstHousePlayer[houseClick].idHero - 1];
+        txtNameHero.text = GameConfig.Instance.lstInfoHero[GameManager.Instance.lstHousePlayer[houseClick].idHero - 1].NameHero;
         GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(xUpgrade);
         txtLevelCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].level.ToString();
         txtLevelUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].levelWillupgrade.ToString();

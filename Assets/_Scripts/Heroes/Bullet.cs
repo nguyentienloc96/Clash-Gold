@@ -29,12 +29,13 @@ public class Bullet : MonoBehaviour
                     {
                         foreach (Collider2D col in arrCol)
                         {
-                            if (col.tag == "Hero")
+                            if (col.tag == "Enemy")
                             {
                                 col.GetComponent<Hero>().BeingAttacked(dameBullet);
                             }
                         }
                     }
+                    gameObject.SetActive(false);
                 }
             }
         }
@@ -58,12 +59,13 @@ public class Bullet : MonoBehaviour
                     {
                         foreach (Collider2D col in arrCol)
                         {
-                            if (col.tag == "Enemy")
+                            if (col.tag == "Hero")
                             {
                                 col.GetComponent<Hero>().BeingAttacked(dameBullet);
                             }
                         }
                     }
+                    gameObject.SetActive(false);
                 }
             }
             

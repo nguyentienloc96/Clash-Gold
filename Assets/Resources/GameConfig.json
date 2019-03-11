@@ -3,9 +3,9 @@
   "CoinStart": 10,
   "GoldMinerAmount": 20,
   "RatioBorn": [
-    1,
+    0.8,
     0.7,
-    0.3
+    0.6
   ],
   "OwnLand1": 6,
   "OwnLand2": 9,
@@ -15,13 +15,13 @@
   "TimeAd": 180,
   "Rgold": 5,
   "CapGold0": 100,
-  "CapGoldUp": 1.5,
+  "CapGoldUp": 1.8,
   "PriceGoldUp": 5,
   "Bloodlv0": 12000,
   "Bloodratio": 1.3,
   "PriceBlood0": 500,
   "PriceBloodUp": 1.4,
-  "Ri": 3,
+  "Ri": 1.3,
   "Wi": 1.1,
   "BuildTime": 0,
   "UpgradeTime": 0,
@@ -59,6 +59,7 @@
   "heroes": {
     "Barbarians": {
       "id": 1,
+	  "Name":"Barbarians",
       "health1": 636,
       "dam1": 159,
       "hitspeed1": 1.4,
@@ -78,6 +79,7 @@
     },
     "The Wing Trio": {
       "id": 2,
+	  "Name":"The Wing Trio",
       "health1": 190,
       "dam1": 84,
       "hitspeed1": 1,
@@ -97,6 +99,7 @@
     },
     "Deadly MOM": {
       "id": 3,
+	  "Name":"Deadly MOM",
       "health1": 787,
       "dam1": 69,
       "hitspeed1": 1,
@@ -116,6 +119,7 @@
     },
     "Balloon King": {
       "id": 4,
+	  "Name":"Balloon King",
       "health1": 750,
       "dam1": 260,
       "hitspeed1": 1.5,
@@ -135,6 +139,7 @@
     },
     "Short Gunner": {
       "id": 5,
+	  "Name":"Short Gunner",
       "health1": 696,
       "dam1": 62,
       "hitspeed1": 2.2,
@@ -154,6 +159,7 @@
     },
     "Flying gunner": {
       "id": 6,
+	  "Name":"Flying gunner",
       "health1": 490,
       "dam1": 30,
       "hitspeed1": 2.2,
@@ -173,6 +179,7 @@
     },
     "Drunken Bomber": {
       "id": 7,
+	  "Name":"Drunken Bomber",
       "health1": 311,
       "dam1": 271,
       "hitspeed1": 1.9,
@@ -192,6 +199,7 @@
     },
     "Explosive Wing": {
       "id": 8,
+	  "Name":"Explosive Wing",
       "health1": 1064,
       "dam1": 133,
       "hitspeed1": 1.5,
@@ -211,6 +219,7 @@
     },
     "Canon": {
       "id": 9,
+	  "Name":"Canon",
       "health1": 742,
       "dam1": 127,
       "hitspeed1": 2,
@@ -230,6 +239,7 @@
     },
     "Reflector": {
       "id": 10,
+	  "Name":"Reflector",
       "health1": 598,
       "dam1": 176,
       "hitspeed1": 1.1,
@@ -250,6 +260,7 @@
     },
     "Flying reflector": {
       "id": 11,
+	  "Name":"Flying reflector",
       "health1": 590,
       "dam1": 192,
       "hitspeed1": 1.8,
@@ -270,6 +281,7 @@
     },
     "Archer": {
       "id": 12,
+	  "Name":"Archer",
       "health1": 598,
       "dam1": 234,
       "hitspeed1": 1.4,
@@ -289,6 +301,7 @@
     },
     "Flying archer": {
       "id": 13,
+	  "Name":"Flying archer",
       "health1": 490,
       "dam1": 96,
       "hitspeed1": 1,
@@ -308,6 +321,7 @@
     },
     "Bloody Swords": {
       "id": 14,
+	  "Name":"Bloody Swords",
       "health1": 1129,
       "dam1": 598,
       "hitspeed1": 1.8,
@@ -327,6 +341,7 @@
     },
     "Bloody wing": {
       "id": 15,
+	  "Name":"Bloody wing",
       "health1": 695,
       "dam1": 258,
       "hitspeed1": 1.6,
@@ -346,6 +361,7 @@
     },
     "Immortal scyther": {
       "id": 16,
+	  "Name":"Immortal scyther",
       "health1": 1095,
       "dam1": 379,
       "hitspeed1": 1.5,
@@ -365,6 +381,7 @@
     },
     "Blasting death": {
       "id": 17,
+	  "Name":"Blasting death",
       "health1": 1396,
       "dam1": 798,
       "hitspeed1": 3,
@@ -384,6 +401,7 @@
     },
     "Twisting axe": {
       "id": 18,
+	  "Name":"Twisting axe",
       "health1": 1654,
       "dam1": 221,
       "hitspeed1": 1.6,
@@ -403,6 +421,7 @@
     },
     "Flying axe": {
       "id": 19,
+	  "Name":"Flying axe",
       "health1": 700,
       "dam1": 250,
       "hitspeed1": 1.6,
@@ -422,6 +441,7 @@
     },
     "Deadly baby": {
       "id": 31,
+	  "Name":"Deadly baby",
       "health1": 32,
       "dam1": 32,
       "hitspeed1": 1,
@@ -440,6 +460,7 @@
     },
     "Little soul": {
       "id": 32,
+	  "Name":"Little soul",
       "health1": 67,
       "dam1": 67,
       "hitspeed1": 1.1,
@@ -458,6 +479,7 @@
     },
     "Animated puppets": {
       "id": 33,
+	  "Name":"Animated puppets",
       "health1": 98,
       "dam1": 98,
       "hitspeed1": 1.1,

@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public struct InfoHero {
     public int ID;
+    public string NameHero;
     public int numberHero;
     public float health;
     public float dame;
