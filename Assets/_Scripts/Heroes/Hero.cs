@@ -84,8 +84,8 @@ public abstract class Hero : MonoBehaviour
     {
         typeAction = TypeAction.DIE;
         parDie.Play();
-        Invoke("RemoveObj", 0.5f);
-        Destroy(gameObject, 0.5f);
+        Invoke("RemoveObj", 0.75f);
+        Destroy(gameObject, 0.75f);
     }
 
     public void RemoveObj()

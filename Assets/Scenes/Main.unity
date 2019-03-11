@@ -9415,6 +9415,7 @@ MonoBehaviour:
   itemSelectHero: {fileID: 0}
   numberThrowHero: 0
   isInSide: 0
+  isBeingAttack: 0
 --- !u!1 &1183669000
 GameObject:
   m_ObjectHideFlags: 0

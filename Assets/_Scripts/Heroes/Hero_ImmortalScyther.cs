@@ -18,8 +18,8 @@ public class Hero_ImmortalScyther : Hero
 
     public override void Die()
     {
-        AnimDie();
         InstantiateChild(21, countHeroStart, gameObject.tag == "Hero");
+        AnimDie();
     }
 
     public override void BeingAttacked(float _dame)

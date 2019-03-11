@@ -41,8 +41,8 @@ public class GoldMine : MonoBehaviour
     private List<ItemThrowHero> lsIconHero = new List<ItemThrowHero>();
     private List<int> lsIconHeroOn = new List<int>();
 
-    public bool isCanon;
-    public float timeCanon;
+    //public bool isCanon;
+    //public float timeCanon;
 
     void Start()
     {
@@ -409,6 +409,7 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
+                GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                 GameManager.Instance.GolEnemyBeingAttack = this;
                 if (!GameManager.Instance.isInSide)
                 {
@@ -427,6 +428,8 @@ public class GoldMine : MonoBehaviour
                          }
                      }
                  });
+
+                GameManager.Instance.isBeingAttack = true;
             }
         }
         else
@@ -447,7 +450,7 @@ public class GoldMine : MonoBehaviour
                 GameManager.Instance.GolHeroBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineHero();
-                if (GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine.Count > 0)
+                if (lstHeroGoldMine.Count > 0)
                 {
                     ScenesManager.Instance.GoToScene(() =>
                      {
@@ -532,7 +535,7 @@ public class GoldMine : MonoBehaviour
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)
                     {
-                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[0], GameManager.Instance.lsPosEnemy[i]);
                         if (j == 1)
                         {
                             hero.transform.position += new Vector3(0, -0.5f, 0f);
@@ -623,7 +626,7 @@ public class GoldMine : MonoBehaviour
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)
                     {
-                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[1], GameManager.Instance.lsPosHero[i]);
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[0], GameManager.Instance.lsPosHero[i]);
                         if (j == 1)
                         {
                             hero.transform.position += new Vector3(0, -0.5f, 0f);
@@ -692,7 +695,7 @@ public class GoldMine : MonoBehaviour
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)
                     {
-                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[1], GameManager.Instance.lsPosEnemy[i]);
+                        Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[0], GameManager.Instance.lsPosEnemy[i]);
                         if (j == 1)
                         {
                             hero.transform.position += new Vector3(0, -0.5f, 0f);

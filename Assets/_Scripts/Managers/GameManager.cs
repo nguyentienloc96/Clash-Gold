@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
     public ItemHeroAttack itemSelectHero;
     public int numberThrowHero;
     public bool isInSide;
+    public bool isBeingAttack;
 
     void Awake()
     {
@@ -133,7 +134,7 @@ public class GameManager : MonoBehaviour
                 time = 0;
             }
 
-            if (lstGoldMinePlayer.Count >= 2 && dateGame >= dateEnemyAttack && !isAttack)
+            if (UIManager.Instance.mapMove.activeSelf && isBeingAttack && dateGame >= dateEnemyAttack && !isAttack)
             {
                 if (lsEnemyAttackGoldMine.Count <= 0)
                 {
@@ -652,7 +653,7 @@ public class GameManager : MonoBehaviour
             float XADD = -0.5f;
             for (int j = 0; j < 4; j++)
             {
-                Hero hero = Instantiate(lsPrefabsHero[1], posIns, Quaternion.identity);
+                Hero hero = Instantiate(lsPrefabsHero[0], posIns, Quaternion.identity);
                 if (j == 1)
                 {
                     hero.transform.position += new Vector3(0, -0.5f, 0f);
