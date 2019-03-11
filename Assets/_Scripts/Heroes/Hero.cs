@@ -352,11 +352,17 @@ public abstract class Hero : MonoBehaviour
                         AutoAttack();
                         if (infoHero.typeHero != TypeHero.Canon)
                         {
-                            MoveToPosition(targetCompetitor.transform.position);
+                            if (targetCompetitor != null)
+                            {
+                                MoveToPosition(targetCompetitor.transform.position);
+                            }
                         }
                         else
                         {
-                            RotationHero(targetCompetitor.transform.position);
+                            if (targetCompetitor != null)
+                            {
+                                RotationHero(targetCompetitor.transform.position);
+                            }
                         }
                     }
                 }
