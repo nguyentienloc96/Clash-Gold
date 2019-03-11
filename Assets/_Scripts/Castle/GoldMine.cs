@@ -306,22 +306,28 @@ public class GoldMine : MonoBehaviour
             Box boxEnd = GameManager.Instance.lstGoldMinePlayer[check].transform.parent.GetComponent<Box>();
             List<Box> lsPosMove = GameManager.Instance.PathFinding(boxStart, boxEnd);
             float speed = 10f;
-            for (int i = 0; i < lstHeroGoldMine.Count; i++)
-            {
-                Hero hero;
-                hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1]
-                    , lsPos[i].position
-                    , Quaternion.identity);
-                hero.gameObject.name = "Enemy";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                int numberAttack = (int)(lstHeroGoldMine[i].infoHero.numberHero * 0.5f);
-                hero.AddHero(numberAttack);
-                lstHeroGoldMine[i].AddHero(-numberAttack);
-                hero.speedMin = speed;
-                hero.StartMoveToLsPosition(lsPosMove);
-                GameManager.Instance.lsEnemyAttackGoldMine.Add(hero);
-            }
+            StartCoroutine(IEInsAttackPlayer(speed, lsPosMove));
+        }
+    }
+
+    public IEnumerator IEInsAttackPlayer(float speed, List<Box> lsPosMove)
+    {
+        for (int i = 0; i < lstHeroGoldMine.Count; i++)
+        {
+            Hero hero;
+            hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1]
+                , lsPos[i].position
+                , Quaternion.identity);
+            hero.gameObject.name = "Enemy";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = 0;
+            int numberAttack = (int)(lstHeroGoldMine[i].infoHero.numberHero * 0.5f);
+            hero.AddHero(numberAttack);
+            lstHeroGoldMine[i].AddHero(-numberAttack);
+            hero.speedMin = speed;
+            hero.StartMoveToLsPosition(lsPosMove);
+            GameManager.Instance.lsEnemyAttackGoldMine.Add(hero);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 
