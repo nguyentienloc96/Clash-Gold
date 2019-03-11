@@ -133,7 +133,7 @@ public class GameManager : MonoBehaviour
                 time = 0;
             }
 
-            if (lstGoldMinePlayer.Count >= 2 && dateGame >= dateEnemyAttack)
+            if (lstGoldMinePlayer.Count >= 2 && dateGame >= dateEnemyAttack && !isAttack)
             {
                 if (lsEnemyAttackGoldMine.Count <= 0)
                 {
