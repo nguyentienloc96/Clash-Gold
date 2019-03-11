@@ -327,7 +327,7 @@ public class GoldMine : MonoBehaviour
             hero.speedMin = speed;
             hero.StartMoveToLsPosition(lsPosMove);
             GameManager.Instance.lsEnemyAttackGoldMine.Add(hero);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
         }
     }
 

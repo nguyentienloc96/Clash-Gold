@@ -471,7 +471,6 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log(boxNext);
             Box boxCheck = CheckBoxNext(boxNext, boxEnd);
-            Debug.Log(boxNext + "C");
             if (boxCheck != null)
             {
                 boxNext = boxCheck;
@@ -481,7 +480,6 @@ public class GameManager : MonoBehaviour
             {
                 lsPathFinding.RemoveAt(lsPathFinding.Count - 1);
                 boxNext = lsPathFinding[lsPathFinding.Count - 1];
-                Debug.Log((lsPathFinding.Count - 1) + "R");
             }
         }
 
@@ -493,7 +491,6 @@ public class GameManager : MonoBehaviour
                 lineEnemyAttack.SetPosition(lsPathFinding.Count - 1 - i, lsPathFinding[i].transform.position);
             }
         }
-        Debug.Log(lsPathFinding);
         return lsPathFinding;
     }
 
