@@ -31,7 +31,10 @@ public class Bullet : MonoBehaviour
                         {
                             if (col.tag == "Enemy")
                             {
-                                col.GetComponent<Hero>().BeingAttacked(dameBullet);
+                                Hero hero = col.GetComponent<Hero>();
+                                hero.parHit.transform.right = -transform.up;
+                                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                                hero.BeingAttacked(dameBullet);
                             }
                         }
                     }
@@ -61,7 +64,10 @@ public class Bullet : MonoBehaviour
                         {
                             if (col.tag == "Hero")
                             {
-                                col.GetComponent<Hero>().BeingAttacked(dameBullet);
+                                Hero hero = col.GetComponent<Hero>();
+                                hero.parHit.transform.right = -transform.up;
+                                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                                hero.BeingAttacked(dameBullet);
                             }
                         }
                     }
