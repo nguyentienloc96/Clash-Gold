@@ -478,17 +478,27 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                lsPathFinding.RemoveAt(lsPathFinding.Count - 1);
-                boxNext = lsPathFinding[lsPathFinding.Count - 1];
+                if (lsPathFinding.Count > 0)
+                {
+                    lsPathFinding.RemoveAt(lsPathFinding.Count - 1);
+                    boxNext = lsPathFinding[lsPathFinding.Count - 1];
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
         if (boxNext == boxEnd)
         {
-            lineEnemyAttack.positionCount = lsPathFinding.Count;
-            for (int i = lsPathFinding.Count - 1; i >= 0; i--)
+            if (lsPathFinding.Count > 0)
             {
-                lineEnemyAttack.SetPosition(lsPathFinding.Count - 1 - i, lsPathFinding[i].transform.position);
+                lineEnemyAttack.positionCount = lsPathFinding.Count;
+                for (int i = lsPathFinding.Count - 1; i >= 0; i--)
+                {
+                    lineEnemyAttack.SetPosition(lsPathFinding.Count - 1 - i, lsPathFinding[i].transform.position);
+                }
             }
         }
         return lsPathFinding;
@@ -498,12 +508,12 @@ public class GameManager : MonoBehaviour
     {
         List<Box> lsBoxSelect = new List<Box>();
         List<int> lsPosBox = new List<int>();
-        if (box.col != 9 && !box.isTop && !arrBox[box.col + 1, box.row].isLock)
+        if (box.col != 8 && !box.isTop && !arrBox[box.col + 1, box.row].isLock)
         {
             lsBoxSelect.Add(arrBox[box.col + 1, box.row]);
             lsPosBox.Add(1);
         }
-        if (box.row != 9 && !box.isRight && !arrBox[box.col, box.row + 1].isLock)
+        if (box.row != 8 && !box.isRight && !arrBox[box.col, box.row + 1].isLock)
         {
             lsBoxSelect.Add(arrBox[box.col, box.row + 1]);
             lsPosBox.Add(4);
