@@ -137,7 +137,7 @@ public class DeadzoneCamera : MonoBehaviour
         {
             if (!GameManager.Instance.castlePlayer.CheckCastle() && !IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0 && GameManager.Instance.castlePlayer.lsHouseRelease[0].countHero > 0)
             {
-                Vector3 pos2 = _camera.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 pos2 = _camera.ScreenToWorldPoint(Input.mousePosition);              
                 if (Vector3.Distance(pos1, pos2) <= 0.05f)
                 {
                     GameManager.Instance.castlePlayer.MoveCastle(Input.mousePosition);

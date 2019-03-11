@@ -100,9 +100,15 @@ public class Castle : MonoBehaviour
         {
             if (!GameManager.Instance.isAttack)
             {
-                posMove = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(posMouse);
-                posMove.z = 0f;
-                isMove = true;
+                Vector3 posEnd = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(posMouse);
+                posEnd.z = 0f;
+                Vector3 posCastle = transform.position;
+                posCastle.z = 0f;
+                if (!Physics2D.Raycast(posCastle, posEnd - posCastle, Vector3.Distance(posCastle, posEnd), 1 << 13))
+                {
+                    posMove = posEnd;
+                    isMove = true;
+                }
             }
         }
     }
@@ -117,8 +123,7 @@ public class Castle : MonoBehaviour
     {
         bool CastRays = false;
         Ray ray = DeadzoneCamera.Instance._camera.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(ray.origin, ray.direction * 10, Color.yellow);
-        if (Physics2D.Raycast(ray.origin,ray.direction,Mathf.Infinity,1<<10))
+        if (Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity, 1 << 10))
         {
             CastRays = true;
         }
@@ -133,7 +138,7 @@ public class Castle : MonoBehaviour
     public void UpgradeCastle()
     {
         price = (long)(price * GameConfig.Instance.PriceBloodUp);
-        if (price > GameManager. Instance.gold)
+        if (price > GameManager.Instance.gold)
             return;
 
         float deltaHelth = healthMax - health;
