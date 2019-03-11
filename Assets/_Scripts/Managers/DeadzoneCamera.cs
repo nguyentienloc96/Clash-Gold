@@ -102,7 +102,7 @@ public class DeadzoneCamera : MonoBehaviour
                     // distance between the previous positions.
                     float newDistance = Vector2.Distance(newPositions[0], newPositions[1]);
                     float oldDistance = Vector2.Distance(lastZoomPositions[0], lastZoomPositions[1]);
-                    float offset = newDistance - oldDistance;
+                    float offset = oldDistance / newDistance;
                     if (!IsPointerOverGameObject())
                     {
                         ZoomCamera(offset, ZoomSpeedTouch);
@@ -137,7 +137,7 @@ public class DeadzoneCamera : MonoBehaviour
         {
             if (!GameManager.Instance.castlePlayer.CheckCastle() && !IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0 && GameManager.Instance.castlePlayer.lsHouseRelease[0].countHero > 0)
             {
-                Vector3 pos2 = _camera.ScreenToWorldPoint(Input.mousePosition);              
+                Vector3 pos2 = _camera.ScreenToWorldPoint(Input.mousePosition);
                 if (Vector3.Distance(pos1, pos2) <= 0.05f)
                 {
                     GameManager.Instance.castlePlayer.MoveCastle(Input.mousePosition);
@@ -166,7 +166,7 @@ public class DeadzoneCamera : MonoBehaviour
     {
         // Determine how much to move the camera
         Vector3 offset = _camera.ScreenToViewportPoint(lastPanPosition - newPanPosition);
-        Vector3 move = new Vector3(offset.x * PanSpeed, offset.y * PanSpeed);
+        Vector3 move = new Vector3(offset.x * PanSpeed * (_camera.orthographicSize / 10f), offset.y * PanSpeed * (_camera.orthographicSize / 10f));
 
         // Perform the movement
         transform.Translate(move, Space.World);
@@ -188,6 +188,6 @@ public class DeadzoneCamera : MonoBehaviour
             return;
         }
 
-        _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+        _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize * offset, ZoomBounds[0], ZoomBounds[1]);
     }
 }
