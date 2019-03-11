@@ -53,7 +53,7 @@ public class Hero_BalloonKing : Hero {
             timeInstanceChild += Time.deltaTime;
             if (timeInstanceChild >= 3f)
             {
-                InstantiateChild(21,infoHero.numberHero,gameObject.tag == "Hero");
+                InstantiateChild(20,infoHero.numberHero,gameObject.tag == "Hero");
                 timeInstanceChild = 0;
             }
         }

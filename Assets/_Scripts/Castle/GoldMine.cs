@@ -316,7 +316,7 @@ public class GoldMine : MonoBehaviour
         {
             Hero hero;
             hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1]
-                , lsPos[i].position
+                , lsPos[0].position
                 , Quaternion.identity);
             hero.gameObject.name = "Enemy";
             hero.SetInfoHero();

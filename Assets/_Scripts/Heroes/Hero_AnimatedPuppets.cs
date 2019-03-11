@@ -37,7 +37,7 @@ public class Hero_AnimatedPuppets : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 33;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 30 + GameConfig.Instance.lstInfoHero.Count - 3];
+        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 30 + GameConfig.Instance.lstInfoHero.Count - 4];
     }
 
     // Use this for initialization
