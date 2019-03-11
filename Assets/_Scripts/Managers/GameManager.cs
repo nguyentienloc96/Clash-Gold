@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
 
     public ItemHeroAttack itemSelectHero;
     public int numberThrowHero;
+    public bool isInSide;
 
     void Awake()
     {
@@ -254,6 +255,7 @@ public class GameManager : MonoBehaviour
                         Vector3 posGoldMine = Vector3.zero;
                         posGoldMine = GolEnemyBeingAttack.transform.position;
                         Vector3 posMoveEnd = posTriggerGoldMine - (posGoldMine - posTriggerGoldMine).normalized;
+                        isInSide = false;
                         castlePlayer.transform.localPosition = posMoveEnd;
                         castlePlayer.posMove = posMoveEnd;
                         ScenesManager.Instance.GoToScene(() =>
@@ -381,9 +383,9 @@ public class GameManager : MonoBehaviour
                     {
                         GenerateMap(b.transform, numberID, 1, true);
                     }
-                    else if (i == 4 && j == 3)
+                    else if (i == 3 && j == 4)
                     {
-                        GenerateMap(b.transform, numberID, 1, true);
+                        GenerateMap(b.transform, numberID, 1);
                     }
                     else
                     {

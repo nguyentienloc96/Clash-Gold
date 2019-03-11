@@ -410,7 +410,10 @@ public class GoldMine : MonoBehaviour
             if (other.CompareTag("Castle"))
             {
                 GameManager.Instance.GolEnemyBeingAttack = this;
-                GameManager.Instance.posTriggerGoldMine = other.transform.position;
+                if (!GameManager.Instance.isInSide)
+                {
+                    GameManager.Instance.posTriggerGoldMine = other.transform.position;
+                }
                 AttackGoldMineEnemy();
                 ScenesManager.Instance.GoToScene(() =>
                  {
@@ -430,7 +433,8 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
-                //
+                GameManager.Instance.posTriggerGoldMine = other.transform.position;
+                GameManager.Instance.isInSide = true;
             }
             if (other.CompareTag("Enemy"))
             {
@@ -448,6 +452,17 @@ public class GoldMine : MonoBehaviour
                      GameManager.Instance.isAttack = true;
                      GameManager.Instance.isAttackGoldMineEnemy = false;
                  });
+            }
+        }
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+        if (typeGoleMine == TypeGoldMine.Player)
+        {
+            if (other.CompareTag("Castle"))
+            {
+                GameManager.Instance.isInSide = false;
             }
         }
     }
