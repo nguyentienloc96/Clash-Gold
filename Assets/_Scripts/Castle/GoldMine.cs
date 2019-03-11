@@ -293,17 +293,25 @@ public class GoldMine : MonoBehaviour
         {
             int check = 0;
             float dis = Vector3.Distance(transform.position, GameManager.Instance.lstGoldMinePlayer[0].transform.position);
-            for (int i = 1; i < GameManager.Instance.lstGoldMinePlayer.Count; i++)
+            List<GoldMine> lsGoldMinePlayer = new List<GoldMine>();
+            foreach(GoldMine g in GameManager.Instance.lstGoldMinePlayer)
             {
-                if (Vector3.Distance(transform.position, GameManager.Instance.lstGoldMinePlayer[i].transform.position) < dis)
+                if(g != GameManager.Instance.GolHeroBeingAttack)
+                {
+                    lsGoldMinePlayer.Add(g);
+                }
+            }
+            for (int i = 1; i < lsGoldMinePlayer.Count; i++)
+            {
+                if (Vector3.Distance(transform.position, lsGoldMinePlayer[i].transform.position) < dis)
                 {
                     check = i;
                 }
             }
             GameManager.Instance.GolEnemyIsAttack = this;
-            GameManager.Instance.GolHeroBeingAttack = GameManager.Instance.lstGoldMinePlayer[check];
+            GameManager.Instance.GolHeroBeingAttack = lsGoldMinePlayer[check];
             Box boxStart = this.transform.parent.GetComponent<Box>();
-            Box boxEnd = GameManager.Instance.lstGoldMinePlayer[check].transform.parent.GetComponent<Box>();
+            Box boxEnd = lsGoldMinePlayer[check].transform.parent.GetComponent<Box>();
             List<Box> lsPosMove = GameManager.Instance.PathFinding(boxStart, boxEnd);
             float speed = 10f;
             StartCoroutine(IEInsAttackPlayer(speed, lsPosMove));
