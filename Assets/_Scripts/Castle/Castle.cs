@@ -22,10 +22,6 @@ public class Castle : MonoBehaviour
     public Vector3 posMove;
     public bool isMove;
 
-    [Header("UI")]
-    public Text txtLevel;
-    public Text txtHealth;
-
     [Header("LIST")]
     public List<Transform> lsPos;
     public Image[] lstAvatarHeroRelease;
@@ -44,7 +40,6 @@ public class Castle : MonoBehaviour
         healthMax = GameConfig.Instance.Bloodlv0;
         health = healthMax;
         this.RegisterListener(EventID.BuildHouseComplete, (param) => OnBuildHouseComplete(param));
-        SetUI();
     }
 
     void OnBuildHouseComplete(object _param)
@@ -147,19 +142,12 @@ public class Castle : MonoBehaviour
         health = healthMax - deltaHelth;
         GameManager.Instance.AddGold(-price);
         level++;
-        SetUI();
         Invoke("HideAnim", 1f);
     }
 
     void HideAnim()
     {
         UIManager.Instance.SetDeActivePanel(UIManager.Instance.anim_UpHealth);
-    }
-
-    public void SetUI()
-    {
-        txtLevel.text = level.ToString();
-        txtHealth.text = ((int)health).ToString() + "/" + ((int)healthMax).ToString();
     }
 
     public void MoveToPosition(Vector3 _toPos)

@@ -28,9 +28,6 @@ public class UIManager : MonoBehaviour
     public GameObject panelInWall;
     public GameObject panelBuild;
     public GameObject panelUpgrade;
-    public GameObject panelRelease;
-    public Text txtLevelCastle;
-    public Text txtBlood;
     public List<BuildHouseObject> lstHouse;
     public Sprite[] sprAvatarHero;
 
@@ -59,11 +56,12 @@ public class UIManager : MonoBehaviour
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
-    [Header("MINIMAP")]
+    [Header("MAP")]
     public Canvas cavas;
     public Canvas canvasLoading;
     public GameObject panelRelace;
     public Transform contentRelace;
+    public List<Sprite> lsSpriteGround = new List<Sprite>();
 
     [Header("ATTACK")]
     public GameObject mapAttack;
@@ -285,11 +283,6 @@ public class UIManager : MonoBehaviour
         {
             lstHouse[i].SetLock(GameManager.Instance.lstBuildHouse[i].isUnlock);
         }
-    }
-
-    public void ShowPanelRelease()
-    {
-        SetActivePanel(panelRelease);
     }
 
     public void ShowPanelUpgrade()

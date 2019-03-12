@@ -129,13 +129,6 @@ public class House : MonoBehaviour
 
     }
 
-    public void Btn_Release()
-    {
-        UIManager.Instance.ShowPanelRelease();
-        buttonUpgrade.gameObject.SetActive(false);
-        buttonRelease.gameObject.SetActive(false);
-    }
-
     public void CheckUpgrade(int _x)
     {
         levelWillupgrade = level + _x;
@@ -174,7 +167,7 @@ public class House : MonoBehaviour
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
-        txtLevel.text = "Lv " + level.ToString();
+        txtLevel.text = level.ToString();
         if (level > GameManager.Instance.maxLevelHouse)
         {
             GameManager.Instance.maxLevelHouse = level;
@@ -212,7 +205,7 @@ public class House : MonoBehaviour
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
-        txtLevel.text = "Lv " + level.ToString();
+        txtLevel.text = level.ToString();
         Dictionary<string, int> keyHouse = new Dictionary<string, int>();
         keyHouse.Add("IdHouse", idHouse);
         keyHouse.Add("IdHero", idHero);

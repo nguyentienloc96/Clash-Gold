@@ -136,7 +136,7 @@ public class GameManager : MonoBehaviour
                 time = 0;
             }
 
-            if (!UIManager.Instance.panelLetGo.activeSelf && isBeingAttack && dateGame >= dateEnemyAttack && !isAttack)
+            if (isBeingAttack && dateGame >= dateEnemyAttack && !isAttack)
             {
                 if (lsEnemyAttackGoldMine.Count <= 0)
                 {
@@ -190,7 +190,7 @@ public class GameManager : MonoBehaviour
                 {
                     if (itemSelectHero != null)
                     {
-                        if (Input.GetMouseButtonUp(0))
+                        if (Input.GetMouseButtonUp(0) && !UIManager.Instance.panelLetGo.activeSelf)
                         {
                             Vector3 posIns = DeadzoneCamera.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
                             posIns.z = 0f;
@@ -206,7 +206,7 @@ public class GameManager : MonoBehaviour
                     }
                     else
                     {
-                        if (Input.GetMouseButtonUp(0))
+                        if (Input.GetMouseButtonUp(0) && !UIManager.Instance.panelLetGo.activeSelf)
                         {
                             if (UIManager.Instance.lsItemHeroAttack[0].gameObject.activeSelf || UIManager.Instance.lsItemHeroAttack[1].gameObject.activeSelf || UIManager.Instance.lsItemHeroAttack[2].gameObject.activeSelf)
                             {
@@ -423,12 +423,12 @@ public class GameManager : MonoBehaviour
                 arrBox[j, i] = b;
                 if (!CheckPos(i, j))
                 {
-                    b.gameObject.layer = 13;
-                    b.transform.GetChild(0).gameObject.SetActive(false);
+                    b.gameObject.layer = 13;                    
                     b.isLock = true;
                 }
                 else
                 {
+                    b.transform.GetChild(0).gameObject.SetActive(false);
                     b.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                     if (i == 4 && j == 4)
                     {
