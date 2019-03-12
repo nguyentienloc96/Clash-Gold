@@ -260,12 +260,33 @@ public class GameManager : MonoBehaviour
                     else if (lsHero.Count <= 0 && numberThrowHero <= 0)
                     {
                         EndAttack();
-                        Vector3 posGoldMine = Vector3.zero;
-                        posGoldMine = GolEnemyBeingAttack.transform.position;
-                        Vector3 posMoveEnd = posTriggerGoldMine - (posGoldMine - posTriggerGoldMine).normalized;
-                        isInSide = false;
-                        castlePlayer.transform.localPosition = posMoveEnd;
-                        castlePlayer.posMove = posMoveEnd;
+                        if (goldMineInSide.id == GolEnemyBeingAttack.id)
+                        {
+                            if (lstGoldMinePlayer.Count > 0)
+                            {
+                                int idGoldMineCheck = 0;
+                                float disGoldPlayer = Vector3.Distance(lstGoldMinePlayer[0].transform.position, GolEnemyBeingAttack.transform.position);
+                                for (int i = 1;i<lstGoldMinePlayer.Count;i++)
+                                {
+                                    if(disGoldPlayer > Vector3.Distance(lstGoldMinePlayer[i].transform.position, GolEnemyBeingAttack.transform.position))
+                                    {
+                                        idGoldMineCheck = i;
+                                    }
+                                }
+
+                                castlePlayer.transform.localPosition = lstGoldMinePlayer[idGoldMineCheck].transform.position;
+                                castlePlayer.posMove = lstGoldMinePlayer[idGoldMineCheck].transform.position;
+                            }
+
+                        }
+                        else
+                        {
+                            Vector3 posGoldMine = Vector3.zero;
+                            posGoldMine = GolEnemyBeingAttack.transform.position;
+                            Vector3 posMoveEnd = posTriggerGoldMine - (posGoldMine - posTriggerGoldMine).normalized;
+                            castlePlayer.transform.localPosition = posMoveEnd;
+                            castlePlayer.posMove = posMoveEnd;
+                        }
                         ScenesManager.Instance.GoToScene(() =>
                          {
                              if (lsEnemyAttackGoldMine.Count > 0)
@@ -359,9 +380,12 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.mapAttack.SetActive(false);
         UIManager.Instance.panelThrowHeroAttack.SetActive(false);
         OnEndAttack();
-        Vector3 posCastle = castlePlayer.transform.position;
-        posCastle.z = -10f;
-        DeadzoneCamera.Instance._camera.transform.position = posCastle;
+        if (isBreak)
+        {
+            Vector3 posCastle = castlePlayer.transform.position;
+            posCastle.z = -10f;
+            DeadzoneCamera.Instance._camera.transform.position = posCastle;
+        }
     }
 
     public void OnEndAttack()
