@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
 
     public ItemHeroAttack itemSelectHero;
     public int numberThrowHero;
-    public bool isInSide;
+    public GoldMine goldMineInSide;
     public bool isBeingAttack;
 
     public bool isBreak;
@@ -354,7 +354,6 @@ public class GameManager : MonoBehaviour
     public void EndAttack()
     {
         isAttack = false;
-        DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(false);
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.mapAttack.SetActive(false);

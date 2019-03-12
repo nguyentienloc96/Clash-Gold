@@ -423,7 +423,7 @@ public class GoldMine : MonoBehaviour
                     GameManager.Instance.isBeingAttack = true;
                 }
                 GameManager.Instance.GolEnemyBeingAttack = this;
-                if (!GameManager.Instance.isInSide)
+                if (GameManager.Instance.goldMineInSide == null)
                 {
                     GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 }
@@ -451,8 +451,7 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
-                GameManager.Instance.posTriggerGoldMine = other.transform.position;
-                GameManager.Instance.isInSide = true;
+                GameManager.Instance.goldMineInSide = this;
             }
             if (other.CompareTag("Enemy"))
             {
@@ -514,14 +513,13 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
-                GameManager.Instance.isInSide = false;
+                GameManager.Instance.goldMineInSide = null;
             }
         }
     }
 
     public void BeginAttack()
     {
-        DeadzoneCamera.Instance.cameraAttack.gameObject.SetActive(true);
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance.cameraAttack;
         UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance.cameraAttack;
         UIManager.Instance.mapAttack.SetActive(true);
