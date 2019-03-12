@@ -66,11 +66,12 @@ public class UIManager : MonoBehaviour
     public Transform contentRelace;
 
     [Header("ATTACK")]
-    public GameObject mapMove;
     public GameObject mapAttack;
     public GameObject panelThrowHero;
     public Transform contentThrowHero;
     public GameObject itemThrowHero;
+    public GameObject panelLetGo;
+    public Text txtLetGo;
 
     public List<Button> lsBtnIconHouse = new List<Button>();
 

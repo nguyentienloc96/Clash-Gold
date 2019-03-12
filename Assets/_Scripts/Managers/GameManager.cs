@@ -86,6 +86,8 @@ public class GameManager : MonoBehaviour
     public bool isInSide;
     public bool isBeingAttack;
 
+    public bool isBreak;
+
     void Awake()
     {
         if (Instance != null)
@@ -134,7 +136,7 @@ public class GameManager : MonoBehaviour
                 time = 0;
             }
 
-            if (UIManager.Instance.mapMove.activeSelf && isBeingAttack && dateGame >= dateEnemyAttack && !isAttack)
+            if (!UIManager.Instance.panelLetGo.activeSelf && isBeingAttack && dateGame >= dateEnemyAttack && !isAttack)
             {
                 if (lsEnemyAttackGoldMine.Count <= 0)
                 {
@@ -277,23 +279,44 @@ public class GameManager : MonoBehaviour
                     {
                         EndAttack();
                         GolHeroBeingAttack.DeleteHero();
-                        ScenesManager.Instance.GoToScene(() =>
-                         {
-                             GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
-                             GolHeroBeingAttack.SetSpriteBox(maxLevelHouse);
-                             lstGoldMinePlayer.Remove(GolHeroBeingAttack);
-                             lstGoldMineEnemy.Add(GolHeroBeingAttack);
-                             for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                        if (isBreak)
+                        {
+                            GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                            GolHeroBeingAttack.SetSpriteBox(maxLevelHouse);
+                            lstGoldMinePlayer.Remove(GolHeroBeingAttack);
+                            lstGoldMineEnemy.Add(GolHeroBeingAttack);
+                            for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                            {
+                                GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
+                                    , lsEnemyAttackGoldMine[i].infoHero.numberHero, i);
+                            }
+                            foreach (Hero h in lsEnemyAttackGoldMine)
+                            {
+                                Destroy(h.gameObject);
+                            }
+                            lsEnemyAttackGoldMine.Clear();
+                            isBreak = false;
+                        }
+                        else
+                        {
+                            ScenesManager.Instance.GoToScene(() =>
                              {
-                                 GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
-                                     , lsEnemyAttackGoldMine[i].infoHero.numberHero, i);
-                             }
-                             foreach (Hero h in lsEnemyAttackGoldMine)
-                             {
-                                 Destroy(h.gameObject);
-                             }
-                             lsEnemyAttackGoldMine.Clear();
-                         });
+                                 GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                                 GolHeroBeingAttack.SetSpriteBox(maxLevelHouse);
+                                 lstGoldMinePlayer.Remove(GolHeroBeingAttack);
+                                 lstGoldMineEnemy.Add(GolHeroBeingAttack);
+                                 for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
+                                 {
+                                     GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
+                                         , lsEnemyAttackGoldMine[i].infoHero.numberHero, i);
+                                 }
+                                 foreach (Hero h in lsEnemyAttackGoldMine)
+                                 {
+                                     Destroy(h.gameObject);
+                                 }
+                                 lsEnemyAttackGoldMine.Clear();
+                             });
+                        }
                     }
                     else if (lsEnemy.Count <= 0)
                     {
@@ -330,7 +353,6 @@ public class GameManager : MonoBehaviour
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.mapAttack.SetActive(false);
-        UIManager.Instance.mapMove.SetActive(true);
         UIManager.Instance.panelThrowHeroAttack.SetActive(false);
         OnEndAttack();
         Vector3 posCastle = castlePlayer.transform.position;
@@ -469,7 +491,6 @@ public class GameManager : MonoBehaviour
         lsPathFinding.Add(boxStart);
         while (boxNext != boxEnd)
         {
-            Debug.Log(boxNext);
             Box boxCheck = CheckBoxNext(boxNext, boxEnd);
             if (boxCheck != null)
             {

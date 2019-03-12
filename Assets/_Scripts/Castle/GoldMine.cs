@@ -294,9 +294,9 @@ public class GoldMine : MonoBehaviour
             int check = 0;
             float dis = Vector3.Distance(transform.position, GameManager.Instance.lstGoldMinePlayer[0].transform.position);
             List<GoldMine> lsGoldMinePlayer = new List<GoldMine>();
-            foreach(GoldMine g in GameManager.Instance.lstGoldMinePlayer)
+            foreach (GoldMine g in GameManager.Instance.lstGoldMinePlayer)
             {
-                if(g != GameManager.Instance.GolHeroBeingAttack)
+                if (g != GameManager.Instance.GolHeroBeingAttack)
                 {
                     lsGoldMinePlayer.Add(g);
                 }
@@ -424,6 +424,7 @@ public class GoldMine : MonoBehaviour
                     GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 }
                 AttackGoldMineEnemy();
+
                 ScenesManager.Instance.GoToScene(() =>
                  {
                      GameManager.Instance.isAttack = true;
@@ -435,6 +436,9 @@ public class GoldMine : MonoBehaviour
                              GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
                          }
                      }
+                 }, () =>
+                 {
+                     StartCoroutine(IEAttack());
                  });
 
                 GameManager.Instance.isBeingAttack = true;
@@ -458,20 +462,46 @@ public class GoldMine : MonoBehaviour
                 GameManager.Instance.GolHeroBeingAttack = this;
                 GameManager.Instance.posTriggerGoldMine = other.transform.position;
                 AttackGoldMineHero();
+               
                 if (lstHeroGoldMine.Count > 0)
                 {
+                    GameManager.Instance.isBreak = false;
                     ScenesManager.Instance.GoToScene(() =>
                      {
                          GameManager.Instance.isAttack = true;
                          GameManager.Instance.isAttackGoldMineEnemy = false;
+                     }, () =>
+                     {
+                         StartCoroutine(IEAttack());
                      });
                 }
                 else
                 {
+                    GameManager.Instance.isBreak = true;
                     GameManager.Instance.isAttack = true;
                     GameManager.Instance.isAttackGoldMineEnemy = false;
                 }
             }
+        }
+    }
+
+    public IEnumerator IEAttack()
+    {
+        UIManager.Instance.panelLetGo.SetActive(true);
+        UIManager.Instance.txtLetGo.text = "3";
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.txtLetGo.text = "2";
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.txtLetGo.text = "1";
+        yield return new WaitForSeconds(1f);
+        UIManager.Instance.panelLetGo.SetActive(false);
+        foreach (Hero hero in GameManager.Instance.lsHero)
+        {
+            hero.isAttack = true;
+        }
+        foreach (Hero hero in GameManager.Instance.lsEnemy)
+        {
+            hero.isAttack = true;
         }
     }
 
@@ -492,7 +522,6 @@ public class GoldMine : MonoBehaviour
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance.cameraAttack;
         UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance.cameraAttack;
         UIManager.Instance.mapAttack.SetActive(true);
-        UIManager.Instance.mapMove.SetActive(false);
     }
 
     public void AttackGoldMineEnemy()
@@ -512,7 +541,6 @@ public class GoldMine : MonoBehaviour
                     hero.infoHero.capWar = 0;
                     hero.countHeroStart = lstHeroGoldMine[i].infoHero.numberHero;
                     hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
-                    hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
                 else if (lstHeroGoldMine[i].infoHero.ID == 2)
@@ -534,7 +562,6 @@ public class GoldMine : MonoBehaviour
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
                         hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
-                        hero.isAttack = true;
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
@@ -561,7 +588,6 @@ public class GoldMine : MonoBehaviour
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
                         hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 4);
-                        hero.isAttack = true;
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
@@ -602,7 +628,6 @@ public class GoldMine : MonoBehaviour
                     hero.infoHero.capWar = 0;
                     hero.countHeroStart = lstHeroGoldMine[i].infoHero.numberHero;
                     hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
-                    hero.isAttack = true;
                     GameManager.Instance.lsHero.Add(hero);
                 }
                 else if (lstHeroGoldMine[i].infoHero.ID == 2)
@@ -624,7 +649,6 @@ public class GoldMine : MonoBehaviour
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
                         hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
-                        hero.isAttack = true;
                         GameManager.Instance.lsHero.Add(hero);
 
                     }
@@ -652,7 +676,6 @@ public class GoldMine : MonoBehaviour
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
                         hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 4);
-                        hero.isAttack = true;
                         GameManager.Instance.lsHero.Add(hero);
 
                     }
@@ -672,7 +695,6 @@ public class GoldMine : MonoBehaviour
                     hero.infoHero.capWar = 0;
                     hero.countHeroStart = GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero;
                     hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero);
-                    hero.isAttack = true;
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
                 else if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 2)
@@ -694,7 +716,6 @@ public class GoldMine : MonoBehaviour
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
                         hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 3);
-                        hero.isAttack = true;
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
@@ -721,7 +742,6 @@ public class GoldMine : MonoBehaviour
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
                         hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 4);
-                        hero.isAttack = true;
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }

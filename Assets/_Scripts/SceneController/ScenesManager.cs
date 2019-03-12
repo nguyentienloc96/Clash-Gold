@@ -14,12 +14,12 @@ public class ScenesManager : MonoBehaviour
 
     public bool isNextScene;
 
-    public void GoToScene(UnityAction actionLoadScenesDone = null)
+    public void GoToScene(UnityAction actionLoadScenesDone = null, UnityAction actionLoadScenesLast = null)
     {
-        StartCoroutine(GoToSceneHandel(actionLoadScenesDone));
+        StartCoroutine(GoToSceneHandel(actionLoadScenesDone, actionLoadScenesLast));
     }
 
-    private IEnumerator GoToSceneHandel(UnityAction actionLoadScenesDone = null)
+    private IEnumerator GoToSceneHandel(UnityAction actionLoadScenesDone = null, UnityAction actionLoadScenesLast = null)
     {
         Fade.Instance.StartFade();
         yield return new WaitUntil(() => Fade.Instance.state == Fade.FadeState.FadeInDone);
@@ -27,8 +27,10 @@ public class ScenesManager : MonoBehaviour
         if (actionLoadScenesDone != null)
             actionLoadScenesDone();
         yield return new WaitForSeconds(1f);
-        //
+        
         yield return new WaitUntil(() => isNextScene = true);
         Fade.Instance.EndFade();
+        if (actionLoadScenesLast != null)
+            actionLoadScenesLast();
     }
 }
