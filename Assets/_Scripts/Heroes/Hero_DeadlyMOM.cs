@@ -49,7 +49,7 @@ public class Hero_DeadlyMOM : Hero {
         if(targetCompetitor != null && infoHero.numberHero > 0)
         {
             timeInstanceChild += Time.deltaTime;
-            if (timeInstanceChild >= 3f)
+            if (timeInstanceChild >= 2f)
             {
                 InstantiateChild(19,infoHero.numberHero ,gameObject.tag == "Hero");
                 timeInstanceChild = 0;

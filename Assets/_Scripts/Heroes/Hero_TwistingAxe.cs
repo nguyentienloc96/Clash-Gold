@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hero_TwistingAxe : Hero {
+public class Hero_TwistingAxe : Hero
+{
 
     public override void Attack()
     {
@@ -12,7 +13,7 @@ public class Hero_TwistingAxe : Hero {
         {
             BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
         }
-        Collider2D[] arrCol = Physics2D.OverlapCircleAll(hero.transform.position, infoHero.rangeBoom, 1 << 12);
+        Collider2D[] arrCol = Physics2D.OverlapCircleAll(transform.position, infoHero.rangeBoom / 5 + 0.75f, 1 << 12);
         if (arrCol.Length > 0)
         {
             foreach (Collider2D col in arrCol)
