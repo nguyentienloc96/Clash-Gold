@@ -417,7 +417,11 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
-                GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                if (!GameManager.Instance.isBeingAttack)
+                {
+                    GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                    GameManager.Instance.isBeingAttack = true;
+                }
                 GameManager.Instance.GolEnemyBeingAttack = this;
                 if (!GameManager.Instance.isInSide)
                 {
@@ -441,7 +445,6 @@ public class GoldMine : MonoBehaviour
                      StartCoroutine(IEAttack());
                  });
 
-                GameManager.Instance.isBeingAttack = true;
             }
         }
         else

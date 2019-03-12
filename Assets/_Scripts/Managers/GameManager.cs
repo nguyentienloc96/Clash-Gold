@@ -179,6 +179,11 @@ public class GameManager : MonoBehaviour
                 UIManager.Instance.panelVictory.SetActive(true);
             }
 
+            if (lstGoldMinePlayer.Count <= 0)
+            {
+                UIManager.Instance.panelGameOver.SetActive(true);
+            }
+
             if (isAttack)
             {
                 if (isAttackGoldMineEnemy)
