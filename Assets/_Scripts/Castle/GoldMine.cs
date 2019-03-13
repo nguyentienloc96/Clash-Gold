@@ -41,9 +41,6 @@ public class GoldMine : MonoBehaviour
     private List<ItemThrowHero> lsIconHero = new List<ItemThrowHero>();
     private List<int> lsIconHeroOn = new List<int>();
 
-    //public bool isCanon;
-    //public float timeCanon;
-
     void Start()
     {
         this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
@@ -76,22 +73,22 @@ public class GoldMine : MonoBehaviour
     {
         if (typeGoleMine == TypeGoldMine.Enemy)
         {
+            buttonUp.SetActive(false);
+            buttonRelease.SetActive(false);
             if (_l >= this.level || Mathf.Abs(_l - level) <= 3)
             {
-                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 8];
+                sprGoldMine.color = Color.green;
             }
             else
             {
-                sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine + 4];
+                sprGoldMine.color = Color.red;
             }
-            buttonUp.SetActive(false);
-            buttonRelease.SetActive(false);
         }
         else
         {
-            sprGoldMine.sprite = GameManager.Instance.sprBoxMap[numberBoxGoldMine];
             buttonUp.SetActive(true);
             buttonRelease.SetActive(true);
+            sprGoldMine.color = Color.white;
         }
     }
 

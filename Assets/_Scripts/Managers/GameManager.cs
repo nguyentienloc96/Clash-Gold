@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     public Transform boxManager;
     private Box[,] arrBox = new Box[9, 9];
     private Vector2[] PosGolds = new Vector2[] { new Vector2(3, 3), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, 2), new Vector2(1, 0), new Vector2(1, 2), new Vector2(2, 2), new Vector2(2, 3), new Vector2(2, 4), new Vector2(2, 5), new Vector2(2, 6), new Vector2(3, 6), new Vector2(4, 1), new Vector2(4, 2), new Vector2(4, 3), new Vector2(4, 4), new Vector2(4, 5), new Vector2(4, 6), new Vector2(5, 3), new Vector2(5, 4) };
-
+    public List<Box> lsBoxMove = new List<Box>();
 
     [HideInInspector]
     public bool isAttack;
@@ -260,7 +260,7 @@ public class GameManager : MonoBehaviour
                     else if (lsHero.Count <= 0 && numberThrowHero <= 0)
                     {
                         EndAttack();
-                        if (goldMineInSide.id == GolEnemyBeingAttack.id)
+                        if (goldMineInSide != null && GolEnemyBeingAttack != null && goldMineInSide.id == GolEnemyBeingAttack.id)
                         {
                             if (lstGoldMinePlayer.Count > 0)
                             {
@@ -443,6 +443,7 @@ public class GameManager : MonoBehaviour
                         GenerateMap(b.transform, numberID, UnityEngine.Random.Range(1, 6));
                     }
                     numberID++;
+                    lsBoxMove.Add(b);
                 }
             }
         }
@@ -550,6 +551,15 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        foreach(Box b in lsBoxMove)
+        {
+            b.isTop = false;
+            b.isBottom = false;
+            b.isLeft = false;
+            b.isRight = false;
+        }
+
         return lsPathFinding;
     }
 
