@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public float dameBullet;
     public float rangeBoom;
     public bool isBoom;
+    public bool isCanFly;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,9 +33,21 @@ public class Bullet : MonoBehaviour
                             if (col.tag == "Enemy")
                             {
                                 Hero hero = col.GetComponent<Hero>();
-                                hero.parHit.transform.right = -transform.up;
-                                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
-                                hero.BeingAttacked(dameBullet);
+                                if (isCanFly)
+                                {
+                                    if (hero.infoHero.typeHero != TypeHero.ChemBay && hero.infoHero.typeHero != TypeHero.CungBay)
+                                    {
+                                        hero.parHit.transform.right = -transform.up;
+                                        hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                                        hero.BeingAttacked(dameBullet);
+                                    }
+                                }
+                                else
+                                {
+                                    hero.parHit.transform.right = -transform.up;
+                                    hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                                    hero.BeingAttacked(dameBullet);
+                                }
                             }
                         }
                     }
@@ -65,9 +78,21 @@ public class Bullet : MonoBehaviour
                             if (col.tag == "Hero")
                             {
                                 Hero hero = col.GetComponent<Hero>();
-                                hero.parHit.transform.right = -transform.up;
-                                hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
-                                hero.BeingAttacked(dameBullet);
+                                if (isCanFly)
+                                {
+                                    if (hero.infoHero.typeHero != TypeHero.ChemBay && hero.infoHero.typeHero != TypeHero.CungBay)
+                                    {
+                                        hero.parHit.transform.right = -transform.up;
+                                        hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                                        hero.BeingAttacked(dameBullet);
+                                    }
+                                }
+                                else
+                                {
+                                    hero.parHit.transform.right = -transform.up;
+                                    hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
+                                    hero.BeingAttacked(dameBullet);
+                                }
                             }
                         }
                     }

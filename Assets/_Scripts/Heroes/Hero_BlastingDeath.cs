@@ -26,7 +26,10 @@ public class Hero_BlastingDeath : Hero
             {
                 if ((gameObject.tag == "Hero" && col.tag == "Enemy") || (gameObject.tag == "Enemy" && col.tag == "Hero"))
                 {
-                    col.GetComponent<Hero>().BeingAttacked(infoHero.dameDead * countHeroStart);
+                    if (col.GetComponent<Hero>().infoHero.typeHero != TypeHero.ChemBay && col.GetComponent<Hero>().infoHero.typeHero != TypeHero.CungBay)
+                    {
+                        col.GetComponent<Hero>().BeingAttacked(infoHero.dameDead * countHeroStart);
+                    }
                 }
             }
         }

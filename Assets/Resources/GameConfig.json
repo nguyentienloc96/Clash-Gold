@@ -396,7 +396,7 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 2,
-	  "rangeBoom": 4,
+	  "rangeBoom": 1.5,
 	  "dameDead": 272
     },
     "Twisting axe": {

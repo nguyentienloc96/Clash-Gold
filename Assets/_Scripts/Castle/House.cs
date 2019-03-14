@@ -177,6 +177,29 @@ public class House : MonoBehaviour
 
     public void Build(int _id)
     {
+        UIManager.Instance.panelInfoHero.SetActive(true);
+        DetailInfoHero detail = UIManager.Instance.panelInfoHero.GetComponent<DetailInfoHero>();
+        detail.GetInfo(
+            UIManager.Instance.sprAvatarHero[_id],
+            GameConfig.Instance.lstInfoHero[_id].NameHero,
+            GameConfig.Instance.lstInfoHero[_id].NameHero,
+            GameConfig.Instance.lstInfoHero[_id].NameHero,
+            () => 
+            {
+                YesBuild(_id);
+                UIManager.Instance.panelInfoHero.SetActive(false);
+            },
+            true
+            );
+        this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
+        if (GameManager.Instance.gold < this.price)
+        {
+            detail.btnYes.interactable = false;
+        }
+    }
+
+    public void YesBuild(int _id)
+    {
         this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
         if (GameManager.Instance.gold < this.price)
             return;

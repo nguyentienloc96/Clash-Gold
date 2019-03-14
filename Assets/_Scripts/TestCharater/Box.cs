@@ -12,9 +12,4 @@ public class Box : MonoBehaviour {
     public bool isBottom;
 
     public SpriteRenderer spGround;
-
-    public void Start()
-    {
-        spGround.sprite = UIManager.Instance.lsSpriteGround[Random.Range(0, UIManager.Instance.lsSpriteGround.Count)];
-    }
 }

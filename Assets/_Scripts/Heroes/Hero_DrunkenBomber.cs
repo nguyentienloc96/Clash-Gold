@@ -15,6 +15,7 @@ public class Hero_DrunkenBomber : Hero
         _bullet.GetComponent<Rigidbody2D>().velocity = diff * infoHero.speedBullet;
         _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
         _bullet.GetComponent<Bullet>().isBoom = true;
+        _bullet.GetComponent<Bullet>().isCanFly = true;
         _bullet.GetComponent<Bullet>().rangeBoom = infoHero.rangeBoom;
     }
 

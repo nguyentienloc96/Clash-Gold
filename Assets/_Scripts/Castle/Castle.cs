@@ -10,8 +10,6 @@ using UnityEngine.EventSystems;
 public class Castle : MonoBehaviour
 {
     [Header("INFO CASTLE")]
-    public float health;
-    public float healthMax;
     public long price;
     private int level = 1;
     public float speed;
@@ -37,8 +35,6 @@ public class Castle : MonoBehaviour
 
     void OnStartGame()
     {
-        healthMax = GameConfig.Instance.Bloodlv0;
-        health = healthMax;
         this.RegisterListener(EventID.BuildHouseComplete, (param) => OnBuildHouseComplete(param));
     }
 
@@ -136,10 +132,7 @@ public class Castle : MonoBehaviour
         if (price > GameManager.Instance.gold)
             return;
 
-        float deltaHelth = healthMax - health;
         UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpHealth);
-        healthMax = healthMax * GameConfig.Instance.Bloodratio;
-        health = healthMax - deltaHelth;
         GameManager.Instance.AddGold(-price);
         level++;
         Invoke("HideAnim", 1f);

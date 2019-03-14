@@ -15,7 +15,6 @@ public enum TypeGoldMine
 public class GoldMine : MonoBehaviour
 {
     public int id;
-    public float health;
     public int capGold;
     public long priceGold;
     public long priceWillUpgrade;
@@ -95,7 +94,6 @@ public class GoldMine : MonoBehaviour
     public void LoadDataGoldMine(int _id, float _health, int _capGold, long _priceGold, int _level, TypeGoldMine _type)
     {
         this.id = _id;
-        this.health = _health;
         this.capGold = _capGold;
         this.priceGold = _priceGold;
         this.level = _level;
@@ -414,6 +412,7 @@ public class GoldMine : MonoBehaviour
         {
             if (other.CompareTag("Castle"))
             {
+                UIManager.Instance.HideAllPanelGame();
                 if (!GameManager.Instance.isBeingAttack)
                 {
                     GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
@@ -452,6 +451,7 @@ public class GoldMine : MonoBehaviour
             }
             if (other.CompareTag("Enemy"))
             {
+                UIManager.Instance.HideAllPanelGame();
                 foreach (Hero hero in GameManager.Instance.lsEnemyAttackGoldMine)
                 {
                     hero.isPause = true;

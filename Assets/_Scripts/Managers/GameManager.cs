@@ -56,8 +56,23 @@ public class GameManager : MonoBehaviour
     public int weight;
     public Transform boxManager;
     private Box[,] arrBox = new Box[9, 9];
-    private Vector2[] PosGolds = new Vector2[] { new Vector2(3, 3), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, 2), new Vector2(1, 0), new Vector2(1, 2), new Vector2(2, 2), new Vector2(2, 3), new Vector2(2, 4), new Vector2(2, 5), new Vector2(2, 6), new Vector2(3, 6), new Vector2(4, 1), new Vector2(4, 2), new Vector2(4, 3), new Vector2(4, 4), new Vector2(4, 5), new Vector2(4, 6), new Vector2(5, 3), new Vector2(5, 4) };
+    private List<Vector2[]> LsPosGolds = new List<Vector2[]>()
+    {
+        new Vector2[] { new Vector2(3, 3), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, 2), new Vector2(1, 0), new Vector2(1, 2), new Vector2(2, 2), new Vector2(2, 3), new Vector2(2, 4), new Vector2(2, 5), new Vector2(2, 6), new Vector2(3, 6), new Vector2(4, 1), new Vector2(4, 2), new Vector2(4, 3), new Vector2(4, 4), new Vector2(4, 5), new Vector2(4, 6), new Vector2(5, 3), new Vector2(5, 4) },
+        new Vector2[] { new Vector2(3, 3), new Vector2(0, 4), new Vector2(1, 2), new Vector2(1, 3), new Vector2(1, 4), new Vector2(2,0), new Vector2(2,1), new Vector2(2,3), new Vector2(2,5), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(3,5), new Vector2(4,1), new Vector2(4,3), new Vector2(4,5), new Vector2(4,6), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4) },
+        new Vector2[] { new Vector2(2,3), new Vector2(0,3), new Vector2(0,4), new Vector2(0,5), new Vector2(1,2), new Vector2(1,3), new Vector2(1,5), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(3,3), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(5,3), new Vector2(5,4), new Vector2(5,6) },
+        new Vector2[] { new Vector2(2,2), new Vector2(0,0), new Vector2(0,1), new Vector2(0,2), new Vector2(0,4), new Vector2(0,5), new Vector2(0,6), new Vector2(1,0), new Vector2(1,2), new Vector2(1,4), new Vector2(1,6), new Vector2(2,0), new Vector2(2,1), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(2,6), new Vector2(3,4), new Vector2(4,3), new Vector2(4,4)},
+        new Vector2[] { new Vector2(2,3), new Vector2(0,3), new Vector2(0,4), new Vector2(1,0), new Vector2(1,1), new Vector2(1,2), new Vector2(1,4), new Vector2(2,0), new Vector2(2,2), new Vector2(2,4), new Vector2(3,0), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(4,1), new Vector2(4,4), new Vector2(5,1), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4)},
+        new Vector2[] { new Vector2(2,3), new Vector2(0,1), new Vector2(0,2), new Vector2(0,3), new Vector2(0,4), new Vector2(0,5), new Vector2(1,1), new Vector2(1,5), new Vector2(2,1), new Vector2(2,2), new Vector2(2,4), new Vector2(2,5), new Vector2(3,3), new Vector2(3,5), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(4,5)},
+        new Vector2[] { new Vector2(2,1), new Vector2(0,0), new Vector2(0,1), new Vector2(1,0), new Vector2(1,1), new Vector2(1,2), new Vector2(1,3), new Vector2(1,4), new Vector2(2,3), new Vector2(2,4), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(4,5), new Vector2(5,4), new Vector2(5,5)},
+        new Vector2[] { new Vector2(4,2), new Vector2(1,1), new Vector2(1,2), new Vector2(1,4), new Vector2(1,5), new Vector2(2,1), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(3,2), new Vector2(3,5), new Vector2(4,1), new Vector2(4,3), new Vector2(4,5), new Vector2(5,1), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4), new Vector2(5,5)},
+        new Vector2[] { new Vector2(3,3), new Vector2(1,0), new Vector2(1,1), new Vector2(1,2), new Vector2(1,3), new Vector2(1,4), new Vector2(1,5), new Vector2(1,6), new Vector2(2,0), new Vector2(2,2), new Vector2(2,4), new Vector2(2,6), new Vector2(3,0), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(3,5), new Vector2(3,6), new Vector2(4,3)},
+        new Vector2[] { new Vector2(3,1), new Vector2(1,5), new Vector2(2,0), new Vector2(2,1), new Vector2(2,2), new Vector2(2,4), new Vector2(2,5), new Vector2(2,6), new Vector2(3,0), new Vector2(3,2), new Vector2(3,3), new Vector2(3,4), new Vector2(3,5), new Vector2(3,6), new Vector2(4,0), new Vector2(4,1), new Vector2(4,2), new Vector2(4,4), new Vector2(4,5), new Vector2(4,6), new Vector2(5,5)}
+
+    };
     public List<Box> lsBoxMove = new List<Box>();
+    public List<Box> lsBoxCanMove = new List<Box>();
+    public List<Sprite> lsSpriteMap = new List<Sprite>();
 
     [HideInInspector]
     public bool isAttack;
@@ -198,6 +213,10 @@ public class GameManager : MonoBehaviour
                             {
                                 posIns.y = 0;
                             }
+                            if (posIns.y < lsPosHero[0].position.y)
+                            {
+                                posIns.y = lsPosHero[0].position.y;
+                            }
                             ThrowHero(itemSelectHero.houseHero, itemSelectHero.countHero, posIns);
                             itemSelectHero.gameObject.SetActive(false);
                             itemSelectHero = null;
@@ -215,6 +234,10 @@ public class GameManager : MonoBehaviour
                                 if (posIns.y > 0)
                                 {
                                     posIns.y = 0;
+                                }
+                                if (posIns.y < lsPosHero[0].position.y)
+                                {
+                                    posIns.y = lsPosHero[0].position.y;
                                 }
                                 ItemHeroAttack item;
                                 if (UIManager.Instance.lsItemHeroAttack[0].gameObject.activeSelf)
@@ -266,9 +289,9 @@ public class GameManager : MonoBehaviour
                             {
                                 int idGoldMineCheck = 0;
                                 float disGoldPlayer = Vector3.Distance(lstGoldMinePlayer[0].transform.position, GolEnemyBeingAttack.transform.position);
-                                for (int i = 1;i<lstGoldMinePlayer.Count;i++)
+                                for (int i = 1; i < lstGoldMinePlayer.Count; i++)
                                 {
-                                    if(disGoldPlayer > Vector3.Distance(lstGoldMinePlayer[i].transform.position, GolEnemyBeingAttack.transform.position))
+                                    if (disGoldPlayer > Vector3.Distance(lstGoldMinePlayer[i].transform.position, GolEnemyBeingAttack.transform.position))
                                     {
                                         idGoldMineCheck = i;
                                     }
@@ -413,30 +436,35 @@ public class GameManager : MonoBehaviour
     public void GenerateMapBox()
     {
         int numberID = 0;
+        int idPosGold = UnityEngine.Random.Range(0, LsPosGolds.Count);
+        bool isBuildCastle = false;
         for (int i = 0; i < row; i++)
         {
             for (int j = 0; j < col; j++)
             {
-                Box b = Instantiate(prefabsBox, boxManager.position + new Vector3(j * weight, -i * weight), Quaternion.identity, boxManager).GetComponent<Box>();
+                Box b = Instantiate(prefabsBox, boxManager.position + new Vector3(j * (weight), -i * (weight)), Quaternion.identity, boxManager).GetComponent<Box>();
                 b.col = j;
                 b.row = i;
                 arrBox[j, i] = b;
-                if (!CheckPos(i, j))
+                if (!CheckPos(i, j, idPosGold))
                 {
-                    b.gameObject.layer = 13;                    
+                    b.gameObject.layer = 13;
                     b.isLock = true;
+                    lsBoxCanMove.Add(b);
                 }
                 else
                 {
                     b.transform.GetChild(0).gameObject.SetActive(false);
                     b.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                    if (i == 4 && j == 4)
+                    if (!isBuildCastle)
                     {
                         GenerateMap(b.transform, numberID, 1, true);
-                    }
-                    else if (i == 3 && j == 4)
-                    {
-                        GenerateMap(b.transform, numberID, 1);
+                        isBuildCastle = true;
+                        Vector3 posIns = b.transform.position;
+                        posIns.z = -2;
+                        castlePlayer.transform.position = posIns;
+                        posIns.z = -10;
+                        DeadzoneCamera.Instance._camera.transform.position = posIns;
                     }
                     else
                     {
@@ -447,12 +475,22 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
+
+        SetSprite();
     }
 
-    public bool CheckPos(int row, int col)
+    public void SetSprite()
+    {
+        foreach (Box box in lsBoxCanMove)
+        {
+            CheckBoxCanMove(box);
+        }
+    }
+
+    public bool CheckPos(int row, int col, int id)
     {
         bool isCheck = false;
-        foreach (Vector2 v2 in PosGolds)
+        foreach (Vector2 v2 in LsPosGolds[id])
         {
             if (v2 == new Vector2(col, row))
             {
@@ -465,7 +503,7 @@ public class GameManager : MonoBehaviour
     public void GenerateMap(Transform toPos, int id, int level, bool isGoldPlayer = false)
     {
 
-        int a = (int)UnityEngine.Random.Range(0, 3.9f);
+        int a = (int)UnityEngine.Random.Range(0, 2.9f);
         int b = UnityEngine.Random.Range(0, 4);
         Vector3 _rotation;
         if (b == 0)
@@ -490,7 +528,7 @@ public class GameManager : MonoBehaviour
         if (isGoldPlayer)
         {
             _rotation = new Vector3(0, 0, 0);
-            GoldMine g = Instantiate(prefabsBoxMap[3], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
+            GoldMine g = Instantiate(prefabsBoxMap[2], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
             g.SetLevel(level);
             g.id = id;
             g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, level);
@@ -552,7 +590,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        foreach(Box b in lsBoxMove)
+        foreach (Box b in lsBoxMove)
         {
             b.isTop = false;
             b.isBottom = false;
@@ -625,6 +663,102 @@ public class GameManager : MonoBehaviour
             return lsBoxSelect[check];
         }
         return null;
+    }
+
+    public void CheckBoxCanMove(Box box)
+    {
+        if (box.col != 8 && !arrBox[box.col + 1, box.row].isLock)
+        {
+            box.isRight = true;
+        }
+
+        if (box.row != 8 && !arrBox[box.col, box.row + 1].isLock)
+        {
+            box.isBottom = true;
+        }
+        if (box.col != 0 && !arrBox[box.col - 1, box.row].isLock)
+        {
+            box.isLeft = true;
+        }
+        if (box.row != 0 && !arrBox[box.col, box.row - 1].isLock)
+        {
+            box.isTop = true;
+        }
+
+        if (box.isTop && box.isBottom && box.isRight && box.isLeft)
+        {
+            box.spGround.sprite = lsSpriteMap[5];
+        }
+        else if(box.isBottom && box.isRight && box.isLeft)
+        {
+            box.spGround.sprite = lsSpriteMap[4];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+        }
+        else if (box.isTop && box.isRight && box.isLeft)
+        {
+            box.spGround.sprite = lsSpriteMap[4];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+        }
+        else if (box.isTop && box.isBottom && box.isRight)
+        {
+            box.spGround.sprite = lsSpriteMap[4];
+        }
+        else if (box.isTop && box.isBottom && box.isLeft)
+        {
+            box.spGround.sprite = lsSpriteMap[4];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+        }
+        else if (box.isTop && box.isBottom)
+        {
+            box.spGround.sprite = lsSpriteMap[2];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+        }
+        else if (box.isTop && box.isLeft)
+        {
+            box.spGround.sprite = lsSpriteMap[3];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+        }
+        else if (box.isTop && box.isRight)
+        {
+            box.spGround.sprite = lsSpriteMap[3];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+        }
+        else if (box.isBottom && box.isLeft)
+        {
+            box.spGround.sprite = lsSpriteMap[3];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+        }
+        else if (box.isBottom && box.isRight)
+        {
+            box.spGround.sprite = lsSpriteMap[3];
+        }
+        else if (box.isLeft && box.isRight)
+        {
+            box.spGround.sprite = lsSpriteMap[2];
+        }
+        else if (box.isTop)
+        {
+            box.spGround.sprite = lsSpriteMap[1];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+        }
+        else if (box.isBottom)
+        {
+            box.spGround.sprite = lsSpriteMap[1];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+        }
+        else if (box.isRight)
+        {
+            box.spGround.sprite = lsSpriteMap[1];
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+        }
+        else if (box.isLeft)
+        {
+            box.spGround.sprite = lsSpriteMap[1];
+        }
+        else
+        {
+            box.spGround.sprite = lsSpriteMap[0];
+        }
     }
     #endregion
 

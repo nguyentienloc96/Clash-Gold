@@ -28,6 +28,7 @@ public class UIManager : MonoBehaviour
     public GameObject panelInWall;
     public GameObject panelBuild;
     public GameObject panelUpgrade;
+    public GameObject panelInfoHero;
     public List<BuildHouseObject> lstHouse;
     public Sprite[] sprAvatarHero;
 
@@ -339,5 +340,27 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.goldMineCurrent.ThrowHero();
         GameManager.Instance.goldMineCurrent = null;
         panelThrowHero.SetActive(false);
+    }
+
+    public void HideAllPanelGame()
+    {
+        panelBuild.SetActive(false);
+        panelUpgrade.SetActive(false);
+        panelInWall.SetActive(false);
+        panelRelace.SetActive(false);
+        panelThrowHero.SetActive(false);
+        panelThrowHeroAttack.SetActive(false);
+    }
+
+    public int _idHeroUpgrade;
+    public void GetInfoHero()
+    {
+        panelInfoHero.SetActive(true);
+        panelInfoHero.GetComponent<DetailInfoHero>().GetInfo(
+            sprAvatarHero[_idHeroUpgrade],
+            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
+            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
+            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
+            () => panelInfoHero.SetActive(false));
     }
 }
