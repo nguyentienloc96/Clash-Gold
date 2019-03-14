@@ -11,5 +11,10 @@ public class Box : MonoBehaviour {
     public bool isTop;
     public bool isBottom;
 
+    public bool isTopRight;
+    public bool isTopLeft;
+    public bool isBottomRight;
+    public bool isBottomLeft;
+
     public SpriteRenderer spGround;
 }

@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour
     public GameObject prefabsBox;
     public int row;
     public int col;
-    public int weight;
+    public float weight;
     public Transform boxManager;
     private Box[,] arrBox = new Box[9, 9];
     private List<Vector2[]> LsPosGolds = new List<Vector2[]>()
@@ -492,7 +492,7 @@ public class GameManager : MonoBehaviour
         bool isCheck = false;
         foreach (Vector2 v2 in LsPosGolds[id])
         {
-            if (v2 == new Vector2(col, row))
+            if (new Vector2(v2.x + 1, v2.y + 1) == new Vector2(col, row))
             {
                 isCheck = true;
             }
@@ -671,7 +671,6 @@ public class GameManager : MonoBehaviour
         {
             box.isRight = true;
         }
-
         if (box.row != 8 && !arrBox[box.col, box.row + 1].isLock)
         {
             box.isBottom = true;
@@ -684,12 +683,30 @@ public class GameManager : MonoBehaviour
         {
             box.isTop = true;
         }
+        if (box.col != 8 && box.row != 8 && !arrBox[box.col + 1, box.row + 1].isLock)
+        {
+            box.isBottomRight = true;
+        }
+        if (box.col != 0 && box.row != 8 && !arrBox[box.col - 1, box.row + 1].isLock)
+        {
+            box.isBottomLeft = true;
+        }
+        if (box.col != 0 && box.row != 0 && !arrBox[box.col - 1, box.row - 1].isLock)
+        {
+            box.isTopLeft = true;
+        }
+        if (box.col != 8 && box.row != 0 && !arrBox[box.col + 1, box.row - 1].isLock)
+        {
+            box.isTopRight = true;
+        }
+
+
 
         if (box.isTop && box.isBottom && box.isRight && box.isLeft)
         {
             box.spGround.sprite = lsSpriteMap[5];
         }
-        else if(box.isBottom && box.isRight && box.isLeft)
+        else if (box.isBottom && box.isRight && box.isLeft)
         {
             box.spGround.sprite = lsSpriteMap[4];
             box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
@@ -715,22 +732,53 @@ public class GameManager : MonoBehaviour
         }
         else if (box.isTop && box.isLeft)
         {
-            box.spGround.sprite = lsSpriteMap[3];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            if (box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[6];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[3];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
         }
         else if (box.isTop && box.isRight)
         {
-            box.spGround.sprite = lsSpriteMap[3];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            if (box.isBottomLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[6];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[3];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
         }
         else if (box.isBottom && box.isLeft)
         {
-            box.spGround.sprite = lsSpriteMap[3];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            if (box.isTopRight)
+            {
+                box.spGround.sprite = lsSpriteMap[6];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[3];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
         }
         else if (box.isBottom && box.isRight)
         {
-            box.spGround.sprite = lsSpriteMap[3];
+            if (box.isTopLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[6];
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[3];
+            }
         }
         else if (box.isLeft && box.isRight)
         {
@@ -738,26 +786,137 @@ public class GameManager : MonoBehaviour
         }
         else if (box.isTop)
         {
-            box.spGround.sprite = lsSpriteMap[1];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            if (box.isBottomLeft && box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[7];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
+            else if (box.isBottomLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[8];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
+            else if (box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[9];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[1];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
         }
         else if (box.isBottom)
         {
-            box.spGround.sprite = lsSpriteMap[1];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            if (box.isTopLeft && box.isTopRight)
+            {
+                box.spGround.sprite = lsSpriteMap[7];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
+            else if (box.isTopLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[9];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
+            else if (box.isTopRight)
+            {
+                box.spGround.sprite = lsSpriteMap[8];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[1];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
         }
         else if (box.isRight)
         {
-            box.spGround.sprite = lsSpriteMap[1];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            if (box.isTopLeft && box.isBottomLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[7];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
+            else if (box.isBottomLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[9];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
+            else if (box.isTopLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[8];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[1];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
         }
         else if (box.isLeft)
         {
-            box.spGround.sprite = lsSpriteMap[1];
+            if (box.isTopRight && box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[7];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
+            else if (box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[8];
+            }
+            else if (box.isTopRight)
+            {
+                box.spGround.sprite = lsSpriteMap[9];
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[1];
+            }
         }
         else
         {
-            box.spGround.sprite = lsSpriteMap[0];
+            if (box.isTopRight && box.isTopLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[10];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
+            else if (box.isTopRight && box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[10];
+            }
+            else if (box.isBottomLeft && box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[10];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
+            else if (box.isBottomLeft && box.isTopLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[10];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
+            else if (box.isTopRight)
+            {
+                box.spGround.sprite = lsSpriteMap[11];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            }
+            else if (box.isTopLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[11];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            }
+            else if (box.isBottomRight)
+            {
+                box.spGround.sprite = lsSpriteMap[11];
+            }
+            else if (box.isBottomLeft)
+            {
+                box.spGround.sprite = lsSpriteMap[11];
+                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            }
+            else
+            {
+                box.spGround.sprite = lsSpriteMap[0];
+            }
         }
     }
     #endregion

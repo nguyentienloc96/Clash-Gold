@@ -25,8 +25,8 @@ public class DeadzoneCamera : MonoBehaviour
     private static readonly float ZoomSpeedTouch = 0.1f;
     private static readonly float ZoomSpeedMouse = 0.5f;
 
-    private static readonly float[] BoundsX = new float[] { -50f, 50f };
-    private static readonly float[] BoundsY = new float[] { -45f, 45f };
+    private static readonly float[] BoundsX = new float[] { -43.5f, 42f };
+    private static readonly float[] BoundsY = new float[] { -36.5f, 40f };
     private static readonly float[] ZoomBounds = new float[] { 10f, 35f };
 
     private Vector3 lastPanPosition;
