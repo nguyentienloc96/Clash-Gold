@@ -8,16 +8,27 @@ public class DetailInfoHero : MonoBehaviour
     public Text txtName;
     public Text txtInfo;
     public Text txtInfoDetailHero;
+    public Text txtPrice;
+    public GameObject priceObj;
     public Button btnYes;
     public Button btnNo;
     private bool isBuild;
 
-    public void GetInfo(Sprite icon, string name, string info, string detail,UnityAction btnYes_Onclick ,bool isBuild = false)
+    public void GetInfo(Sprite icon, string name, string info, string detail,long price,UnityAction btnYes_Onclick ,bool isBuild = false)
     {
         imgicon.sprite = icon;
         txtName.text = name;
         txtInfo.text = info;
         txtInfoDetailHero.text = detail;
+        if (price > 0)
+        {
+            priceObj.SetActive(true);
+            txtPrice.text = price.ToString();
+        }
+        else
+        {
+            priceObj.SetActive(false);
+        }
         btnYes.interactable = true;
         if (isBuild)
         {

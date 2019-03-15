@@ -109,6 +109,7 @@ public class LoadDataJson : MonoBehaviour
                 InfoHero _info = new InfoHero();
                 _info.ID = objJson["heroes"][t]["id"].AsInt;
                 _info.NameHero = objJson["heroes"][t]["Name"];
+                _info.Info = objJson["heroes"][t]["Info"];
                 _info.health = objJson["heroes"][t]["health1"].AsFloat;
                 _info.dame = objJson["heroes"][t]["dam1"].AsFloat;
                 _info.hitSpeed = objJson["heroes"][t]["hitspeed1"].AsFloat;

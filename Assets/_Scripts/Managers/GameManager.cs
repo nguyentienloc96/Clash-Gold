@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     public bool isPlay = false;
     public long gold;
     public int coin;
-    public float ratioBorn; //level game: de, trung binh, kho
+    public float ratioBorn;
     public Castle castlePlayer;
     public List<GoldMine> lstGoldMinePlayer = new List<GoldMine>();
     public List<House> lstHousePlayer = new List<House>();
@@ -58,9 +58,9 @@ public class GameManager : MonoBehaviour
     private Box[,] arrBox = new Box[9, 9];
     private List<Vector2[]> LsPosGolds = new List<Vector2[]>()
     {
-        new Vector2[] { new Vector2(3, 3), new Vector2(0, 0), new Vector2(0, 1), new Vector2(0, 2), new Vector2(1, 0), new Vector2(1, 2), new Vector2(2, 2), new Vector2(2, 3), new Vector2(2, 4), new Vector2(2, 5), new Vector2(2, 6), new Vector2(3, 6), new Vector2(4, 1), new Vector2(4, 2), new Vector2(4, 3), new Vector2(4, 4), new Vector2(4, 5), new Vector2(4, 6), new Vector2(5, 3), new Vector2(5, 4) },
-        new Vector2[] { new Vector2(3, 3), new Vector2(0, 4), new Vector2(1, 2), new Vector2(1, 3), new Vector2(1, 4), new Vector2(2,0), new Vector2(2,1), new Vector2(2,3), new Vector2(2,5), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(3,5), new Vector2(4,1), new Vector2(4,3), new Vector2(4,5), new Vector2(4,6), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4) },
-        new Vector2[] { new Vector2(2,3), new Vector2(0,3), new Vector2(0,4), new Vector2(0,5), new Vector2(1,2), new Vector2(1,3), new Vector2(1,5), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(3,3), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(5,3), new Vector2(5,4), new Vector2(5,6) },
+        new Vector2[] { new Vector2(3,3), new Vector2(0,0), new Vector2(0,1), new Vector2(0,2), new Vector2(1,0), new Vector2(1,2), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(2,6), new Vector2(3,6), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(4,5), new Vector2(4,6), new Vector2(5,3), new Vector2(5,4)},
+        new Vector2[] { new Vector2(3,3), new Vector2(0,4), new Vector2(1,2), new Vector2(1,3), new Vector2(1,4), new Vector2(2,0), new Vector2(2,1), new Vector2(2,3), new Vector2(2,5), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(3,5), new Vector2(4,1), new Vector2(4,3), new Vector2(4,5), new Vector2(4,6), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4)},
+        new Vector2[] { new Vector2(2,3), new Vector2(0,3), new Vector2(0,4), new Vector2(0,5), new Vector2(1,2), new Vector2(1,3), new Vector2(1,5), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(3,3), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(5,3), new Vector2(5,4), new Vector2(5,5), new Vector2(5,6)},
         new Vector2[] { new Vector2(2,2), new Vector2(0,0), new Vector2(0,1), new Vector2(0,2), new Vector2(0,4), new Vector2(0,5), new Vector2(0,6), new Vector2(1,0), new Vector2(1,2), new Vector2(1,4), new Vector2(1,6), new Vector2(2,0), new Vector2(2,1), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(2,6), new Vector2(3,4), new Vector2(4,3), new Vector2(4,4)},
         new Vector2[] { new Vector2(2,3), new Vector2(0,3), new Vector2(0,4), new Vector2(1,0), new Vector2(1,1), new Vector2(1,2), new Vector2(1,4), new Vector2(2,0), new Vector2(2,2), new Vector2(2,4), new Vector2(3,0), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(4,1), new Vector2(4,4), new Vector2(5,1), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4)},
         new Vector2[] { new Vector2(2,3), new Vector2(0,1), new Vector2(0,2), new Vector2(0,3), new Vector2(0,4), new Vector2(0,5), new Vector2(1,1), new Vector2(1,5), new Vector2(2,1), new Vector2(2,2), new Vector2(2,4), new Vector2(2,5), new Vector2(3,3), new Vector2(3,5), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(4,5)},
@@ -161,9 +161,11 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (dateGame >= dateUpGoldMine)
+            if (dateGame >= dateUpGoldMine && lstGoldMineEnemy.Count > 0)
             {
                 int landUpMax = (lstGoldMineEnemy.Count / GameConfig.Instance.LandDiv);
+                if (landUpMax < 1)
+                    landUpMax = 1;
                 int landUp;
                 if (landUpMax >= GameConfig.Instance.LandUP)
                 {
@@ -435,9 +437,7 @@ public class GameManager : MonoBehaviour
     #region === MAP ===
     public void GenerateMapBox()
     {
-        int numberID = 0;
         int idPosGold = UnityEngine.Random.Range(0, LsPosGolds.Count);
-        bool isBuildCastle = false;
         for (int i = 0; i < row; i++)
         {
             for (int j = 0; j < col; j++)
@@ -456,35 +456,89 @@ public class GameManager : MonoBehaviour
                 {
                     b.transform.GetChild(0).gameObject.SetActive(false);
                     b.gameObject.GetComponent<BoxCollider2D>().enabled = false;
-                    if (!isBuildCastle)
-                    {
-                        GenerateMap(b.transform, numberID, 1, true);
-                        isBuildCastle = true;
-                        Vector3 posIns = b.transform.position;
-                        posIns.z = -2;
-                        castlePlayer.transform.position = posIns;
-                        posIns.z = -10;
-                        DeadzoneCamera.Instance._camera.transform.position = posIns;
-                    }
-                    else
-                    {
-                        GenerateMap(b.transform, numberID, UnityEngine.Random.Range(1, 6));
-                    }
-                    numberID++;
                     lsBoxMove.Add(b);
                 }
             }
         }
 
-        SetSprite();
+        StartCoroutine(SetBox());
     }
 
-    public void SetSprite()
+    public IEnumerator SetBox()
     {
         foreach (Box box in lsBoxCanMove)
         {
             CheckBoxCanMove(box);
         }
+        Debug.Log(1);
+        yield return new WaitForEndOfFrame();
+        Debug.Log(2);
+        List<Box> lsBox = new List<Box>();
+        foreach (Box box in lsBoxMove)
+        {
+            if (CheckGoldMinePlayer(box) >= 3)
+            {
+                lsBox.Add(box);
+            }
+        }
+        Debug.Log(3);
+        yield return new WaitUntil(() => lsBox.Count > 0);
+        Debug.Log(4);
+        int numberId = 0;
+        int idGoldMinePlayer = UnityEngine.Random.Range(0, lsBox.Count);
+        Box bPlayer = lsBox[idGoldMinePlayer];
+        Debug.Log(5);
+        yield return new WaitUntil(() => bPlayer != null);
+        Debug.Log(6);
+        Box bNearPlayer = null;
+        if (bPlayer.col != 8 && !arrBox[bPlayer.col + 1, bPlayer.row].isLock)
+        {
+            bNearPlayer = arrBox[bPlayer.col + 1, bPlayer.row];
+        }
+        else if (bPlayer.row != 8 && !arrBox[bPlayer.col, bPlayer.row + 1].isLock)
+        {
+            bNearPlayer = arrBox[bPlayer.col, bPlayer.row + 1];
+        }
+        else if (bPlayer.col != 0 && !arrBox[bPlayer.col - 1, bPlayer.row].isLock)
+        {
+            bNearPlayer = arrBox[bPlayer.col - 1, bPlayer.row];
+        }
+        else if (bPlayer.row != 0 && !arrBox[bPlayer.col, bPlayer.row - 1].isLock)
+        {
+            bNearPlayer = arrBox[bPlayer.col, bPlayer.row - 1];
+        }
+        Debug.Log(7);
+        yield return new WaitUntil(() => bNearPlayer != null);
+        Debug.Log(8);
+        GenerateMap(bPlayer.transform, numberId, 1, true);
+        numberId++;
+        Vector3 posIns = bPlayer.transform.position;
+        posIns.z = -2;
+        castlePlayer.transform.position = posIns;
+        posIns.z = -10;
+        DeadzoneCamera.Instance._camera.transform.position = posIns;
+        Debug.Log(9);
+        yield return new WaitForEndOfFrame();
+        Debug.Log(10);
+        foreach (Box b in lsBoxMove)
+        {
+            if (b != bPlayer)
+            {
+                if (b != bNearPlayer)
+                {
+                    GenerateMap(b.transform, numberId, UnityEngine.Random.Range(1, 6));
+                }
+                else
+                {
+                    GenerateMap(b.transform, numberId, 1);
+                }
+                numberId++;
+            }
+        }
+        Debug.Log(11);
+        yield return new WaitForEndOfFrame();
+        Debug.Log(12);
+        Fade.Instance.EndFade();
     }
 
     public bool CheckPos(int row, int col, int id)
@@ -919,6 +973,28 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    public int CheckGoldMinePlayer(Box box)
+    {
+        int numberCheck = 0;
+        if (box.col != 8 && !arrBox[box.col + 1, box.row].isLock)
+        {
+            numberCheck++;
+        }
+        if (box.row != 8 && !arrBox[box.col, box.row + 1].isLock)
+        {
+            numberCheck++;
+        }
+        if (box.col != 0 && !arrBox[box.col - 1, box.row].isLock)
+        {
+            numberCheck++;
+        }
+        if (box.row != 0 && !arrBox[box.col, box.row - 1].isLock)
+        {
+            numberCheck++;
+        }
+        return numberCheck;
+    }
     #endregion
 
     #region === ADD GOLD, COIN ===
@@ -981,6 +1057,7 @@ public class GameManager : MonoBehaviour
             hero.infoHero.capWar = 0;
             hero.countHeroStart = countHero;
             hero.AddHero(countHero);
+            hero.house = houseHero;
             hero.isAttack = true;
             lsHero.Add(hero);
         }
@@ -1004,6 +1081,7 @@ public class GameManager : MonoBehaviour
                 hero.infoHero.capWar = 0;
                 hero.AddHero(countHero / 3);
                 hero.isAttack = true;
+                hero.house = houseHero;
                 lsHero.Add(hero);
             }
         }
@@ -1031,6 +1109,7 @@ public class GameManager : MonoBehaviour
                 hero.infoHero.capWar = 0;
                 hero.AddHero(countHero / 4);
                 hero.isAttack = true;
+                hero.house = houseHero;
                 lsHero.Add(hero);
             }
         }

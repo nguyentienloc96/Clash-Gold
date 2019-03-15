@@ -17,15 +17,16 @@ public class ItemHeroRelace : MonoBehaviour
 
     public void RelaceItemHero()
     {
-        int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero - 1;
+        int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero;
         UIManager.Instance.panelRelace.SetActive(false);
         UIManager.Instance.panelInfoHero.SetActive(true);
         DetailInfoHero detail = UIManager.Instance.panelInfoHero.GetComponent<DetailInfoHero>();
         detail.GetInfo(
-            UIManager.Instance.sprAvatarHero[idHero],
-            GameConfig.Instance.lstInfoHero[idHero].NameHero,
-            GameConfig.Instance.lstInfoHero[idHero].NameHero,
-            GameConfig.Instance.lstInfoHero[idHero].NameHero,
+            UIManager.Instance.sprAvatarHero[idHero - 1],
+            GameConfig.Instance.lstInfoHero[idHero - 1].NameHero,
+            GameConfig.Instance.lstInfoHero[idHero - 1].Info,
+            GameConfig.Instance.lstInfoHero[idHero - 1].NameHero,
+            0,
             () =>
             {
                 YesRelaceItemHero(idHero);

@@ -40,6 +40,7 @@ public abstract class Hero : MonoBehaviour
     public int IDGold;
     public bool isAttack;
 
+    #region -----CHECK MOVE-----
     [Header("CHECK MOVE")]
     [HideInInspector]
     public Vector3 posStart;
@@ -59,6 +60,14 @@ public abstract class Hero : MonoBehaviour
     public float speedMin;
     [HideInInspector]
     public int countHeroStart;
+    private int checkNumberPos;
+    #endregion
+
+    [Header("REMOVE HERO")]
+    public House house;
+    public GoldMine goldMine;
+    public int idGoldMine;
+
 
     public abstract void SetInfoHero();
 
@@ -98,6 +107,7 @@ public abstract class Hero : MonoBehaviour
         {
             GameManager.Instance.lsEnemy.Remove(this);
         }
+        GameManager.Instance.lsChild.Remove(this);
     }
 
     public void AnimRun()
@@ -145,67 +155,20 @@ public abstract class Hero : MonoBehaviour
             numberSub = 0;
         }
         infoHero.numberHero -= numberRemove;
-        if (GameManager.Instance.isAttackGoldMineEnemy)
+
+        if (house != null)
         {
-            if (gameObject.tag == "Hero")
-            {
-                for (int i = 0; i < GameManager.Instance.castlePlayer.lsHouseRelease.Count; i++)
-                {
-                    if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
-                    {
-                        if (GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > numberSub)
-                            GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero -= numberSub;
-                        else
-                            GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero = 0;
-                        break;
-                    }
-                }
-            }
+            if (house.countHero > numberSub)
+                house.countHero -= numberSub;
             else
-            {
-                for (int i = 0; i < GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine.Count; i++)
-                {
-                    if (infoHero.ID == GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.ID)
-                    {
-                        if (GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
-                            GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
-                        else
-                            GameManager.Instance.GolEnemyBeingAttack.lstHeroGoldMine[i].infoHero.numberHero = 0;
-                        break;
-                    }
-                }
-            }
+                house.countHero = 0;    
         }
-        else
+        else if (goldMine != null)
         {
-            if (gameObject.tag == "Hero")
-            {
-                for (int i = 0; i < GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine.Count; i++)
-                {
-                    if (infoHero.ID == GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero)
-                    {
-                        if (GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine[i].infoHero.numberHero > numberSub)
-                            GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine[i].infoHero.numberHero -= numberSub;
-                        else
-                            GameManager.Instance.GolHeroBeingAttack.lstHeroGoldMine[i].infoHero.numberHero = 0;
-                        break;
-                    }
-                }
-            }
+            if (goldMine.lstHeroGoldMine[idGoldMine].infoHero.numberHero > numberSub)
+                goldMine.lstHeroGoldMine[idGoldMine].infoHero.numberHero -= numberSub;
             else
-            {
-                for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
-                {
-                    if (infoHero.ID == GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID)
-                    {
-                        if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero > numberSub)
-                            GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero -= numberSub;
-                        else
-                            GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero = 0;
-                        break;
-                    }
-                }
-            }
+                goldMine.lstHeroGoldMine[idGoldMine].infoHero.numberHero = 0;
         }
 
         if (infoHero.numberHero <= 0)
@@ -292,20 +255,18 @@ public abstract class Hero : MonoBehaviour
         }
     }
 
-    public int check;
-
     public void MoveToLsPosition(List<Box> lsPos)
     {
         float speed = isMove ? speedMin : infoHero.speed;
-        Vector3 diff = lsPos[check].transform.position - transform.position;
+        Vector3 diff = lsPos[checkNumberPos].transform.position - transform.position;
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        if (transform.position == lsPos[check].transform.position)
+        if (transform.position == lsPos[checkNumberPos].transform.position)
         {
-            check++;
+            checkNumberPos++;
         }
-        transform.position = Vector3.MoveTowards(transform.position, lsPos[check].transform.position, speed / 10f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, lsPos[checkNumberPos].transform.position, speed / 10f * Time.deltaTime);
         AnimRun();
     }
 

@@ -22,7 +22,6 @@ public class Hero_DrunkenBomber : Hero
     public override void Die()
     {
         AnimDie();
-        //ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
     }
 
 

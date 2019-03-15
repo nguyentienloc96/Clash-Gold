@@ -18,15 +18,6 @@ public class Hero_LittleSoul : Hero {
     public override void Die()
     {
         AnimDie();
-        if (gameObject.tag == "Hero")
-        {
-            GameManager.Instance.lsHero.Remove(this);
-        }
-        else
-        {
-            GameManager.Instance.lsEnemy.Remove(this);
-        }
-        GameManager.Instance.lsChild.Remove(this);
     }
 
     public override void BeingAttacked(float _dame)

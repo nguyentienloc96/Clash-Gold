@@ -18,7 +18,6 @@ public class Hero_BalloonKing : Hero {
     public override void Die()
     {
         AnimDie();
-        //ObjectPoolingManager.Instance.ResetPoolForType(nameBullet);
     }
 
 

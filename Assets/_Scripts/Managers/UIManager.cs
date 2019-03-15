@@ -359,8 +359,9 @@ public class UIManager : MonoBehaviour
         panelInfoHero.GetComponent<DetailInfoHero>().GetInfo(
             sprAvatarHero[_idHeroUpgrade],
             GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
+            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].Info,
             GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
-            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
+            0,
             () => panelInfoHero.SetActive(false));
     }
 }

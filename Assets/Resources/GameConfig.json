@@ -59,7 +59,8 @@
   "heroes": {
     "Barbarians": {
       "id": 1,
-	  "Name":"Barbarians",
+	  "Name":"The Furious Quartet",
+	  "Info":"4 melee attackers",
       "health1": 436,
       "dam1": 159,
       "hitspeed1": 1.4,
@@ -80,6 +81,7 @@
     "The Wing Trio": {
       "id": 2,
 	  "Name":"The Wing Trio",
+	  "Info":"3 flying attackers",
       "health1": 190,
       "dam1": 84,
       "hitspeed1": 1,
@@ -100,6 +102,7 @@
     "Deadly MOM": {
       "id": 3,
 	  "Name":"Deadly MOM",
+	  "Info":"A special Archer that Summons bloody freaks.",
       "health1": 787,
       "dam1": 69,
       "hitspeed1": 1,
@@ -120,6 +123,7 @@
     "Balloon King": {
       "id": 4,
 	  "Name":"Balloon King",
+	  "Info":"A flying archer that summons evil spirits",
       "health1": 750,
       "dam1": 260,
       "hitspeed1": 1.5,
@@ -140,6 +144,7 @@
     "Short Gunner": {
       "id": 5,
 	  "Name":"Short Gunner",
+	  "Info":"His gun deals more damage at short distance.",
       "health1": 696,
       "dam1": 62,
       "hitspeed1": 2.2,
@@ -160,6 +165,7 @@
     "Flying gunner": {
       "id": 6,
 	  "Name":"Flying gunner",
+	  "Info":"He can fly and he can fire! The shorter the distance, The bigger the damage.",
       "health1": 490,
       "dam1": 30,
       "hitspeed1": 2.2,
@@ -180,6 +186,7 @@
     "Drunken Bomber": {
       "id": 7,
 	  "Name":"Drunken Bomber",
+	  "Info":"Deals area damage that can wipe out a bunch of enemies.",
       "health1": 311,
       "dam1": 271,
       "hitspeed1": 1.9,
@@ -200,6 +207,7 @@
     "Explosive Wing": {
       "id": 8,
 	  "Name":"Explosive Wing",
+	  "Info":"Deals area damage that can wipe out a bunch of enemies.",
       "health1": 564,
       "dam1": 133,
       "hitspeed1": 1.5,
@@ -220,6 +228,7 @@
     "Canon": {
       "id": 9,
 	  "Name":"Canon",
+	  "Info":"Very wide range.",
       "health1": 190,
       "dam1": 127,
       "hitspeed1": 2,
@@ -240,6 +249,7 @@
     "Reflector": {
       "id": 10,
 	  "Name":"Reflector",
+	  "Info":"reflect damage when being attacked by melee attackers",
       "health1": 598,
       "dam1": 176,
       "hitspeed1": 1.1,
@@ -261,6 +271,7 @@
     "Flying reflector": {
       "id": 11,
 	  "Name":"Flying reflector",
+	  "Info":"reflect damage when being attacked by melee attackers",
       "health1": 490,
       "dam1": 192,
       "hitspeed1": 1.8,
@@ -282,6 +293,7 @@
     "Archer": {
       "id": 12,
 	  "Name":"Archer",
+	  "Info":"Pure Archer",
       "health1": 490,
       "dam1": 96,
       "hitspeed1": 1,
@@ -302,6 +314,7 @@
     "Flying archer": {
       "id": 13,
 	  "Name":"Flying archer",
+	  "Info":"Pure Archer",
       "health1": 298,
       "dam1": 234,
       "hitspeed1": 1,
@@ -322,6 +335,7 @@
     "Bloody Swords": {
       "id": 14,
 	  "Name":"Bloody Swords",
+	  "Info":"Mini Assassin",
       "health1": 1129,
       "dam1": 598,
       "hitspeed1": 1.8,
@@ -342,6 +356,7 @@
     "Bloody wing": {
       "id": 15,
 	  "Name":"Bloody wing",
+	  "Info":"Mini Assassin",
       "health1": 695,
       "dam1": 258,
       "hitspeed1": 1.6,
@@ -362,6 +377,7 @@
     "Immortal scyther": {
       "id": 16,
 	  "Name":"Immortal scyther",
+	  "Info":"reborn after his death as a Puppet",
       "health1": 1395,
       "dam1": 379,
       "hitspeed1": 1.5,
@@ -382,6 +398,7 @@
     "Blasting death": {
       "id": 17,
 	  "Name":"Blasting death",
+	  "Info":"His death body is a BOMB!!!",
       "health1": 996,
       "dam1": 454,
       "hitspeed1": 3,
@@ -402,6 +419,7 @@
     "Twisting axe": {
       "id": 18,
 	  "Name":"Twisting axe",
+	  "Info":"Very agressive girl, deals area damage when she attacks",
       "health1": 1654,
       "dam1": 221,
       "hitspeed1": 1.6,
@@ -422,6 +440,7 @@
     "Flying axe": {
       "id": 19,
 	  "Name":"Flying axe",
+	  "Info":"She can fly like an angel. When she twists her axe, her surrounding get hurt",
       "health1": 700,
       "dam1": 250,
       "hitspeed1": 1.6,

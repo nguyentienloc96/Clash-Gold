@@ -176,6 +176,11 @@ namespace EventDispatcher
         {
             EventDispatcher.Instance.PostEvent(eventID, null);
         }
+
+        public static void ClearAllListener(this MonoBehaviour listener)
+        {
+            EventDispatcher.Instance.ClearAllListener();
+        }
     }
     #endregion
 }

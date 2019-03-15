@@ -8,15 +8,17 @@ public class Bullet : MonoBehaviour
     public float rangeBoom;
     public bool isBoom;
     public bool isCanFly;
+    private bool isExplosion;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (gameObject.CompareTag("Bullet Hero"))
+        if (gameObject.CompareTag("Bullet Hero") && !isExplosion)
         {
             if (collision.tag == "Enemy")
             {
                 if (!isBoom)
                 {
+                    isExplosion = true;
                     Hero hero = collision.GetComponent<Hero>();
                     hero.parHit.transform.right = -transform.up;
                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
@@ -25,6 +27,7 @@ public class Bullet : MonoBehaviour
                 }
                 else
                 {
+                    isExplosion = true;
                     Collider2D[] arrCol = Physics2D.OverlapCircleAll(collision.transform.position, rangeBoom / 5f, 1 << 12);
                     if (arrCol.Length > 0)
                     {
@@ -56,12 +59,13 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        if (gameObject.CompareTag("Bullet Enemy"))
+        if (gameObject.CompareTag("Bullet Enemy") && !isExplosion)
         {
             if (collision.tag == "Hero")
             {
                 if (!isBoom)
                 {
+                    isExplosion = true;
                     Hero hero = collision.GetComponent<Hero>();
                     hero.parHit.transform.right = -transform.up;
                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
@@ -70,6 +74,7 @@ public class Bullet : MonoBehaviour
                 }
                 else
                 {
+                    isExplosion = true;
                     Collider2D[] arrCol = Physics2D.OverlapCircleAll(collision.transform.position, rangeBoom / 5f, 1 << 12);
                     if (arrCol.Length > 0)
                     {
@@ -106,5 +111,10 @@ public class Bullet : MonoBehaviour
     void OnBecameInvisible()
     {
         gameObject.SetActive(false);
+    }
+
+    private void OnEnable()
+    {
+        isExplosion = false;
     }
 }

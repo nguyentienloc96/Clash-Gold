@@ -6,6 +6,7 @@ using UnityEngine;
 public struct InfoHero {
     public int ID;
     public string NameHero;
+    public string Info;
     public int numberHero;
     public float health;
     public float dame;
