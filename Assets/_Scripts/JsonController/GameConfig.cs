@@ -60,7 +60,7 @@ public class GameConfig : MonoBehaviour
     public int LandDiv;
     public List<string> lstSpeech = new List<string>();
     public List<InfoHero> lstInfoHero = new List<InfoHero>();
-
+    public List<Vector2[]> listMap = new List<Vector2[]>();
     public string ID_UnityAds_ios;
     public string ID_Inter_android;
     public string ID_Inter_ios;

@@ -56,20 +56,6 @@ public class GameManager : MonoBehaviour
     public float weight;
     public Transform boxManager;
     private Box[,] arrBox = new Box[9, 9];
-    private List<Vector2[]> LsPosGolds = new List<Vector2[]>()
-    {
-        new Vector2[] { new Vector2(3,3), new Vector2(0,0), new Vector2(0,1), new Vector2(0,2), new Vector2(1,0), new Vector2(1,2), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(2,6), new Vector2(3,6), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(4,5), new Vector2(4,6), new Vector2(5,3), new Vector2(5,4)},
-        new Vector2[] { new Vector2(3,3), new Vector2(0,4), new Vector2(1,2), new Vector2(1,3), new Vector2(1,4), new Vector2(2,0), new Vector2(2,1), new Vector2(2,3), new Vector2(2,5), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(3,5), new Vector2(4,1), new Vector2(4,3), new Vector2(4,5), new Vector2(4,6), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4)},
-        new Vector2[] { new Vector2(2,3), new Vector2(0,3), new Vector2(0,4), new Vector2(0,5), new Vector2(1,2), new Vector2(1,3), new Vector2(1,5), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(3,3), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(5,3), new Vector2(5,4), new Vector2(5,5), new Vector2(5,6)},
-        new Vector2[] { new Vector2(2,2), new Vector2(0,0), new Vector2(0,1), new Vector2(0,2), new Vector2(0,4), new Vector2(0,5), new Vector2(0,6), new Vector2(1,0), new Vector2(1,2), new Vector2(1,4), new Vector2(1,6), new Vector2(2,0), new Vector2(2,1), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(2,6), new Vector2(3,4), new Vector2(4,3), new Vector2(4,4)},
-        new Vector2[] { new Vector2(2,3), new Vector2(0,3), new Vector2(0,4), new Vector2(1,0), new Vector2(1,1), new Vector2(1,2), new Vector2(1,4), new Vector2(2,0), new Vector2(2,2), new Vector2(2,4), new Vector2(3,0), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(4,1), new Vector2(4,4), new Vector2(5,1), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4)},
-        new Vector2[] { new Vector2(2,3), new Vector2(0,1), new Vector2(0,2), new Vector2(0,3), new Vector2(0,4), new Vector2(0,5), new Vector2(1,1), new Vector2(1,5), new Vector2(2,1), new Vector2(2,2), new Vector2(2,4), new Vector2(2,5), new Vector2(3,3), new Vector2(3,5), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(4,5)},
-        new Vector2[] { new Vector2(2,1), new Vector2(0,0), new Vector2(0,1), new Vector2(1,0), new Vector2(1,1), new Vector2(1,2), new Vector2(1,3), new Vector2(1,4), new Vector2(2,3), new Vector2(2,4), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(4,1), new Vector2(4,2), new Vector2(4,3), new Vector2(4,4), new Vector2(4,5), new Vector2(5,4), new Vector2(5,5)},
-        new Vector2[] { new Vector2(4,2), new Vector2(1,1), new Vector2(1,2), new Vector2(1,4), new Vector2(1,5), new Vector2(2,1), new Vector2(2,2), new Vector2(2,3), new Vector2(2,4), new Vector2(2,5), new Vector2(3,2), new Vector2(3,5), new Vector2(4,1), new Vector2(4,3), new Vector2(4,5), new Vector2(5,1), new Vector2(5,2), new Vector2(5,3), new Vector2(5,4), new Vector2(5,5)},
-        new Vector2[] { new Vector2(3,3), new Vector2(1,0), new Vector2(1,1), new Vector2(1,2), new Vector2(1,3), new Vector2(1,4), new Vector2(1,5), new Vector2(1,6), new Vector2(2,0), new Vector2(2,2), new Vector2(2,4), new Vector2(2,6), new Vector2(3,0), new Vector2(3,1), new Vector2(3,2), new Vector2(3,4), new Vector2(3,5), new Vector2(3,6), new Vector2(4,3)},
-        new Vector2[] { new Vector2(3,1), new Vector2(1,5), new Vector2(2,0), new Vector2(2,1), new Vector2(2,2), new Vector2(2,4), new Vector2(2,5), new Vector2(2,6), new Vector2(3,0), new Vector2(3,2), new Vector2(3,3), new Vector2(3,4), new Vector2(3,5), new Vector2(3,6), new Vector2(4,0), new Vector2(4,1), new Vector2(4,2), new Vector2(4,4), new Vector2(4,5), new Vector2(4,6), new Vector2(5,5)}
-
-    };
     public List<Box> lsBoxMove = new List<Box>();
     public List<Box> lsBoxCanMove = new List<Box>();
     public List<Sprite> lsSpriteMap = new List<Sprite>();
@@ -437,7 +423,7 @@ public class GameManager : MonoBehaviour
     #region === MAP ===
     public void GenerateMapBox()
     {
-        int idPosGold = UnityEngine.Random.Range(0, LsPosGolds.Count);
+        int idPosGold = UnityEngine.Random.Range(0, GameConfig.Instance.listMap.Count);
         for (int i = 0; i < row; i++)
         {
             for (int j = 0; j < col; j++)
@@ -544,7 +530,7 @@ public class GameManager : MonoBehaviour
     public bool CheckPos(int row, int col, int id)
     {
         bool isCheck = false;
-        foreach (Vector2 v2 in LsPosGolds[id])
+        foreach (Vector2 v2 in GameConfig.Instance.listMap[id])
         {
             if (new Vector2(v2.x + 1, v2.y + 1) == new Vector2(col, row))
             {

@@ -59,8 +59,8 @@
   "heroes": {
     "Barbarians": {
       "id": 1,
-	  "Name":"The Furious Quartet",
-	  "Info":"4 melee attackers",
+      "Name": "The Furious Quartet",
+      "Info": "4 melee attackers",
       "health1": 436,
       "dam1": 159,
       "hitspeed1": 1.4,
@@ -75,13 +75,13 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 1,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "The Wing Trio": {
       "id": 2,
-	  "Name":"The Wing Trio",
-	  "Info":"3 flying attackers",
+      "Name": "The Wing Trio",
+      "Info": "3 flying attackers",
       "health1": 190,
       "dam1": 84,
       "hitspeed1": 1,
@@ -96,13 +96,13 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 2,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Deadly MOM": {
       "id": 3,
-	  "Name":"Deadly MOM",
-	  "Info":"A special Archer that Summons bloody freaks.",
+      "Name": "Deadly MOM",
+      "Info": "A special Archer that Summons bloody freaks.",
       "health1": 787,
       "dam1": 69,
       "hitspeed1": 1,
@@ -117,13 +117,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 3,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Balloon King": {
       "id": 4,
-	  "Name":"Balloon King",
-	  "Info":"A flying archer that summons evil spirits",
+      "Name": "Balloon King",
+      "Info": "A flying archer that summons evil spirits",
       "health1": 750,
       "dam1": 260,
       "hitspeed1": 1.5,
@@ -138,13 +138,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 4,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Short Gunner": {
       "id": 5,
-	  "Name":"Short Gunner",
-	  "Info":"His gun deals more damage at short distance.",
+      "Name": "Short Gunner",
+      "Info": "His gun deals more damage at short distance.",
       "health1": 696,
       "dam1": 62,
       "hitspeed1": 2.2,
@@ -159,13 +159,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 3,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Flying gunner": {
       "id": 6,
-	  "Name":"Flying gunner",
-	  "Info":"He can fly and he can fire! The shorter the distance, The bigger the damage.",
+      "Name": "Flying gunner",
+      "Info": "He can fly and he can fire! The shorter the distance, The bigger the damage.",
       "health1": 490,
       "dam1": 30,
       "hitspeed1": 2.2,
@@ -180,13 +180,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 4,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Drunken Bomber": {
       "id": 7,
-	  "Name":"Drunken Bomber",
-	  "Info":"Deals area damage that can wipe out a bunch of enemies.",
+      "Name": "Drunken Bomber",
+      "Info": "Deals area damage that can wipe out a bunch of enemies.",
       "health1": 311,
       "dam1": 271,
       "hitspeed1": 1.9,
@@ -201,13 +201,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 3,
-	  "rangeBoom": 2.5,
-	  "dameDead": 0
+      "rangeBoom": 2.5,
+      "dameDead": 0
     },
     "Explosive Wing": {
       "id": 8,
-	  "Name":"Explosive Wing",
-	  "Info":"Deals area damage that can wipe out a bunch of enemies.",
+      "Name": "Explosive Wing",
+      "Info": "Deals area damage that can wipe out a bunch of enemies.",
       "health1": 564,
       "dam1": 133,
       "hitspeed1": 1.5,
@@ -222,13 +222,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 4,
-	  "rangeBoom": 2.5,
-	  "dameDead": 0
+      "rangeBoom": 2.5,
+      "dameDead": 0
     },
     "Canon": {
       "id": 9,
-	  "Name":"Canon",
-	  "Info":"Very wide range.",
+      "Name": "Canon",
+      "Info": "Very wide range.",
       "health1": 190,
       "dam1": 127,
       "hitspeed1": 2,
@@ -243,13 +243,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 5,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Reflector": {
       "id": 10,
-	  "Name":"Reflector",
-	  "Info":"reflect damage when being attacked by melee attackers",
+      "Name": "Reflector",
+      "Info": "reflect damage when being attacked by melee attackers",
       "health1": 598,
       "dam1": 176,
       "hitspeed1": 1.1,
@@ -265,13 +265,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 3,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Flying reflector": {
       "id": 11,
-	  "Name":"Flying reflector",
-	  "Info":"reflect damage when being attacked by melee attackers",
+      "Name": "Flying reflector",
+      "Info": "reflect damage when being attacked by melee attackers",
       "health1": 490,
       "dam1": 192,
       "hitspeed1": 1.8,
@@ -287,13 +287,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 4,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Archer": {
       "id": 12,
-	  "Name":"Archer",
-	  "Info":"Pure Archer",
+      "Name": "Archer",
+      "Info": "Pure Archer",
       "health1": 490,
       "dam1": 96,
       "hitspeed1": 1,
@@ -308,13 +308,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 3,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Flying archer": {
       "id": 13,
-	  "Name":"Flying archer",
-	  "Info":"Pure Archer",
+      "Name": "Flying archer",
+      "Info": "Pure Archer",
       "health1": 298,
       "dam1": 234,
       "hitspeed1": 1,
@@ -329,13 +329,13 @@
       "idMom": 0,
       "speedBullet": 10,
       "type": 4,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Bloody Swords": {
       "id": 14,
-	  "Name":"Bloody Swords",
-	  "Info":"Mini Assassin",
+      "Name": "Bloody Swords",
+      "Info": "Mini Assassin",
       "health1": 1129,
       "dam1": 598,
       "hitspeed1": 1.8,
@@ -350,13 +350,13 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 1,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Bloody wing": {
       "id": 15,
-	  "Name":"Bloody wing",
-	  "Info":"Mini Assassin",
+      "Name": "Bloody wing",
+      "Info": "Mini Assassin",
       "health1": 695,
       "dam1": 258,
       "hitspeed1": 1.6,
@@ -371,13 +371,13 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 2,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Immortal scyther": {
       "id": 16,
-	  "Name":"Immortal scyther",
-	  "Info":"reborn after his death as a Puppet",
+      "Name": "Immortal scyther",
+      "Info": "reborn after his death as a Puppet",
       "health1": 1395,
       "dam1": 379,
       "hitspeed1": 1.5,
@@ -392,13 +392,13 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 1,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Blasting death": {
       "id": 17,
-	  "Name":"Blasting death",
-	  "Info":"His death body is a BOMB!!!",
+      "Name": "Blasting death",
+      "Info": "His death body is a BOMB!!!",
       "health1": 996,
       "dam1": 454,
       "hitspeed1": 3,
@@ -413,13 +413,13 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 2,
-	  "rangeBoom": 1.5,
-	  "dameDead": 272
+      "rangeBoom": 1.5,
+      "dameDead": 272
     },
     "Twisting axe": {
       "id": 18,
-	  "Name":"Twisting axe",
-	  "Info":"Very agressive girl, deals area damage when she attacks",
+      "Name": "Twisting axe",
+      "Info": "Very agressive girl, deals area damage when she attacks",
       "health1": 1654,
       "dam1": 221,
       "hitspeed1": 1.6,
@@ -434,13 +434,13 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 1,
-	  "rangeBoom": 0.5,
-	  "dameDead": 0
+      "rangeBoom": 0.5,
+      "dameDead": 0
     },
     "Flying axe": {
       "id": 19,
-	  "Name":"Flying axe",
-	  "Info":"She can fly like an angel. When she twists her axe, her surrounding get hurt",
+      "Name": "Flying axe",
+      "Info": "She can fly like an angel. When she twists her axe, her surrounding get hurt",
       "health1": 700,
       "dam1": 250,
       "hitspeed1": 1.6,
@@ -455,12 +455,12 @@
       "idMom": 0,
       "speedBullet": 0,
       "type": 2,
-	  "rangeBoom": 0.5,
-	  "dameDead": 0
+      "rangeBoom": 0.5,
+      "dameDead": 0
     },
     "Deadly baby": {
       "id": 31,
-	  "Name":"Deadly baby",
+      "Name": "Deadly baby",
       "health1": 32,
       "dam1": 32,
       "hitspeed1": 1,
@@ -474,12 +474,12 @@
       "idMom": 3,
       "speedBullet": 0,
       "type": 1,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Little soul": {
       "id": 32,
-	  "Name":"Evil spirit",
+      "Name": "Evil spirit",
       "health1": 67,
       "dam1": 67,
       "hitspeed1": 1.1,
@@ -493,12 +493,12 @@
       "idMom": 5,
       "speedBullet": 0,
       "type": 2,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
     },
     "Animated puppets": {
       "id": 33,
-	  "Name":"Animated puppets",
+      "Name": "Animated puppets",
       "health1": 98,
       "dam1": 98,
       "hitspeed1": 1.1,
@@ -512,8 +512,50 @@
       "idMom": 18,
       "speedBullet": 0,
       "type": 1,
-	  "rangeBoom": 0,
-	  "dameDead": 0
+      "rangeBoom": 0,
+      "dameDead": 0
+    }
+  },
+  "listMap": {
+    "map1": {
+      "x": [3,0,0,0,1,1,2,2,2,2,2,3,4,4,4,4,4,4,5,5],
+      "y": [3,0,1,2,0,2,2,3,4,5,6,6,1,2,3,4,5,6,3,4]
+    },
+    "map2": {
+      "x": [3,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5],
+      "y": [3,4,2,3,4,0,1,3,5,1,2,4,5,1,3,5,6,2,3,4]
+    },
+    "map3": {
+      "x": [2,0,0,0,1,1,1,2,2,2,2,3,4,4,4,4,5,5,5,5],
+      "y": [3,3,4,5,2,3,5,2,3,4,5,3,1,2,3,4,3,4,5,6]
+    },
+    "map4": {
+      "x": [2,0,0,0,0,0,0,1,1,1,1,2,2,2,2,2,2,3,4,4],
+      "y": [2,0,1,2,4,5,6,0,2,4,6,0,1,3,4,5,6,4,3,4]
+    },
+    "map5": {
+      "x": [2,0,0,1,1,1,1,2,2,2,3,3,3,3,4,4,5,5,5,5],
+      "y": [3,3,4,0,1,2,4,0,2,4,0,1,2,4,1,4,1,2,3,4]
+    },
+    "map6": {
+      "x": [2,0,0,0,0,0,1,1,2,2,2,2,3,3,4,4,4,4,4],
+      "y": [3,1,2,3,4,5,1,5,1,2,4,5,3,5,1,2,3,4,5]
+    },
+    "map7": {
+      "x": [2,0,0,1,1,1,1,1,2,2,3,3,3,4,4,4,4,4,5,5],
+      "y": [1,0,1,0,1,2,3,4,3,4,1,2,4,1,2,3,4,5,4,5]
+    },
+    "map8": {
+      "x": [4,1,1,1,1,2,2,2,2,2,3,3,4,4,4,5,5,5,5,5],
+      "y": [2,1,2,4,5,1,2,3,4,5,2,5,1,3,5,1,2,3,4,5]
+    },
+    "map9": {
+      "x": [3,1,1,1,1,1,1,1,2,2,2,2,3,3,3,3,3,3,4],
+      "y": [3,0,1,2,3,4,5,6,0,2,4,6,0,1,2,4,5,6,3]
+    },
+    "map10": {
+      "x": [3,1,2,2,2,2,2,2,3,3,3,3,3,3,4,4,4,4,4,4,5],
+      "y": [1,5,0,1,2,4,5,6,0,2,3,4,5,6,0,1,2,4,5,6,5]
     }
   }
 }

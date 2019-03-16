@@ -157,7 +157,17 @@ public class LoadDataJson : MonoBehaviour
                     _info.typeHero = TypeHero.Canon;
                 }
                 GameConfig.Instance.lstInfoHero.Add(_info);
-            }          
+            }
+
+            for (int t = 0; t < objJson["listMap"].Count; t++)
+            {
+                Vector2[] arrMap = new Vector2[objJson["listMap"][t][0].Count];
+                for(int k = 0; k < objJson["listMap"][t][0].Count; k++)
+                {
+                    arrMap[k] = new Vector2(objJson["listMap"][t][0][k].AsInt, objJson["listMap"][t][1][k].AsInt);
+                }
+                GameConfig.Instance.listMap.Add(arrMap);
+            }
         }
         gameManager.SetActive(true);
     }
