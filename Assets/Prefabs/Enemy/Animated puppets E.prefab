@@ -397,6 +397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoHero:
     ID: 0
+    NameHero: 
+    Info: 
     numberHero: 0
     health: 0
     dame: 0
@@ -412,7 +414,8 @@ MonoBehaviour:
     idMom: 0
     idBaby: 0
     typeHero: 0
-  rb: {fileID: 0}
+    rangeBoom: 0
+    dameDead: 0
   animator: {fileID: 95816846756672396}
   typeAction: 0
   numIdle: 0
@@ -431,9 +434,15 @@ MonoBehaviour:
   posStart: {x: 0, y: 0, z: 0}
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
+  lsBoxPlayer: []
+  isLsMove: 0
   isPause: 0
   timeCheckCameBack: 0
   speedMin: 0
+  countHeroStart: 0
+  house: {fileID: 0}
+  goldMine: {fileID: 0}
+  idGoldMine: 0
 --- !u!198 &198091142087024088
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -10923,7 +10932,7 @@ SpriteRenderer:
   m_SortingLayerID: -713609825
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 8cc0e1b2a4805904da7eefe562917e67, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50696c169f638a9418ba52870f7243d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -11011,7 +11020,7 @@ SpriteRenderer:
   m_SortingLayerID: -713609825
   m_SortingLayer: 2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: b8187810db2cbae4bb0ea04ea9c6b1d9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ff2e0288c4c30541b407ee587d0052b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

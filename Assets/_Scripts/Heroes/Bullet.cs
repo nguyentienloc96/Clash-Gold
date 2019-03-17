@@ -23,6 +23,7 @@ public class Bullet : MonoBehaviour
                     hero.parHit.transform.right = -transform.up;
                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                     hero.BeingAttacked(dameBullet);
+                    Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
                     gameObject.SetActive(false);
                 }
                 else
@@ -43,6 +44,8 @@ public class Bullet : MonoBehaviour
                                         hero.parHit.transform.right = -transform.up;
                                         hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                                         hero.BeingAttacked(dameBullet);
+                                        Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
+
                                     }
                                 }
                                 else
@@ -50,6 +53,8 @@ public class Bullet : MonoBehaviour
                                     hero.parHit.transform.right = -transform.up;
                                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                                     hero.BeingAttacked(dameBullet);
+                                    Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
+
                                 }
                             }
                         }
@@ -70,6 +75,8 @@ public class Bullet : MonoBehaviour
                     hero.parHit.transform.right = -transform.up;
                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                     hero.BeingAttacked(dameBullet);
+                    Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
+
                     gameObject.SetActive(false);
                 }
                 else
@@ -90,6 +97,8 @@ public class Bullet : MonoBehaviour
                                         hero.parHit.transform.right = -transform.up;
                                         hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                                         hero.BeingAttacked(dameBullet);
+                                        Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
+
                                     }
                                 }
                                 else
@@ -97,6 +106,8 @@ public class Bullet : MonoBehaviour
                                     hero.parHit.transform.right = -transform.up;
                                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                                     hero.BeingAttacked(dameBullet);
+                                    Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
+
                                 }
                             }
                         }

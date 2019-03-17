@@ -20,7 +20,9 @@ public class Hero_FlyingAxe : Hero
             {
                 if ((gameObject.tag == "Hero" && col.tag == "Enemy") || (gameObject.tag == "Enemy" && col.tag == "Hero"))
                 {
-                    col.GetComponent<Hero>().BeingAttacked(infoHero.dame * countHeroStart);
+                    col.GetComponent<Hero>().BeingAttacked(infoHero.dame * infoHero.numberHero);
+                    Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
+
                 }
             }
         }
