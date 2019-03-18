@@ -15,6 +15,7 @@ public class Hero_ExplosiveWing : Hero {
         _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
         _bullet.GetComponent<Bullet>().isBoom = true;
         _bullet.GetComponent<Bullet>().rangeBoom = infoHero.rangeBoom;
+        _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
     public override void Die()

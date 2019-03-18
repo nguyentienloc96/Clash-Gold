@@ -258,15 +258,18 @@ public abstract class Hero : MonoBehaviour
     public void MoveToLsPosition(List<Box> lsPos)
     {
         float speed = isMove ? speedMin : infoHero.speed;
-        Vector3 diff = lsPos[checkNumberPos].transform.position - transform.position;
+        Vector3 posNext = lsPos[checkNumberPos].transform.position;
+        posNext.z = -1f;
+        Vector3 diff = posNext - transform.position;
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        if (transform.position == lsPos[checkNumberPos].transform.position)
+        
+        if (transform.position == posNext)
         {
             checkNumberPos++;
         }
-        transform.position = Vector3.MoveTowards(transform.position, lsPos[checkNumberPos].transform.position, speed / 10f * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, posNext, speed / 10f * Time.deltaTime);
         AnimRun();
     }
 

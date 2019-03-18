@@ -17,6 +17,7 @@ public class Hero_ShortGunner : Hero {
         if (xExp <= 0)
             xExp = 1;
         _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero * xExp;
+        _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
     public override void Die()

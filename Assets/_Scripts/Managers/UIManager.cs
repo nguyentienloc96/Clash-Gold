@@ -200,7 +200,6 @@ public class UIManager : MonoBehaviour
         else
         {
             SetActivePanel(panelChooseLevel);
-            //SetActivePanel(panelYesNoNewPlay);
         }
         SetDeActivePanel(panelGroupHome);
     }
@@ -213,6 +212,7 @@ public class UIManager : MonoBehaviour
         this.PostEvent(EventID.StartGame);
         this.PostEvent(EventID.UpLevelHouse);
         panelHome.SetActive(false);
+        Fade.Instance.panelLoadingStory.SetActive(true);
         ScenesManager.Instance.GoToScene(() =>
           {
               GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);

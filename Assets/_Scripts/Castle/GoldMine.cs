@@ -366,6 +366,7 @@ public class GoldMine : MonoBehaviour
                 hero.AddHero(numberEnemy);
                 hero.posStart = lsPos[i].position;
                 hero.GetComponent<BoxCollider2D>().enabled = false;
+                hero.transform.localScale = new Vector3(2f, 2f, 2f);
             }
 
         }
@@ -383,6 +384,7 @@ public class GoldMine : MonoBehaviour
         hero.infoHero.capWar = 0;
         hero.AddHero(number);
         hero.posStart = lsPos[lstHeroGoldMine.Count].position;
+        hero.transform.localScale = new Vector3(2f, 2f, 2f);
         lstHeroGoldMine.Add(hero);
     }
 
@@ -398,6 +400,7 @@ public class GoldMine : MonoBehaviour
         hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
         hero.AddHero(number);
         hero.posStart = lsPos[i].position;
+        hero.transform.localScale = new Vector3(2f, 2f, 2f);
         lstHeroGoldMine.Add(hero);
     }
 
@@ -421,7 +424,7 @@ public class GoldMine : MonoBehaviour
                         GameManager.Instance.posTriggerGoldMine = other.transform.position;
                     }
                     AttackGoldMineEnemy();
-
+                    Fade.Instance.panelLoadingAttack.SetActive(true);
                     ScenesManager.Instance.GoToScene(() =>
                      {
                          GameManager.Instance.isAttack = true;
@@ -462,6 +465,7 @@ public class GoldMine : MonoBehaviour
                     if (lstHeroGoldMine.Count > 0)
                     {
                         GameManager.Instance.isBreak = false;
+                        Fade.Instance.panelLoadingAttack.SetActive(true);
                         ScenesManager.Instance.GoToScene(() =>
                          {
                              GameManager.Instance.isAttack = true;

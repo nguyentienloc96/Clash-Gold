@@ -522,6 +522,7 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.Log(11);
+        yield return new WaitForSeconds(1f);
         yield return new WaitForEndOfFrame();
         Debug.Log(12);
         Fade.Instance.EndFade();
@@ -625,7 +626,14 @@ public class GameManager : MonoBehaviour
                 lineEnemyAttack.positionCount = lsPathFinding.Count;
                 for (int i = lsPathFinding.Count - 1; i >= 0; i--)
                 {
-                    lineEnemyAttack.SetPosition(lsPathFinding.Count - 1 - i, lsPathFinding[i].transform.position);
+                    Vector3 posNext = lsPathFinding[i].transform.position;
+                    posNext.z = -0.5f;
+                    lineEnemyAttack.SetPosition(lsPathFinding.Count - 1 - i, posNext);
+                    if (i < lsPathFinding.Count - 1)
+                    {
+                        var distance = Vector3.Distance(lsPathFinding[i + 1].transform.position, posNext);
+                        lineEnemyAttack.material.mainTextureScale = new Vector3(distance, 1, 1);
+                    }
                 }
             }
         }

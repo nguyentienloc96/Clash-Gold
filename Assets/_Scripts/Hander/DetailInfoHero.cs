@@ -11,7 +11,6 @@ public class DetailInfoHero : MonoBehaviour
     public Text txtPrice;
     public GameObject priceObj;
     public Button btnYes;
-    public Button btnNo;
     private bool isBuild;
 
     public void GetInfo(Sprite icon, string name, string info, string detail,long price,UnityAction btnYes_Onclick ,bool isBuild = false)
@@ -30,14 +29,6 @@ public class DetailInfoHero : MonoBehaviour
             priceObj.SetActive(false);
         }
         btnYes.interactable = true;
-        if (isBuild)
-        {
-            btnNo.gameObject.SetActive(true);
-        }
-        else
-        {
-            btnNo.gameObject.SetActive(false);
-        }
         btnYes.onClick.RemoveAllListeners();
         btnYes.onClick.AddListener(btnYes_Onclick);
     }

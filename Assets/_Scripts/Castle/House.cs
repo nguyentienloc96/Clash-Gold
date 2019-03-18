@@ -180,11 +180,17 @@ public class House : MonoBehaviour
         this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
         UIManager.Instance.panelInfoHero.SetActive(true);
         DetailInfoHero detail = UIManager.Instance.panelInfoHero.GetComponent<DetailInfoHero>();
+        string infoDetail = "";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].health + "\n";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].dame + "\n";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].hitSpeed + "\n";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].speed + "\n";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].range;
         detail.GetInfo(
             UIManager.Instance.sprAvatarHero[_id],
             GameConfig.Instance.lstInfoHero[_id].NameHero,
             GameConfig.Instance.lstInfoHero[_id].Info,
-            GameConfig.Instance.lstInfoHero[_id].NameHero,
+            infoDetail,
             this.price,
             () => 
             {

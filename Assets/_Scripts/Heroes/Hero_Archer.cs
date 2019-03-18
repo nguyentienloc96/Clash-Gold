@@ -12,6 +12,7 @@ public class Hero_Archer : Hero {
         _bullet.transform.right = transform.right;
         _bullet.GetComponent<Rigidbody2D>().velocity = transform.up * infoHero.speedBullet;
         _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
+        _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
     public override void Die()

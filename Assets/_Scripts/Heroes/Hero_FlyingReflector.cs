@@ -13,6 +13,7 @@ public class Hero_FlyingReflector : Hero {
         _bullet.transform.up = diff;
         _bullet.GetComponent<Rigidbody2D>().velocity = diff * infoHero.speedBullet;
         _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
+        _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
     public override void Die()

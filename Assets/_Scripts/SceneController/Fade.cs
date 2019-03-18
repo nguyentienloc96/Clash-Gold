@@ -4,7 +4,9 @@ using DG.Tweening;
 public class Fade : MonoBehaviour
 {
     public static Fade Instance;
-
+    public GameObject panelLoadingStart;
+    public GameObject panelLoadingStory;
+    public GameObject panelLoadingAttack;
     public enum FadeState
     {
         None, FadeInDone, FadeOutDone
@@ -26,6 +28,9 @@ public class Fade : MonoBehaviour
     public void EndFade()
     {
         transform.localScale = new Vector3(0f, 0f, 0f);
+        panelLoadingStart.SetActive(false);
+        panelLoadingStory.SetActive(false);
+        panelLoadingAttack.SetActive(false);
         state = FadeState.None;
     }
 

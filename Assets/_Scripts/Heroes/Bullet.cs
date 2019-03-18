@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
     public float rangeBoom;
     public bool isBoom;
     public bool isCanFly;
-    private bool isExplosion;
+    public bool isExplosion;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -121,10 +121,5 @@ public class Bullet : MonoBehaviour
     void OnBecameInvisible()
     {
         gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        isExplosion = false;
     }
 }
