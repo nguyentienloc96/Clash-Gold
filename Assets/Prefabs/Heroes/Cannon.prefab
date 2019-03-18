@@ -333,7 +333,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03361039, y: 0.1067624}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -344,7 +344,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5}
+  m_Size: {x: 0.43277922, y: 0.57908344}
   m_EdgeRadius: 0
 --- !u!95 &95622501833722122
 Animator:
@@ -397,6 +397,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoHero:
     ID: 0
+    NameHero: 
+    Info: 
     numberHero: 0
     health: 0
     dame: 0
@@ -412,7 +414,8 @@ MonoBehaviour:
     idMom: 0
     idBaby: 0
     typeHero: 0
-  rb: {fileID: 0}
+    rangeBoom: 0
+    dameDead: 0
   animator: {fileID: 95622501833722122}
   typeAction: 0
   numIdle: 1
@@ -431,9 +434,15 @@ MonoBehaviour:
   posStart: {x: 0, y: 0, z: 0}
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
+  lsBoxPlayer: []
+  isLsMove: 0
   isPause: 0
   timeCheckCameBack: 0
   speedMin: 0
+  countHeroStart: 0
+  house: {fileID: 0}
+  goldMine: {fileID: 0}
+  idGoldMine: 0
   timeSurvive: 0
 --- !u!198 &198490949618085758
 ParticleSystem:

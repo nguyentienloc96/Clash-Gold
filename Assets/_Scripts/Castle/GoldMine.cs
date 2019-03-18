@@ -419,10 +419,7 @@ public class GoldMine : MonoBehaviour
                         GameManager.Instance.isBeingAttack = true;
                     }
                     GameManager.Instance.GolEnemyBeingAttack = this;
-                    if (GameManager.Instance.goldMineInSide == null)
-                    {
-                        GameManager.Instance.posTriggerGoldMine = other.transform.position;
-                    }
+                    GameManager.Instance.posTriggerGoldMine = other.transform.position;
                     AttackGoldMineEnemy();
                     Fade.Instance.panelLoadingAttack.SetActive(true);
                     ScenesManager.Instance.GoToScene(() =>

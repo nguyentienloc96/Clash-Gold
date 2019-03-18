@@ -19,21 +19,7 @@ public class ItemHeroRelace : MonoBehaviour
     {
         int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero;
         UIManager.Instance.panelRelace.SetActive(false);
-        UIManager.Instance.panelInfoHero.SetActive(true);
-        DetailInfoHero detail = UIManager.Instance.panelInfoHero.GetComponent<DetailInfoHero>();
-        detail.GetInfo(
-            UIManager.Instance.sprAvatarHero[idHero - 1],
-            GameConfig.Instance.lstInfoHero[idHero - 1].NameHero,
-            GameConfig.Instance.lstInfoHero[idHero - 1].Info,
-            GameConfig.Instance.lstInfoHero[idHero - 1].NameHero,
-            0,
-            () =>
-            {
-                YesRelaceItemHero(idHero);
-                UIManager.Instance.panelInfoHero.SetActive(false);
-            },
-            true
-            );
+        YesRelaceItemHero(idHero);
     }
 
     public void YesRelaceItemHero(int idHero)

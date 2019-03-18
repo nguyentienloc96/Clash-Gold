@@ -120,8 +120,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689042427745408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -2}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 4414080315528002}
   - {fileID: 4182129549998640}
@@ -141,7 +141,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0072271526, y: -0.004129708}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -152,7 +152,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6711111, y: 0.6622222}
+  m_Size: {x: 0.6566568, y: 0.6209242}
   m_EdgeRadius: 0
 --- !u!114 &114434942514772356
 MonoBehaviour:
@@ -165,16 +165,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1affb223141cee44e92de43e22ca1c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  healthMax: 0
   price: 0
   speed: 10
   isCanReleaseCanon: 0
   posMove: {x: 0, y: 0, z: 0}
   isMove: 0
-  txtLevel: {fileID: 0}
-  txtHealth: {fileID: 0}
-  cameraMain: {fileID: 0}
   lsPos:
   - {fileID: 4414080315528002}
   - {fileID: 4182129549998640}

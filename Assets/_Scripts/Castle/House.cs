@@ -185,7 +185,14 @@ public class House : MonoBehaviour
         infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].dame + "\n";
         infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].hitSpeed + "\n";
         infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].speed + "\n";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].range;
+        if (GameConfig.Instance.lstInfoHero[_id].range != 0)
+        {
+            infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].range;
+        }
+        else
+        {
+            infoDetail += ": Mele";
+        }
         detail.GetInfo(
             UIManager.Instance.sprAvatarHero[_id],
             GameConfig.Instance.lstInfoHero[_id].NameHero,

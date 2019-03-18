@@ -522,7 +522,7 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.Log(11);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         yield return new WaitForEndOfFrame();
         Debug.Log(12);
         Fade.Instance.EndFade();
@@ -753,6 +753,8 @@ public class GameManager : MonoBehaviour
         if (box.isTop && box.isBottom && box.isRight && box.isLeft)
         {
             box.spGround.sprite = lsSpriteMap[5];
+            int rdom = UnityEngine.Random.Range(0, 4);
+            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f * rdom);
         }
         else if (box.isBottom && box.isRight && box.isLeft)
         {

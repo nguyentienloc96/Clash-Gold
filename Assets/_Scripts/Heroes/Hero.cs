@@ -143,6 +143,7 @@ public abstract class Hero : MonoBehaviour
 
     protected void TakeDamage(float _dame)
     {
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(128,42,42,128);
         parHit.Play();
         int numberRemove = (int)(_dame / infoHero.health);
         int numberSub = numberRemove;
@@ -176,7 +177,16 @@ public abstract class Hero : MonoBehaviour
             infoHero.numberHero = 0;
             Die();
         }
-        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        else
+        {
+            Invoke("EndTakeDamage", 0.15f);
+        }
+        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);        
+    }
+
+    public void EndTakeDamage()
+    {
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = Color.white;
     }
 
     public void CheckEnemy()
