@@ -132,7 +132,6 @@ public class Castle : MonoBehaviour
         if (price > GameManager.Instance.gold)
             return;
 
-        UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpHealth);
         GameManager.Instance.AddGold(-price);
         level++;
         Invoke("HideAnim", 1f);
@@ -140,7 +139,7 @@ public class Castle : MonoBehaviour
 
     void HideAnim()
     {
-        UIManager.Instance.SetDeActivePanel(UIManager.Instance.anim_UpHealth);
+        //UIManager.Instance.SetDeActivePanel(UIManager.Instance.anim_UpHealth);
     }
 
     public void MoveToPosition(Vector3 _toPos)

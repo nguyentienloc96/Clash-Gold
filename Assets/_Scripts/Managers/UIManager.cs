@@ -26,9 +26,9 @@ public class UIManager : MonoBehaviour
 
     [Header("IN-WALL")]
     public GameObject panelInWall;
-    public GameObject panelBuild;
+    public GameObject panelBuildSelect;
     public GameObject panelUpgrade;
-    public GameObject panelInfoHero;
+    public GameObject panelBuildHouse;
     public List<BuildHouseObject> lstHouse;
     public Sprite[] sprAvatarHero;
 
@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
     public Image iconHero;
     public Text txtNameHero;
     public Text txtInfoHero;
+    public DetailIcon detailIcon;
 
     [Header("UI SHOWSPEECH")]
     public GameObject panelShowSpeech;
@@ -51,8 +52,6 @@ public class UIManager : MonoBehaviour
     public List<Sprite> lstSpriteHouse;
     public GameObject anim_UpLV_House;
     public GameObject anim_UpLV_GoldMine;
-    public GameObject anim_UpHealth;
-    public GameObject mouseClick;
     public Canvas parentCanvas;
     [HideInInspector]
     public List<string> arrAlphabetNeed = new List<string>();
@@ -177,7 +176,7 @@ public class UIManager : MonoBehaviour
             Vector2 click;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(parentCanvas.transform as RectTransform, Input.mousePosition, parentCanvas.worldCamera, out click);
             Vector3 mousePos = parentCanvas.transform.TransformPoint(click) + new Vector3(0.2f, -0.3f, 0);
-            mouseClick.transform.position = mousePos;
+            //mouseClick.transform.position = mousePos;
         }
     }
     #endregion
@@ -280,7 +279,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowPanelBuild()
     {
-        SetActivePanel(panelBuild);
+        SetActivePanel(panelBuildSelect);
         for (int i = 0; i < lstHouse.Count; i++)
         {
             lstHouse[i].SetLock(GameManager.Instance.lstBuildHouse[i].isUnlock);
@@ -296,7 +295,10 @@ public class UIManager : MonoBehaviour
     public void Btn_x1x10_Upgrade(int _x)
     {
         xUpgrade = _x;
-        _idHeroUpgrade = GameManager.Instance.lstHousePlayer[houseClick].idHero;
+        int _idHeroUpgrade = GameManager.Instance.lstHousePlayer[houseClick].idHero;
+        detailIcon.idHero = _idHeroUpgrade;
+        detailIcon.icon.SetActive(true);
+        detailIcon.info.SetActive(false);
         iconHero.sprite = sprAvatarHero[_idHeroUpgrade - 1];
         txtNameHero.text = GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero;
         txtInfoHero.text = GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].Info;
@@ -324,7 +326,7 @@ public class UIManager : MonoBehaviour
     public void Btn_BuildHouse(int _id)
     {
         GameManager.Instance.lstHousePlayer[houseClick].Build(_id);
-        SetDeActivePanel(panelBuild);
+        SetDeActivePanel(panelBuildSelect);
     }
 
     public void Btn_CloseWall()
@@ -347,36 +349,11 @@ public class UIManager : MonoBehaviour
 
     public void HideAllPanelGame()
     {
-        panelBuild.SetActive(false);
+        panelBuildSelect.SetActive(false);
         panelUpgrade.SetActive(false);
         panelInWall.SetActive(false);
         panelRelace.SetActive(false);
         panelThrowHero.SetActive(false);
         panelThrowHeroAttack.SetActive(false);
-    }
-
-    public int _idHeroUpgrade;
-    public void GetInfoHero()
-    {
-        panelInfoHero.SetActive(true);
-        string infoDetail = "";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].health + "\n";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].dame + "\n";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].hitSpeed + "\n";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].speed + "\n";
-        if (GameConfig.Instance.lstInfoHero[_idHeroUpgrade].range != 0)
-        {
-            infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade].range;
-        }
-        else
-        {
-            infoDetail += ": Mele";
-        }
-        panelInfoHero.GetComponent<DetailInfoHero>().GetInfo(
-            sprAvatarHero[_idHeroUpgrade - 1],
-            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
-            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].Info,
-            infoDetail,
-            0,null);
     }
 }

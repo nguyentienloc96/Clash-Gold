@@ -95,24 +95,6 @@ public class House : MonoBehaviour
         if (typeState == TypeStateHouse.None)
         {
             this.PostEvent(EventID.ClickHouse, idHouse);
-
-            //if (!buttonUpgrade.gameObject.activeSelf)
-            //{
-            //    buttonUpgrade.gameObject.SetActive(true);
-            //}
-            //else
-            //{
-            //    buttonUpgrade.gameObject.SetActive(false);
-            //}
-
-            //if (!buttonRelease.gameObject.activeSelf)
-            //{
-            //    buttonRelease.gameObject.SetActive(true);
-            //}
-            //else
-            //{
-            //    buttonRelease.gameObject.SetActive(false);
-            //}
             UIManager.Instance.ShowPanelUpgrade();
         }
         else if (typeState == TypeStateHouse.Lock)
@@ -124,6 +106,7 @@ public class House : MonoBehaviour
     public void Btn_Upgrade()
     {
         UIManager.Instance.ShowPanelUpgrade();
+
         buttonUpgrade.gameObject.SetActive(false);
         buttonRelease.gameObject.SetActive(false);
 
@@ -178,8 +161,8 @@ public class House : MonoBehaviour
     public void Build(int _id)
     {
         this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
-        UIManager.Instance.panelInfoHero.SetActive(true);
-        DetailInfoHero detail = UIManager.Instance.panelInfoHero.GetComponent<DetailInfoHero>();
+        UIManager.Instance.panelBuildHouse.SetActive(true);
+        DetailInfoHero detail = UIManager.Instance.panelBuildHouse.GetComponent<DetailInfoHero>();
         string infoDetail = "";
         infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].health + "\n";
         infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].dame + "\n";
@@ -199,10 +182,10 @@ public class House : MonoBehaviour
             GameConfig.Instance.lstInfoHero[_id].Info,
             infoDetail,
             this.price,
-            () => 
+            () =>
             {
                 YesBuild(_id);
-                UIManager.Instance.panelInfoHero.SetActive(false);
+                UIManager.Instance.panelBuildHouse.SetActive(false);
             },
             true
             );
