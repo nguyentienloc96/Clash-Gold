@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
     public Text txtPrice;
     public Image iconHero;
     public Text txtNameHero;
+    public Text txtInfoHero;
 
     [Header("UI SHOWSPEECH")]
     public GameObject panelShowSpeech;
@@ -295,8 +296,10 @@ public class UIManager : MonoBehaviour
     public void Btn_x1x10_Upgrade(int _x)
     {
         xUpgrade = _x;
-        iconHero.sprite = sprAvatarHero[GameManager.Instance.lstHousePlayer[houseClick].idHero - 1];
-        txtNameHero.text = GameConfig.Instance.lstInfoHero[GameManager.Instance.lstHousePlayer[houseClick].idHero - 1].NameHero;
+        _idHeroUpgrade = GameManager.Instance.lstHousePlayer[houseClick].idHero;
+        iconHero.sprite = sprAvatarHero[_idHeroUpgrade - 1];
+        txtNameHero.text = GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero;
+        txtInfoHero.text = GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].Info;
         GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(xUpgrade);
         txtLevelCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].level.ToString();
         txtLevelUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].levelWillupgrade.ToString();
@@ -356,12 +359,24 @@ public class UIManager : MonoBehaviour
     public void GetInfoHero()
     {
         panelInfoHero.SetActive(true);
+        string infoDetail = "";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].health + "\n";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].dame + "\n";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].hitSpeed + "\n";
+        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].speed + "\n";
+        if (GameConfig.Instance.lstInfoHero[_idHeroUpgrade].range != 0)
+        {
+            infoDetail += ": " + GameConfig.Instance.lstInfoHero[_idHeroUpgrade].range;
+        }
+        else
+        {
+            infoDetail += ": Mele";
+        }
         panelInfoHero.GetComponent<DetailInfoHero>().GetInfo(
-            sprAvatarHero[_idHeroUpgrade],
+            sprAvatarHero[_idHeroUpgrade - 1],
             GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
             GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].Info,
-            GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero,
-            0,
-            () => panelInfoHero.SetActive(false));
+            infoDetail,
+            0,null);
     }
 }
