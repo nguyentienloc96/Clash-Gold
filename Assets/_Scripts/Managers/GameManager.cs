@@ -632,7 +632,7 @@ public class GameManager : MonoBehaviour
                     if (i < lsPathFinding.Count - 1)
                     {
                         var distance = Vector3.Distance(lsPathFinding[i + 1].transform.position, posNext);
-                        lineEnemyAttack.material.mainTextureScale = new Vector3(distance, 1, 1);
+                        lineEnemyAttack.material.mainTextureScale = new Vector2(distance * 2, 1);
                     }
                 }
             }
