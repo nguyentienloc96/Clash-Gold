@@ -18,17 +18,16 @@ public class Bullet : MonoBehaviour
             {
                 if (!isBoom)
                 {
-                    isExplosion = true;
                     Hero hero = collision.GetComponent<Hero>();
                     hero.parHit.transform.right = -transform.up;
                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                     hero.BeingAttacked(dameBullet);
                     Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
+                    isExplosion = true;
                     gameObject.SetActive(false);
                 }
                 else
                 {
-                    isExplosion = true;
                     Collider2D[] arrCol = Physics2D.OverlapCircleAll(collision.transform.position, rangeBoom / 5f, 1 << 12);
                     if (arrCol.Length > 0)
                     {
@@ -59,6 +58,7 @@ public class Bullet : MonoBehaviour
                             }
                         }
                     }
+                    isExplosion = true;
                     gameObject.SetActive(false);
                 }
             }
@@ -70,18 +70,16 @@ public class Bullet : MonoBehaviour
             {
                 if (!isBoom)
                 {
-                    isExplosion = true;
                     Hero hero = collision.GetComponent<Hero>();
                     hero.parHit.transform.right = -transform.up;
                     hero.parHit.transform.eulerAngles -= new Vector3(0f, 0f, 45f);
                     hero.BeingAttacked(dameBullet);
                     Debug.Log(hero.infoHero.NameHero + " being attack " + dameBullet);
-
+                    isExplosion = true;
                     gameObject.SetActive(false);
                 }
                 else
                 {
-                    isExplosion = true;
                     Collider2D[] arrCol = Physics2D.OverlapCircleAll(collision.transform.position, rangeBoom / 5f, 1 << 12);
                     if (arrCol.Length > 0)
                     {
@@ -112,6 +110,7 @@ public class Bullet : MonoBehaviour
                             }
                         }
                     }
+                    isExplosion = true;
                     gameObject.SetActive(false);
                 }
             }
