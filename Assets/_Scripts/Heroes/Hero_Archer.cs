@@ -37,7 +37,7 @@ public class Hero_Archer : Hero {
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "Weapon" + gameObject.name;
     }
 
     public void Update()

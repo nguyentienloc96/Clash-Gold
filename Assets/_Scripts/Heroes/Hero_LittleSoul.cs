@@ -13,7 +13,7 @@ public class Hero_LittleSoul : Hero {
             BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
         }
         hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
-        Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
+        //Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
 
     }
 

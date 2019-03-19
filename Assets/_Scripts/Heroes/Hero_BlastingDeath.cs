@@ -12,10 +12,10 @@ public class Hero_BlastingDeath : Hero
         if (hero.infoHero.ID == 10 || hero.infoHero.ID == 11)
         {
             BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
-            Debug.Log(hero.infoHero.NameHero + " counterDame" + infoHero.NameHero + " dame " + (hero.infoHero.counterDame * hero.infoHero.numberHero));
+            //Debug.Log(hero.infoHero.NameHero + " counterDame" + infoHero.NameHero + " dame " + (hero.infoHero.counterDame * hero.infoHero.numberHero));
         }
         hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
-        Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
+        //Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
     }
 
     public override void Die()
@@ -34,7 +34,7 @@ public class Hero_BlastingDeath : Hero
                         if (col.GetComponent<Hero>().infoHero.typeHero != TypeHero.ChemBay && col.GetComponent<Hero>().infoHero.typeHero != TypeHero.CungBay)
                         {
                             col.GetComponent<Hero>().BeingAttacked(infoHero.dameDead * countHeroStart);
-                            Debug.Log("Boom 17 attack" + col.GetComponent<Hero>().infoHero.NameHero + " dame " + (infoHero.dameDead * countHeroStart));
+                            //Debug.Log("Boom 17 attack" + col.GetComponent<Hero>().infoHero.NameHero + " dame " + (infoHero.dameDead * countHeroStart));
                         }
                     }
                 }

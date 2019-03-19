@@ -77,6 +77,14 @@ public class UIManager : MonoBehaviour
     public GameObject panelThrowHeroAttack;
     public List<ItemHeroAttack> lsItemHeroAttack = new List<ItemHeroAttack>();
 
+    [Header("Warring")]
+    public GameObject warringBeingAttack;
+    public GameObject panelWarring;
+    public DetailWarring detailWarring;
+
+    [Header("Story")]
+    public Text txtStory;
+
     void Awake()
     {
         if (Instance != null)
@@ -166,9 +174,6 @@ public class UIManager : MonoBehaviour
         //_g.GetComponent<Animator>().Play("DeActivePanel");
     }
 
-    /// <summary>
-    /// Hien chuot khi click man hinh
-    /// </summary>
     void ShowMouseClick()
     {
         if (Input.GetMouseButtonUp(0))
@@ -176,7 +181,6 @@ public class UIManager : MonoBehaviour
             Vector2 click;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(parentCanvas.transform as RectTransform, Input.mousePosition, parentCanvas.worldCamera, out click);
             Vector3 mousePos = parentCanvas.transform.TransformPoint(click) + new Vector3(0.2f, -0.3f, 0);
-            //mouseClick.transform.position = mousePos;
         }
     }
     #endregion
@@ -213,6 +217,8 @@ public class UIManager : MonoBehaviour
         this.PostEvent(EventID.UpLevelHouse);
         panelHome.SetActive(false);
         Fade.Instance.panelLoadingStory.SetActive(true);
+        txtStory.text = GameConfig.Instance.lsStory[Random.Range(0, GameConfig.Instance.lsStory.Count)];
+
         ScenesManager.Instance.GoToScene(() =>
           {
               GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
@@ -250,13 +256,11 @@ public class UIManager : MonoBehaviour
 
     public void Btn_Share()
     {
-        //AudioManager.Instance.Play("Click");
         ShareManager.Instance.ShareScreenshotWithText(GameConfig.Instance.string_Share);
     }
 
     public void Btn_Rate()
     {
-        //AudioManager.Instance.Play("Click");
 #if UNITY_ANDROID
         if (GameConfig.Instance.link_android != null)
         {
@@ -349,6 +353,7 @@ public class UIManager : MonoBehaviour
 
     public void HideAllPanelGame()
     {
+        warringBeingAttack.SetActive(false);
         panelBuildSelect.SetActive(false);
         panelUpgrade.SetActive(false);
         panelInWall.SetActive(false);

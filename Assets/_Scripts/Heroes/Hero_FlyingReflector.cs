@@ -38,7 +38,7 @@ public class Hero_FlyingReflector : Hero {
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "FlyingReflector"+gameObject.name;
     }
 
     public void Update()

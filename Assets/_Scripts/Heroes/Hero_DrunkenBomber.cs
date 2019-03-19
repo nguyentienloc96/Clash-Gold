@@ -45,7 +45,7 @@ public class Hero_DrunkenBomber : Hero
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "DrunkenBom"+gameObject.name;
     }
 
     public void Update()

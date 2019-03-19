@@ -42,7 +42,7 @@ public class Hero_ShortGunner : Hero {
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "ShortGunner"+gameObject.name;
     }
 
     public void Update()

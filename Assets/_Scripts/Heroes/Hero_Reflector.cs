@@ -38,7 +38,7 @@ public class Hero_Reflector : Hero {
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "Reflector"+gameObject.name;
     }
 
 

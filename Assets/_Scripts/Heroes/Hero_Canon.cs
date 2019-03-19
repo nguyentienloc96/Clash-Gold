@@ -39,7 +39,7 @@ public class Hero_Canon : Hero {
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "Canon"+gameObject.name;
     }
     public void Update()
     {

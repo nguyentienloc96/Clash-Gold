@@ -266,6 +266,10 @@ public class GameManager : MonoBehaviour
                                      lsEnemyAttackGoldMine[i].isPause = false;
                                  }
                              }
+                         },()=> 
+                         {
+                             UIManager.Instance.panelWarring.SetActive(true);
+                             UIManager.Instance.detailWarring.GetWarring(3, "You have conquered " + GolEnemyBeingAttack.nameGoldMine);
                          });
                     }
                     else if (lsHero.Count <= 0 && numberThrowHero <= 0)
@@ -307,6 +311,10 @@ public class GameManager : MonoBehaviour
                                      lsEnemyAttackGoldMine[i].isPause = false;
                                  }
                              }
+                         }, () =>
+                         {
+                             UIManager.Instance.panelWarring.SetActive(true);
+                             UIManager.Instance.detailWarring.GetWarring(4, "You lose");
                          });
                     }
                 }
@@ -352,6 +360,10 @@ public class GameManager : MonoBehaviour
                                      Destroy(h.gameObject);
                                  }
                                  lsEnemyAttackGoldMine.Clear();
+                             }, () =>
+                             {
+                                 UIManager.Instance.panelWarring.SetActive(true);
+                                 UIManager.Instance.detailWarring.GetWarring(1, GolHeroBeingAttack.nameGoldMine + " is invaded");
                              });
                         }
                     }
@@ -365,6 +377,10 @@ public class GameManager : MonoBehaviour
                                  Destroy(h.gameObject);
                              }
                              lsEnemyAttackGoldMine.Clear();
+                         }, () =>
+                         {
+                             UIManager.Instance.panelWarring.SetActive(true);
+                             UIManager.Instance.detailWarring.GetWarring(2, GolHeroBeingAttack.nameGoldMine + " is protected successfully");
                          });
                     }
                 }
@@ -576,6 +592,9 @@ public class GameManager : MonoBehaviour
             g.numberBoxGoldMine = 3;
             g.typeGoleMine = TypeGoldMine.Player;
             g.InstantiateHeroStart(true);
+            int randomName = UnityEngine.Random.Range(0, GameConfig.Instance.lsNameIsLand.Count);
+            g.GetName(GameConfig.Instance.lsNameIsLand[randomName]);
+            GameConfig.Instance.lsNameIsLand.Remove(GameConfig.Instance.lsNameIsLand[randomName]);
             lstGoldMinePlayer.Add(g);
         }
         else
@@ -588,6 +607,9 @@ public class GameManager : MonoBehaviour
             g.typeGoleMine = TypeGoldMine.Enemy;
             g.InstantiateHeroStart(false);
             g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
+            int randomName = UnityEngine.Random.Range(0, GameConfig.Instance.lsNameIsLand.Count);
+            g.GetName(GameConfig.Instance.lsNameIsLand[randomName]);
+            GameConfig.Instance.lsNameIsLand.Remove(GameConfig.Instance.lsNameIsLand[randomName]);
             lstGoldMineEnemy.Add(g);
         }
     }

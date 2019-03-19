@@ -23,7 +23,7 @@ public class Hero_TwistingAxe : Hero
                     if (col.GetComponent<Hero>().infoHero.typeHero != TypeHero.ChemBay && col.GetComponent<Hero>().infoHero.typeHero != TypeHero.CungBay)
                     {
                         col.GetComponent<Hero>().BeingAttacked(infoHero.dame * infoHero.numberHero);
-                        Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
+                        //Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
 
                     }
                 }

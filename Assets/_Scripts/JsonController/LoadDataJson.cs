@@ -26,7 +26,7 @@ public class LoadDataJson : MonoBehaviour
     }
 
     private string gameConfig = "GameConfig";
-
+    private string listStory = "ListStory";
     void Start()
     {
         LoadGameConfig();
@@ -169,6 +169,21 @@ public class LoadDataJson : MonoBehaviour
                 GameConfig.Instance.listMap.Add(arrMap);
             }
         }
+
+        var objJson2 = SimpleJSON_DatDz.JSON.Parse(loadJson(listStory));
+        if(objJson2 != null)
+        {
+            for (int j = 0; j < objJson2["ListStory"].Count; j++)
+            {
+                GameConfig.Instance.lsStory.Add(objJson2["ListStory"][j]);
+            }
+
+            for (int j = 0; j < objJson2["listNameIsLand"].Count; j++)
+            {
+                GameConfig.Instance.lsNameIsLand.Add(objJson2["listNameIsLand"][j]);
+            }
+        }
+
         gameManager.SetActive(true);
     }
 

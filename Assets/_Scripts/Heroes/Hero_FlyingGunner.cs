@@ -45,7 +45,7 @@ public class Hero_FlyingGunner : Hero
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "ShortGunner" + gameObject.name;
     }
 
     public void Update()

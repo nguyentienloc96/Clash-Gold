@@ -15,6 +15,7 @@ public enum TypeGoldMine
 public class GoldMine : MonoBehaviour
 {
     public int id;
+    public string nameGoldMine;
     public int capGold;
     public long priceGold;
     public long priceWillUpgrade;
@@ -31,6 +32,7 @@ public class GoldMine : MonoBehaviour
     public List<Transform> lsPos;
 
     [Header("UI")]
+    public Text txtName;
     public Text txtLevel;
     public SpriteRenderer sprGoldMine;
     public GameObject Canvas;
@@ -291,6 +293,8 @@ public class GoldMine : MonoBehaviour
             List<Box> lsPosMove = GameManager.Instance.PathFinding(boxStart, boxEnd);
             float speed = 10f;
             StartCoroutine(IEInsAttackPlayer(speed, lsPosMove));
+            UIManager.Instance.panelWarring.SetActive(true);
+            UIManager.Instance.detailWarring.GetWarring(0, nameGoldMine + " is under attack");
         }
     }
 
@@ -776,5 +780,11 @@ public class GoldMine : MonoBehaviour
             hero.infoHero.capWar = GameConfig.Instance.lstInfoHero[hero.infoHero.ID - 1].capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
         }
         SetSpriteBox(GameManager.Instance.maxLevelHouse);
+    }
+
+    public void GetName(string nameGoldMineStr)
+    {
+        nameGoldMine = nameGoldMineStr;
+        txtName.text = nameGoldMineStr;
     }
 }
