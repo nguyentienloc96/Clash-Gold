@@ -313,9 +313,10 @@ public class GoldMine : MonoBehaviour
             hero.AddHero(numberAttack);
             lstHeroGoldMine[i].AddHero(-numberAttack);
             hero.speedMin = speed;
+            hero.transform.localScale = new Vector3(2f, 2f, 2f);
             hero.StartMoveToLsPosition(lsPosMove);
             GameManager.Instance.lsEnemyAttackGoldMine.Add(hero);
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(2f);
         }
     }
 
