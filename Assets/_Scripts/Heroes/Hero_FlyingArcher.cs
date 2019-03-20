@@ -39,7 +39,7 @@ public class Hero_FlyingArcher : Hero
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "Weapon"+gameObject.name;
     }
 
     public void Update()

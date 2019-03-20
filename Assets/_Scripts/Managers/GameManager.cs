@@ -404,11 +404,11 @@ public class GameManager : MonoBehaviour
             {
                 if (lsEnemyAttackGoldMine.Count > 0)
                 {
-                    lineEnemyAttack.enabled = true;
+                    
                 }
                 else
                 {
-                    lineEnemyAttack.enabled = false;
+                    
                 }
             }
         }

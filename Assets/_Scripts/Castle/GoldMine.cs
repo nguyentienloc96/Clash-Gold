@@ -308,6 +308,7 @@ public class GoldMine : MonoBehaviour
             }
             GameManager.Instance.GolEnemyIsAttack = this;
             GameManager.Instance.GolHeroBeingAttack = lsGoldMinePlayer[check];
+            GameManager.Instance.lineEnemyAttack.enabled = true;
             Box boxStart = this.transform.parent.GetComponent<Box>();
             Box boxEnd = lsGoldMinePlayer[check].transform.parent.GetComponent<Box>();
             List<Box> lsPosMove = GameManager.Instance.PathFinding(boxStart, boxEnd);
@@ -473,6 +474,7 @@ public class GoldMine : MonoBehaviour
                 }
                 if (other.CompareTag("Enemy"))
                 {
+                    GameManager.Instance.lineEnemyAttack.enabled = false;
                     UIManager.Instance.HideAllPanelGame();
                     foreach (Hero hero in GameManager.Instance.lsEnemyAttackGoldMine)
                     {
