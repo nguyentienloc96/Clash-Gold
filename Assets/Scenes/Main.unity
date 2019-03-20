@@ -11779,18 +11779,18 @@ MonoBehaviour:
   - {fileID: 1766482820864890, guid: f08c0154127649541a12c3fa28631010, type: 2}
   - {fileID: 1660686273746704, guid: 0fe08367b35058741969713ba6a3da86, type: 2}
   sprBoxMap:
-  - {fileID: 21300000, guid: aa23c989ed751c74f9e6b86ab7ba76fe, type: 3}
-  - {fileID: 21300000, guid: d51dadd4acbf19043a058f361a319ee7, type: 3}
-  - {fileID: 21300000, guid: f3471bbf6c95b804fb52270c8c38eb5f, type: 3}
-  - {fileID: 21300000, guid: e3ac902c6eb506449b5f14be0fb6e3bb, type: 3}
-  - {fileID: 21300000, guid: 2843d9e263f335c478fdd11e0c71251d, type: 3}
-  - {fileID: 21300000, guid: eb998a65527edd1499064e58b5be0466, type: 3}
-  - {fileID: 21300000, guid: 30740b3a807492c40b20a3e2b76804c9, type: 3}
-  - {fileID: 21300000, guid: 3a68dc395e003524c9b2c52671ce3bf4, type: 3}
-  - {fileID: 21300000, guid: 0024fdf6ba708344b8a27d8902d5d3de, type: 3}
-  - {fileID: 21300000, guid: fdddeab017ca2984cbdc9057c9ebcd53, type: 3}
-  - {fileID: 21300000, guid: 83492c20d77ba9248a1190d8ecb188bc, type: 3}
-  - {fileID: 21300000, guid: 6f350e2baa7c51546955d72486dc7497, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   prefabsBox: {fileID: 1580299882265666, guid: 9b2a294fabbfb5549870e1335747416e, type: 2}
   row: 9
   col: 9
@@ -18967,9 +18967,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1423240708}
-        m_MethodName: Btn_NoUpgrade
-        m_Mode: 1
+      - m_Target: {fileID: 1979577511}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
