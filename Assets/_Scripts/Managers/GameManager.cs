@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
                 time = 0;
             }
 
-            if (isBeingAttack && dateGame >= dateEnemyAttack && !isAttack)
+            if (isBeingAttack && dateGame >= dateEnemyAttack && !isAttack && lstGoldMinePlayer.Count > 0)
             {
                 if (lsEnemyAttackGoldMine.Count <= 0)
                 {
@@ -398,17 +398,6 @@ public class GameManager : MonoBehaviour
                              UIManager.Instance.detailWarring.GetWarring(2, GolHeroBeingAttack.nameGoldMine + " is protected successfully");
                          });
                     }
-                }
-            }
-            else
-            {
-                if (lsEnemyAttackGoldMine.Count > 0)
-                {
-                    
-                }
-                else
-                {
-                    
                 }
             }
         }

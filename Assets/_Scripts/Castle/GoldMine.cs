@@ -287,7 +287,7 @@ public class GoldMine : MonoBehaviour
 
     public void AttackPlayer()
     {
-        if (typeGoleMine == TypeGoldMine.Enemy)
+        if (typeGoleMine == TypeGoldMine.Enemy && GameManager.Instance.lstGoldMinePlayer.Count > 0)
         {
             int check = 0;
             float dis = Vector3.Distance(transform.position, GameManager.Instance.lstGoldMinePlayer[0].transform.position);
