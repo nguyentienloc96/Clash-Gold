@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9152c6d07f8d978489c84f68bbe941bf
+guid: 0c788877dec091f408d0378d1f8b0ad4
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -78,7 +78,7 @@ TextureImporter:
   - buildTarget: iPhone
     maxTextureSize: 1024
     resizeAlgorithm: 0
-    textureFormat: 56
+    textureFormat: 58
     textureCompression: 1
     compressionQuality: 100
     crunchedCompression: 0
