@@ -65,26 +65,10 @@ public class House : MonoBehaviour
 
     string transformToTime(float time = 0)
     {
-        //if (time == 0) time = timeBuild;
         int minutes = Mathf.FloorToInt(time / 60F);
         int seconds = Mathf.FloorToInt(time - minutes * 60);
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-
-    //public void LoadDataHouse(int _idHero, int _level, int _capWar, long _price, TypeStateHouse _type, int _countHero)
-    //{
-    //    this.idHero = _idHero;
-    //    this.level = _level;
-    //    this.capWar = _capWar;
-    //    this.price = _price;
-    //    this.typeState = _type;
-    //    this.countHero = _countHero;
-    //    if (this.typeState == TypeStateHouse.None)
-    //    {
-    //        this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-    //        this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
-    //    }
-    //}
 
     public void Btn_OnClick()
     {
@@ -240,7 +224,6 @@ public class House : MonoBehaviour
     public void OnNextDay()
     {
         SpawmHero();
-        //this.PostEvent(EventID.BuildHouseComplete, idHero);
     }
 
     public void OnClickHouse(object _param)

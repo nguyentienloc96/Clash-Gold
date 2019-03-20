@@ -59,7 +59,7 @@ public class ObjectPoolingManager : MonoBehaviour {
 
     private GameObject FindAvailableObject(List<GameObject> pooledObjects)
     {
-        if (pooledObjects.Count <= 0)
+        if (pooledObjects == null || pooledObjects.Count <= 0)
             return null;
         for (int i = 0; i < pooledObjects.Count; i++)
         {

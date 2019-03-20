@@ -43,6 +43,18 @@ public class UIManager : MonoBehaviour
     public Text txtNameHero;
     public Text txtInfoHero;
     public DetailIcon detailIcon;
+    public Button btnUpgradeHouse;
+
+    [Header("UPGRADE GOLD MINE")]
+    public GameObject panelUpgradeGoldMine;
+    public Text txtLevelCurrentUpGM;
+    public Text txtLevelUpgradeUpGM;
+    public Text txtCapCurrentUpGM;
+    public Text txtCapUpgradeUpGM;
+    public Text txtPriceUpGM;
+    public Image iconHeroUpGM;
+    public Text txtNameHeroUpGM;
+    public Button btnUpGM;
 
     [Header("UI SHOWSPEECH")]
     public GameObject panelShowSpeech;
@@ -223,6 +235,7 @@ public class UIManager : MonoBehaviour
           {
               GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
               GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+              GameManager.Instance.actionGame = ActionGame.Main;
           });
     }
 
@@ -312,6 +325,14 @@ public class UIManager : MonoBehaviour
         txtCapCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].capWar.ToString();
         txtCapUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].capWillUpgrade.ToString();
         txtPrice.text = ConvertNumber(GameManager.Instance.lstHousePlayer[houseClick].priceWillUpgrade);
+        if(GameManager.Instance.gold < GameManager.Instance.lstHousePlayer[houseClick].priceWillUpgrade)
+        {
+            btnUpgradeHouse.interactable = false;
+        }
+        else
+        {
+            btnUpgradeHouse.interactable = true;
+        }
     }
 
     public void Btn_YesUpgrade()
@@ -360,5 +381,27 @@ public class UIManager : MonoBehaviour
         panelRelace.SetActive(false);
         panelThrowHero.SetActive(false);
         panelThrowHeroAttack.SetActive(false);
+    }
+
+    public void UpgradeGoldMine(string nameGM,Sprite icon,int lvCurrent, int lvWillUp, int capCurrent, int capWillUp,long price,bool isOutMoney, UnityEngine.Events.UnityAction actionUp)
+    {
+        panelUpgradeGoldMine.SetActive(true);
+        txtNameHeroUpGM.text = nameGM;
+        iconHeroUpGM.sprite = icon;
+        txtLevelCurrentUpGM.text = lvCurrent.ToString();
+        txtLevelUpgradeUpGM.text = lvWillUp.ToString();
+        txtCapCurrentUpGM.text = capCurrent.ToString();
+        txtCapUpgradeUpGM.text = capWillUp.ToString();
+        txtPriceUpGM.text = ConvertNumber(price);
+        if (isOutMoney)
+        {
+            btnUpGM.interactable = false;
+        }
+        else
+        {
+            btnUpGM.interactable = true;
+        }
+        btnUpGM.onClick.RemoveAllListeners();
+        btnUpGM.onClick.AddListener(actionUp);
     }
 }

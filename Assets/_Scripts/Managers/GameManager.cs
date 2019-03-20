@@ -5,9 +5,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using EventDispatcher;
 
+public enum ActionGame
+{
+    Loading,
+    Home,
+    Main,
+    Attack,
+    EndGame
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = new GameManager();
+
+    public ActionGame actionGame;
 
     #region DateTime
     [Header("DateTime")]
@@ -179,11 +190,15 @@ public class GameManager : MonoBehaviour
 
             if (lstGoldMineEnemy.Count <= 0)
             {
+                isPlay = false;
+                actionGame = ActionGame.EndGame;
                 UIManager.Instance.panelVictory.SetActive(true);
             }
 
             if (lstGoldMinePlayer.Count <= 0)
             {
+                isPlay = false;
+                actionGame = ActionGame.EndGame;
                 UIManager.Instance.panelGameOver.SetActive(true);
             }
 
@@ -542,6 +557,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         Debug.Log(12);
         Fade.Instance.EndFade();
+        actionGame = ActionGame.Home;
     }
 
     public bool CheckPos(int row, int col, int id)

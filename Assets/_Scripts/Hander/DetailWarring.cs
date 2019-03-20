@@ -39,5 +39,10 @@ public class DetailWarring : MonoBehaviour {
             gameObject.SetActive(false);
             timeHide = 0;
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

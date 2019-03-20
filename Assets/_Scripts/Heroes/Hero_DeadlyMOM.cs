@@ -40,7 +40,7 @@ public class Hero_DeadlyMOM : Hero {
         StartChild();
         animator.SetFloat("IndexRun", numRun);
         animator.SetFloat("IndexAttack", numAttack);
-        nameBullet = gameObject.name;
+        nameBullet = "Reflector"+gameObject.name;
     }
 
     public void Update()

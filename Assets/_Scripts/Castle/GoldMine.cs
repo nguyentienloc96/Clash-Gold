@@ -121,7 +121,16 @@ public class GoldMine : MonoBehaviour
         if (typeGoleMine == TypeGoldMine.Player)
         {
             CheckUpgrade(1);
-            UpgradeGoldMine();
+            UIManager.Instance.UpgradeGoldMine
+                (nameGoldMine, 
+                GetComponent<SpriteRenderer>().sprite, 
+                level, 
+                levelWillUpgrade, 
+                capGold, 
+                capWillUpgrade, 
+                priceWillUpgrade, 
+                GameManager.Instance.gold < priceWillUpgrade,
+                UpgradeGoldMine);
         }
     }
 
@@ -263,6 +272,17 @@ public class GoldMine : MonoBehaviour
         capGold = capWillUpgrade;
         level = levelWillUpgrade;
         txtLevel.text = "Lv " + level.ToString();
+        CheckUpgrade(1);
+        UIManager.Instance.UpgradeGoldMine
+            (nameGoldMine,
+            GetComponent<SpriteRenderer>().sprite,
+            level,
+            levelWillUpgrade,
+            capGold,
+            capWillUpgrade,
+            priceWillUpgrade,
+            GameManager.Instance.gold < priceWillUpgrade,
+            UpgradeGoldMine);
     }
 
     public void AttackPlayer()
@@ -294,7 +314,7 @@ public class GoldMine : MonoBehaviour
             float speed = 10f;
             StartCoroutine(IEInsAttackPlayer(speed, lsPosMove));
             UIManager.Instance.panelWarring.SetActive(true);
-            UIManager.Instance.detailWarring.GetWarring(0, nameGoldMine + " is under attack");
+            UIManager.Instance.detailWarring.GetWarring(0, GameManager.Instance.GolHeroBeingAttack.name + " is under attack");
         }
     }
 
