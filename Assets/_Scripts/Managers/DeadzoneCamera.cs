@@ -187,10 +187,10 @@ public class DeadzoneCamera : MonoBehaviour
         {
             return;
         }
-#if !UNITY_EDITER && (IOS || ANDROID)
+//#if !UNITY_EDITER && (IOS || ANDROID)
         _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize * offset, ZoomBounds[0], ZoomBounds[1]);
-#else
-        _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
-#endif
+//#else
+        //_camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+//#endif
     }
 }
