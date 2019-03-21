@@ -72,7 +72,7 @@ public class Castle : MonoBehaviour
                 lstAvatarHeroRelease[i].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsHouseRelease[i].countHero.ToString();
             }
         }
-        if (GameManager.Instance.isPlay)
+        if (GameManager.Instance.actionGame == ActionGame.Playing)
         {
             if (isMove)
             {
@@ -89,7 +89,7 @@ public class Castle : MonoBehaviour
 
     public void MoveCastle(Vector3 posMouse)
     {
-        if (GameManager.Instance.isPlay)
+        if (GameManager.Instance.actionGame == ActionGame.Playing)
         {
             if (!GameManager.Instance.isAttack)
             {

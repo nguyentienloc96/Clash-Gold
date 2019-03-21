@@ -312,7 +312,7 @@ public abstract class Hero : MonoBehaviour
 
     public void HeroUpdate()
     {
-        if (GameManager.Instance.isPlay && !isPause)
+        if (GameManager.Instance.actionGame == ActionGame.Playing && !isPause)
         {
             AnimtionUpdate();
             if (!isMove)

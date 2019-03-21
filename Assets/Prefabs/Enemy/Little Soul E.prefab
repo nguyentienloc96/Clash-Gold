@@ -26,7 +26,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1249965099224694
 GameObject:
   m_ObjectHideFlags: 1
@@ -448,7 +448,7 @@ MonoBehaviour:
   animator: {fileID: 95793000321285402}
   typeAction: 0
   numIdle: 0
-  numRun: 0
+  numRun: 3
   numAttack: 5
   isFly: 1
   isRelease: 0

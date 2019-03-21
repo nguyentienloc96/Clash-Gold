@@ -39,7 +39,7 @@ public class DeadzoneCamera : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.isPlay)
+        if (GameManager.Instance.actionGame == ActionGame.Playing || GameManager.Instance.actionGame == ActionGame.Finished)
         {
             if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
             {
@@ -188,7 +188,7 @@ public class DeadzoneCamera : MonoBehaviour
         {
             return;
         }
-#if !UNITY_EDITER && (IOS || ANDROID)
+#if !UNITY_EDITOR
         _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize * offset, ZoomBounds[0], ZoomBounds[1]);
 #else
         _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);

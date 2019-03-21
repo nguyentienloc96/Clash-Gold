@@ -9,9 +9,8 @@ public enum ActionGame
 {
     Loading,
     Home,
-    Main,
-    Attack,
-    EndGame
+    Playing,
+    Finished
 }
 
 public class GameManager : MonoBehaviour
@@ -29,7 +28,6 @@ public class GameManager : MonoBehaviour
 
     [Header("INFO PLAYER")]
     [HideInInspector]
-    public bool isPlay = false;
     public long gold;
     public int coin;
     public float ratioBorn;
@@ -72,11 +70,11 @@ public class GameManager : MonoBehaviour
     public List<Box> lsBoxCanMove = new List<Box>();
     public List<Sprite> lsSpriteMap = new List<Sprite>();
 
+    [Header("ATTACK")]
     [HideInInspector]
     public bool isAttack;
     [HideInInspector]
     public bool isAttackGoldMineEnemy;
-
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
     [HideInInspector]
@@ -122,9 +120,9 @@ public class GameManager : MonoBehaviour
             //if (i >= 5)
             //    bh.isUnlock = false;
             //else
-                bh.isUnlock = true;
-            //if (i == 8)
             //    bh.isUnlock = true;
+            //if (i == 8)
+            bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
 
@@ -137,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (isPlay)
+        if (actionGame == ActionGame.Playing)
         {
             time += Time.deltaTime;
             if (time >= GameConfig.Instance.Timeday)
@@ -185,20 +183,18 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                dateUpGoldMine = dateGame+ (long)(GameConfig.Instance.TimeUp);
+                dateUpGoldMine = dateGame + (long)(GameConfig.Instance.TimeUp);
             }
 
             if (lstGoldMineEnemy.Count <= 0)
             {
-                isPlay = false;
-                actionGame = ActionGame.EndGame;
+                actionGame = ActionGame.Finished;
                 UIManager.Instance.panelVictory.SetActive(true);
             }
 
             if (lstGoldMinePlayer.Count <= 0)
             {
-                isPlay = false;
-                actionGame = ActionGame.EndGame;
+                actionGame = ActionGame.Finished;
                 UIManager.Instance.panelGameOver.SetActive(true);
             }
 
@@ -267,7 +263,7 @@ public class GameManager : MonoBehaviour
                     {
                         EndAttack();
                         GolEnemyBeingAttack.DeleteHero();
-                        dateEnemyAttack = dateGame+ (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                        dateEnemyAttack = dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                         ScenesManager.Instance.GoToScene(() =>
                          {
                              GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
@@ -399,6 +395,16 @@ public class GameManager : MonoBehaviour
                          });
                     }
                 }
+            }
+        }
+        else if (actionGame == ActionGame.Finished)
+        {
+            if (Input.GetMouseButtonDown(0) && 
+                (UIManager.Instance.panelGameOver.activeSelf || 
+                UIManager.Instance.panelVictory.activeSelf))
+            {
+                UIManager.Instance.panelGameOver.SetActive(false);
+                UIManager.Instance.panelVictory.SetActive(false);
             }
         }
     }
@@ -1059,7 +1065,7 @@ public class GameManager : MonoBehaviour
 
     public void SetDateUI()
     {
-        txtDate.text = "Date: " + dateGame;
+        txtDate.text = "Day: " + dateGame;
     }
     #endregion
 

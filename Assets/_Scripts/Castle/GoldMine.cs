@@ -432,7 +432,7 @@ public class GoldMine : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (GameManager.Instance.isPlay)
+        if (GameManager.Instance.actionGame == ActionGame.Playing)
         {
             if (typeGoleMine == TypeGoldMine.Enemy)
             {

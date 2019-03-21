@@ -92,8 +92,11 @@ public class UIManager : MonoBehaviour
     public GameObject panelWarring;
     public DetailWarring detailWarring;
 
-    [Header("Story")]
+    [Header("STORY")]
     public Text txtStory;
+
+    [Header("SETTING")]
+    public GameObject panelSeting;
 
     void Awake()
     {
@@ -124,11 +127,6 @@ public class UIManager : MonoBehaviour
         {
             buttonContinue.interactable = true;
         }
-    }
-
-    void Update()
-    {
-        txtGoldMount.text = "Gold mount: " + GameManager.Instance.lstGoldMinePlayer.Count.ToString() + "/" + GameConfig.Instance.GoldMinerAmount.ToString();
     }
 
     #region === SUPPORT ===
@@ -218,10 +216,10 @@ public class UIManager : MonoBehaviour
         SetDeActivePanel(panelGroupHome);
     }
 
-    public void Btn_YesNewPlay()
+    public void YesNewPlay()
     {
         SetActivePanel(panelGroupHome);
-        GameManager.Instance.isPlay = true;
+        GameManager.Instance.actionGame = ActionGame.Loading;
         this.PostEvent(EventID.StartGame);
         this.PostEvent(EventID.UpLevelHouse);
         panelHome.SetActive(false);
@@ -232,11 +230,11 @@ public class UIManager : MonoBehaviour
           {
               GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
               GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
-              GameManager.Instance.actionGame = ActionGame.Main;
+              GameManager.Instance.actionGame = ActionGame.Playing;
           });
     }
 
-    public void Btn_NoNewPlay()
+    public void Btn_BackHome()
     {
         SetActivePanel(panelGroupHome);
         SetDeActivePanel(panelChooseLevel);
@@ -247,16 +245,15 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.ratioBorn = GameConfig.Instance.RatioBorn[_level];
         GameManager.Instance.castlePlayer.price = GameConfig.Instance.PriceBlood0;
         SetDeActivePanel(panelChooseLevel);
-        Btn_YesNewPlay();
+        YesNewPlay();
     }
 
     public void Btn_Continue()
     {
         DataPlayer.Instance.LoadDataPlayer();
         panelHome.SetActive(false);
-        GameManager.Instance.isPlay = true;
         this.PostEvent(EventID.StartGame);
-        ScenesManager.Instance.GoToScene();
+        ScenesManager.Instance.GoToScene(null,()=> GameManager.Instance.actionGame = ActionGame.Playing);
     }
 
     public void Btn_Tutorial()
@@ -303,12 +300,11 @@ public class UIManager : MonoBehaviour
     public void ShowPanelUpgrade()
     {
         SetActivePanel(panelUpgrade);
-        Btn_x1x10_Upgrade(1);
+        UpgradeHouse();
     }
 
-    public void Btn_x1x10_Upgrade(int _x)
+    public void UpgradeHouse()
     {
-        xUpgrade = _x;
         int _idHeroUpgrade = GameManager.Instance.lstHousePlayer[houseClick].idHero;
         detailIcon.idHero = _idHeroUpgrade;
         detailIcon.icon.SetActive(true);
@@ -380,7 +376,15 @@ public class UIManager : MonoBehaviour
         panelThrowHeroAttack.SetActive(false);
     }
 
-    public void UpgradeGoldMine(string nameGM,Sprite icon,int lvCurrent, int lvWillUp, int capCurrent, int capWillUp,long price,bool isOutMoney, UnityEngine.Events.UnityAction actionUp)
+    public void UpgradeGoldMine(string nameGM,
+        Sprite icon,
+        int lvCurrent, 
+        int lvWillUp, 
+        int capCurrent, 
+        int capWillUp,
+        long price,
+        bool isOutMoney, 
+        UnityEngine.Events.UnityAction actionUp)
     {
         panelUpgradeGoldMine.SetActive(true);
         txtNameHeroUpGM.text = nameGM;
@@ -400,5 +404,23 @@ public class UIManager : MonoBehaviour
         }
         btnUpGM.onClick.RemoveAllListeners();
         btnUpGM.onClick.AddListener(actionUp);
+    }
+
+    public void Btn_OpenSetting()
+    {
+        Time.timeScale = 0;
+        panelSeting.SetActive(true);
+    }
+
+    public void Btn_CloseSetting()
+    {
+        Time.timeScale = 1;
+        panelSeting.SetActive(false
+);
+    }
+
+    public void Btn_SaveExit()
+    {
+
     }
 }
