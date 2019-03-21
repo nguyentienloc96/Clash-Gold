@@ -43,7 +43,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1161639465454024
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -109,7 +109,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1557739600708192
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -407,9 +407,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.8
-  m_Text: 'Number Hero Throw
-
-    20000'
+  m_Text: 2000
 --- !u!114 &114888658029871876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -437,12 +435,12 @@ MonoBehaviour:
     m_MinSize: 0
     m_MaxSize: 50
     m_Alignment: 4
-    m_AlignByGeometry: 1
+    m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hero count : 20000'
+  m_Text: 20000
 --- !u!114 &114980213358049524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -529,7 +527,8 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 224921758015573952}
   m_Father: {fileID: 224478024257402550}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -548,13 +547,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
-  m_Father: {fileID: 224255059494578002}
+  m_Father: {fileID: 224965337804937706}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -6.4996, y: -25.01}
-  m_SizeDelta: {x: 465.8, y: 100}
+  m_AnchoredPosition: {x: 176.24, y: 0}
+  m_SizeDelta: {x: 304.95, y: 100.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224255059494578002
 RectTransform:
@@ -568,8 +567,6 @@ RectTransform:
   m_Children:
   - {fileID: 224708632373918088}
   - {fileID: 224965337804937706}
-  - {fileID: 224921758015573952}
-  - {fileID: 224222401204616662}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -676,17 +673,17 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1557739600708192}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
-  m_Father: {fileID: 224255059494578002}
-  m_RootOrder: 2
+  m_Father: {fileID: 224121308423692974}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 181.27, y: 0}
-  m_SizeDelta: {x: 285.09, y: 200}
+  m_AnchoredPosition: {x: -0.3, y: 45}
+  m_SizeDelta: {x: 165.59, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224965337804937706
 RectTransform:
@@ -701,11 +698,12 @@ RectTransform:
   - {fileID: 224403427286074210}
   - {fileID: 224008529276412436}
   - {fileID: 224478024257402550}
+  - {fileID: 224222401204616662}
   m_Father: {fileID: 224255059494578002}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: 26}
+  m_AnchoredPosition: {x: -1, y: -22}
   m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

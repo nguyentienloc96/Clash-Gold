@@ -62,11 +62,13 @@ public class GameManager : MonoBehaviour
     public GameObject[] prefabsBoxMap;
     public Sprite[] sprBoxMap;
     public GameObject prefabsBox;
-    public int row;
     public int col;
+    public int row;
+    public int addMapX;
+    public int addMapY;
     public float weight;
     public Transform boxManager;
-    private Box[,] arrBox = new Box[9, 9];
+    private Box[,] arrBox;
     public List<Box> lsBoxMove = new List<Box>();
     public List<Box> lsBoxCanMove = new List<Box>();
     public List<Sprite> lsSpriteMap = new List<Sprite>();
@@ -107,6 +109,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        arrBox = new Box[col, row];
         LoadDate();
     }
 
@@ -117,12 +120,12 @@ public class GameManager : MonoBehaviour
         {
             BuildHouse bh = new BuildHouse();
             bh.ID = i;
-            if (i >= 5)
-                bh.isUnlock = false;
-            else
-                bh.isUnlock = true;
-            if (i == 8)
-                bh.isUnlock = true;
+            //if (i >= 5)
+            //    bh.isUnlock = false;
+            //else
+            //    bh.isUnlock = true;
+            //if (i == 8)
+            //    bh.isUnlock = true;
             lstBuildHouse.Add(bh);
         }
 
@@ -281,11 +284,11 @@ public class GameManager : MonoBehaviour
                                      lsEnemyAttackGoldMine[i].isPause = false;
                                  }
                              }
-                         },()=> 
-                         {
-                             UIManager.Instance.panelWarring.SetActive(true);
-                             UIManager.Instance.detailWarring.GetWarring(3, "You have conquered " + GolEnemyBeingAttack.nameGoldMine);
-                         });
+                         }, () =>
+                          {
+                              UIManager.Instance.panelWarring.SetActive(true);
+                              UIManager.Instance.detailWarring.GetWarring(3, "You have conquered " + GolEnemyBeingAttack.nameGoldMine);
+                          });
                     }
                     else if (lsHero.Count <= 0 && numberThrowHero <= 0)
                     {
@@ -554,7 +557,7 @@ public class GameManager : MonoBehaviour
         bool isCheck = false;
         foreach (Vector2 v2 in GameConfig.Instance.listMap[id])
         {
-            if (new Vector2(v2.x + 1, v2.y + 1) == new Vector2(col, row))
+            if (new Vector2(v2.x + addMapX, v2.y + addMapY) == new Vector2(col, row))
             {
                 isCheck = true;
             }
@@ -742,11 +745,11 @@ public class GameManager : MonoBehaviour
 
     public void CheckBoxCanMove(Box box)
     {
-        if (box.col != 8 && !arrBox[box.col + 1, box.row].isLock)
+        if (box.col != (col - 1) && !arrBox[box.col + 1, box.row].isLock)
         {
             box.isRight = true;
         }
-        if (box.row != 8 && !arrBox[box.col, box.row + 1].isLock)
+        if (box.row != (row - 1) && !arrBox[box.col, box.row + 1].isLock)
         {
             box.isBottom = true;
         }
@@ -758,11 +761,11 @@ public class GameManager : MonoBehaviour
         {
             box.isTop = true;
         }
-        if (box.col != 8 && box.row != 8 && !arrBox[box.col + 1, box.row + 1].isLock)
+        if (box.col != (col - 1) && box.row != (row - 1) && !arrBox[box.col + 1, box.row + 1].isLock)
         {
             box.isBottomRight = true;
         }
-        if (box.col != 0 && box.row != 8 && !arrBox[box.col - 1, box.row + 1].isLock)
+        if (box.col != 0 && box.row != (row - 1) && !arrBox[box.col - 1, box.row + 1].isLock)
         {
             box.isBottomLeft = true;
         }
@@ -770,7 +773,7 @@ public class GameManager : MonoBehaviour
         {
             box.isTopLeft = true;
         }
-        if (box.col != 8 && box.row != 0 && !arrBox[box.col + 1, box.row - 1].isLock)
+        if (box.col != (col - 1) && box.row != 0 && !arrBox[box.col + 1, box.row - 1].isLock)
         {
             box.isTopRight = true;
         }

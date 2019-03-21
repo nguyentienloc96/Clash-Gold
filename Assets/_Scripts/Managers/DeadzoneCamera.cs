@@ -23,10 +23,10 @@ public class DeadzoneCamera : MonoBehaviour
 
     private static readonly float PanSpeed = 20f;
     private static readonly float ZoomSpeedTouch = 0.1f;
-    private static readonly float ZoomSpeedMouse = 0.5f;
+    public float ZoomSpeedMouse = 0.5f;
 
-    private static readonly float[] BoundsX = new float[] { -43.5f, 42f };
-    private static readonly float[] BoundsY = new float[] { -36.5f, 40f };
+    public float[] BoundsX = new float[] { -34.5f, 42f };
+    public float[] BoundsY = new float[] { -9f, 40f };
     private static readonly float[] ZoomBounds = new float[] { 10f, 35f };
 
     private Vector3 lastPanPosition;
@@ -187,10 +187,10 @@ public class DeadzoneCamera : MonoBehaviour
         {
             return;
         }
-//#if !UNITY_EDITER && (IOS || ANDROID)
+#if !UNITY_EDITER && (IOS || ANDROID)
         _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize * offset, ZoomBounds[0], ZoomBounds[1]);
-//#else
-        //_camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
-//#endif
+#else
+        _camera.orthographicSize = Mathf.Clamp(_camera.orthographicSize - (offset * speed), ZoomBounds[0], ZoomBounds[1]);
+#endif
     }
 }

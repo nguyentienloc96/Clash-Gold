@@ -156,7 +156,7 @@ public class GoldMine : MonoBehaviour
                         ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
                         item.houseHero = GameManager.Instance.lstHousePlayer[i];
                         item.iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[i].idHero - 1];
-                        item.txtCountHero.text = "Count Hero : " + GameManager.Instance.lstHousePlayer[i].countHero;
+                        item.txtCountHero.text = UIManager.Instance.ConvertNumber( GameManager.Instance.lstHousePlayer[i].countHero);
                         lsIconHero.Add(item);
                     }
                 }
@@ -803,6 +803,8 @@ public class GoldMine : MonoBehaviour
             hero.infoHero.capWar = GameConfig.Instance.lstInfoHero[hero.infoHero.ID - 1].capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
         }
         SetSpriteBox(GameManager.Instance.maxLevelHouse);
+        capGold = (int)(capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, 1));
+        priceGold = (long)(capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, 1));
     }
 
     public void GetName(string nameGoldMineStr)

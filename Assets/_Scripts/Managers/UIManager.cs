@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
     public GameObject panelGroupHome;
     public GameObject panelChooseLevel;
     public GameObject panelMain;
-    public GameObject panelYesNoNewPlay;
     public GameObject panelGameOver;
     public GameObject panelVictory;
     public Button buttonContinue;
@@ -65,7 +64,6 @@ public class UIManager : MonoBehaviour
     public GameObject anim_UpLV_House;
     public GameObject anim_UpLV_GoldMine;
     public Canvas parentCanvas;
-    [HideInInspector]
     public List<string> arrAlphabetNeed = new List<string>();
     private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
@@ -222,7 +220,6 @@ public class UIManager : MonoBehaviour
 
     public void Btn_YesNewPlay()
     {
-        SetDeActivePanel(panelYesNoNewPlay);
         SetActivePanel(panelGroupHome);
         GameManager.Instance.isPlay = true;
         this.PostEvent(EventID.StartGame);
@@ -242,7 +239,7 @@ public class UIManager : MonoBehaviour
     public void Btn_NoNewPlay()
     {
         SetActivePanel(panelGroupHome);
-        SetDeActivePanel(panelYesNoNewPlay);
+        SetDeActivePanel(panelChooseLevel);
     }
 
     public void Btn_ChooseLevel(int _level)
@@ -250,7 +247,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.ratioBorn = GameConfig.Instance.RatioBorn[_level];
         GameManager.Instance.castlePlayer.price = GameConfig.Instance.PriceBlood0;
         SetDeActivePanel(panelChooseLevel);
-        SetActivePanel(panelYesNoNewPlay);
+        Btn_YesNewPlay();
     }
 
     public void Btn_Continue()

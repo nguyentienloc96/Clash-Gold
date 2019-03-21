@@ -16,8 +16,8 @@ public class ItemThrowHero : MonoBehaviour
         if (houseHero != null)
         {
             int number = (int)(sliderHero.value * houseHero.countHero);
-            txtThrowHero.text = "Number Throw Hero : " + number;
-            txtCountHero.text = "Count Hero : " + houseHero.countHero;
+            txtThrowHero.text = UIManager.Instance.ConvertNumber(number);
+            txtCountHero.text = UIManager.Instance.ConvertNumber(houseHero.countHero);
         }
     }
 }

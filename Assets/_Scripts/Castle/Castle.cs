@@ -17,7 +17,9 @@ public class Castle : MonoBehaviour
     public bool isCanReleaseCanon = false;
 
     [Header("CHECK MOVE")]
+    [HideInInspector]
     public Vector3 posMove;
+    [HideInInspector]
     public bool isMove;
 
     [Header("LIST")]
