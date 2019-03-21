@@ -441,7 +441,7 @@ public class GoldMine : MonoBehaviour
                     UIManager.Instance.HideAllPanelGame();
                     if (!GameManager.Instance.isBeingAttack)
                     {
-                        GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                        GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame+ (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                         GameManager.Instance.isBeingAttack = true;
                     }
                     GameManager.Instance.GolEnemyBeingAttack = this;

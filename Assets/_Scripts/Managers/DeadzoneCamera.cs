@@ -152,6 +152,7 @@ public class DeadzoneCamera : MonoBehaviour
             ZoomCamera(scroll, ZoomSpeedMouse);
         }
     }
+
     public bool IsPointerOverGameObject()
     {
         PointerEventData eventData = new PointerEventData(EventSystem.current);

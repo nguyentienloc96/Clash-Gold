@@ -22,8 +22,7 @@ public class GameManager : MonoBehaviour
 
     #region DateTime
     [Header("DateTime")]
-    public DateTime dateGame;
-    public DateTime dateStartPlay;
+    public long dateGame;
     public Text txtDate;
     private float time;
     #endregion
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
     public List<GoldMine> lstGoldMinePlayer = new List<GoldMine>();
     public List<House> lstHousePlayer = new List<House>();
     public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
-    public DateTime dateEnemyAttack;
+    public long dateEnemyAttack;
     public int maxLevelHouse;
 
     [Header("INFO ENEMY")]
@@ -52,7 +51,7 @@ public class GameManager : MonoBehaviour
     public List<Hero> lsPrefabsEnemy;
 
     public int[] lsHeroFly;
-    public DateTime dateUpGoldMine;
+    public long dateUpGoldMine;
 
 
     [Header("OTHER")]
@@ -123,7 +122,7 @@ public class GameManager : MonoBehaviour
             //if (i >= 5)
             //    bh.isUnlock = false;
             //else
-            //    bh.isUnlock = true;
+                bh.isUnlock = true;
             //if (i == 8)
             //    bh.isUnlock = true;
             lstBuildHouse.Add(bh);
@@ -131,9 +130,9 @@ public class GameManager : MonoBehaviour
 
         if (lstGoldMinePlayer.Count >= 2)
         {
-            dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+            dateEnemyAttack = dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
         }
-        dateUpGoldMine = dateGame.AddDays(GameConfig.Instance.TimeUp);
+        dateUpGoldMine = dateGame + (long)(GameConfig.Instance.TimeUp);
     }
 
     void Update()
@@ -143,9 +142,7 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
             if (time >= GameConfig.Instance.Timeday)
             {
-                int month = dateGame.Month;
-                int year = dateGame.Year;
-                dateGame = dateGame.AddDays(1f);
+                dateGame = dateGame + 1;
                 SetDateUI();
                 this.PostEvent(EventID.NextDay);
                 time = 0;
@@ -157,7 +154,7 @@ public class GameManager : MonoBehaviour
                 {
                     int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
                     lstGoldMineEnemy[a].AttackPlayer();
-                    dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                    dateEnemyAttack = dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                 }
             }
 
@@ -188,7 +185,7 @@ public class GameManager : MonoBehaviour
                         }
                     }
                 }
-                dateUpGoldMine = dateGame.AddDays(GameConfig.Instance.TimeUp);
+                dateUpGoldMine = dateGame+ (long)(GameConfig.Instance.TimeUp);
             }
 
             if (lstGoldMineEnemy.Count <= 0)
@@ -270,7 +267,7 @@ public class GameManager : MonoBehaviour
                     {
                         EndAttack();
                         GolEnemyBeingAttack.DeleteHero();
-                        dateEnemyAttack = dateGame.AddDays(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                        dateEnemyAttack = dateGame+ (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                         ScenesManager.Instance.GoToScene(() =>
                          {
                              GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
@@ -1051,18 +1048,18 @@ public class GameManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
         {
-            dateGame = DateTime.Now;
+            dateGame = 0;
         }
         else
         {
-            dateGame = DateTime.Now;
+            dateGame = 0;
         }
         SetDateUI();
     }
 
     public void SetDateUI()
     {
-        txtDate.text = "Date: " + dateGame.Day.ToString("00") + "/" + dateGame.Month.ToString("00") + "/" + dateGame.Year.ToString("0000");
+        txtDate.text = "Date: " + dateGame;
     }
     #endregion
 

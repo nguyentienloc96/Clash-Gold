@@ -24,9 +24,9 @@ public class DataPlayer : MonoBehaviour
     [HideInInspector]
     public float ratioBorn; //độ khó
     [HideInInspector]
-    public DateTime dateGame; //ngày trong game
+    public long dateGame; //ngày trong game
     [HideInInspector]
-    public DateTime dateEnemyAttack; //ngày enemy tấn công
+    public long dateEnemyAttack; //ngày enemy tấn công
     [HideInInspector]
     public Castle castlePlayer; //thành của người chơi
     [HideInInspector]
