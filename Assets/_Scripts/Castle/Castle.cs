@@ -5,30 +5,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-
-[System.Serializable]
 public class Castle : MonoBehaviour
 {
     [Header("INFO CASTLE")]
-    public long price;
-    private int level = 1;
     public float speed;
-    [HideInInspector]
-    public bool isCanReleaseCanon = false;
 
     [Header("CHECK MOVE")]
-    [HideInInspector]
     public Vector3 posMove;
-    [HideInInspector]
     public bool isMove;
 
-    [Header("LIST")]
-    public List<Transform> lsPos;
-    public Image[] lstAvatarHeroRelease;
-
+    [Header("RELEASE")]
     public List<House> lsHouseRelease = new List<House>();
-
-    public GameObject itemHero;
 
     void Start()
     {
@@ -45,19 +32,19 @@ public class Castle : MonoBehaviour
         Dictionary<string, int> keyHouse = (Dictionary<string, int>)_param;
         if (lsHouseRelease.Count < 3)
         {
-            lsHouseRelease.Add(GameManager.Instance.lstHousePlayer[keyHouse["IdHouse"]]);
+            lsHouseRelease.Add(GameManager.Instance.lsHousePlayer[keyHouse["IdHouse"]]);
             ShowAvatarHero(keyHouse["IdHero"] - 1);
         }
     }
 
     void ShowAvatarHero(int _id)
     {
-        for (int i = 0; i < lstAvatarHeroRelease.Length; i++)
+        for (int i = 0; i < UIManager.Instance.lstAvatarHeroRelease.Length; i++)
         {
-            if (!lstAvatarHeroRelease[i].gameObject.activeSelf)
+            if (!UIManager.Instance.lstAvatarHeroRelease[i].gameObject.activeSelf)
             {
-                lstAvatarHeroRelease[i].gameObject.SetActive(true);
-                lstAvatarHeroRelease[i].sprite = UIManager.Instance.sprAvatarHero[_id];
+                UIManager.Instance.lstAvatarHeroRelease[i].gameObject.SetActive(true);
+                UIManager.Instance.lstAvatarHeroRelease[i].sprite = UIManager.Instance.lsSprAvatarHero[_id];
                 break;
             }
         }
@@ -69,10 +56,10 @@ public class Castle : MonoBehaviour
         {
             for (int i = 0; i < lsHouseRelease.Count; i++)
             {
-                lstAvatarHeroRelease[i].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsHouseRelease[i].countHero.ToString();
+                UIManager.Instance.lstAvatarHeroRelease[i].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = lsHouseRelease[i].info.countHero.ToString();
             }
         }
-        if (GameManager.Instance.actionGame == ActionGame.Playing)
+        if (GameManager.Instance.stateGame == StateGame.Playing)
         {
             if (isMove)
             {
@@ -89,9 +76,9 @@ public class Castle : MonoBehaviour
 
     public void MoveCastle(Vector3 posMouse)
     {
-        if (GameManager.Instance.actionGame == ActionGame.Playing)
+        if (GameManager.Instance.stateGame == StateGame.Playing)
         {
-            if (!GameManager.Instance.isAttack)
+            if (!GameManager.Instance.isAttacking)
             {
                 Vector3 posEnd = DeadzoneCamera.Instance._camera.ScreenToWorldPoint(posMouse);
                 posEnd.z = 0f;
@@ -109,7 +96,9 @@ public class Castle : MonoBehaviour
     void OnMouseUp()
     {
         if (!DeadzoneCamera.Instance.IsPointerOverGameObject())
+        {
             UIManager.Instance.ShowInWall();
+        }
     }
 
     public bool CheckCastle()
@@ -128,22 +117,6 @@ public class Castle : MonoBehaviour
         return CastRays;
     }
 
-    public void UpgradeCastle()
-    {
-        price = (long)(price * GameConfig.Instance.PriceBloodUp);
-        if (price > GameManager.Instance.gold)
-            return;
-
-        GameManager.Instance.AddGold(-price);
-        level++;
-        Invoke("HideAnim", 1f);
-    }
-
-    void HideAnim()
-    {
-        //UIManager.Instance.SetDeActivePanel(UIManager.Instance.anim_UpHealth);
-    }
-
     public void MoveToPosition(Vector3 _toPos)
     {
         if (lsHouseRelease.Count > 0)
@@ -158,37 +131,33 @@ public class Castle : MonoBehaviour
         }
     }
 
-    public void RelaceHero(int idLocation)
+    public void RelaceHero_Onclick(int idLocation)
     {
         UIManager.Instance.panelRelace.SetActive(true);
         for (int k = 0; k < UIManager.Instance.contentRelace.childCount; k++)
         {
             Destroy(UIManager.Instance.contentRelace.GetChild(k).gameObject);
         }
-        for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
+        for (int i = 0; i < GameManager.Instance.lsHousePlayer.Count; i++)
         {
-            if (GameManager.Instance.lstHousePlayer[i].typeState == TypeStateHouse.None)
+            if (GameManager.Instance.lsHousePlayer[i].info.typeState == TypeStateHouse.None)
             {
                 bool isCheckHero = false;
                 for (int j = 0; j < lsHouseRelease.Count; j++)
                 {
-                    if (GameManager.Instance.lstHousePlayer[i].idHero == lsHouseRelease[j].idHero)
+                    if (GameManager.Instance.lsHousePlayer[i].info.idHero == lsHouseRelease[j].info.idHero)
                         isCheckHero = true;
                 }
                 if (!isCheckHero)
                 {
-                    GameObject obj = Instantiate(itemHero, UIManager.Instance.contentRelace);
+                    GameObject obj = Instantiate(GameManager.Instance.itemHero, UIManager.Instance.contentRelace);
                     ItemHeroRelace item = obj.GetComponent<ItemHeroRelace>();
                     item.idLocation = idLocation;
                     item.idHouseRelace = i;
-                    item.iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[item.idHouseRelace].idHero - 1];
+                    item.iconHero.sprite = UIManager.Instance.lsSprAvatarHero[GameManager.Instance.lsHousePlayer[item.idHouseRelace].info.idHero - 1];
                 }
             }
         }
     }
 
-    public void CloseRelace()
-    {
-        UIManager.Instance.panelRelace.SetActive(false);
-    }
 }

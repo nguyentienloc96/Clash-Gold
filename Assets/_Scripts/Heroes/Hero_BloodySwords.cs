@@ -10,9 +10,9 @@ public class Hero_BloodySwords : Hero {
         Hero hero = targetCompetitor;
         if (hero.infoHero.ID == 10)
         {
-            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
+            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.countHero);
         }
-        hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
+        hero.BeingAttacked(infoHero.dame * infoHero.countHero);
         //Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
     }
 
@@ -29,7 +29,7 @@ public class Hero_BloodySwords : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 14;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
     }
 
     public void Start()

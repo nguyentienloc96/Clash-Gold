@@ -17,13 +17,13 @@ public class DetailIcon : MonoBehaviour {
             icon.SetActive(false);
             info.SetActive(true);
             string infoDetail = "";
-            infoDetail += ": " + GameConfig.Instance.lstInfoHero[idHero -1].health + "\n";
-            infoDetail += ": " + GameConfig.Instance.lstInfoHero[idHero -1].dame + "\n";
-            infoDetail += ": " + GameConfig.Instance.lstInfoHero[idHero -1].hitSpeed + "\n";
-            infoDetail += ": " + GameConfig.Instance.lstInfoHero[idHero -1].speed + "\n";
-            if (GameConfig.Instance.lstInfoHero[idHero -1].range != 0)
+            infoDetail += ": " + GameConfig.Instance.lsInfoHero[idHero -1].health + "\n";
+            infoDetail += ": " + GameConfig.Instance.lsInfoHero[idHero -1].dame + "\n";
+            infoDetail += ": " + GameConfig.Instance.lsInfoHero[idHero -1].hitSpeed + "\n";
+            infoDetail += ": " + GameConfig.Instance.lsInfoHero[idHero -1].speed + "\n";
+            if (GameConfig.Instance.lsInfoHero[idHero -1].range != 0)
             {
-                infoDetail += ": " + GameConfig.Instance.lstInfoHero[idHero -1].range;
+                infoDetail += ": " + GameConfig.Instance.lsInfoHero[idHero -1].range;
             }
             else
             {

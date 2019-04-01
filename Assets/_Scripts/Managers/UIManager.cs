@@ -9,30 +9,68 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance = new UIManager();
 
+    public void Awake()
+    {
+        if (Instance != null)
+        {
+            return;
+        }
+        Instance = this;
+    }
+
     [Header("UI HOME")]
     public GameObject panelHome;
     public GameObject panelGroupHome;
     public GameObject panelChooseLevel;
-    public GameObject panelMain;
     public GameObject panelGameOver;
     public GameObject panelVictory;
-    public Button buttonContinue;
+    public Button btnContinue;
 
     [Header("UI TOP")]
     public Text txtGold;
     public Text txtCoin;
-    public Text txtGoldMount;
+    public Text txtProductGold;
+
+    [Header("HERO")]
+    public List<Sprite> lsSprAvatarHero = new List<Sprite>();
+    public Image[] lstAvatarHeroRelease;
+
+    [Header("SUPPORT")]
+    public List<string> arrAlphabetNeed = new List<string>();
+    private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
     [Header("IN-WALL")]
     public GameObject panelInWall;
     public GameObject panelBuildSelect;
     public GameObject panelUpgrade;
     public GameObject panelBuildHouse;
-    public List<BuildHouseObject> lstHouse;
-    public Sprite[] sprAvatarHero;
+    public GameObject panelRelace;
+
+    [Header("WARRING")]
+    public GameObject warringBeingAttack;
+    public GameObject panelWarring;
+    public DetailWarring detailWarring;
+
+    [Header("HOUSE")]
+    public List<BuildHouseObject> lsBuildHouseUI = new List<BuildHouseObject>();
+    public List<Button> lsBtnIconHouse = new List<Button>();
+
+    [Header("ATTACK")]
+    public GameObject panelReleaseAttack;
+    public List<ItemHeroAttack> lsItemHeroAttack = new List<ItemHeroAttack>();
+    public GameObject panelLetGo;
+    public Text txtLetGo;
+    public Canvas cavas;
+    public Canvas canvasLoading;
+    public Camera cameraAttack;
+    public GameObject mapAttack;
+    public Transform contentRelace;
+
+    public GameObject panelRelease;
+    public Transform contentThrowHero;
+    public GameObject itemThrowHero;
 
     [Header("UPGRADE")]
-    public int xUpgrade = 1;
     public Text txtLevelCurrent;
     public Text txtLevelUpgrade;
     public Text txtCapCurrent;
@@ -43,54 +81,18 @@ public class UIManager : MonoBehaviour
     public Text txtInfoHero;
     public DetailIcon detailIcon;
     public Button btnUpgradeHouse;
+    public int houseClick;
 
     [Header("UPGRADE GOLD MINE")]
-    public GameObject panelUpgradeGoldMine;
-    public Text txtLevelCurrentUpGM;
-    public Text txtLevelUpgradeUpGM;
-    public Text txtCapCurrentUpGM;
-    public Text txtCapUpgradeUpGM;
-    public Text txtPriceUpGM;
-    public Image iconHeroUpGM;
-    public Text txtNameHeroUpGM;
-    public Button btnUpGM;
-
-    [Header("UI SHOWSPEECH")]
-    public GameObject panelShowSpeech;
-    public Text txtShowSpeech;
-
-    [Header("OTHERS")]
-    public List<Sprite> lstSpriteHouse;
-    public GameObject anim_UpLV_House;
-    public GameObject anim_UpLV_GoldMine;
-    public Canvas parentCanvas;
-    public List<string> arrAlphabetNeed = new List<string>();
-    private string[] arrAlphabet = new string[] { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
-
-    [Header("MAP")]
-    public Canvas cavas;
-    public Canvas canvasLoading;
-    public GameObject panelRelace;
-    public Transform contentRelace;
-    public List<Sprite> lsSpriteGround = new List<Sprite>();
-
-    [Header("ATTACK")]
-    public GameObject mapAttack;
-    public GameObject panelThrowHero;
-    public Transform contentThrowHero;
-    public GameObject itemThrowHero;
-    public GameObject panelLetGo;
-    public Text txtLetGo;
-
-    public List<Button> lsBtnIconHouse = new List<Button>();
-
-    public GameObject panelThrowHeroAttack;
-    public List<ItemHeroAttack> lsItemHeroAttack = new List<ItemHeroAttack>();
-
-    [Header("Warring")]
-    public GameObject warringBeingAttack;
-    public GameObject panelWarring;
-    public DetailWarring detailWarring;
+    public GameObject panelUpgradeG;
+    public Text txtLevelCurrentUpG;
+    public Text txtLevelUpgradeUpG;
+    public Text txtCapCurrentUpG;
+    public Text txtCapUpgradeUpG;
+    public Text txtPriceUpG;
+    public Image iconHeroUpG;
+    public Text txtNameHeroUpG;
+    public Button btnUpG;
 
     [Header("STORY")]
     public Text txtStory;
@@ -98,34 +100,11 @@ public class UIManager : MonoBehaviour
     [Header("SETTING")]
     public GameObject panelSeting;
 
-    void Awake()
-    {
-        if (Instance != null)
-        {
-            return;
-        }
-        Instance = this;
-    }
-
     void Start()
     {
-        for (int i = 0; i < 4; i++)
+        for (int j = 0; j < arrAlphabet.Length; j++)
         {
-            for (int j = 0; j < arrAlphabet.Length; j++)
-            {
-                arrAlphabetNeed.Add(arrAlphabet[i] + arrAlphabet[j]);
-            }
-        }
-
-        this.RegisterListener(EventID.ShowSpeech, (param) => OnShowSpeech(param));
-
-        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
-        {
-            buttonContinue.interactable = false;
-        }
-        else
-        {
-            buttonContinue.interactable = true;
+            arrAlphabetNeed.Add(arrAlphabet[0] + arrAlphabet[j]);
         }
     }
 
@@ -163,162 +142,98 @@ public class UIManager : MonoBehaviour
         return smoney;
     }
 
-    public void SetActivePanel(GameObject _g)
+    public void SetActivePanel(GameObject obj, bool isActive)
     {
-        if (_g == null)
-            return;
-
-        _g.SetActive(true);
-        if (_g.name == "InWall")
-            _g.GetComponent<Animator>().Play("ActivePanel");
-    }
-
-    public void SetDeActivePanel(GameObject _g)
-    {
-        if (_g == null)
-            return;
-
-        _g.SetActive(false);
-        //_g.GetComponent<Animator>().Play("DeActivePanel");
-    }
-
-    void ShowMouseClick()
-    {
-        if (Input.GetMouseButtonUp(0))
-        {
-            Vector2 click;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(parentCanvas.transform as RectTransform, Input.mousePosition, parentCanvas.worldCamera, out click);
-            Vector3 mousePos = parentCanvas.transform.TransformPoint(click) + new Vector3(0.2f, -0.3f, 0);
-        }
+        obj.SetActive(isActive);
     }
     #endregion
 
-    #region === EVENT ===
-    void OnShowSpeech(object _param)
+    public void BtnPlay_Onclick()
     {
-        Debug.Log((int)_param);
-        SetActivePanel(panelShowSpeech);
-        txtShowSpeech.text = GameConfig.Instance.lstSpeech[(int)_param];
-    }
-    #endregion
-
-    #region === UI HOME ===
-    public void Btn_Play()
-    {
-        if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) == 0)
-        {
-            SetActivePanel(panelChooseLevel);
-        }
-        else
-        {
-            SetActivePanel(panelChooseLevel);
-        }
-        SetDeActivePanel(panelGroupHome);
+        SetActivePanel(panelGroupHome, false);
+        SetActivePanel(panelChooseLevel, true);
     }
 
-    public void YesNewPlay()
+    public void BtnMode_Onclick(float mode)
     {
-        SetActivePanel(panelGroupHome);
-        GameManager.Instance.actionGame = ActionGame.Loading;
-        this.PostEvent(EventID.StartGame);
-        this.PostEvent(EventID.UpLevelHouse);
-        panelHome.SetActive(false);
-        Fade.Instance.panelLoadingStory.SetActive(true);
+        GameManager.Instance.GenerateMapBox();
+        SetActivePanel(panelChooseLevel, false);
+        SetActivePanel(panelHome, false);
+        GameManager.Instance.ratioBorn = mode;
         txtStory.text = GameConfig.Instance.lsStory[Random.Range(0, GameConfig.Instance.lsStory.Count)];
-
-        ScenesManager.Instance.GoToScene(() =>
-          {
-              GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
-              GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
-              GameManager.Instance.actionGame = ActionGame.Playing;
-          });
+        ScenesManager.Instance.GoToScene(
+            1,
+            null,
+            () =>
+            {
+                GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
+                GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+            }
+        );
     }
 
-    public void Btn_BackHome()
+    public void BtnContinue_Onclick()
     {
-        SetActivePanel(panelGroupHome);
-        SetDeActivePanel(panelChooseLevel);
+        GameManager.Instance.ratioBorn = DataPlayer.Instance.ratioBorn;
+        GameManager.Instance.GenerateMapBoxJson();
+        SetActivePanel(panelChooseLevel, false);
+        SetActivePanel(panelHome, false);
+        txtStory.text = GameConfig.Instance.lsStory[Random.Range(0, GameConfig.Instance.lsStory.Count)];
+        ScenesManager.Instance.GoToScene(
+            1,
+            null,
+            () =>
+            {
+                GameManager.Instance.AddGold(DataPlayer.Instance.gold);
+                GameManager.Instance.AddCoin(DataPlayer.Instance.coin);
+            }
+        );
     }
 
-    public void Btn_ChooseLevel(int _level)
+    public void BtnBackHome_Oclick()
     {
-        GameManager.Instance.ratioBorn = GameConfig.Instance.RatioBorn[_level];
-        GameManager.Instance.castlePlayer.price = GameConfig.Instance.PriceBlood0;
-        SetDeActivePanel(panelChooseLevel);
-        YesNewPlay();
+        ScenesManager.Instance.GoToScene(1);
+        SetActivePanel(panelChooseLevel, false);
+        SetActivePanel(panelGroupHome, true);
     }
-
-    public void Btn_Continue()
-    {
-        DataPlayer.Instance.LoadDataPlayer();
-        panelHome.SetActive(false);
-        this.PostEvent(EventID.StartGame);
-        ScenesManager.Instance.GoToScene(null,()=> GameManager.Instance.actionGame = ActionGame.Playing);
-    }
-
-    public void Btn_Tutorial()
-    {
-        Debug.Log("Tutorial");
-    }
-
-    public void Btn_Share()
-    {
-        ShareManager.Instance.ShareScreenshotWithText(GameConfig.Instance.string_Share);
-    }
-
-    public void Btn_Rate()
-    {
-#if UNITY_ANDROID
-        if (GameConfig.Instance.link_android != null)
-        {
-            Application.OpenURL(GameConfig.Instance.link_android);
-        }
-#elif UNITY_IOS
-        if (GameConfig.Instance.link_ios != null)
-        {
-            Application.OpenURL(GameConfig.Instance.link_ios);
-        }
-#endif
-    }
-    #endregion
 
     #region === UI IN-WALL ===
     public void ShowInWall()
     {
-        SetActivePanel(panelInWall);
+        SetActivePanel(panelInWall,true);
     }
 
     public void ShowPanelBuild()
     {
-        SetActivePanel(panelBuildSelect);
-        for (int i = 0; i < lstHouse.Count; i++)
+        SetActivePanel(panelBuildSelect,true);
+        for (int i = 0; i < lsBuildHouseUI.Count; i++)
         {
-            lstHouse[i].SetLock(GameManager.Instance.lstBuildHouse[i].isUnlock);
+            lsBuildHouseUI[i].SetLock(GameManager.Instance.lsBuildHouse[i].isUnlock);
         }
     }
 
     public void ShowPanelUpgrade()
     {
-        SetActivePanel(panelUpgrade);
+        SetActivePanel(panelUpgrade,true);
         UpgradeHouse();
     }
 
     public void UpgradeHouse()
     {
-        int _idHeroUpgrade = GameManager.Instance.lstHousePlayer[houseClick].idHero;
+        int _idHeroUpgrade = GameManager.Instance.lsHousePlayer[houseClick].info.idHero;
         detailIcon.idHero = _idHeroUpgrade;
         detailIcon.icon.SetActive(true);
         detailIcon.info.SetActive(false);
-        iconHero.sprite = sprAvatarHero[_idHeroUpgrade - 1];
-        txtNameHero.text = GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].NameHero;
-        txtInfoHero.text = GameConfig.Instance.lstInfoHero[_idHeroUpgrade - 1].Info;
-        GameManager.Instance.lstHousePlayer[houseClick].CheckUpgrade(xUpgrade);
-        txtLevelCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].level.ToString();
-        txtLevelUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].levelWillupgrade.ToString();
-        txtCapCurrent.text = GameManager.Instance.lstHousePlayer[houseClick].capWar.ToString();
-        txtCapUpgrade.text = GameManager.Instance.lstHousePlayer[houseClick].capWillUpgrade.ToString();
-        txtPrice.text = ConvertNumber(GameManager.Instance.lstHousePlayer[houseClick].priceWillUpgrade);
-        if(GameManager.Instance.gold < GameManager.Instance.lstHousePlayer[houseClick].priceWillUpgrade)
+        iconHero.sprite = lsSprAvatarHero[_idHeroUpgrade - 1];
+        txtNameHero.text = GameConfig.Instance.lsInfoHero[_idHeroUpgrade - 1].nameHero;
+        txtInfoHero.text = GameConfig.Instance.lsInfoHero[_idHeroUpgrade - 1].info;
+        GameManager.Instance.lsHousePlayer[houseClick].CheckUpgrade(1);
+        txtLevelCurrent.text = GameManager.Instance.lsHousePlayer[houseClick].info.level.ToString();
+        txtLevelUpgrade.text = GameManager.Instance.lsHousePlayer[houseClick].levelWillupgrade.ToString();
+        txtCapCurrent.text = GameManager.Instance.lsHousePlayer[houseClick].info.capWar.ToString();
+        txtCapUpgrade.text = GameManager.Instance.lsHousePlayer[houseClick].capWillUpgrade.ToString();
+        txtPrice.text = ConvertNumber(GameManager.Instance.lsHousePlayer[houseClick].priceWillUpgrade);
+        if (GameManager.Instance.gold < GameManager.Instance.lsHousePlayer[houseClick].priceWillUpgrade)
         {
             btnUpgradeHouse.interactable = false;
         }
@@ -330,80 +245,73 @@ public class UIManager : MonoBehaviour
 
     public void Btn_YesUpgrade()
     {
-        GameManager.Instance.lstHousePlayer[houseClick].YesUpgrade(xUpgrade);
-        SetDeActivePanel(panelUpgrade);
+        GameManager.Instance.lsHousePlayer[houseClick].YesUpgrade(1);
+        UpgradeHouse();
+        //SetActivePanel(panelUpgrade,false);
     }
 
     public void Btn_NoUpgrade()
     {
-        SetDeActivePanel(panelUpgrade);
+        SetActivePanel(panelUpgrade,false);
     }
 
-    [HideInInspector]
-    public int houseClick;
     public void Btn_BuildHouse(int _id)
     {
-        GameManager.Instance.lstHousePlayer[houseClick].Build(_id);
-        SetDeActivePanel(panelBuildSelect);
+        Debug.Log(houseClick);
+        GameManager.Instance.lsHousePlayer[houseClick].Build(_id);
+        SetActivePanel(panelBuildSelect,false);
     }
 
     public void Btn_CloseWall()
     {
-        panelInWall.GetComponent<Animator>().Play("DeActivePanel");
+        SetActivePanel(panelInWall, false);
     }
     #endregion
 
-    public void CloseThrowHero()
-    {
-        panelThrowHero.SetActive(false);
-    }
-
-    public void ThrowHero()
-    {
-        GameManager.Instance.goldMineCurrent.ThrowHero();
-        GameManager.Instance.goldMineCurrent = null;
-        panelThrowHero.SetActive(false);
-    }
-
     public void HideAllPanelGame()
     {
-        warringBeingAttack.SetActive(false);
-        panelBuildSelect.SetActive(false);
-        panelUpgrade.SetActive(false);
-        panelInWall.SetActive(false);
-        panelRelace.SetActive(false);
-        panelThrowHero.SetActive(false);
-        panelThrowHeroAttack.SetActive(false);
+
     }
 
-    public void UpgradeGoldMine(string nameGM,
-        Sprite icon,
-        int lvCurrent, 
-        int lvWillUp, 
-        int capCurrent, 
-        int capWillUp,
-        long price,
-        bool isOutMoney, 
-        UnityEngine.Events.UnityAction actionUp)
+    public void GetUIAttack()
     {
-        panelUpgradeGoldMine.SetActive(true);
-        txtNameHeroUpGM.text = nameGM;
-        iconHeroUpGM.sprite = icon;
-        txtLevelCurrentUpGM.text = lvCurrent.ToString();
-        txtLevelUpgradeUpGM.text = lvWillUp.ToString();
-        txtCapCurrentUpGM.text = capCurrent.ToString();
-        txtCapUpgradeUpGM.text = capWillUp.ToString();
-        txtPriceUpGM.text = ConvertNumber(price);
+        cavas.worldCamera = cameraAttack;
+        canvasLoading.worldCamera = cameraAttack;
+        mapAttack.SetActive(true);
+    }
+
+    public void GetUIMove()
+    {
+        cavas.worldCamera = cameraAttack;
+        canvasLoading.worldCamera = cameraAttack;
+        mapAttack.SetActive(true);
+    }
+
+    public void BtnCloseReleaseHero_Onclick()
+    {
+        panelRelace.SetActive(false);
+    }
+
+    public void UpgradeGoldMine(string nameGM,Sprite icon,int lvCurrent,int lvWillUp,int capCurrent,int capWillUp,long price,bool isOutMoney,UnityEngine.Events.UnityAction actionUp)
+    {
+        panelUpgradeG.SetActive(true);
+        txtNameHeroUpG.text = nameGM;
+        iconHeroUpG.sprite = icon;
+        txtLevelCurrentUpG.text = lvCurrent.ToString();
+        txtLevelUpgradeUpG.text = lvWillUp.ToString();
+        txtCapCurrentUpG.text = capCurrent.ToString();
+        txtCapUpgradeUpG.text = capWillUp.ToString();
+        txtPriceUpG.text = ConvertNumber(price);
         if (isOutMoney)
         {
-            btnUpGM.interactable = false;
+            btnUpG.interactable = false;
         }
         else
         {
-            btnUpGM.interactable = true;
+            btnUpG.interactable = true;
         }
-        btnUpGM.onClick.RemoveAllListeners();
-        btnUpGM.onClick.AddListener(actionUp);
+        btnUpG.onClick.RemoveAllListeners();
+        btnUpG.onClick.AddListener(actionUp);
     }
 
     public void Btn_OpenSetting()
@@ -415,12 +323,26 @@ public class UIManager : MonoBehaviour
     public void Btn_CloseSetting()
     {
         Time.timeScale = 1;
-        panelSeting.SetActive(false
-);
+        panelSeting.SetActive(false);
     }
 
     public void Btn_SaveExit()
     {
+        DataPlayer.Instance.SaveDataPlayer();
+        panelHome.SetActive(true);
+        SetActivePanel(panelGroupHome, true);
+        SetActivePanel(panelChooseLevel,false);
+        txtStory.text = GameConfig.Instance.lsStory[Random.Range(0, GameConfig.Instance.lsStory.Count)];
+        ScenesManager.Instance.GoToScene(1,() =>
+        {
+            GameManager.Instance.stateGame = StateGame.Home;
+        });
+    }
 
+    public void Btn_ThrowHero()
+    {
+        GameManager.Instance.goldMineCurrent.ThrowHero();
+        GameManager.Instance.goldMineCurrent = null;
+        panelRelease.SetActive(false);
     }
 }

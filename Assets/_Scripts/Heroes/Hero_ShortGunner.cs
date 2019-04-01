@@ -16,7 +16,7 @@ public class Hero_ShortGunner : Hero {
         int xExp = (int)(Vector3.Distance(transform.position, targetCompetitor.transform.position) / pX);
         if (xExp <= 0)
             xExp = 1;
-        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero * xExp;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.countHero * xExp;
         _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
@@ -33,7 +33,7 @@ public class Hero_ShortGunner : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 5;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
     }
 
     string nameBullet;

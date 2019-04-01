@@ -4,24 +4,39 @@ using UnityEngine;
 using UnityEngine.UI;
 using EventDispatcher;
 
-public class House : MonoBehaviour
+public enum TypeStateHouse
 {
-    public int idHouse;
-    public int idHero;
+    None = 1,
+    Lock = 2,
+    Building = 3,
+    Upgrading = 4
+}
+
+[System.Serializable]
+public struct HouseInfo
+{
+    public int ID;
     public int level;
     public long price;
     public int capWar;
     public TypeStateHouse typeState;
+
+    public int idHero;
     public int countHero;
+}
+
+public class House : MonoBehaviour
+{
+
+    public HouseInfo info;
+
     public float timeBuild;
     public float timeUpgrade;
-    int xUpgrade;
+
     public long priceWillUpgrade;
     public int capWillUpgrade;
     public int levelWillupgrade;
 
-    public Button buttonUpgrade;
-    public Button buttonRelease;
     public Text txtCountHero;
     public Text txtCountTime;
     public Text txtLevel;
@@ -33,12 +48,12 @@ public class House : MonoBehaviour
 
     void Update()
     {
-        if (typeState == TypeStateHouse.None && txtCountHero.gameObject.activeSelf)
+        if (info.typeState == TypeStateHouse.None && txtCountHero.gameObject.activeSelf)
         {
-            txtCountHero.text = UIManager.Instance.ConvertNumber(countHero);
+            txtCountHero.text = UIManager.Instance.ConvertNumber(info.countHero);
         }
 
-        if (typeState == TypeStateHouse.Building)
+        if (info.typeState == TypeStateHouse.Building)
         {
             if (timeBuild <= 0)
             {
@@ -50,7 +65,7 @@ public class House : MonoBehaviour
             txtCountTime.text = transformToTime(timeBuild);
         }
 
-        if (typeState == TypeStateHouse.Upgrading)
+        if (info.typeState == TypeStateHouse.Upgrading)
         {
             if (timeUpgrade <= 0)
             {
@@ -72,16 +87,16 @@ public class House : MonoBehaviour
 
     public void Btn_OnClick()
     {
-        if (typeState == TypeStateHouse.Building || typeState == TypeStateHouse.Upgrading)
+        if (info.typeState == TypeStateHouse.Building || info.typeState == TypeStateHouse.Upgrading)
             return;
 
-        UIManager.Instance.houseClick = idHouse;
-        if (typeState == TypeStateHouse.None)
+        UIManager.Instance.houseClick = info.ID;
+        if (info.typeState == TypeStateHouse.None)
         {
-            this.PostEvent(EventID.ClickHouse, idHouse);
+            this.PostEvent(EventID.ClickHouse, info.ID);
             UIManager.Instance.ShowPanelUpgrade();
         }
-        else if (typeState == TypeStateHouse.Lock)
+        else if (info.typeState == TypeStateHouse.Lock)
         {
             UIManager.Instance.ShowPanelBuild();
         }
@@ -90,90 +105,73 @@ public class House : MonoBehaviour
     public void Btn_Upgrade()
     {
         UIManager.Instance.ShowPanelUpgrade();
-
-        buttonUpgrade.gameObject.SetActive(false);
-        buttonRelease.gameObject.SetActive(false);
-
     }
 
     public void CheckUpgrade(int _x)
     {
-        levelWillupgrade = level + _x;
-        priceWillUpgrade = (long)(price * Mathf.Pow(GameConfig.Instance.Ri, _x));
-        capWillUpgrade = (int)(capWar * Mathf.Pow(GameConfig.Instance.Wi, _x));
+        levelWillupgrade = info.level + _x;
+        priceWillUpgrade = (long)(info.price * Mathf.Pow(GameConfig.Instance.Ri, _x));
+        capWillUpgrade = (int)(info.capWar * Mathf.Pow(GameConfig.Instance.Wi, _x));
     }
 
     public void YesUpgrade(int _x)
     {
         if (GameManager.Instance.gold < priceWillUpgrade)
             return;
-
-        UIManager.Instance.SetActivePanel(UIManager.Instance.anim_UpLV_House);
-        Invoke("HideAnim", 2f);
-        price = priceWillUpgrade;
-        GameManager.Instance.AddGold(-price);
-        timeUpgrade = GameConfig.Instance.UpgradeTime * _x;
-        typeState = TypeStateHouse.Upgrading;
-        xUpgrade = _x;
-        txtCountHero.gameObject.SetActive(false);
-        imgLoadingBuild.gameObject.SetActive(true);
-        panelHouse.SetActive(false);
     }
 
     void HideAnim()
     {
-        UIManager.Instance.SetDeActivePanel(UIManager.Instance.anim_UpLV_House);
+
     }
 
     void UpgradeComplete()
     {
-        typeState = TypeStateHouse.None;
-        level = levelWillupgrade;
-        capWar = capWillUpgrade;
+        info.typeState = TypeStateHouse.None;
+        info.level = levelWillupgrade;
+        info.capWar = capWillUpgrade;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
-        txtLevel.text = level.ToString();
-        if (level > GameManager.Instance.maxLevelHouse)
+        txtLevel.text = info.level.ToString();
+        if (info.level > GameManager.Instance.maxLevelHouse)
         {
-            GameManager.Instance.maxLevelHouse = level;
+            GameManager.Instance.maxLevelHouse = info.level;
             this.PostEvent(EventID.UpLevelHouse);
         }
     }
 
     public void Build(int _id)
     {
-        this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
+        info.price = (int)GameConfig.Instance.lsInfoHero[_id].price;
         UIManager.Instance.panelBuildHouse.SetActive(true);
         DetailInfoHero detail = UIManager.Instance.panelBuildHouse.GetComponent<DetailInfoHero>();
         string infoDetail = "";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].health + "\n";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].dame + "\n";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].hitSpeed + "\n";
-        infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].speed + "\n";
-        if (GameConfig.Instance.lstInfoHero[_id].range != 0)
+        infoDetail += ": " + GameConfig.Instance.lsInfoHero[_id].health + "\n";
+        infoDetail += ": " + GameConfig.Instance.lsInfoHero[_id].dame + "\n";
+        infoDetail += ": " + GameConfig.Instance.lsInfoHero[_id].hitSpeed + "\n";
+        infoDetail += ": " + GameConfig.Instance.lsInfoHero[_id].speed + "\n";
+        if (GameConfig.Instance.lsInfoHero[_id].range != 0)
         {
-            infoDetail += ": " + GameConfig.Instance.lstInfoHero[_id].range;
+            infoDetail += ": " + GameConfig.Instance.lsInfoHero[_id].range;
         }
         else
         {
             infoDetail += ": Mele";
         }
         detail.GetInfo(
-            UIManager.Instance.sprAvatarHero[_id],
-            GameConfig.Instance.lstInfoHero[_id].NameHero,
-            GameConfig.Instance.lstInfoHero[_id].Info,
+            UIManager.Instance.lsSprAvatarHero[_id],
+            GameConfig.Instance.lsInfoHero[_id].nameHero,
+            GameConfig.Instance.lsInfoHero[_id].info,
             infoDetail,
-            this.price,
+            info.price,
             () =>
             {
                 YesBuild(_id);
                 UIManager.Instance.panelBuildHouse.SetActive(false);
-            },
-            true
-            );
-        if (GameManager.Instance.gold < this.price)
+            });
+        if (GameManager.Instance.gold < info.price)
         {
             detail.btnYes.interactable = false;
         }
@@ -181,16 +179,16 @@ public class House : MonoBehaviour
 
     public void YesBuild(int _id)
     {
-        this.price = (int)GameConfig.Instance.lstInfoHero[_id].price;
-        if (GameManager.Instance.gold < this.price)
+        info.price = (int)GameConfig.Instance.lsInfoHero[_id].price;
+        if (GameManager.Instance.gold < info.price)
             return;
-        GameManager.Instance.AddGold(-price);
-        timeBuild = GameConfig.Instance.BuildTime * idHouse;
+        GameManager.Instance.AddGold(-info.price);
+        timeBuild = GameConfig.Instance.BuildTime * info.ID;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
-        typeState = TypeStateHouse.Building;
-        this.idHero = _id + 1;
+        info.typeState = TypeStateHouse.Building;
+        this.info.idHero = _id + 1;
         this.txtCountHero.gameObject.SetActive(false);
-        this.imgHouse.sprite = UIManager.Instance.lstSpriteHouse[_id];
+        this.imgHouse.sprite = UIManager.Instance.lsSprAvatarHero[_id];
 
         imgNotBuild.enabled = false;
         imgLoadingBuild.gameObject.SetActive(true);
@@ -200,25 +198,38 @@ public class House : MonoBehaviour
 
     void BuildComplete()
     {
-        typeState = TypeStateHouse.None;
+        info.typeState = TypeStateHouse.None;
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-        this.RegisterListener(EventID.ClickHouse, (param) => OnClickHouse(param));
-        this.level = 1;
-        this.capWar = (int)GameConfig.Instance.lstInfoHero[idHero - 1].capWar;
-        this.countHero = 0;
+        info.level = 1;
+        info.capWar = (int)GameConfig.Instance.lsInfoHero[info.idHero - 1].capWar;
+        info.countHero = 0;
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
-        txtLevel.text = level.ToString();
+        txtLevel.text = info.level.ToString();
         Dictionary<string, int> keyHouse = new Dictionary<string, int>();
-        keyHouse.Add("IdHouse", idHouse);
-        keyHouse.Add("IdHero", idHero);
+        keyHouse.Add("IdHouse", info.ID);
+        keyHouse.Add("IdHero", info.idHero);
         this.PostEvent(EventID.BuildHouseComplete, keyHouse);
+    }
+
+    public void BuildCompleteJson(int level,int idHero,int countHero)
+    {
+        info.typeState = TypeStateHouse.None;
+        this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
+        info.level = level;
+        info.idHero = idHero;
+        info.capWar = (int)GameConfig.Instance.lsInfoHero[info.idHero - 1].capWar;
+        info.countHero = countHero;
+        imgLoadingBuild.gameObject.SetActive(false);
+        panelHouse.SetActive(true);
+        txtCountHero.gameObject.SetActive(true);
+        txtLevel.text = info.level.ToString();
     }
 
     public void SpawmHero()
     {
-        countHero += capWar;
+        info.countHero += info.capWar;
     }
 
     public void OnNextDay()
@@ -226,22 +237,10 @@ public class House : MonoBehaviour
         SpawmHero();
     }
 
-    public void OnClickHouse(object _param)
+    public void AddHero(int numberHero)
     {
-        if (idHouse != (int)_param)
-        {
-            if (buttonUpgrade.gameObject.activeSelf)
-                buttonUpgrade.gameObject.SetActive(false);
-            if (buttonRelease.gameObject.activeSelf)
-                buttonRelease.gameObject.SetActive(false);
-        }
+        info.countHero += numberHero;
+        if (info.countHero < 0)
+            info.countHero = 0;
     }
-}
-
-public enum TypeStateHouse
-{
-    None = 1,
-    Lock = 2,
-    Building = 3,
-    Upgrading = 4
 }

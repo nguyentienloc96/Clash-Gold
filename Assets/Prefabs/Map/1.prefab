@@ -442,28 +442,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38fff2633625b06449d67305a5516da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
-  nameGoldMine: 
-  capGold: 0
-  priceGold: 0
-  priceWillUpgrade: 0
-  capWillUpgrade: 0
-  levelWillUpgrade: 0
-  level: 0
-  numberBoxGoldMine: 0
-  typeGoleMine: 0
-  colliderLand: {fileID: 60838029047797896}
-  lstHeroGoldMine: []
-  lsPos:
+  info:
+    id: 0
+    name: 
+    level: 0
+    capGold: 0
+    price: 0
+    typeGoleMine: 0
+    lsHeroGoldMine: []
+    indexLoadGoldMine: 0
+  lsPosIns:
   - {fileID: 4041721462497984}
   - {fileID: 4662269881205208}
   - {fileID: 4664417608931634}
   txtName: {fileID: 114766692915742146}
   txtLevel: {fileID: 114171943726017284}
+  canvas: {fileID: 224142364602813260}
+  btnUp: {fileID: 1082804465232320}
+  btnRelease: {fileID: 1374693819468698}
   sprGoldMine: {fileID: 212906316017598254}
-  Canvas: {fileID: 1563603937970930}
-  buttonUp: {fileID: 1082804465232320}
-  buttonRelease: {fileID: 1374693819468698}
+  lsHeroGoldMine: []
 --- !u!114 &114482128212161604
 MonoBehaviour:
   m_ObjectHideFlags: 1

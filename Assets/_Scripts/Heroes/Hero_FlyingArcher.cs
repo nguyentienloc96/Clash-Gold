@@ -12,7 +12,7 @@ public class Hero_FlyingArcher : Hero
         _bullet.SetActive(true);
         _bullet.transform.right = transform.right;
         _bullet.GetComponent<Rigidbody2D>().velocity = transform.up * infoHero.speedBullet;
-        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.countHero;
         _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
@@ -29,7 +29,7 @@ public class Hero_FlyingArcher : Hero
     public override void SetInfoHero()
     {
         this.infoHero.ID = 13;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
 
     }
 

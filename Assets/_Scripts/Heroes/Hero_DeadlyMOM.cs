@@ -15,7 +15,7 @@ public class Hero_DeadlyMOM : Hero {
         _bullet.SetActive(true);
         _bullet.transform.up = diff;
         _bullet.GetComponent<Rigidbody2D>().velocity = diff * infoHero.speedBullet;
-        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.countHero;
         _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
@@ -32,7 +32,7 @@ public class Hero_DeadlyMOM : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 3;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
     }
 
     public void Start()
@@ -46,12 +46,12 @@ public class Hero_DeadlyMOM : Hero {
     public void Update()
     {
         HeroUpdate();
-        if(targetCompetitor != null && infoHero.numberHero > 0)
+        if(targetCompetitor != null && infoHero.countHero > 0)
         {
             timeInstanceChild += Time.deltaTime;
             if (timeInstanceChild >= 2f)
             {
-                InstantiateChild(19,infoHero.numberHero ,gameObject.tag == "Hero");
+                InstantiateChild(19,infoHero.countHero ,gameObject.tag == "Hero");
                 timeInstanceChild = 0;
             }
         }

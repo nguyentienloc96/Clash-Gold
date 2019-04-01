@@ -19,7 +19,6 @@ public class DeadzoneCamera : MonoBehaviour
     }
 
     public Camera _camera;
-    public Camera cameraAttack;
 
     private static readonly float PanSpeed = 20f;
     private static readonly float ZoomSpeedTouch = 0.1f;
@@ -39,7 +38,7 @@ public class DeadzoneCamera : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.actionGame == ActionGame.Playing || GameManager.Instance.actionGame == ActionGame.Finished)
+        if (GameManager.Instance.stateGame == StateGame.Playing || GameManager.Instance.stateGame == StateGame.Finished)
         {
             if (Input.touchSupported && Application.platform != RuntimePlatform.WebGLPlayer)
             {
@@ -135,7 +134,7 @@ public class DeadzoneCamera : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            if (!GameManager.Instance.castlePlayer.CheckCastle() && !IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0 && GameManager.Instance.castlePlayer.lsHouseRelease[0].countHero > 0)
+            if (!GameManager.Instance.castlePlayer.CheckCastle() && !IsPointerOverGameObject() && GameManager.Instance.castlePlayer.lsHouseRelease.Count > 0 && GameManager.Instance.castlePlayer.lsHouseRelease[0].info.countHero > 0)
             {
                 Vector3 pos2 = _camera.ScreenToWorldPoint(Input.mousePosition);
                 if (Vector3.Distance(pos1, pos2) <= 0.05f)

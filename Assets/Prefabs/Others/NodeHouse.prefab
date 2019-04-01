@@ -737,7 +737,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 21300000, guid: a4aee03c9f7e4a64983e7697b1e93113, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -886,23 +886,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1598127874730184}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec4395aabb21dca4ab72c071c78f4699, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c352e93fdf5b1643a1e231f0bceb5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idHouse: 0
-  idHero: 0
-  level: 0
-  price: 0
-  capWar: 0
-  typeState: 2
-  countHero: 0
+  info:
+    id: 0
+    level: 0
+    price: 0
+    capWar: 0
+    typeState: 0
+    idHero: 0
+    countHero: 0
   timeBuild: 0
   timeUpgrade: 0
   priceWillUpgrade: 0
   capWillUpgrade: 0
   levelWillupgrade: 0
-  buttonUpgrade: {fileID: 114250777370089148}
-  buttonRelease: {fileID: 114143342186675592}
   txtCountHero: {fileID: 114230378195570952}
   txtCountTime: {fileID: 114943038531549976}
   txtLevel: {fileID: 114605430616097178}
@@ -1348,7 +1347,7 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1598127874730184}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1360,7 +1359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 127, y: -67}
+  m_AnchoredPosition: {x: 136, y: -62}
   m_SizeDelta: {x: 130, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224411066844320072
@@ -1433,7 +1432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.1, y: 2}
+  m_AnchoredPosition: {x: 4.0999985, y: 2}
   m_SizeDelta: {x: -50, y: -48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224617986522983758

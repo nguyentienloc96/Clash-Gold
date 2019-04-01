@@ -11,7 +11,7 @@ public class Hero_TwistingAxe : Hero
         Hero hero = targetCompetitor;
         if (hero.infoHero.ID == 10)
         {
-            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
+            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.countHero);
         }
         Collider2D[] arrCol = Physics2D.OverlapCircleAll(transform.position, infoHero.rangeBoom / 5 + 0.75f, 1 << 12);
         if (arrCol.Length > 0)
@@ -22,7 +22,7 @@ public class Hero_TwistingAxe : Hero
                 {
                     if (col.GetComponent<Hero>().infoHero.typeHero != TypeHero.ChemBay && col.GetComponent<Hero>().infoHero.typeHero != TypeHero.CungBay)
                     {
-                        col.GetComponent<Hero>().BeingAttacked(infoHero.dame * infoHero.numberHero);
+                        col.GetComponent<Hero>().BeingAttacked(infoHero.dame * infoHero.countHero);
                         //Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
 
                     }
@@ -44,7 +44,7 @@ public class Hero_TwistingAxe : Hero
     public override void SetInfoHero()
     {
         this.infoHero.ID = 18;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
     }
 
     public void Start()

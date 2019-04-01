@@ -12,200 +12,52 @@ public enum TypeGoldMine
 }
 
 [System.Serializable]
-public class GoldMine : MonoBehaviour
+public struct GoldMineInfo
 {
-    public int id;
-    public string nameGoldMine;
-    public int capGold;
-    public long priceGold;
-    public long priceWillUpgrade;
-    public int capWillUpgrade;
-    public int levelWillUpgrade;
+    public int ID;
+    public string name;
     public int level;
-    public int numberBoxGoldMine;
+    public int capGold;
+    public long price;
     public TypeGoldMine typeGoleMine;
 
-    public Collider2D colliderLand;
+    public int levelWillUpgrade;
+    public int capWillUpgrade;
+    public long priceWillUpgrade;
 
-    public List<Hero> lstHeroGoldMine;
+    public int indexLoadGoldMine;
+}
 
-    public List<Transform> lsPos;
+public class GoldMine : MonoBehaviour
+{
+    [Header("INFO")]
+    public GoldMineInfo info;
+    public List<Hero> lsHeroGoldMine;
+
+    [Header("INSHERO")]
+    public Transform[] lsPosIns;
 
     [Header("UI")]
     public Text txtName;
     public Text txtLevel;
+    public RectTransform canvas;
+    public GameObject btnUp;
+    public GameObject btnRelease;
     public SpriteRenderer sprGoldMine;
-    public GameObject Canvas;
-    public GameObject buttonUp;
-    public GameObject buttonRelease;
 
     private List<ItemThrowHero> lsIconHero = new List<ItemThrowHero>();
     private List<int> lsIconHeroOn = new List<int>();
 
     void Start()
     {
-        this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
+        //this.RegisterListener(EventID.StartGame, (param) => OnStartGame());
+        OnStartGame();
     }
 
     void OnStartGame()
     {
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
-        this.RegisterListener(EventID.UpLevelHouse, (param) => OnSetSpriteBox());
-    }
-
-    void OnSetSpriteBox()
-    {
-        SetSpriteBox(GameManager.Instance.maxLevelHouse);
-    }
-
-    public void SetLevel(int _l)
-    {
-        level = _l;
-        txtLevel.text = "Lv " + level.ToString();
-    }
-
-    public void SetInfo(int _capGold, int _priceGoldUp, int _level)
-    {
-        capGold = (int)(_capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, _level));
-        priceGold = (long)(_capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _level));
-    }
-
-    public void SetSpriteBox(int _l)
-    {
-        if (typeGoleMine == TypeGoldMine.Enemy)
-        {
-            buttonUp.SetActive(false);
-            buttonRelease.SetActive(false);
-            if (_l >= this.level || Mathf.Abs(_l - level) <= 3)
-            {
-                sprGoldMine.color = Color.green;
-            }
-            else
-            {
-                sprGoldMine.color = Color.red;
-            }
-        }
-        else
-        {
-            buttonUp.SetActive(true);
-            buttonRelease.SetActive(true);
-            sprGoldMine.color = Color.white;
-        }
-    }
-
-    void OnNextDay()
-    {
-        SpawmGold();
-        SpawmHero();
-    }
-
-    void SpawmGold()
-    {
-        if (typeGoleMine == TypeGoldMine.Player)
-        {
-            GameManager.Instance.AddGold(capGold);
-            //Debug.Log("Add Gold : " + capGold);
-        }
-    }
-
-    void SpawmHero()
-    {
-        for (int i = 0; i < lstHeroGoldMine.Count; i++)
-        {
-            lstHeroGoldMine[i].AddHero((int)(lstHeroGoldMine[i].infoHero.capWar * GameManager.Instance.ratioBorn));
-        }
-    }
-
-    public void Btn_ShowPanelUpgrade()
-    {
-        if (typeGoleMine == TypeGoldMine.Player)
-        {
-            CheckUpgrade(1);
-            UIManager.Instance.UpgradeGoldMine
-                (nameGoldMine, 
-                GetComponent<SpriteRenderer>().sprite, 
-                level, 
-                levelWillUpgrade, 
-                capGold, 
-                capWillUpgrade, 
-                priceWillUpgrade, 
-                GameManager.Instance.gold < priceWillUpgrade,
-                UpgradeGoldMine);
-        }
-    }
-
-    public void Btn_Release()
-    {
-        if (typeGoleMine == TypeGoldMine.Player)
-        {
-            GameManager.Instance.goldMineCurrent = this;
-            UIManager.Instance.panelThrowHero.SetActive(true);
-            lsIconHero.Clear();
-            lsIconHeroOn.Clear();
-            for (int k = 0; k < UIManager.Instance.contentThrowHero.childCount; k++)
-            {
-                Destroy(UIManager.Instance.contentThrowHero.GetChild(k).gameObject);
-            }
-            if (this.lstHeroGoldMine.Count < 3)
-            {
-                for (int i = 0; i < GameManager.Instance.lstHousePlayer.Count; i++)
-                {
-                    if (GameManager.Instance.lstHousePlayer[i].typeState == TypeStateHouse.None)
-                    {
-                        GameObject obj = Instantiate(UIManager.Instance.itemThrowHero, UIManager.Instance.contentThrowHero);
-                        ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
-                        item.houseHero = GameManager.Instance.lstHousePlayer[i];
-                        item.iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.lstHousePlayer[i].idHero - 1];
-                        item.txtCountHero.text = UIManager.Instance.ConvertNumber( GameManager.Instance.lstHousePlayer[i].countHero);
-                        lsIconHero.Add(item);
-                    }
-                }
-            }
-            else
-            {
-                for (int i = 0; i < this.lstHeroGoldMine.Count; i++)
-                {
-                    GameObject obj = Instantiate(UIManager.Instance.itemThrowHero, UIManager.Instance.contentThrowHero);
-                    ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
-                    for (int j = 0; j < GameManager.Instance.lstHousePlayer.Count; j++)
-                    {
-                        if (GameManager.Instance.lstHousePlayer[j].idHero == lstHeroGoldMine[i].infoHero.ID)
-                        {
-                            item.houseHero = GameManager.Instance.lstHousePlayer[j];
-                        }
-                    }
-                    item.iconHero.sprite = UIManager.Instance.sprAvatarHero[lstHeroGoldMine[i].infoHero.ID - 1];
-                    lsIconHero.Add(item);
-                }
-            }
-        }
-    }
-
-    public void ThrowHero()
-    {
-        for (int i = 0; i < lsIconHero.Count; i++)
-        {
-            if (lsIconHero[i].sliderHero.value > 0)
-            {
-                int numberadd = (int)(lsIconHero[i].houseHero.countHero * lsIconHero[i].sliderHero.value);
-                bool isHeroOn = false;
-                foreach (Hero hr in lstHeroGoldMine)
-                {
-                    if (hr.infoHero.ID == lsIconHero[i].houseHero.idHero)
-                    {
-                        hr.AddHero(+numberadd);
-                        isHeroOn = true;
-                        break;
-                    }
-                }
-                if (!isHeroOn)
-                {
-                    InstantiateHero(lsIconHero[i].houseHero.idHero - 1, numberadd);
-                }
-                lsIconHero[i].houseHero.countHero -= numberadd;
-            }
-        }
-        lsIconHero.Clear();
+        this.RegisterListener(EventID.UpLevelHouse, (param) => SetSpriteBox(GameManager.Instance.maxLevelHouse));
     }
 
     public void Update()
@@ -215,7 +67,7 @@ public class GoldMine : MonoBehaviour
             int countOn = 0;
             for (int i = 0; i < lsIconHero.Count; i++)
             {
-                if (countOn >= 3 - lstHeroGoldMine.Count)
+                if (countOn >= 3 - lsHeroGoldMine.Count)
                 {
                     break;
                 }
@@ -224,16 +76,16 @@ public class GoldMine : MonoBehaviour
                     countOn++;
                 }
             }
-            if (countOn >= 3 - lstHeroGoldMine.Count)
+            if (countOn >= 3 - lsHeroGoldMine.Count)
             {
                 foreach (ItemThrowHero item in lsIconHero)
                 {
                     if (item.sliderHero.value == 0)
                     {
                         bool isHeroGoldMine = false;
-                        foreach (Hero h in lstHeroGoldMine)
+                        foreach (Hero h in lsHeroGoldMine)
                         {
-                            if (h.infoHero.ID == item.houseHero.idHero)
+                            if (h.infoHero.ID == item.houseHero.info.idHero)
                             {
                                 isHeroGoldMine = true;
                             }
@@ -255,44 +107,367 @@ public class GoldMine : MonoBehaviour
         }
     }
 
-    public void CheckUpgrade(int _x)
+    public void GetInfo(int id, string name, int level, TypeGoldMine typeGoleMine, int indexSprite)
     {
-        levelWillUpgrade = level + _x;
-        capWillUpgrade = (int)(capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, _x));
-        priceWillUpgrade = (long)(capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _x));
+        info.ID = id;
+        info.name = name;
+        txtName.text = name;
+        info.level = level;
+        SetInfo(level);
+        SetLevel(level);
+        info.typeGoleMine = typeGoleMine;
+        info.indexLoadGoldMine = indexSprite;
+        SetSpriteBox(GameManager.Instance.maxLevelHouse);
+        if(typeGoleMine == TypeGoldMine.Enemy)
+        {
+            InstantiateEnemyRandom();
+        }
     }
 
-    void UpgradeGoldMine()
+    public void GetInfoJson(GoldMineInfoST gInfo)
     {
-        if (GameManager.Instance.gold < priceWillUpgrade)
+        info.ID = gInfo.ID;
+        info.name = gInfo.name;
+        txtName.text = gInfo.name;
+        info.level = gInfo.level;
+        SetInfo(gInfo.level);
+        SetLevel(gInfo.level);
+        info.typeGoleMine = gInfo.isPlayer ? TypeGoldMine.Player : TypeGoldMine.Enemy;
+        info.indexLoadGoldMine = gInfo.indexLoadGoldMine;
+        SetSpriteBox(GameManager.Instance.maxLevelHouse);
+        foreach(HeroInfoST hInfo in gInfo.lsHeroGoldMine)
+        {
+            if (gInfo.isPlayer)
+            {
+                InstantiateHeroJson(hInfo.ID, hInfo.CountHero);
+            }
+            else
+            {
+                InstantiateEnemyJson(hInfo.ID, hInfo.CountHero);
+            }
+        }
+    }
+
+    public void SetInfo(int _level)
+    {
+        info.capGold = (int)(GameConfig.Instance.CapGold0 * Mathf.Pow(GameConfig.Instance.CapGoldUp, _level));
+        info.price = (long)(GameConfig.Instance.CapGold0 * Mathf.Pow(GameConfig.Instance.PriceGoldUp, _level));
+    }
+
+    public void SetSpriteBox(int _levelHouseMax)
+    {
+        if (info.typeGoleMine == TypeGoldMine.Enemy)
+        {
+            if (_levelHouseMax >= info.level || Mathf.Abs(_levelHouseMax - info.level) <= 3)
+            {
+                sprGoldMine.color = Color.green;
+            }
+            else
+            {
+                sprGoldMine.color = Color.red;
+            }
+            btnUp.SetActive(false);
+            btnRelease.SetActive(false);
+        }
+        else
+        {
+            btnUp.SetActive(true);
+            btnRelease.SetActive(true);
+            sprGoldMine.color = Color.white;
+        }
+    }
+
+    public void SetLevel(int level)
+    {
+        info.level = level;
+        txtLevel.text = "Lv " + level.ToString();
+    }
+
+    public void AddLevel()
+    {
+        info.level++;
+        SetLevel(info.level);
+        foreach (Hero hero in lsHeroGoldMine)
+        {
+            hero.infoHero.capWar = GameConfig.Instance.lsInfoHero[hero.infoHero.ID - 1].capWar * Mathf.Pow(GameConfig.Instance.Wi, info.level);
+        }
+        SetSpriteBox(GameManager.Instance.maxLevelHouse);
+        info.capGold = (int)(info.capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, 1));
+        info.price = (long)(info.capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, 1));
+    }
+
+    public void Btn_ShowPanelUpgrade()
+    {
+        if (info.typeGoleMine == TypeGoldMine.Player)
+        {
+            CheckUpgrade();
+            UIManager.Instance.UpgradeGoldMine
+                (info.name,
+                GetComponent<SpriteRenderer>().sprite,
+                info.level,
+                info.levelWillUpgrade,
+                info.capGold,
+                info.capWillUpgrade,
+                info.priceWillUpgrade,
+                GameManager.Instance.gold < info.priceWillUpgrade,
+                UpgradeGoldMine);
+        }
+    }
+
+    public void CheckUpgrade()
+    {
+        info.levelWillUpgrade = info.level + 1;
+        info.capWillUpgrade = (int)(info.capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, 1));
+        info.priceWillUpgrade = (long)(info.capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, 1));
+    }
+
+    private void UpgradeGoldMine()
+    {
+        if (GameManager.Instance.gold < info.priceWillUpgrade)
             return;
 
-        priceGold = priceWillUpgrade;
-        GameManager.Instance.AddGold(-priceGold);
-        capGold = capWillUpgrade;
-        level = levelWillUpgrade;
-        txtLevel.text = "Lv " + level.ToString();
-        CheckUpgrade(1);
+        info.price = info.priceWillUpgrade;
+        GameManager.Instance.AddGold(-info.price);
+        info.capGold = info.capWillUpgrade;
+        info.level = info.levelWillUpgrade;
+        txtLevel.text = "Lv " + info.level.ToString();
+        CheckUpgrade();
         UIManager.Instance.UpgradeGoldMine
-            (nameGoldMine,
+            (info.name,
             GetComponent<SpriteRenderer>().sprite,
-            level,
-            levelWillUpgrade,
-            capGold,
-            capWillUpgrade,
-            priceWillUpgrade,
-            GameManager.Instance.gold < priceWillUpgrade,
+            info.level,
+            info.levelWillUpgrade,
+            info.capGold,
+            info.capWillUpgrade,
+            info.priceWillUpgrade,
+            GameManager.Instance.gold < info.priceWillUpgrade,
             UpgradeGoldMine);
+    }
+
+    public void ThrowHero()
+    {
+        for (int i = 0; i < lsIconHero.Count; i++)
+        {
+            if (lsIconHero[i].sliderHero.value > 0)
+            {
+                int numberadd = (int)(lsIconHero[i].houseHero.info.countHero * lsIconHero[i].sliderHero.value);
+                bool isHeroOn = false;
+                for (int j = 0;j< lsHeroGoldMine.Count;j++)
+                {
+                    if (lsHeroGoldMine[j].infoHero.ID == lsIconHero[i].houseHero.info.idHero)
+                    {
+                        lsHeroGoldMine[j].AddHero(+numberadd);
+                        isHeroOn = true;
+                        break;
+                    }
+                }
+                if (!isHeroOn)
+                {
+                    InstantiateHero(lsIconHero[i].houseHero.info.idHero - 1, numberadd);
+                }
+                lsIconHero[i].houseHero.info.countHero -= numberadd;
+            }
+        }
+        lsIconHero.Clear();
+    }
+
+    public void Btn_Release()
+    {
+        if (info.typeGoleMine == TypeGoldMine.Player)
+        {
+            GameManager.Instance.goldMineCurrent = this;
+            UIManager.Instance.panelRelease.SetActive(true);
+            lsIconHero.Clear();
+            lsIconHeroOn.Clear();
+            for (int k = 0; k < UIManager.Instance.contentThrowHero.childCount; k++)
+            {
+                Destroy(UIManager.Instance.contentThrowHero.GetChild(k).gameObject);
+            }
+            if (lsHeroGoldMine.Count < 3)
+            {
+                for (int i = 0; i < GameManager.Instance.lsHousePlayer.Count; i++)
+                {
+                    if (GameManager.Instance.lsHousePlayer[i].info.typeState == TypeStateHouse.None)
+                    {
+                        GameObject obj = Instantiate(UIManager.Instance.itemThrowHero, UIManager.Instance.contentThrowHero);
+                        ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
+                        item.houseHero = GameManager.Instance.lsHousePlayer[i];
+                        item.iconHero.sprite = UIManager.Instance.lsSprAvatarHero[GameManager.Instance.lsHousePlayer[i].info.idHero - 1];
+                        item.txtCountHero.text = UIManager.Instance.ConvertNumber(GameManager.Instance.lsHousePlayer[i].info.countHero);
+                        lsIconHero.Add(item);
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < lsHeroGoldMine.Count; i++)
+                {
+                    GameObject obj = Instantiate(UIManager.Instance.itemThrowHero, UIManager.Instance.contentThrowHero);
+                    ItemThrowHero item = obj.GetComponent<ItemThrowHero>();
+                    for (int j = 0; j < GameManager.Instance.lsHousePlayer.Count; j++)
+                    {
+                        if (GameManager.Instance.lsHousePlayer[j].info.idHero == lsHeroGoldMine[i].infoHero.ID)
+                        {
+                            item.houseHero = GameManager.Instance.lsHousePlayer[j];
+                        }
+                    }
+                    item.iconHero.sprite = UIManager.Instance.lsSprAvatarHero[lsHeroGoldMine[i].infoHero.ID - 1];
+                    lsIconHero.Add(item);
+                }
+            }
+        }
+    }
+
+    public void OnNextDay()
+    {
+        SpawmGold();
+        SpawmHero();
+    }
+
+    private void SpawmGold()
+    {
+        if (info.typeGoleMine == TypeGoldMine.Player)
+        {
+            GameManager.Instance.AddGold(info.capGold);
+        }
+    }
+
+    private void SpawmHero()
+    {
+        for (int i = 0; i < lsHeroGoldMine.Count; i++)
+        {
+            int numberHero = (int)((lsHeroGoldMine[i].infoHero.capWar * GameManager.Instance.ratioBorn));
+            lsHeroGoldMine[i].AddHero(numberHero);
+        }
+    }
+
+    public void AddHero(int idGoldMine, int numberHero)
+    {
+        lsHeroGoldMine[idGoldMine].infoHero.countHero += numberHero;
+        if (lsHeroGoldMine[idGoldMine].infoHero.countHero < 0)
+            lsHeroGoldMine[idGoldMine].infoHero.countHero = 0;
+    }
+
+    public void InstantiateEnemyRandom()
+    {
+        List<int> lsIdHero = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
+        int randomID0 = 0;
+        int randomID1 = Random.Range(0, lsIdHero.Count);
+        for (int i = 0; i < 3; i++)
+        {
+            int typeEnemy;
+            int numberEnemy = 1;
+            if (i == 0)
+            {
+                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
+                typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
+                randomID0 = typeEnemy;
+                lsIdHero.Remove(typeEnemy);
+            }
+            else
+            {
+                if (info.level <= 2)
+                {
+                    typeEnemy = randomID0;
+                }
+                else if (info.level <= 4)
+                {
+                    typeEnemy = randomID1;
+                }
+                else
+                {
+                    int randomCanMove = Random.Range(0, lsIdHero.Count);
+                    typeEnemy = lsIdHero[randomCanMove];
+                    lsIdHero.Remove(typeEnemy);
+                }
+            }
+
+            Hero hero;
+            hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[typeEnemy]
+                , lsPosIns[i].position,Quaternion.identity,GameManager.Instance.enemyManager);
+
+            hero.IDGold = info.ID;
+            hero.gameObject.name = "Enemy";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, info.level);
+            hero.AddHero(numberEnemy);
+            hero.posStart = lsPosIns[i].position;
+            hero.GetComponent<BoxCollider2D>().enabled = false;
+            hero.transform.localScale = new Vector3(2f, 2f, 2f);
+            lsHeroGoldMine.Add(hero);
+        }
+    }
+
+    public void InstantiateEnemy(int idHero, int number, int i)
+    {
+        Hero hero;
+        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero]
+            , lsPosIns[i].position, Quaternion.identity, GameManager.Instance.enemyManager);
+        hero.gameObject.name = "Enemy";
+        hero.SetInfoHero();
+        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, info.level);
+        hero.AddHero(number);
+        hero.posStart = lsPosIns[i].position;
+        hero.transform.localScale = new Vector3(2f, 2f, 2f);
+        lsHeroGoldMine.Add(hero);
+    }
+
+    public void InstantiateEnemyJson(int idHero, int number)
+    {
+        Hero hero;
+        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero]
+            , lsPosIns[lsHeroGoldMine.Count].position
+            , Quaternion.identity
+            , GameManager.Instance.enemyManager);
+        hero.gameObject.name = "Enemy";
+        hero.SetInfoHero();
+        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, info.level);
+        hero.AddHero(number);
+        hero.posStart = lsPosIns[lsHeroGoldMine.Count].position;
+        hero.transform.localScale = new Vector3(2f, 2f, 2f);
+        lsHeroGoldMine.Add(hero);
+    }
+
+    public void InstantiateHeroJson(int idHero, int number)
+    {
+        Hero hero;
+        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+            , lsPosIns[lsHeroGoldMine.Count].position
+            , Quaternion.identity
+            , GameManager.Instance.enemyManager);
+        hero.gameObject.name = "Hero";
+        hero.SetInfoHero();
+        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, info.level);
+        hero.AddHero(number);
+        hero.posStart = lsPosIns[lsHeroGoldMine.Count].position;
+        hero.transform.localScale = new Vector3(2f, 2f, 2f);
+        lsHeroGoldMine.Add(hero);
+    }
+
+    public void InstantiateHero(int idHero, int number)
+    {
+        Hero hero;
+        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+            , lsPosIns[lsHeroGoldMine.Count].position
+            , Quaternion.identity
+            , GameManager.Instance.enemyManager);
+        hero.gameObject.name = "Hero";
+        hero.SetInfoHero();
+        hero.infoHero.capWar = 0;
+        hero.AddHero(number);
+        hero.posStart = lsPosIns[lsHeroGoldMine.Count].position;
+        hero.transform.localScale = new Vector3(2f, 2f, 2f);
+        lsHeroGoldMine.Add(hero);
     }
 
     public void AttackPlayer()
     {
-        if (typeGoleMine == TypeGoldMine.Enemy && GameManager.Instance.lstGoldMinePlayer.Count > 0)
+        if (info.typeGoleMine == TypeGoldMine.Enemy && GameManager.Instance.lsGoldMinePlayer.Count > 0)
         {
             int check = 0;
-            float dis = Vector3.Distance(transform.position, GameManager.Instance.lstGoldMinePlayer[0].transform.position);
+            float dis = Vector3.Distance(transform.position, GameManager.Instance.lsGoldMinePlayer[0].transform.position);
             List<GoldMine> lsGoldMinePlayer = new List<GoldMine>();
-            foreach (GoldMine g in GameManager.Instance.lstGoldMinePlayer)
+            foreach (GoldMine g in GameManager.Instance.lsGoldMinePlayer)
             {
                 if (g != GameManager.Instance.GolHeroBeingAttack)
                 {
@@ -321,18 +496,18 @@ public class GoldMine : MonoBehaviour
 
     public IEnumerator IEInsAttackPlayer(float speed, List<Box> lsPosMove)
     {
-        for (int i = 0; i < lstHeroGoldMine.Count; i++)
+        for (int i = 0; i < lsHeroGoldMine.Count; i++)
         {
             Hero hero;
-            hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1]
-                , lsPos[0].position
+            hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lsHeroGoldMine[i].infoHero.ID - 1]
+                , lsPosIns[0].position
                 , Quaternion.identity);
             hero.gameObject.name = "Enemy";
             hero.SetInfoHero();
             hero.infoHero.capWar = 0;
-            int numberAttack = (int)(lstHeroGoldMine[i].infoHero.numberHero * 0.5f);
+            int numberAttack = (int)(lsHeroGoldMine[i].infoHero.countHero * 0.5f);
             hero.AddHero(numberAttack);
-            lstHeroGoldMine[i].AddHero(-numberAttack);
+            lsHeroGoldMine[i].AddHero(-numberAttack);
             hero.speedMin = speed;
             hero.transform.localScale = new Vector3(2f, 2f, 2f);
             hero.StartMoveToLsPosition(lsPosMove);
@@ -341,128 +516,39 @@ public class GoldMine : MonoBehaviour
         }
     }
 
-    public void InstantiateHeroStart(bool isHero)
-    {
-        List<int> lsIdHero = new List<int>() { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17 };
-        int randomID0 = 0;
-        int randomID1 = Random.Range(0, lsIdHero.Count);
-        for (int i = 0; i < 3; i++)
-        {
-            int typeEnemy;
-            int numberEnemy = 1;
-            if (i == 0)
-            {
-                int randomFly = Random.Range(0, GameManager.Instance.lsHeroFly.Length);
-                typeEnemy = GameManager.Instance.lsHeroFly[randomFly];
-                randomID0 = typeEnemy;
-                lsIdHero.Remove(typeEnemy);
-            }
-            else
-            {
-                if (level <= 2)
-                {
-                    typeEnemy = randomID0;
-                }
-                else if (level <= 4)
-                {
-                    typeEnemy = randomID1;
-                }
-                else
-                {
-                    int randomCanMove = Random.Range(0, lsIdHero.Count);
-                    typeEnemy = lsIdHero[randomCanMove];
-                    lsIdHero.Remove(typeEnemy);
-                }
-            }
-
-            if (!isHero)
-            {
-
-                Hero hero;
-                hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[typeEnemy]
-                    , lsPos[i].position
-                    , Quaternion.identity
-                    , GameManager.Instance.enemyManager);
-
-                hero.IDGold = id;
-                hero.gameObject.name = "Enemy";
-                lstHeroGoldMine.Add(hero);
-                hero.SetInfoHero();
-                hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-                hero.AddHero(numberEnemy);
-                hero.posStart = lsPos[i].position;
-                hero.GetComponent<BoxCollider2D>().enabled = false;
-                hero.transform.localScale = new Vector3(2f, 2f, 2f);
-            }
-
-        }
-    }
-
-    public void InstantiateHero(int idHero, int number)
-    {
-        Hero hero;
-        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
-            , lsPos[lstHeroGoldMine.Count].position
-            , Quaternion.identity
-            , GameManager.Instance.enemyManager);
-        hero.gameObject.name = "Hero";
-        hero.SetInfoHero();
-        hero.infoHero.capWar = 0;
-        hero.AddHero(number);
-        hero.posStart = lsPos[lstHeroGoldMine.Count].position;
-        hero.transform.localScale = new Vector3(2f, 2f, 2f);
-        lstHeroGoldMine.Add(hero);
-    }
-
-    public void InstantiateEnemy(int idHero, int number, int i)
-    {
-        Hero hero;
-        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero]
-            , lsPos[i].position
-            , Quaternion.identity
-            , GameManager.Instance.enemyManager);
-        hero.gameObject.name = "Enemy";
-        hero.SetInfoHero();
-        hero.infoHero.capWar = hero.infoHero.capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        hero.AddHero(number);
-        hero.posStart = lsPos[i].position;
-        hero.transform.localScale = new Vector3(2f, 2f, 2f);
-        lstHeroGoldMine.Add(hero);
-    }
-
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (GameManager.Instance.actionGame == ActionGame.Playing)
+        if (GameManager.Instance.stateGame == StateGame.Playing)
         {
-            if (typeGoleMine == TypeGoldMine.Enemy)
+            if (info.typeGoleMine == TypeGoldMine.Enemy)
             {
                 if (other.CompareTag("Castle"))
                 {
                     UIManager.Instance.HideAllPanelGame();
                     if (!GameManager.Instance.isBeingAttack)
                     {
-                        GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame+ (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+                        GameManager.Instance.dateEnemyAttack = GameManager.Instance.dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                         GameManager.Instance.isBeingAttack = true;
                     }
                     GameManager.Instance.GolEnemyBeingAttack = this;
                     GameManager.Instance.posTriggerGoldMine = other.transform.position;
                     AttackGoldMineEnemy();
-                    Fade.Instance.panelLoadingAttack.SetActive(true);
-                    ScenesManager.Instance.GoToScene(() =>
-                     {
-                         GameManager.Instance.isAttack = true;
-                         GameManager.Instance.isAttackGoldMineEnemy = true;
-                         if (GameManager.Instance.lsEnemyAttackGoldMine.Count > 0)
-                         {
-                             for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
-                             {
-                                 GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
-                             }
-                         }
-                     }, () =>
-                     {
-                         StartCoroutine(IEAttack());
-                     });
+
+                    ScenesManager.Instance.GoToScene(1,() =>
+                    {
+                        GameManager.Instance.isAttacking = true;
+                        GameManager.Instance.isAttackGoldMineEnemy = true;
+                        if (GameManager.Instance.lsEnemyAttackGoldMine.Count > 0)
+                        {
+                            for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count; i++)
+                            {
+                                GameManager.Instance.lsEnemyAttackGoldMine[i].isPause = true;
+                            }
+                        }
+                    }, () =>
+                    {
+                        StartCoroutine(IEAttack());
+                    });
 
                 }
             }
@@ -486,23 +572,22 @@ public class GoldMine : MonoBehaviour
                     GameManager.Instance.posTriggerGoldMine = other.transform.position;
                     AttackGoldMineHero();
 
-                    if (lstHeroGoldMine.Count > 0)
+                    if (lsHeroGoldMine.Count > 0)
                     {
                         GameManager.Instance.isBreak = false;
-                        Fade.Instance.panelLoadingAttack.SetActive(true);
-                        ScenesManager.Instance.GoToScene(() =>
-                         {
-                             GameManager.Instance.isAttack = true;
-                             GameManager.Instance.isAttackGoldMineEnemy = false;
-                         }, () =>
-                         {
-                             StartCoroutine(IEAttack());
-                         });
+                        ScenesManager.Instance.GoToScene(1,() =>
+                        {
+                            GameManager.Instance.isAttacking = true;
+                            GameManager.Instance.isAttackGoldMineEnemy = false;
+                        }, () =>
+                        {
+                            StartCoroutine(IEAttack());
+                        });
                     }
                     else
                     {
                         GameManager.Instance.isBreak = true;
-                        GameManager.Instance.isAttack = true;
+                        GameManager.Instance.isAttacking = true;
                         GameManager.Instance.isAttackGoldMineEnemy = false;
                     }
                 }
@@ -530,46 +615,33 @@ public class GoldMine : MonoBehaviour
         }
     }
 
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (typeGoleMine == TypeGoldMine.Player)
-        {
-            if (other.CompareTag("Castle"))
-            {
-                GameManager.Instance.goldMineInSide = null;
-            }
-        }
-    }
-
     public void BeginAttack()
     {
-        UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance.cameraAttack;
-        UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance.cameraAttack;
-        UIManager.Instance.mapAttack.SetActive(true);
+        UIManager.Instance.GetUIAttack();
     }
 
     public void AttackGoldMineEnemy()
     {
         BeginAttack();
-        UIManager.Instance.panelThrowHeroAttack.SetActive(true);
+        UIManager.Instance.panelReleaseAttack.SetActive(true);
         GameManager.Instance.numberThrowHero = 3;
-        for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
+        for (int i = 0; i < lsHeroGoldMine.Count && i < 3; i++)
         {
-            if (lstHeroGoldMine[i].infoHero.numberHero > 0)
+            if (lsHeroGoldMine[i].infoHero.countHero > 0)
             {
-                if (lstHeroGoldMine[i].infoHero.ID != 2 && lstHeroGoldMine[i].infoHero.ID != 1)
+                if (lsHeroGoldMine[i].infoHero.ID != 2 && lsHeroGoldMine[i].infoHero.ID != 1)
                 {
-                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
+                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[lsHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosEnemy[i]);
                     hero.gameObject.name = "Enemy";
                     hero.SetInfoHero();
                     hero.infoHero.capWar = 0;
-                    hero.countHeroStart = lstHeroGoldMine[i].infoHero.numberHero;
-                    hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
+                    hero.countHeroStart = lsHeroGoldMine[i].infoHero.countHero;
+                    hero.AddHero(lsHeroGoldMine[i].infoHero.countHero);
                     hero.goldMine = this;
                     hero.idGoldMine = i;
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
-                else if (lstHeroGoldMine[i].infoHero.ID == 2)
+                else if (lsHeroGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -587,13 +659,13 @@ public class GoldMine : MonoBehaviour
                         hero.gameObject.name = "Enemy";
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
-                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
+                        hero.AddHero(lsHeroGoldMine[i].infoHero.countHero / 3);
                         hero.goldMine = this;
                         hero.idGoldMine = i;
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
-                else if (lstHeroGoldMine[i].infoHero.ID == 1)
+                else if (lsHeroGoldMine[i].infoHero.ID == 1)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)
@@ -615,7 +687,7 @@ public class GoldMine : MonoBehaviour
                         hero.gameObject.name = "Enemy";
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
-                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 4);
+                        hero.AddHero(lsHeroGoldMine[i].infoHero.countHero / 4);
                         hero.goldMine = this;
                         hero.idGoldMine = i;
                         GameManager.Instance.lsEnemy.Add(hero);
@@ -624,20 +696,22 @@ public class GoldMine : MonoBehaviour
             }
         }
         int countHero = 0;
+        Castle castle = GameManager.Instance.castlePlayer;
         for (int i = 0; i < 3; i++)
         {
-            if (i < GameManager.Instance.castlePlayer.lsHouseRelease.Count && GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero > 0)
+            ItemHeroAttack item = UIManager.Instance.lsItemHeroAttack[i];
+            if (i < castle.lsHouseRelease.Count && castle.lsHouseRelease[i].info.countHero > 0)
             {
                 countHero++;
-                UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(true);
-                UIManager.Instance.lsItemHeroAttack[i].countHero = GameManager.Instance.castlePlayer.lsHouseRelease[i].countHero;
-                UIManager.Instance.lsItemHeroAttack[i].houseHero = GameManager.Instance.castlePlayer.lsHouseRelease[i];
-                UIManager.Instance.lsItemHeroAttack[i].iconHero.sprite = UIManager.Instance.sprAvatarHero[GameManager.Instance.castlePlayer.lsHouseRelease[i].idHero - 1];
-                UIManager.Instance.lsItemHeroAttack[i].txtCountHero.text = UIManager.Instance.lsItemHeroAttack[i].countHero.ToString();
+                item.gameObject.SetActive(true);
+                item.countHero = castle.lsHouseRelease[i].info.countHero;
+                item.houseHero = castle.lsHouseRelease[i];
+                item.iconHero.sprite = UIManager.Instance.lsSprAvatarHero[castle.lsHouseRelease[i].info.idHero - 1];
+                item.txtCountHero.text = UIManager.Instance.lsItemHeroAttack[i].countHero.ToString();
             }
             else
             {
-                UIManager.Instance.lsItemHeroAttack[i].gameObject.SetActive(false);
+                item.gameObject.SetActive(false);
             }
         }
         GameManager.Instance.numberThrowHero = countHero;
@@ -646,23 +720,23 @@ public class GoldMine : MonoBehaviour
     public void AttackGoldMineHero()
     {
         BeginAttack();
-        for (int i = 0; i < lstHeroGoldMine.Count && i < 3; i++)
+        for (int i = 0; i < lsHeroGoldMine.Count && i < 3; i++)
         {
-            if (lstHeroGoldMine[i].infoHero.numberHero > 0)
+            if (lsHeroGoldMine[i].infoHero.countHero > 0)
             {
-                if (lstHeroGoldMine[i].infoHero.ID != 2 && lstHeroGoldMine[i].infoHero.ID != 1)
+                if (lsHeroGoldMine[i].infoHero.ID != 2 && lsHeroGoldMine[i].infoHero.ID != 1)
                 {
-                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[lstHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosHero[i]);
+                    Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[lsHeroGoldMine[i].infoHero.ID - 1], GameManager.Instance.lsPosHero[i]);
                     hero.gameObject.name = "Hero";
                     hero.SetInfoHero();
                     hero.infoHero.capWar = 0;
-                    hero.countHeroStart = lstHeroGoldMine[i].infoHero.numberHero;
-                    hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero);
+                    hero.countHeroStart = lsHeroGoldMine[i].infoHero.countHero;
+                    hero.AddHero(lsHeroGoldMine[i].infoHero.countHero);
                     hero.goldMine = this;
                     hero.idGoldMine = i;
                     GameManager.Instance.lsHero.Add(hero);
                 }
-                else if (lstHeroGoldMine[i].infoHero.ID == 2)
+                else if (lsHeroGoldMine[i].infoHero.ID == 2)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 3; j++)
@@ -680,14 +754,14 @@ public class GoldMine : MonoBehaviour
                         hero.gameObject.name = "Hero";
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
-                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 3);
+                        hero.AddHero(lsHeroGoldMine[i].infoHero.countHero / 3);
                         hero.goldMine = this;
                         hero.idGoldMine = i;
                         GameManager.Instance.lsHero.Add(hero);
 
                     }
                 }
-                else if (lstHeroGoldMine[i].infoHero.ID == 1)
+                else if (lsHeroGoldMine[i].infoHero.ID == 1)
                 {
                     float XADD = -0.5f;
                     for (int j = 0; j < 4; j++)
@@ -709,7 +783,7 @@ public class GoldMine : MonoBehaviour
                         hero.gameObject.name = "Hero";
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
-                        hero.AddHero(lstHeroGoldMine[i].infoHero.numberHero / 4);
+                        hero.AddHero(lsHeroGoldMine[i].infoHero.countHero / 4);
                         hero.goldMine = this;
                         hero.idGoldMine = i;
                         GameManager.Instance.lsHero.Add(hero);
@@ -721,7 +795,7 @@ public class GoldMine : MonoBehaviour
 
         for (int i = 0; i < GameManager.Instance.lsEnemyAttackGoldMine.Count && i < 3; i++)
         {
-            if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero > 0)
+            if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.countHero > 0)
             {
                 if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID != 2 && GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID != 1)
                 {
@@ -729,8 +803,8 @@ public class GoldMine : MonoBehaviour
                     hero.gameObject.name = "Enemy";
                     hero.SetInfoHero();
                     hero.infoHero.capWar = 0;
-                    hero.countHeroStart = GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero;
-                    hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero);
+                    hero.countHeroStart = GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.countHero;
+                    hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.countHero);
                     GameManager.Instance.lsEnemy.Add(hero);
                 }
                 else if (GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.ID == 2)
@@ -751,7 +825,7 @@ public class GoldMine : MonoBehaviour
                         hero.gameObject.name = "Enemy";
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
-                        hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 3);
+                        hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.countHero / 3);
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
@@ -777,7 +851,7 @@ public class GoldMine : MonoBehaviour
                         hero.gameObject.name = "Enemy";
                         hero.SetInfoHero();
                         hero.infoHero.capWar = 0;
-                        hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.numberHero / 4);
+                        hero.AddHero(GameManager.Instance.lsEnemyAttackGoldMine[i].infoHero.countHero / 4);
                         GameManager.Instance.lsEnemy.Add(hero);
                     }
                 }
@@ -787,29 +861,11 @@ public class GoldMine : MonoBehaviour
 
     public void DeleteHero()
     {
-        foreach (Hero h in lstHeroGoldMine)
+        foreach (Hero h in lsHeroGoldMine)
         {
             Destroy(h.gameObject);
         }
-        lstHeroGoldMine.Clear();
+        lsHeroGoldMine.Clear();
     }
 
-    public void AddLevel()
-    {
-        level++;
-        SetLevel(level);
-        foreach (Hero hero in lstHeroGoldMine)
-        {
-            hero.infoHero.capWar = GameConfig.Instance.lstInfoHero[hero.infoHero.ID - 1].capWar * Mathf.Pow(GameConfig.Instance.Wi, level);
-        }
-        SetSpriteBox(GameManager.Instance.maxLevelHouse);
-        capGold = (int)(capGold * Mathf.Pow(GameConfig.Instance.CapGoldUp, 1));
-        priceGold = (long)(capGold * Mathf.Pow(GameConfig.Instance.PriceGoldUp, 1));
-    }
-
-    public void GetName(string nameGoldMineStr)
-    {
-        nameGoldMine = nameGoldMineStr;
-        txtName.text = nameGoldMineStr;
-    }
 }

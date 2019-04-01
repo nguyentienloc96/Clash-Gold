@@ -58,8 +58,8 @@ public class GameConfig : MonoBehaviour
     public int TimeUp;
     public int LandUP;
     public int LandDiv;
-    public List<string> lstSpeech = new List<string>();
-    public List<InfoHero> lstInfoHero = new List<InfoHero>();
+    public List<string> lsSpeech = new List<string>();
+    public List<InfoHero> lsInfoHero = new List<InfoHero>();
     public List<Vector2[]> listMap = new List<Vector2[]>();
     public List<string> lsStory = new List<string>();
     public List<string> lsNameIsLand = new List<string>();
@@ -94,6 +94,14 @@ public class GameConfig : MonoBehaviour
         //            Debug.Log("Failed to authenticate");
         //    });
         //}
+    }
+
+    public string GetNameIsLand()
+    {
+        int radom = Random.Range(0, lsNameIsLand.Count);
+        string strName = lsNameIsLand[radom];
+        lsNameIsLand.Remove(strName);
+        return strName;
     }
 }
 

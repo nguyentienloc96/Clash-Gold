@@ -12,6 +12,7 @@ public class LoadDataJson : MonoBehaviour
     public static LoadDataJson Instance;
     public GameObject gameManager;
     public bool isReset;
+
     void Awake()
     {
         if (Instance != null)
@@ -27,6 +28,7 @@ public class LoadDataJson : MonoBehaviour
 
     private string gameConfig = "GameConfig";
     private string listStory = "ListStory";
+
     void Start()
     {
         LoadGameConfig();
@@ -102,14 +104,14 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.string_Share = objJson["string_Share"];
             for (int j = 0; j < objJson["speech"].Count; j++)
             {
-                GameConfig.Instance.lstSpeech.Add(objJson["speech"][j]);
+                GameConfig.Instance.lsSpeech.Add(objJson["speech"][j]);
             }
             for (int t = 0; t < objJson["heroes"].Count; t++)
             {
                 InfoHero _info = new InfoHero();
                 _info.ID = objJson["heroes"][t]["id"].AsInt;
-                _info.NameHero = objJson["heroes"][t]["Name"];
-                _info.Info = objJson["heroes"][t]["Info"];
+                _info.nameHero = objJson["heroes"][t]["Name"];
+                _info.info = objJson["heroes"][t]["Info"];
                 _info.health = objJson["heroes"][t]["health1"].AsFloat;
                 _info.dame = objJson["heroes"][t]["dam1"].AsFloat;
                 _info.hitSpeed = objJson["heroes"][t]["hitspeed1"].AsFloat;
@@ -156,7 +158,7 @@ public class LoadDataJson : MonoBehaviour
                 {
                     _info.typeHero = TypeHero.Canon;
                 }
-                GameConfig.Instance.lstInfoHero.Add(_info);
+                GameConfig.Instance.lsInfoHero.Add(_info);
             }
 
             for (int t = 0; t < objJson["listMap"].Count; t++)

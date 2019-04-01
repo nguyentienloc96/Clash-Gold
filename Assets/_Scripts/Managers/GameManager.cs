@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using EventDispatcher;
 
-public enum ActionGame
+public enum StateGame
 {
     Loading,
     Home,
@@ -17,88 +17,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = new GameManager();
 
-    public ActionGame actionGame;
-
-    #region DateTime
-    [Header("DateTime")]
-    public long dateGame;
-    public Text txtDate;
-    private float time;
-    #endregion
-
-    [Header("INFO PLAYER")]
-    [HideInInspector]
-    public long gold;
-    public int coin;
-    public float ratioBorn;
-    public Castle castlePlayer;
-    public List<GoldMine> lstGoldMinePlayer = new List<GoldMine>();
-    public List<House> lstHousePlayer = new List<House>();
-    public List<BuildHouse> lstBuildHouse = new List<BuildHouse>();
-    public long dateEnemyAttack;
-    public int maxLevelHouse;
-
-    [Header("INFO ENEMY")]
-    public List<GoldMine> lstGoldMineEnemy;
-
-    public List<Hero> lsHero;
-    public List<Hero> lsEnemy;
-    public List<Hero> lsChild;
-
-    public List<Hero> lsPrefabsHero;
-    public List<Hero> lsPrefabsEnemy;
-
-    public int[] lsHeroFly;
-    public long dateUpGoldMine;
-
-
-    [Header("OTHER")]
-    public Transform enemyManager;
-
-    [Header("MAP")]
-    public GameObject[] prefabsBoxMap;
-    public Sprite[] sprBoxMap;
-    public GameObject prefabsBox;
-    public int col;
-    public int row;
-    public int addMapX;
-    public int addMapY;
-    public float weight;
-    public Transform boxManager;
-    private Box[,] arrBox;
-    public List<Box> lsBoxMove = new List<Box>();
-    public List<Box> lsBoxCanMove = new List<Box>();
-    public List<Sprite> lsSpriteMap = new List<Sprite>();
-
-    [Header("ATTACK")]
-    [HideInInspector]
-    public bool isAttack;
-    [HideInInspector]
-    public bool isAttackGoldMineEnemy;
-    public List<Transform> lsPosHero;
-    public List<Transform> lsPosEnemy;
-    [HideInInspector]
-    public GoldMine GolEnemyBeingAttack;
-    [HideInInspector]
-    public GoldMine GolHeroBeingAttack;
-    [HideInInspector]
-    public GoldMine GolEnemyIsAttack;
-    [HideInInspector]
-    public List<Hero> lsEnemyAttackGoldMine = new List<Hero>();
-    [HideInInspector]
-    public GoldMine goldMineCurrent;
-    [HideInInspector]
-    public Vector3 posTriggerGoldMine;
-
-    public LineRenderer lineEnemyAttack;
-
-    public ItemHeroAttack itemSelectHero;
-    public int numberThrowHero;
-    public GoldMine goldMineInSide;
-    public bool isBeingAttack;
-
-    public bool isBreak;
-
     void Awake()
     {
         if (Instance != null)
@@ -106,36 +24,92 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+    }
+
+    public StateGame stateGame;
+    public bool isAttacking;
+
+    [Header("DateTime")]
+    public long dateGame;
+    public Text txtDate;
+    private float time;
+
+    [Header("INFO PLAYER")]
+    public long gold;
+    public int coin;
+    public float ratioBorn;
+
+    [Header("MAP")]
+    public GameObject prefabsBox;
+    public int idMapBox = -1;
+    public int col;
+    public int row;
+    public int addMapX;
+    public int addMapY;
+    public float weight;
+    public Transform boxManager;
+    public Box[,] arrBox;
+    public GameObject[] prefabsBoxMap;
+    public List<Box> lsBoxMove = new List<Box>();
+    public List<Box> lsBoxCanMove = new List<Box>();
+    public List<Sprite> lsSpriteMap = new List<Sprite>();
+    public List<Box> lsBoxManager = new List<Box>();
+    public LineRenderer lineEnemyAttack;
+
+    [Header("GOLD MINE")]
+    public List<GoldMine> lsGoldMinePlayer = new List<GoldMine>();
+    public List<GoldMine> lsGoldMineEnemy = new List<GoldMine>();
+    public List<GoldMine> lsGoldMineManager = new List<GoldMine>();
+
+    [Header("HOUSE")]
+    public int maxLevelHouse;
+    public List<House> lsHousePlayer = new List<House>();
+    public List<BuildHouse> lsBuildHouse = new List<BuildHouse>();
+
+    [Header("OTHER")]
+    public Castle castlePlayer;
+    public Transform enemyManager;
+    public long dateEnemyAttack;
+    public long dateUpGoldMine;
+
+    [Header("INSHERO")]
+    public List<Hero> lsPrefabsHero = new List<Hero>();
+    public List<Hero> lsPrefabsEnemy = new List<Hero>();
+    public int[] lsHeroFly;
+
+    [Header("ATTACK")]
+    public List<Hero> lsHero = new List<Hero>();
+    public List<Hero> lsEnemy = new List<Hero>();
+    public List<Hero> lsChild = new List<Hero>();
+
+    [Header("ATTACK")]
+    public bool isAttackGoldMineEnemy;
+    public List<Transform> lsPosHero;
+    public List<Transform> lsPosEnemy;
+    public GoldMine GolEnemyBeingAttack;
+    public GoldMine GolHeroBeingAttack;
+    public GoldMine GolEnemyIsAttack;
+    public GoldMine goldMineCurrent;
+    public Vector3 posTriggerGoldMine;
+    public List<Hero> lsEnemyAttackGoldMine = new List<Hero>();
+
+    public ItemHeroAttack itemSelectHero;
+    public int numberThrowHero;
+    public GoldMine goldMineInSide;
+    public bool isBeingAttack;
+
+    public GameObject itemHero;
+
+    public bool isBreak;
+
+    private void Start()
+    {
         arrBox = new Box[col, row];
-        LoadDate();
     }
 
-    void Start()
+    private void Update()
     {
-        GenerateMapBox();
-        for (int i = 0; i < UIManager.Instance.lstHouse.Count; i++)
-        {
-            BuildHouse bh = new BuildHouse();
-            bh.ID = i;
-            //if (i >= 5)
-            //    bh.isUnlock = false;
-            //else
-            //    bh.isUnlock = true;
-            //if (i == 8)
-            bh.isUnlock = true;
-            lstBuildHouse.Add(bh);
-        }
-
-        if (lstGoldMinePlayer.Count >= 2)
-        {
-            dateEnemyAttack = dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
-        }
-        dateUpGoldMine = dateGame + (long)(GameConfig.Instance.TimeUp);
-    }
-
-    void Update()
-    {
-        if (actionGame == ActionGame.Playing)
+        if (stateGame == StateGame.Playing)
         {
             time += Time.deltaTime;
             if (time >= GameConfig.Instance.Timeday)
@@ -146,19 +120,19 @@ public class GameManager : MonoBehaviour
                 time = 0;
             }
 
-            if (isBeingAttack && dateGame >= dateEnemyAttack && !isAttack && lstGoldMinePlayer.Count > 0)
+            if (isBeingAttack && dateGame >= dateEnemyAttack && !isAttacking && lsGoldMinePlayer.Count > 0)
             {
                 if (lsEnemyAttackGoldMine.Count <= 0)
                 {
-                    int a = UnityEngine.Random.Range(0, lstGoldMineEnemy.Count);
-                    lstGoldMineEnemy[a].AttackPlayer();
+                    int a = UnityEngine.Random.Range(0, lsGoldMineEnemy.Count);
+                    lsGoldMineEnemy[a].AttackPlayer();
                     dateEnemyAttack = dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
                 }
             }
 
-            if (dateGame >= dateUpGoldMine && lstGoldMineEnemy.Count > 0)
+            if (dateGame >= dateUpGoldMine && lsGoldMineEnemy.Count > 0)
             {
-                int landUpMax = (lstGoldMineEnemy.Count / GameConfig.Instance.LandDiv);
+                int landUpMax = (lsGoldMineEnemy.Count / GameConfig.Instance.LandDiv);
                 if (landUpMax < 1)
                     landUpMax = 1;
                 int landUp;
@@ -174,11 +148,11 @@ public class GameManager : MonoBehaviour
                 int numberGoldMine = 0;
                 if (numberGoldMine < landUp)
                 {
-                    for (int i = 0; i < lstGoldMineEnemy.Count; i++)
+                    for (int i = 0; i < lsGoldMineEnemy.Count; i++)
                     {
                         if (UnityEngine.Random.Range(0f, 1f) >= 0.5f)
                         {
-                            lstGoldMineEnemy[i].AddLevel();
+                            lsGoldMineEnemy[i].AddLevel();
                             numberGoldMine++;
                         }
                     }
@@ -186,19 +160,19 @@ public class GameManager : MonoBehaviour
                 dateUpGoldMine = dateGame + (long)(GameConfig.Instance.TimeUp);
             }
 
-            if (lstGoldMineEnemy.Count <= 0)
+            if (lsGoldMineEnemy.Count <= 0)
             {
-                actionGame = ActionGame.Finished;
+                stateGame = StateGame.Finished;
                 UIManager.Instance.panelVictory.SetActive(true);
             }
 
-            if (lstGoldMinePlayer.Count <= 0)
+            if (lsGoldMinePlayer.Count <= 0)
             {
-                actionGame = ActionGame.Finished;
+                stateGame = StateGame.Finished;
                 UIManager.Instance.panelGameOver.SetActive(true);
             }
 
-            if (isAttack)
+            if (isAttacking)
             {
                 if (isAttackGoldMineEnemy)
                 {
@@ -206,7 +180,7 @@ public class GameManager : MonoBehaviour
                     {
                         if (Input.GetMouseButtonUp(0) && !UIManager.Instance.panelLetGo.activeSelf)
                         {
-                            Vector3 posIns = DeadzoneCamera.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
+                            Vector3 posIns = UIManager.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
                             posIns.z = 0f;
                             if (posIns.y > 0)
                             {
@@ -228,7 +202,7 @@ public class GameManager : MonoBehaviour
                         {
                             if (UIManager.Instance.lsItemHeroAttack[0].gameObject.activeSelf || UIManager.Instance.lsItemHeroAttack[1].gameObject.activeSelf || UIManager.Instance.lsItemHeroAttack[2].gameObject.activeSelf)
                             {
-                                Vector3 posIns = DeadzoneCamera.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
+                                Vector3 posIns = UIManager.Instance.cameraAttack.ScreenToWorldPoint(Input.mousePosition);
                                 posIns.z = 0f;
                                 if (posIns.y > 0)
                                 {
@@ -264,12 +238,12 @@ public class GameManager : MonoBehaviour
                         EndAttack();
                         GolEnemyBeingAttack.DeleteHero();
                         dateEnemyAttack = dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
-                        ScenesManager.Instance.GoToScene(() =>
+                        ScenesManager.Instance.GoToScene(1, () =>
                          {
-                             GolEnemyBeingAttack.typeGoleMine = TypeGoldMine.Player;
+                             GolEnemyBeingAttack.info.typeGoleMine = TypeGoldMine.Player;
                              GolEnemyBeingAttack.SetSpriteBox(0);
-                             lstGoldMineEnemy.Remove(GolEnemyBeingAttack);
-                             lstGoldMinePlayer.Add(GolEnemyBeingAttack);
+                             lsGoldMineEnemy.Remove(GolEnemyBeingAttack);
+                             lsGoldMinePlayer.Add(GolEnemyBeingAttack);
                              if (lsEnemyAttackGoldMine.Count > 0)
                              {
                                  for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
@@ -278,30 +252,30 @@ public class GameManager : MonoBehaviour
                                  }
                              }
                          }, () =>
-                          {
-                              UIManager.Instance.panelWarring.SetActive(true);
-                              UIManager.Instance.detailWarring.GetWarring(3, "You have conquered " + GolEnemyBeingAttack.nameGoldMine);
-                          });
+                         {
+                             UIManager.Instance.panelWarring.SetActive(true);
+                             UIManager.Instance.detailWarring.GetWarring(3, "You have conquered " + GolEnemyBeingAttack.info.name);
+                         });
                     }
                     else if (lsHero.Count <= 0 && numberThrowHero <= 0)
                     {
                         EndAttack();
-                        if (goldMineInSide != null && GolEnemyBeingAttack != null && goldMineInSide.id == GolEnemyBeingAttack.id)
+                        if (goldMineInSide != null && GolEnemyBeingAttack != null && goldMineInSide.info.ID == GolEnemyBeingAttack.info.ID)
                         {
-                            if (lstGoldMinePlayer.Count > 0)
+                            if (lsGoldMinePlayer.Count > 0)
                             {
                                 int idGoldMineCheck = 0;
-                                float disGoldPlayer = Vector3.Distance(lstGoldMinePlayer[0].transform.position, GolEnemyBeingAttack.transform.position);
-                                for (int i = 1; i < lstGoldMinePlayer.Count; i++)
+                                float disGoldPlayer = Vector3.Distance(lsGoldMinePlayer[0].transform.position, GolEnemyBeingAttack.transform.position);
+                                for (int i = 1; i < lsGoldMinePlayer.Count; i++)
                                 {
-                                    if (disGoldPlayer > Vector3.Distance(lstGoldMinePlayer[i].transform.position, GolEnemyBeingAttack.transform.position))
+                                    if (disGoldPlayer > Vector3.Distance(lsGoldMinePlayer[i].transform.position, GolEnemyBeingAttack.transform.position))
                                     {
                                         idGoldMineCheck = i;
                                     }
                                 }
 
-                                castlePlayer.transform.localPosition = lstGoldMinePlayer[idGoldMineCheck].transform.position;
-                                castlePlayer.posMove = lstGoldMinePlayer[idGoldMineCheck].transform.position;
+                                castlePlayer.transform.localPosition = lsGoldMinePlayer[idGoldMineCheck].transform.position;
+                                castlePlayer.posMove = lsGoldMinePlayer[idGoldMineCheck].transform.position;
                             }
 
                         }
@@ -313,7 +287,7 @@ public class GameManager : MonoBehaviour
                             castlePlayer.transform.localPosition = posMoveEnd;
                             castlePlayer.posMove = posMoveEnd;
                         }
-                        ScenesManager.Instance.GoToScene(() =>
+                        ScenesManager.Instance.GoToScene(1, () =>
                          {
                              if (lsEnemyAttackGoldMine.Count > 0)
                              {
@@ -337,14 +311,14 @@ public class GameManager : MonoBehaviour
                         GolHeroBeingAttack.DeleteHero();
                         if (isBreak)
                         {
-                            GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                            GolHeroBeingAttack.info.typeGoleMine = TypeGoldMine.Enemy;
                             GolHeroBeingAttack.SetSpriteBox(maxLevelHouse);
-                            lstGoldMinePlayer.Remove(GolHeroBeingAttack);
-                            lstGoldMineEnemy.Add(GolHeroBeingAttack);
+                            lsGoldMinePlayer.Remove(GolHeroBeingAttack);
+                            lsGoldMineEnemy.Add(GolHeroBeingAttack);
                             for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
                             {
                                 GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
-                                    , lsEnemyAttackGoldMine[i].infoHero.numberHero, i);
+                                    , lsEnemyAttackGoldMine[i].infoHero.countHero, i);
                             }
                             foreach (Hero h in lsEnemyAttackGoldMine)
                             {
@@ -355,16 +329,16 @@ public class GameManager : MonoBehaviour
                         }
                         else
                         {
-                            ScenesManager.Instance.GoToScene(() =>
+                            ScenesManager.Instance.GoToScene(1, () =>
                              {
-                                 GolHeroBeingAttack.typeGoleMine = TypeGoldMine.Enemy;
+                                 GolHeroBeingAttack.info.typeGoleMine = TypeGoldMine.Enemy;
                                  GolHeroBeingAttack.SetSpriteBox(maxLevelHouse);
-                                 lstGoldMinePlayer.Remove(GolHeroBeingAttack);
-                                 lstGoldMineEnemy.Add(GolHeroBeingAttack);
+                                 lsGoldMinePlayer.Remove(GolHeroBeingAttack);
+                                 lsGoldMineEnemy.Add(GolHeroBeingAttack);
                                  for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
                                  {
                                      GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
-                                         , lsEnemyAttackGoldMine[i].infoHero.numberHero, i);
+                                         , lsEnemyAttackGoldMine[i].infoHero.countHero, i);
                                  }
                                  foreach (Hero h in lsEnemyAttackGoldMine)
                                  {
@@ -374,14 +348,14 @@ public class GameManager : MonoBehaviour
                              }, () =>
                              {
                                  UIManager.Instance.panelWarring.SetActive(true);
-                                 UIManager.Instance.detailWarring.GetWarring(1, GolHeroBeingAttack.nameGoldMine + " is invaded");
+                                 UIManager.Instance.detailWarring.GetWarring(1, GolHeroBeingAttack.info.name + " is invaded");
                              });
                         }
                     }
                     else if (lsEnemy.Count <= 0)
                     {
                         EndAttack();
-                        ScenesManager.Instance.GoToScene(() =>
+                        ScenesManager.Instance.GoToScene(1, () =>
                          {
                              foreach (Hero h in lsEnemyAttackGoldMine)
                              {
@@ -391,31 +365,32 @@ public class GameManager : MonoBehaviour
                          }, () =>
                          {
                              UIManager.Instance.panelWarring.SetActive(true);
-                             UIManager.Instance.detailWarring.GetWarring(2, GolHeroBeingAttack.nameGoldMine + " is protected successfully");
+                             UIManager.Instance.detailWarring.GetWarring(2, GolHeroBeingAttack.info.name + " is protected successfully");
                          });
                     }
                 }
             }
         }
-        else if (actionGame == ActionGame.Finished)
+        else if (stateGame == StateGame.Finished)
         {
-            if (Input.GetMouseButtonDown(0) && 
-                (UIManager.Instance.panelGameOver.activeSelf || 
-                UIManager.Instance.panelVictory.activeSelf))
-            {
-                UIManager.Instance.panelGameOver.SetActive(false);
-                UIManager.Instance.panelVictory.SetActive(false);
-            }
+            //if (Input.GetMouseButtonDown(0) &&
+            //    (UIManager.Instance.panelGameOver.activeSelf ||
+            //    UIManager.Instance.panelVictory.activeSelf))
+            //{
+            //    UIManager.Instance.panelGameOver.SetActive(false);
+            //    UIManager.Instance.panelVictory.SetActive(false);
+            //}
         }
     }
 
+    #region === ATTACK ===
     public void EndAttack()
     {
-        isAttack = false;
+        isAttacking = false;
         UIManager.Instance.cavas.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.canvasLoading.worldCamera = DeadzoneCamera.Instance._camera;
         UIManager.Instance.mapAttack.SetActive(false);
-        UIManager.Instance.panelThrowHeroAttack.SetActive(false);
+        UIManager.Instance.panelReleaseAttack.SetActive(false);
         OnEndAttack();
         if (isBreak)
         {
@@ -446,23 +421,99 @@ public class GameManager : MonoBehaviour
         lsEnemy.Clear();
     }
 
+    public void ThrowHero(House houseHero, int countHero, Vector3 posIns)
+    {
+        if (houseHero.info.idHero != 2 && houseHero.info.idHero != 1)
+        {
+            Hero hero = Instantiate(lsPrefabsHero[houseHero.info.idHero - 1], posIns, Quaternion.identity);
+            hero.gameObject.name = "Hero";
+            hero.SetInfoHero();
+            hero.infoHero.capWar = 0;
+            hero.countHeroStart = countHero;
+            hero.AddHero(countHero);
+            hero.house = houseHero;
+            hero.isAttack = true;
+            lsHero.Add(hero);
+        }
+        else if (houseHero.info.idHero == 2)
+        {
+            float XADD = -0.5f;
+            for (int j = 0; j < 3; j++)
+            {
+                Hero hero = Instantiate(lsPrefabsHero[1], posIns, Quaternion.identity);
+                if (j == 1)
+                {
+                    hero.transform.position += new Vector3(0, -0.5f, 0f);
+                }
+                else
+                {
+                    hero.transform.position += new Vector3(XADD, 0f, 0f);
+                }
+                XADD += 0.5f;
+                hero.gameObject.name = "Hero";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                hero.AddHero(countHero / 3);
+                hero.isAttack = true;
+                hero.house = houseHero;
+                lsHero.Add(hero);
+            }
+        }
+        else if (houseHero.info.idHero == 1)
+        {
+            float XADD = -0.5f;
+            for (int j = 0; j < 4; j++)
+            {
+                Hero hero = Instantiate(lsPrefabsHero[0], posIns, Quaternion.identity);
+                if (j == 1)
+                {
+                    hero.transform.position += new Vector3(0, -0.5f, 0f);
+                }
+                else if (j == 3)
+                {
+                    hero.transform.position += new Vector3(0, 0.5f, 0f);
+                }
+                else
+                {
+                    hero.transform.position += new Vector3(XADD, 0f, 0f);
+                }
+                XADD += 0.5f;
+                hero.gameObject.name = "Hero";
+                hero.SetInfoHero();
+                hero.infoHero.capWar = 0;
+                hero.AddHero(countHero / 4);
+                hero.isAttack = true;
+                hero.house = houseHero;
+                lsHero.Add(hero);
+            }
+        }
+
+
+        for (int i = 0; i < lsEnemy.Count; i++)
+        {
+            lsEnemy[i].targetCompetitor = null;
+        }
+    }
+    #endregion
+
     #region === MAP ===
     public void GenerateMapBox()
     {
-        int idPosGold = UnityEngine.Random.Range(0, GameConfig.Instance.listMap.Count);
+        idMapBox = UnityEngine.Random.Range(0, GameConfig.Instance.listMap.Count);
         for (int i = 0; i < row; i++)
         {
             for (int j = 0; j < col; j++)
             {
                 Box b = Instantiate(prefabsBox, boxManager.position + new Vector3(j * (weight), -i * (weight)), Quaternion.identity, boxManager).GetComponent<Box>();
-                b.col = j;
-                b.row = i;
+                b.info.col = j;
+                b.info.row = i;
                 arrBox[j, i] = b;
-                if (!CheckPos(i, j, idPosGold))
+                if (!CheckPos(i, j, idMapBox))
                 {
                     b.gameObject.layer = 13;
-                    b.isLock = true;
+                    b.info.isLock = true;
                     lsBoxCanMove.Add(b);
+                    b.info.goldMine = null;
                 }
                 else
                 {
@@ -470,6 +521,7 @@ public class GameManager : MonoBehaviour
                     b.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                     lsBoxMove.Add(b);
                 }
+                lsBoxManager.Add(b);
             }
         }
 
@@ -482,9 +534,7 @@ public class GameManager : MonoBehaviour
         {
             CheckBoxCanMove(box);
         }
-        Debug.Log(1);
         yield return new WaitForEndOfFrame();
-        Debug.Log(2);
         List<Box> lsBox = new List<Box>();
         foreach (Box box in lsBoxMove)
         {
@@ -493,66 +543,147 @@ public class GameManager : MonoBehaviour
                 lsBox.Add(box);
             }
         }
-        Debug.Log(3);
         yield return new WaitUntil(() => lsBox.Count > 0);
-        Debug.Log(4);
         int numberId = 0;
         int idGoldMinePlayer = UnityEngine.Random.Range(0, lsBox.Count);
         Box bPlayer = lsBox[idGoldMinePlayer];
-        Debug.Log(5);
         yield return new WaitUntil(() => bPlayer != null);
-        Debug.Log(6);
         Box bNearPlayer = null;
-        if (bPlayer.col != 8 && !arrBox[bPlayer.col + 1, bPlayer.row].isLock)
+        if (bPlayer.info.col != 8 && !arrBox[bPlayer.info.col + 1, bPlayer.info.row].info.isLock)
         {
-            bNearPlayer = arrBox[bPlayer.col + 1, bPlayer.row];
+            bNearPlayer = arrBox[bPlayer.info.col + 1, bPlayer.info.row];
         }
-        else if (bPlayer.row != 8 && !arrBox[bPlayer.col, bPlayer.row + 1].isLock)
+        else if (bPlayer.info.row != 8 && !arrBox[bPlayer.info.col, bPlayer.info.row + 1].info.isLock)
         {
-            bNearPlayer = arrBox[bPlayer.col, bPlayer.row + 1];
+            bNearPlayer = arrBox[bPlayer.info.col, bPlayer.info.row + 1];
         }
-        else if (bPlayer.col != 0 && !arrBox[bPlayer.col - 1, bPlayer.row].isLock)
+        else if (bPlayer.info.col != 0 && !arrBox[bPlayer.info.col - 1, bPlayer.info.row].info.isLock)
         {
-            bNearPlayer = arrBox[bPlayer.col - 1, bPlayer.row];
+            bNearPlayer = arrBox[bPlayer.info.col - 1, bPlayer.info.row];
         }
-        else if (bPlayer.row != 0 && !arrBox[bPlayer.col, bPlayer.row - 1].isLock)
+        else if (bPlayer.info.row != 0 && !arrBox[bPlayer.info.col, bPlayer.info.row - 1].info.isLock)
         {
-            bNearPlayer = arrBox[bPlayer.col, bPlayer.row - 1];
+            bNearPlayer = arrBox[bPlayer.info.col, bPlayer.info.row - 1];
         }
-        Debug.Log(7);
         yield return new WaitUntil(() => bNearPlayer != null);
-        Debug.Log(8);
-        GenerateMap(bPlayer.transform, numberId, 1, true);
+        GenerateMap(bPlayer.transform, numberId, 1, bPlayer, true);
         numberId++;
         Vector3 posIns = bPlayer.transform.position;
         posIns.z = -2;
         castlePlayer.transform.position = posIns;
         posIns.z = -10;
         DeadzoneCamera.Instance._camera.transform.position = posIns;
-        Debug.Log(9);
         yield return new WaitForEndOfFrame();
-        Debug.Log(10);
         foreach (Box b in lsBoxMove)
         {
             if (b != bPlayer)
             {
                 if (b != bNearPlayer)
                 {
-                    GenerateMap(b.transform, numberId, UnityEngine.Random.Range(1, 6));
+                    GenerateMap(b.transform, numberId, UnityEngine.Random.Range(1, 6), b);
                 }
                 else
                 {
-                    GenerateMap(b.transform, numberId, 1);
+                    GenerateMap(b.transform, numberId, 1, b);
                 }
                 numberId++;
             }
         }
-        Debug.Log(11);
-        yield return new WaitForSeconds(0.5f);
         yield return new WaitForEndOfFrame();
-        Debug.Log(12);
-        Fade.Instance.EndFade();
-        actionGame = ActionGame.Home;
+        yield return new WaitUntil(() => lsBoxManager.Count == col * row);
+        BuildHouse();
+        yield return new WaitForEndOfFrame();
+        this.PostEvent(EventID.StartGame);
+        stateGame = StateGame.Playing;
+    }
+
+    public void GenerateMapBoxJson()
+    {
+        idMapBox = DataPlayer.Instance.idMapBox;
+        maxLevelHouse = DataPlayer.Instance.maxLevelHouse;
+        for (int i = 0; i < row; i++)
+        {
+            for (int j = 0; j < col; j++)
+            {
+                Box b = Instantiate(prefabsBox, boxManager.position + new Vector3(j * (weight), -i * (weight)), Quaternion.identity, boxManager).GetComponent<Box>();
+                b.info.col = j;
+                b.info.row = i;
+                arrBox[j, i] = b;
+                if (!CheckPos(i, j, idMapBox))
+                {
+                    b.gameObject.layer = 13;
+                    b.info.isLock = true;
+                    lsBoxCanMove.Add(b);
+                    b.info.goldMine = null;
+                }
+                else
+                {
+                    b.transform.GetChild(0).gameObject.SetActive(false);
+                    b.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                    lsBoxMove.Add(b);
+                }
+                lsBoxManager.Add(b);
+            }
+        }
+
+        StartCoroutine(SetBoxJson());
+    }
+
+    public IEnumerator SetBoxJson()
+    {
+        foreach (Box box in lsBoxCanMove)
+        {
+            CheckBoxCanMove(box);
+        }
+        yield return new WaitForEndOfFrame();
+        for (int i = 0; i < DataPlayer.Instance.lsBox.Count; i++)
+        {
+            if (DataPlayer.Instance.lsBox[i].goldMineInfo.ID != -1)
+            {
+                Vector3 _rotation = new Vector3(DataPlayer.Instance.lsBox[i].goldMineInfo.xR, DataPlayer.Instance.lsBox[i].goldMineInfo.yR, DataPlayer.Instance.lsBox[i].goldMineInfo.zR);
+                GenerateMapJson(lsBoxManager[i].transform,
+                    lsBoxManager[i],
+                    DataPlayer.Instance.lsBox[i].goldMineInfo.indexLoadGoldMine,
+                    _rotation,
+                    DataPlayer.Instance.lsBox[i].goldMineInfo,
+                    DataPlayer.Instance.lsBox[i].goldMineInfo.isPlayer);
+            }
+        }
+        yield return new WaitForEndOfFrame();
+        Vector3 posCastle = new Vector3(DataPlayer.Instance.castlePlayer.x, DataPlayer.Instance.castlePlayer.y, DataPlayer.Instance.castlePlayer.z);
+        castlePlayer.transform.position = posCastle;
+        posCastle.z = -10;
+        DeadzoneCamera.Instance._camera.transform.position = posCastle;
+        for (int i = 0; i < DataPlayer.Instance.lsHousePlayer.Count; i++)
+        {
+            if (DataPlayer.Instance.lsHousePlayer[i].heroInfo.ID != 0)
+            {
+                House h = lsHousePlayer[i];
+                h.info.typeState = DataPlayer.Instance.lsHousePlayer[i].isLock ? TypeStateHouse.Lock : TypeStateHouse.None;
+                if (!DataPlayer.Instance.lsHousePlayer[i].isLock)
+                {
+                    h.RegisterListener(EventID.NextDay, (param) => h.OnNextDay());
+                }
+                h.info.level = DataPlayer.Instance.lsHousePlayer[i].level;
+                h.info.idHero = DataPlayer.Instance.lsHousePlayer[i].heroInfo.ID;
+                h.info.capWar = (int)GameConfig.Instance.lsInfoHero[h.info.idHero - 1].capWar;
+                h.info.countHero = DataPlayer.Instance.lsHousePlayer[i].heroInfo.CountHero;
+                h.imgNotBuild.enabled = false;
+                h.panelHouse.SetActive(true);
+                h.txtCountHero.gameObject.SetActive(true);
+                h.txtLevel.text = lsHousePlayer[i].info.level.ToString();
+                h.imgHouse.sprite = UIManager.Instance.lsSprAvatarHero[h.info.ID];
+            }
+        }
+        for (int i = 0; i < DataPlayer.Instance.castlePlayer.lsHouse.Count; i++)
+        {
+            castlePlayer.lsHouseRelease.Add(lsHousePlayer[DataPlayer.Instance.castlePlayer.lsHouse[i].ID]);
+        }
+        yield return new WaitForEndOfFrame();
+        BuildHouseJson();
+        yield return new WaitForEndOfFrame();
+        this.PostEvent(EventID.StartGame);
+        stateGame = StateGame.Playing;
     }
 
     public bool CheckPos(int row, int col, int id)
@@ -568,21 +699,20 @@ public class GameManager : MonoBehaviour
         return isCheck;
     }
 
-    public void GenerateMap(Transform toPos, int id, int level, bool isGoldPlayer = false)
+    public void GenerateMap(Transform toPos, int id, int level, Box box, bool isGoldPlayer = false)
     {
-
-        int a = (int)UnityEngine.Random.Range(0, 2.9f);
-        int b = UnityEngine.Random.Range(0, 4);
+        int typeGoldMine = (int)UnityEngine.Random.Range(0, 2.9f);
+        int randomAngle = UnityEngine.Random.Range(0, 4);
         Vector3 _rotation;
-        if (b == 0)
+        if (randomAngle == 0)
         {
             _rotation = new Vector3(0, 0, 0);
         }
-        else if (b == 1)
+        else if (randomAngle == 1)
         {
             _rotation = new Vector3(180, 0, 0);
         }
-        else if (b == 2)
+        else if (randomAngle == 2)
         {
             _rotation = new Vector3(0, 180, 0);
         }
@@ -591,38 +721,53 @@ public class GameManager : MonoBehaviour
             _rotation = new Vector3(180, 180, 0);
         }
 
-        if (a == 3)
+        if (typeGoldMine == 3)
             _rotation = new Vector3(0, 0, 0);
+
         if (isGoldPlayer)
         {
             _rotation = new Vector3(0, 0, 0);
-            GoldMine g = Instantiate(prefabsBoxMap[2], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
-            g.SetLevel(level);
-            g.id = id;
-            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, level);
-            g.numberBoxGoldMine = 3;
-            g.typeGoleMine = TypeGoldMine.Player;
-            g.InstantiateHeroStart(true);
-            int randomName = UnityEngine.Random.Range(0, GameConfig.Instance.lsNameIsLand.Count);
-            g.GetName(GameConfig.Instance.lsNameIsLand[randomName]);
-            GameConfig.Instance.lsNameIsLand.Remove(GameConfig.Instance.lsNameIsLand[randomName]);
-            lstGoldMinePlayer.Add(g);
+            GoldMine goldMine = Instantiate(prefabsBoxMap[2], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
+            goldMine.GetInfo(id, GameConfig.Instance.GetNameIsLand(), level, TypeGoldMine.Player, 2);
+            goldMine.canvas.localRotation = Quaternion.Euler(_rotation);
+            lsGoldMinePlayer.Add(goldMine);
+            lsGoldMineManager.Add(goldMine);
+            box.info.goldMine = goldMine;
         }
         else
         {
-            GoldMine g = Instantiate(prefabsBoxMap[a], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
-            g.SetLevel(level);
-            g.id = id;
-            g.numberBoxGoldMine = a;
-            g.SetInfo(GameConfig.Instance.CapGold0, GameConfig.Instance.PriceGoldUp, level);
-            g.typeGoleMine = TypeGoldMine.Enemy;
-            g.InstantiateHeroStart(false);
-            g.Canvas.GetComponent<RectTransform>().localRotation = Quaternion.Euler(_rotation);
-            int randomName = UnityEngine.Random.Range(0, GameConfig.Instance.lsNameIsLand.Count);
-            g.GetName(GameConfig.Instance.lsNameIsLand[randomName]);
-            GameConfig.Instance.lsNameIsLand.Remove(GameConfig.Instance.lsNameIsLand[randomName]);
-            lstGoldMineEnemy.Add(g);
+            GoldMine goldMine = Instantiate(prefabsBoxMap[typeGoldMine], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
+            goldMine.GetInfo(id, GameConfig.Instance.GetNameIsLand(), level, TypeGoldMine.Enemy, typeGoldMine);
+            goldMine.canvas.localRotation = Quaternion.Euler(_rotation);
+            lsGoldMineEnemy.Add(goldMine);
+            lsGoldMineManager.Add(goldMine);
+            box.info.goldMine = goldMine;
         }
+
+    }
+
+    public void GenerateMapJson(Transform toPos,Box box, int typeGoldMine,Vector3 _rotation,GoldMineInfoST gInfo ,bool isGoldPlayer = false)
+    {
+        if (isGoldPlayer)
+        {
+            _rotation = new Vector3(0, 0, 0);
+            GoldMine goldMine = Instantiate(prefabsBoxMap[2], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
+            goldMine.GetInfoJson(gInfo);
+            goldMine.canvas.localRotation = Quaternion.Euler(_rotation);
+            lsGoldMinePlayer.Add(goldMine);
+            lsGoldMineManager.Add(goldMine);
+            box.info.goldMine = goldMine;
+        }
+        else
+        {
+            GoldMine goldMine = Instantiate(prefabsBoxMap[typeGoldMine], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
+            goldMine.GetInfoJson(gInfo);
+            goldMine.canvas.localRotation = Quaternion.Euler(_rotation);
+            lsGoldMineEnemy.Add(goldMine);
+            lsGoldMineManager.Add(goldMine);
+            box.info.goldMine = goldMine;
+        }
+
     }
 
     public List<Box> PathFinding(Box boxStart, Box boxEnd)
@@ -673,10 +818,10 @@ public class GameManager : MonoBehaviour
 
         foreach (Box b in lsBoxMove)
         {
-            b.isTop = false;
-            b.isBottom = false;
-            b.isLeft = false;
-            b.isRight = false;
+            b.info.isTop = false;
+            b.info.isBottom = false;
+            b.info.isLeft = false;
+            b.info.isRight = false;
         }
 
         return lsPathFinding;
@@ -686,24 +831,24 @@ public class GameManager : MonoBehaviour
     {
         List<Box> lsBoxSelect = new List<Box>();
         List<int> lsPosBox = new List<int>();
-        if (box.col != 8 && !box.isTop && !arrBox[box.col + 1, box.row].isLock)
+        if (box.info.col != 8 && !box.info.isTop && !arrBox[box.info.col + 1, box.info.row].info.isLock)
         {
-            lsBoxSelect.Add(arrBox[box.col + 1, box.row]);
+            lsBoxSelect.Add(arrBox[box.info.col + 1, box.info.row]);
             lsPosBox.Add(1);
         }
-        if (box.row != 8 && !box.isRight && !arrBox[box.col, box.row + 1].isLock)
+        if (box.info.row != 8 && !box.info.isRight && !arrBox[box.info.col, box.info.row + 1].info.isLock)
         {
-            lsBoxSelect.Add(arrBox[box.col, box.row + 1]);
+            lsBoxSelect.Add(arrBox[box.info.col, box.info.row + 1]);
             lsPosBox.Add(4);
         }
-        if (box.col != 0 && !box.isBottom && !arrBox[box.col - 1, box.row].isLock)
+        if (box.info.col != 0 && !box.info.isBottom && !arrBox[box.info.col - 1, box.info.row].info.isLock)
         {
-            lsBoxSelect.Add(arrBox[box.col - 1, box.row]);
+            lsBoxSelect.Add(arrBox[box.info.col - 1, box.info.row]);
             lsPosBox.Add(2);
         }
-        if (box.row != 0 && !box.isLeft && !arrBox[box.col, box.row - 1].isLock)
+        if (box.info.row != 0 && !box.info.isLeft && !arrBox[box.info.col, box.info.row - 1].info.isLock)
         {
-            lsBoxSelect.Add(arrBox[box.col, box.row - 1]);
+            lsBoxSelect.Add(arrBox[box.info.col, box.info.row - 1]);
             lsPosBox.Add(3);
         }
 
@@ -723,23 +868,23 @@ public class GameManager : MonoBehaviour
 
             if (lsPosBox[check] == 1)
             {
-                box.isTop = true;
-                lsBoxSelect[check].isBottom = true;
+                box.info.isTop = true;
+                lsBoxSelect[check].info.isBottom = true;
             }
             else if (lsPosBox[check] == 2)
             {
-                box.isBottom = true;
-                lsBoxSelect[check].isTop = true;
+                box.info.isBottom = true;
+                lsBoxSelect[check].info.isTop = true;
             }
             else if (lsPosBox[check] == 3)
             {
-                box.isLeft = true;
-                lsBoxSelect[check].isRight = true;
+                box.info.isLeft = true;
+                lsBoxSelect[check].info.isRight = true;
             }
             else if (lsPosBox[check] == 4)
             {
-                box.isRight = true;
-                lsBoxSelect[check].isLeft = true;
+                box.info.isRight = true;
+                lsBoxSelect[check].info.isLeft = true;
             }
             return lsBoxSelect[check];
         }
@@ -748,281 +893,331 @@ public class GameManager : MonoBehaviour
 
     public void CheckBoxCanMove(Box box)
     {
-        if (box.col != (col - 1) && !arrBox[box.col + 1, box.row].isLock)
+        int idImg = -1;
+        Vector3 localScaleImg = Vector3.zero;
+        bool isTopRight = false;
+        bool isTopLeft = false;
+        bool isBottomRight = false;
+        bool isBottomLeft = false;
+        if (box.info.col != (col - 1) && !arrBox[box.info.col + 1, box.info.row].info.isLock)
         {
-            box.isRight = true;
+            box.info.isRight = true;
         }
-        if (box.row != (row - 1) && !arrBox[box.col, box.row + 1].isLock)
+        if (box.info.row != (row - 1) && !arrBox[box.info.col, box.info.row + 1].info.isLock)
         {
-            box.isBottom = true;
+            box.info.isBottom = true;
         }
-        if (box.col != 0 && !arrBox[box.col - 1, box.row].isLock)
+        if (box.info.col != 0 && !arrBox[box.info.col - 1, box.info.row].info.isLock)
         {
-            box.isLeft = true;
+            box.info.isLeft = true;
         }
-        if (box.row != 0 && !arrBox[box.col, box.row - 1].isLock)
+        if (box.info.row != 0 && !arrBox[box.info.col, box.info.row - 1].info.isLock)
         {
-            box.isTop = true;
+            box.info.isTop = true;
         }
-        if (box.col != (col - 1) && box.row != (row - 1) && !arrBox[box.col + 1, box.row + 1].isLock)
+        if (box.info.col != (col - 1) && box.info.row != (row - 1) && !arrBox[box.info.col + 1, box.info.row + 1].info.isLock)
         {
-            box.isBottomRight = true;
+            isBottomRight = true;
         }
-        if (box.col != 0 && box.row != (row - 1) && !arrBox[box.col - 1, box.row + 1].isLock)
+        if (box.info.col != 0 && box.info.row != (row - 1) && !arrBox[box.info.col - 1, box.info.row + 1].info.isLock)
         {
-            box.isBottomLeft = true;
+            isBottomLeft = true;
         }
-        if (box.col != 0 && box.row != 0 && !arrBox[box.col - 1, box.row - 1].isLock)
+        if (box.info.col != 0 && box.info.row != 0 && !arrBox[box.info.col - 1, box.info.row - 1].info.isLock)
         {
-            box.isTopLeft = true;
+            isTopLeft = true;
         }
-        if (box.col != (col - 1) && box.row != 0 && !arrBox[box.col + 1, box.row - 1].isLock)
+        if (box.info.col != (col - 1) && box.info.row != 0 && !arrBox[box.info.col + 1, box.info.row - 1].info.isLock)
         {
-            box.isTopRight = true;
+            isTopRight = true;
         }
 
 
 
-        if (box.isTop && box.isBottom && box.isRight && box.isLeft)
+        if (box.info.isTop && box.info.isBottom && box.info.isRight && box.info.isLeft)
         {
-            box.spGround.sprite = lsSpriteMap[5];
+            idImg = 5;
             int rdom = UnityEngine.Random.Range(0, 4);
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f * rdom);
+            localScaleImg = new Vector3(0f, 0f, 90f * rdom);
         }
-        else if (box.isBottom && box.isRight && box.isLeft)
+        else if (box.info.isBottom && box.info.isRight && box.info.isLeft)
         {
-            box.spGround.sprite = lsSpriteMap[4];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+            idImg = 4;
+            localScaleImg = new Vector3(0f, 0f, -90f);
         }
-        else if (box.isTop && box.isRight && box.isLeft)
+        else if (box.info.isTop && box.info.isRight && box.info.isLeft)
         {
-            box.spGround.sprite = lsSpriteMap[4];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            idImg = 4;
+            localScaleImg = new Vector3(0f, 0f, 90f);
         }
-        else if (box.isTop && box.isBottom && box.isRight)
+        else if (box.info.isTop && box.info.isBottom && box.info.isRight)
         {
-            box.spGround.sprite = lsSpriteMap[4];
+            idImg = 4;
         }
-        else if (box.isTop && box.isBottom && box.isLeft)
+        else if (box.info.isTop && box.info.isBottom && box.info.isLeft)
         {
-            box.spGround.sprite = lsSpriteMap[4];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+            idImg = 4;
+            localScaleImg = new Vector3(0f, 0f, 180f);
         }
-        else if (box.isTop && box.isBottom)
+        else if (box.info.isTop && box.info.isBottom)
         {
-            box.spGround.sprite = lsSpriteMap[2];
-            box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+            idImg = 2;
+            localScaleImg = new Vector3(0f, 0f, 90f);
         }
-        else if (box.isTop && box.isLeft)
+        else if (box.info.isTop && box.info.isLeft)
         {
-            if (box.isBottomRight)
+            if (isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[6];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 6;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[3];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 3;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
         }
-        else if (box.isTop && box.isRight)
+        else if (box.info.isTop && box.info.isRight)
         {
-            if (box.isBottomLeft)
+            if (isBottomLeft)
             {
-                box.spGround.sprite = lsSpriteMap[6];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 6;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[3];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 3;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
         }
-        else if (box.isBottom && box.isLeft)
+        else if (box.info.isBottom && box.info.isLeft)
         {
-            if (box.isTopRight)
+            if (isTopRight)
             {
-                box.spGround.sprite = lsSpriteMap[6];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 6;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[3];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 3;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
         }
-        else if (box.isBottom && box.isRight)
+        else if (box.info.isBottom && box.info.isRight)
         {
-            if (box.isTopLeft)
+            if (isTopLeft)
             {
-                box.spGround.sprite = lsSpriteMap[6];
+                idImg = 6;
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[3];
+                idImg = 3;
             }
         }
-        else if (box.isLeft && box.isRight)
+        else if (box.info.isLeft && box.info.isRight)
         {
-            box.spGround.sprite = lsSpriteMap[2];
+            idImg = 2;
         }
-        else if (box.isTop)
+        else if (box.info.isTop)
         {
-            if (box.isBottomLeft && box.isBottomRight)
+            if (isBottomLeft && isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[7];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 7;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
-            else if (box.isBottomLeft)
+            else if (isBottomLeft)
             {
-                box.spGround.sprite = lsSpriteMap[8];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 8;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
-            else if (box.isBottomRight)
+            else if (isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[9];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 9;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[1];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 1;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
         }
-        else if (box.isBottom)
+        else if (box.info.isBottom)
         {
-            if (box.isTopLeft && box.isTopRight)
+            if (isTopLeft && isTopRight)
             {
-                box.spGround.sprite = lsSpriteMap[7];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 7;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
-            else if (box.isTopLeft)
+            else if (isTopLeft)
             {
-                box.spGround.sprite = lsSpriteMap[9];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 9;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
-            else if (box.isTopRight)
+            else if (isTopRight)
             {
-                box.spGround.sprite = lsSpriteMap[8];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 8;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[1];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 1;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
         }
-        else if (box.isRight)
+        else if (box.info.isRight)
         {
-            if (box.isTopLeft && box.isBottomLeft)
+            if (isTopLeft && isBottomLeft)
             {
-                box.spGround.sprite = lsSpriteMap[7];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 7;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
-            else if (box.isBottomLeft)
+            else if (isBottomLeft)
             {
-                box.spGround.sprite = lsSpriteMap[9];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 9;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
-            else if (box.isTopLeft)
+            else if (isTopLeft)
             {
-                box.spGround.sprite = lsSpriteMap[8];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 8;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[1];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 1;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
         }
-        else if (box.isLeft)
+        else if (box.info.isLeft)
         {
-            if (box.isTopRight && box.isBottomRight)
+            if (isTopRight && isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[7];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 7;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
-            else if (box.isBottomRight)
+            else if (isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[8];
+                idImg = 8;
             }
-            else if (box.isTopRight)
+            else if (isTopRight)
             {
-                box.spGround.sprite = lsSpriteMap[9];
+                idImg = 9;
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[1];
+                idImg = 1;
             }
         }
         else
         {
-            if (box.isTopRight && box.isTopLeft)
+            if (isTopRight && isTopLeft)
             {
-                box.spGround.sprite = lsSpriteMap[10];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 10;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
-            else if (box.isTopRight && box.isBottomRight)
+            else if (isTopRight && isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[10];
+                idImg = 10;
             }
-            else if (box.isBottomLeft && box.isBottomRight)
+            else if (isBottomLeft && isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[10];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 10;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
-            else if (box.isBottomLeft && box.isTopLeft)
+            else if (isBottomLeft && isTopLeft)
             {
-                box.spGround.sprite = lsSpriteMap[10];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 10;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
-            else if (box.isTopRight)
+            else if (isTopRight)
             {
-                box.spGround.sprite = lsSpriteMap[11];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 90f);
+                idImg = 11;
+                localScaleImg = new Vector3(0f, 0f, 90f);
             }
-            else if (box.isTopLeft)
+            else if (isTopLeft)
             {
-                box.spGround.sprite = lsSpriteMap[11];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, 180f);
+                idImg = 11;
+                localScaleImg = new Vector3(0f, 0f, 180f);
             }
-            else if (box.isBottomRight)
+            else if (isBottomRight)
             {
-                box.spGround.sprite = lsSpriteMap[11];
+                idImg = 11;
             }
-            else if (box.isBottomLeft)
+            else if (isBottomLeft)
             {
-                box.spGround.sprite = lsSpriteMap[11];
-                box.spGround.transform.localEulerAngles = new Vector3(0f, 0f, -90f);
+                idImg = 11;
+                localScaleImg = new Vector3(0f, 0f, -90f);
             }
             else
             {
-                box.spGround.sprite = lsSpriteMap[0];
+                idImg = 0;
             }
         }
+
+        box.spGround.sprite = lsSpriteMap[idImg];
+        box.spGround.transform.localEulerAngles = localScaleImg;
     }
 
     public int CheckGoldMinePlayer(Box box)
     {
         int numberCheck = 0;
-        if (box.col != 8 && !arrBox[box.col + 1, box.row].isLock)
+        if (box.info.col != 8 && !arrBox[box.info.col + 1, box.info.row].info.isLock)
         {
             numberCheck++;
         }
-        if (box.row != 8 && !arrBox[box.col, box.row + 1].isLock)
+        if (box.info.row != 8 && !arrBox[box.info.col, box.info.row + 1].info.isLock)
         {
             numberCheck++;
         }
-        if (box.col != 0 && !arrBox[box.col - 1, box.row].isLock)
+        if (box.info.col != 0 && !arrBox[box.info.col - 1, box.info.row].info.isLock)
         {
             numberCheck++;
         }
-        if (box.row != 0 && !arrBox[box.col, box.row - 1].isLock)
+        if (box.info.row != 0 && !arrBox[box.info.col, box.info.row - 1].info.isLock)
         {
             numberCheck++;
         }
         return numberCheck;
+    }
+    #endregion
+
+    #region === HOUSE ===
+    public void BuildHouse()
+    {
+        for (int i = 0; i < UIManager.Instance.lsBuildHouseUI.Count; i++)
+        {
+            BuildHouse bh = new BuildHouse();
+            bh.ID = i;
+            //if (i >= 5)
+            //    bh.isUnlock = false;
+            //else
+            //    bh.isUnlock = true;
+            //if (i == 8)
+            bh.isUnlock = true;
+            lsBuildHouse.Add(bh);
+        }
+        if (lsGoldMinePlayer.Count >= 2)
+        {
+            dateEnemyAttack = dateGame + (long)(GameConfig.Instance.TimeDestroy / GameConfig.Instance.Timeday);
+        }
+        dateUpGoldMine = dateGame + (long)(GameConfig.Instance.TimeUp);
+    }
+
+    public void BuildHouseJson()
+    {
+        for (int i = 0; i < UIManager.Instance.lsBuildHouseUI.Count; i++)
+        {
+            BuildHouse bh = new BuildHouse();
+            bh.ID = DataPlayer.Instance.lstBuildHouse[i].ID;
+            bh.isUnlock = DataPlayer.Instance.lstBuildHouse[i].isUnlock;
+            lsBuildHouse.Add(bh);
+        }
+        dateGame = DataPlayer.Instance.dateGame;
+        SetDateUI();
+        if (lsGoldMinePlayer.Count >= 2)
+        {
+            dateEnemyAttack = DataPlayer.Instance.dateEnemyAttack;
+        }
+        dateUpGoldMine = dateGame + (long)(GameConfig.Instance.TimeUp);
     }
     #endregion
 
@@ -1068,85 +1263,4 @@ public class GameManager : MonoBehaviour
         txtDate.text = "Day: " + dateGame;
     }
     #endregion
-
-    public void ResetGame()
-    {
-#pragma warning disable CS0618 // Type or member is obsolete
-        Application.LoadLevel(0);
-#pragma warning restore CS0618 // Type or member is obsolete
-    }
-
-    public void ThrowHero(House houseHero, int countHero, Vector3 posIns)
-    {
-        if (houseHero.idHero != 2 && houseHero.idHero != 1)
-        {
-            Hero hero = Instantiate(lsPrefabsHero[houseHero.idHero - 1], posIns, Quaternion.identity);
-            hero.gameObject.name = "Hero";
-            hero.SetInfoHero();
-            hero.infoHero.capWar = 0;
-            hero.countHeroStart = countHero;
-            hero.AddHero(countHero);
-            hero.house = houseHero;
-            hero.isAttack = true;
-            lsHero.Add(hero);
-        }
-        else if (houseHero.idHero == 2)
-        {
-            float XADD = -0.5f;
-            for (int j = 0; j < 3; j++)
-            {
-                Hero hero = Instantiate(lsPrefabsHero[1], posIns, Quaternion.identity);
-                if (j == 1)
-                {
-                    hero.transform.position += new Vector3(0, -0.5f, 0f);
-                }
-                else
-                {
-                    hero.transform.position += new Vector3(XADD, 0f, 0f);
-                }
-                XADD += 0.5f;
-                hero.gameObject.name = "Hero";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                hero.AddHero(countHero / 3);
-                hero.isAttack = true;
-                hero.house = houseHero;
-                lsHero.Add(hero);
-            }
-        }
-        else if (houseHero.idHero == 1)
-        {
-            float XADD = -0.5f;
-            for (int j = 0; j < 4; j++)
-            {
-                Hero hero = Instantiate(lsPrefabsHero[0], posIns, Quaternion.identity);
-                if (j == 1)
-                {
-                    hero.transform.position += new Vector3(0, -0.5f, 0f);
-                }
-                else if (j == 3)
-                {
-                    hero.transform.position += new Vector3(0, 0.5f, 0f);
-                }
-                else
-                {
-                    hero.transform.position += new Vector3(XADD, 0f, 0f);
-                }
-                XADD += 0.5f;
-                hero.gameObject.name = "Hero";
-                hero.SetInfoHero();
-                hero.infoHero.capWar = 0;
-                hero.AddHero(countHero / 4);
-                hero.isAttack = true;
-                hero.house = houseHero;
-                lsHero.Add(hero);
-            }
-        }
-
-
-        for (int i = 0; i < lsEnemy.Count; i++)
-        {
-            lsEnemy[i].targetCompetitor = null;
-        }
-    }
 }

@@ -12,20 +12,20 @@ public class ItemHeroRelace : MonoBehaviour
 
     public void Update()
     {
-        txtCountHero.text = GameManager.Instance.lstHousePlayer[idHouseRelace].countHero.ToString();
+        //txtCountHero.text = GameManager.Instance.lstHousePlayer[idHouseRelace].countHero.ToString();
     }
 
     public void RelaceItemHero()
     {
-        int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero;
+        //int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero;
         UIManager.Instance.panelRelace.SetActive(false);
-        YesRelaceItemHero(idHero);
+        //YesRelaceItemHero(idHero);
     }
 
     public void YesRelaceItemHero(int idHero)
     {
-        GameManager.Instance.castlePlayer.lsHouseRelease[idLocation] = GameManager.Instance.lstHousePlayer[idHouseRelace];
-        GameManager.Instance.castlePlayer.lstAvatarHeroRelease[idLocation].gameObject.SetActive(true);
-        GameManager.Instance.castlePlayer.lstAvatarHeroRelease[idLocation].sprite = UIManager.Instance.sprAvatarHero[idHero - 1];
+        //GameManager.Instance.castlePlayer.lsHouseRelease[idLocation] = GameManager.Instance.lstHousePlayer[idHouseRelace];
+        //GameManager.Instance.castlePlayer.lstAvatarHeroRelease[idLocation].gameObject.SetActive(true);
+        //GameManager.Instance.castlePlayer.lstAvatarHeroRelease[idLocation].sprite = UIManager.Instance.sprAvatarHero[idHero - 1];
     }
 }

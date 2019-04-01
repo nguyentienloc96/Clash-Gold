@@ -12,7 +12,7 @@ public class Hero_ExplosiveWing : Hero {
         _bullet.SetActive(true);
         _bullet.transform.up = diff;
         _bullet.GetComponent<Rigidbody2D>().velocity = diff * infoHero.speedBullet;
-        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.countHero;
         _bullet.GetComponent<Bullet>().isBoom = true;
         _bullet.GetComponent<Bullet>().rangeBoom = infoHero.rangeBoom;
         _bullet.GetComponent<Bullet>().isExplosion = false;
@@ -31,7 +31,7 @@ public class Hero_ExplosiveWing : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 8;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
     }
     string nameBullet;
     public void Start()

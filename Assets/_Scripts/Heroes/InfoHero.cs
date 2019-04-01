@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum TypeHero
+{
+    None = 0,
+    ChemThuong = 1,
+    ChemBay = 2,
+    CungThuong = 3,
+    CungBay = 4,
+    Canon = 5
+}
+
 [System.Serializable]
 public struct InfoHero {
     public int ID;
-    public string NameHero;
-    public string Info;
-    public int numberHero;
+    public string nameHero;
+    public string info;
+    public int countHero;
     public float health;
     public float dame;
     public float range;
@@ -24,14 +34,4 @@ public struct InfoHero {
     public TypeHero typeHero;
     public float rangeBoom;
     public float dameDead;
-}
-
-public enum TypeHero
-{
-    None = 0,
-    ChemThuong = 1,
-    ChemBay = 2,
-    CungThuong = 3,
-    CungBay = 4,
-    Canon = 5
 }

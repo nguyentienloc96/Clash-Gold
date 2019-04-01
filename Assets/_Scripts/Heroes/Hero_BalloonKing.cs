@@ -12,7 +12,7 @@ public class Hero_BalloonKing : Hero {
         _bullet.SetActive(true);
         _bullet.transform.up = diff;
         _bullet.GetComponent<Rigidbody2D>().velocity = diff * infoHero.speedBullet;
-        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.numberHero;
+        _bullet.GetComponent<Bullet>().dameBullet = infoHero.dame * infoHero.countHero;
         _bullet.GetComponent<Bullet>().isExplosion = false;
     }
 
@@ -30,7 +30,7 @@ public class Hero_BalloonKing : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 4;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];       
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];       
     }
 
     string nameBullet;
@@ -48,12 +48,12 @@ public class Hero_BalloonKing : Hero {
     public void Update()
     {
         HeroUpdate();
-        if (targetCompetitor != null && infoHero.numberHero > 0)
+        if (targetCompetitor != null && infoHero.countHero > 0)
         {
             timeInstanceChild += Time.deltaTime;
             if (timeInstanceChild >= 3f)
             {
-                InstantiateChild(20,infoHero.numberHero,gameObject.tag == "Hero");
+                InstantiateChild(20,infoHero.countHero,gameObject.tag == "Hero");
                 timeInstanceChild = 0;
             }
         }

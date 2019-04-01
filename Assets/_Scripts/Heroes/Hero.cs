@@ -143,45 +143,39 @@ public abstract class Hero : MonoBehaviour
 
     protected void TakeDamage(float _dame)
     {
-        transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(128,42,42,128);
+        transform.GetChild(0).GetComponent<SpriteRenderer>().color = new Color32(128, 42, 42, 128);
         parHit.Play();
         int numberRemove = (int)(_dame / infoHero.health);
         int numberSub = numberRemove;
-        if (numberSub > infoHero.numberHero)
+        if (numberSub > infoHero.countHero)
         {
-            numberSub = infoHero.numberHero;
+            numberSub = infoHero.countHero;
         }
-        if (infoHero.numberHero <= 0)
+        if (infoHero.countHero <= 0)
         {
             numberSub = 0;
         }
-        infoHero.numberHero -= numberRemove;
+        infoHero.countHero -= numberRemove;
 
         if (house != null)
         {
-            if (house.countHero > numberSub)
-                house.countHero -= numberSub;
-            else
-                house.countHero = 0;    
+            house.AddHero(-numberSub);
         }
         else if (goldMine != null)
         {
-            if (goldMine.lstHeroGoldMine[idGoldMine].infoHero.numberHero > numberSub)
-                goldMine.lstHeroGoldMine[idGoldMine].infoHero.numberHero -= numberSub;
-            else
-                goldMine.lstHeroGoldMine[idGoldMine].infoHero.numberHero = 0;
+            goldMine.AddHero(idGoldMine, -numberSub);
         }
 
-        if (infoHero.numberHero <= 0)
+        if (infoHero.countHero <= 0)
         {
-            infoHero.numberHero = 0;
+            infoHero.countHero = 0;
             Die();
         }
         else
         {
             Invoke("EndTakeDamage", 0.15f);
         }
-        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);        
+        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.countHero);
     }
 
     public void EndTakeDamage()
@@ -274,7 +268,7 @@ public abstract class Hero : MonoBehaviour
         diff.Normalize();
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
-        
+
         if (transform.position == posNext)
         {
             checkNumberPos++;
@@ -312,7 +306,7 @@ public abstract class Hero : MonoBehaviour
 
     public void HeroUpdate()
     {
-        if (GameManager.Instance.actionGame == ActionGame.Playing && !isPause)
+        if (GameManager.Instance.stateGame == StateGame.Playing && !isPause)
         {
             AnimtionUpdate();
             if (!isMove)
@@ -380,8 +374,8 @@ public abstract class Hero : MonoBehaviour
 
     public void AddHero(int _numberHero)
     {
-        infoHero.numberHero += _numberHero;
-        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.numberHero);
+        infoHero.countHero += _numberHero;
+        txtCountHero.text = UIManager.Instance.ConvertNumber(infoHero.countHero);
     }
 
     public void StartChild()
@@ -389,12 +383,11 @@ public abstract class Hero : MonoBehaviour
         animator.SetFloat("IndexIdle", numIdle);
     }
 
-    public void InstantiateChild(int idHero,int numberHero, bool ishero)
+    public void InstantiateChild(int idHero, int numberHero, bool ishero)
     {
         if (ishero)
         {
-            Hero hero = Instantiate(
-            GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity);
+            Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity);
             hero.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             hero.IDGold = IDGold;
             hero.isAttack = true;
@@ -411,8 +404,7 @@ public abstract class Hero : MonoBehaviour
         }
         else
         {
-            Hero hero = Instantiate(
-            GameManager.Instance.lsPrefabsEnemy[idHero], transform.position, Quaternion.identity);
+            Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero], transform.position, Quaternion.identity);
             hero.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             hero.IDGold = IDGold;
             hero.isAttack = true;

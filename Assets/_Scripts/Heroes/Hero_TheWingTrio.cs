@@ -10,9 +10,9 @@ public class Hero_TheWingTrio : Hero {
         Hero hero = targetCompetitor;
         if (hero.infoHero.ID == 10 || hero.infoHero.ID == 11)
         {
-            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.numberHero);
+            BeingAttacked(hero.infoHero.counterDame * hero.infoHero.countHero);
         }
-        hero.BeingAttacked(infoHero.dame * infoHero.numberHero);
+        hero.BeingAttacked(infoHero.dame * infoHero.countHero);
         //Debug.Log(infoHero.NameHero + " attack" + hero.infoHero.NameHero + " dame " + (infoHero.dame * infoHero.numberHero));
 
     }
@@ -30,7 +30,7 @@ public class Hero_TheWingTrio : Hero {
     public override void SetInfoHero()
     {
         this.infoHero.ID = 2;
-        this.infoHero = GameConfig.Instance.lstInfoHero[this.infoHero.ID - 1];
+        this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
     }
 
     // Use this for initialization
