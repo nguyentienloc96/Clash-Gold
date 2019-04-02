@@ -1,41 +1,16 @@
 {
-    "idMapBox": 0,
+    "idMapBox": 3,
     "maxLevelHouse": 0,
-    "gold": 1000,
+    "gold": 20358,
     "coin": 10,
     "ratioBorn": 0.20000000298023225,
-    "dateGame": 8,
+    "dateGame": 2,
     "dateEnemyAttack": 0,
     "castlePlayer": {
-        "x": -9.376214981079102,
-        "y": 9.214234352111817,
+        "x": -21.599998474121095,
+        "y": 9.699996948242188,
         "z": -2.0,
-        "lsHouse": [
-            {
-                "ID": 0,
-                "level": 1,
-                "heroInfo": {
-                    "ID": 1,
-                    "CountHero": 343
-                }
-            },
-            {
-                "ID": 1,
-                "level": 1,
-                "heroInfo": {
-                    "ID": 2,
-                    "CountHero": 214
-                }
-            },
-            {
-                "ID": 2,
-                "level": 1,
-                "heroInfo": {
-                    "ID": 3,
-                    "CountHero": 70
-                }
-            }
-        ]
+        "lsHouse": []
     },
     "lsBox": [
         {
@@ -46,6 +21,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -57,6 +36,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -68,6 +51,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -79,6 +66,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -90,6 +81,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -101,6 +96,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -112,6 +111,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -123,6 +126,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -134,6 +141,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -145,6 +156,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -156,6 +171,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -167,6 +186,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -178,6 +201,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -189,6 +216,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -200,6 +231,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -211,6 +246,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -222,6 +261,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -233,6 +276,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -244,6 +291,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -255,6 +306,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -266,6 +321,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -277,6 +336,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -288,6 +351,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -299,6 +366,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -310,6 +381,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -321,6 +396,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -332,6 +411,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -343,6 +426,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -354,6 +441,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -365,703 +456,886 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
         {
             "col": 3,
             "row": 3,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 4,
-            "row": 3,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 5,
-            "row": 3,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 6,
-            "row": 3,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 7,
-            "row": 3,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 8,
-            "row": 3,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 0,
-            "row": 4,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 1,
-            "row": 4,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 2,
-            "row": 4,
             "goldMineInfo": {
                 "ID": 1,
-                "name": "Galigoswen",
+                "name": "Uninn",
                 "level": 4,
                 "isPlayer": false,
+                "indexLoadGoldMine": 2,
+                "xR": -0.000005008956122765085,
+                "yR": 180.0,
+                "zR": 180.0,
                 "lsHeroGoldMine": [
                     {
-                        "ID": 15,
-                        "CountHero": 1
+                        "ID": 14,
+                        "CountHero": 23
                     },
                     {
-                        "ID": 8,
-                        "CountHero": 1
+                        "ID": 3,
+                        "CountHero": 17
                     },
                     {
-                        "ID": 8,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 3,
-            "row": 4,
-            "goldMineInfo": {
-                "ID": 2,
-                "name": "Agriradia",
-                "level": 2,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 12,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 12,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 12,
-                        "CountHero": 1
+                        "ID": 3,
+                        "CountHero": 17
                     }
                 ]
             }
         },
         {
             "col": 4,
+            "row": 3,
+            "goldMineInfo": {
+                "ID": 2,
+                "name": "Gwirarith",
+                "level": 4,
+                "isPlayer": false,
+                "indexLoadGoldMine": 1,
+                "xR": -0.000005008956122765085,
+                "yR": 0.000005008956122765085,
+                "zR": 180.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 13,
+                        "CountHero": 29
+                    },
+                    {
+                        "ID": 10,
+                        "CountHero": 23
+                    },
+                    {
+                        "ID": 10,
+                        "CountHero": 23
+                    }
+                ]
+            }
+        },
+        {
+            "col": 5,
+            "row": 3,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 6,
+            "row": 3,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 7,
+            "row": 3,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 8,
+            "row": 3,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 0,
+            "row": 4,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 1,
+            "row": 4,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 2,
             "row": 4,
             "goldMineInfo": {
                 "ID": 3,
-                "name": "Abiacan",
-                "level": 2,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 15,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 15,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 15,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 5,
-            "row": 4,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 6,
-            "row": 4,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 7,
-            "row": 4,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 8,
-            "row": 4,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 0,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 1,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 2,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": 4,
-                "name": "Galilit",
+                "name": "Olalithien",
                 "level": 3,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 180.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": [
-                    {
-                        "ID": 17,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 3,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 3,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 3,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 4,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": 5,
-                "name": "Gwirarith",
-                "level": 2,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 2,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 2,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 2,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 5,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 6,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 7,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 8,
-            "row": 5,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 0,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 1,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 2,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": 6,
-                "name": "Onierith",
-                "level": 1,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 9,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 9,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 9,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 3,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": 7,
-                "name": "Edigosh",
-                "level": 2,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 2,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 2,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 2,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 4,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": 0,
-                "name": "Belaweth",
-                "level": 1,
-                "isPlayer": true,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 1,
-                        "CountHero": 497
-                    },
-                    {
-                        "ID": 2,
-                        "CountHero": 326
-                    },
-                    {
-                        "ID": 3,
-                        "CountHero": 80
-                    }
-                ]
-            }
-        },
-        {
-            "col": 5,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 6,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 7,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 8,
-            "row": 6,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 0,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 1,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 2,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": 8,
-                "name": "Ybendalath",
-                "level": 2,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 4,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 4,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 4,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 3,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 4,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": 9,
-                "name": "Haedien",
-                "level": 1,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 11,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 11,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 11,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 5,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 6,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 7,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 8,
-            "row": 7,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 0,
-            "row": 8,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 1,
-            "row": 8,
-            "goldMineInfo": {
-                "ID": -1,
-                "name": "",
-                "level": 0,
-                "isPlayer": false,
-                "lsHeroGoldMine": []
-            }
-        },
-        {
-            "col": 2,
-            "row": 8,
-            "goldMineInfo": {
-                "ID": 10,
-                "name": "Seveaf",
-                "level": 5,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 8,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 11,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 14,
-                        "CountHero": 1
-                    }
-                ]
-            }
-        },
-        {
-            "col": 3,
-            "row": 8,
-            "goldMineInfo": {
-                "ID": 11,
-                "name": "Graliswen",
-                "level": 5,
-                "isPlayer": false,
-                "lsHeroGoldMine": [
-                    {
-                        "ID": 4,
-                        "CountHero": 1
-                    },
-                    {
-                        "ID": 9,
-                        "CountHero": 1
-                    },
                     {
                         "ID": 5,
-                        "CountHero": 1
+                        "CountHero": 15
+                    },
+                    {
+                        "ID": 11,
+                        "CountHero": 21
+                    },
+                    {
+                        "ID": 11,
+                        "CountHero": 21
+                    }
+                ]
+            }
+        },
+        {
+            "col": 3,
+            "row": 4,
+            "goldMineInfo": {
+                "ID": 4,
+                "name": "Mirigoni",
+                "level": 1,
+                "isPlayer": false,
+                "indexLoadGoldMine": 1,
+                "xR": -0.000005008956122765085,
+                "yR": 0.000005008956122765085,
+                "zR": 180.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 10,
+                        "CountHero": 17
+                    },
+                    {
+                        "ID": 10,
+                        "CountHero": 17
+                    },
+                    {
+                        "ID": 10,
+                        "CountHero": 17
                     }
                 ]
             }
         },
         {
             "col": 4,
-            "row": 8,
+            "row": 4,
             "goldMineInfo": {
-                "ID": 12,
-                "name": "Thiald",
+                "ID": 5,
+                "name": "Triwia",
                 "level": 3,
                 "isPlayer": false,
+                "indexLoadGoldMine": 2,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": [
                     {
                         "ID": 6,
-                        "CountHero": 1
+                        "CountHero": 15
                     },
                     {
-                        "ID": 13,
-                        "CountHero": 1
+                        "ID": 19,
+                        "CountHero": 15
                     },
                     {
-                        "ID": 13,
-                        "CountHero": 1
+                        "ID": 19,
+                        "CountHero": 15
                     }
                 ]
             }
         },
         {
             "col": 5,
+            "row": 4,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 6,
+            "row": 4,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 7,
+            "row": 4,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 8,
+            "row": 4,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 0,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 1,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 2,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": 6,
+                "name": "Olaemar",
+                "level": 1,
+                "isPlayer": false,
+                "indexLoadGoldMine": 1,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 14,
+                        "CountHero": 17
+                    },
+                    {
+                        "ID": 14,
+                        "CountHero": 17
+                    },
+                    {
+                        "ID": 14,
+                        "CountHero": 17
+                    }
+                ]
+            }
+        },
+        {
+            "col": 3,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 4,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": 7,
+                "name": "Alaujar",
+                "level": 4,
+                "isPlayer": false,
+                "indexLoadGoldMine": 2,
+                "xR": 0.0,
+                "yR": 180.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 18,
+                        "CountHero": 23
+                    },
+                    {
+                        "ID": 13,
+                        "CountHero": 29
+                    },
+                    {
+                        "ID": 13,
+                        "CountHero": 29
+                    }
+                ]
+            }
+        },
+        {
+            "col": 5,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": 8,
+                "name": "Seveard",
+                "level": 1,
+                "isPlayer": false,
+                "indexLoadGoldMine": 1,
+                "xR": -0.000005008956122765085,
+                "yR": 180.0,
+                "zR": 180.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 7,
+                        "CountHero": 23
+                    },
+                    {
+                        "ID": 7,
+                        "CountHero": 23
+                    },
+                    {
+                        "ID": 7,
+                        "CountHero": 23
+                    }
+                ]
+            }
+        },
+        {
+            "col": 6,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 7,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 8,
+            "row": 5,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 0,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 1,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 2,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": 9,
+                "name": "Leran",
+                "level": 4,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": -0.000005008956122765085,
+                "yR": 180.0,
+                "zR": 180.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 31,
+                        "CountHero": 1
+                    },
+                    {
+                        "ID": 8,
+                        "CountHero": 23
+                    },
+                    {
+                        "ID": 8,
+                        "CountHero": 23
+                    }
+                ]
+            }
+        },
+        {
+            "col": 3,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": 0,
+                "name": "Areramar",
+                "level": 1,
+                "isPlayer": true,
+                "indexLoadGoldMine": 2,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 4,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": 10,
+                "name": "Seveawien",
+                "level": 1,
+                "isPlayer": false,
+                "indexLoadGoldMine": 1,
+                "xR": 0.0,
+                "yR": 180.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 16,
+                        "CountHero": 13
+                    },
+                    {
+                        "ID": 16,
+                        "CountHero": 13
+                    },
+                    {
+                        "ID": 16,
+                        "CountHero": 13
+                    }
+                ]
+            }
+        },
+        {
+            "col": 5,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 6,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 7,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 8,
+            "row": 6,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 0,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 1,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 2,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 3,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": 11,
+                "name": "Gukith",
+                "level": 1,
+                "isPlayer": false,
+                "indexLoadGoldMine": 2,
+                "xR": -0.000005008956122765085,
+                "yR": 0.000005008956122765085,
+                "zR": 180.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 31,
+                        "CountHero": 1
+                    },
+                    {
+                        "ID": 31,
+                        "CountHero": 1
+                    },
+                    {
+                        "ID": 31,
+                        "CountHero": 1
+                    }
+                ]
+            }
+        },
+        {
+            "col": 4,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 5,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 6,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 7,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 8,
+            "row": 7,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 0,
             "row": 8,
             "goldMineInfo": {
                 "ID": -1,
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 1,
+            "row": 8,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 2,
+            "row": 8,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 3,
+            "row": 8,
+            "goldMineInfo": {
+                "ID": 12,
+                "name": "Arorema",
+                "level": 4,
+                "isPlayer": false,
+                "indexLoadGoldMine": 1,
+                "xR": -0.000005008956122765085,
+                "yR": 180.0,
+                "zR": 180.0,
+                "lsHeroGoldMine": [
+                    {
+                        "ID": 3,
+                        "CountHero": 17
+                    },
+                    {
+                        "ID": 5,
+                        "CountHero": 17
+                    },
+                    {
+                        "ID": 5,
+                        "CountHero": 17
+                    }
+                ]
+            }
+        },
+        {
+            "col": 4,
+            "row": 8,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
+                "lsHeroGoldMine": []
+            }
+        },
+        {
+            "col": 5,
+            "row": 8,
+            "goldMineInfo": {
+                "ID": -1,
+                "name": "",
+                "level": 0,
+                "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1073,6 +1347,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1084,6 +1362,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1095,6 +1377,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1106,6 +1392,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1117,6 +1407,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1128,6 +1422,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1139,6 +1437,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1150,6 +1452,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1161,6 +1467,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1172,6 +1482,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1183,6 +1497,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1194,6 +1512,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1205,6 +1527,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1216,6 +1542,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1227,6 +1557,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1238,6 +1572,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1249,6 +1587,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1260,6 +1602,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1271,6 +1617,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1282,6 +1632,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1293,6 +1647,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1304,6 +1662,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1315,6 +1677,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1326,6 +1692,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1337,6 +1707,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1348,6 +1722,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1359,6 +1737,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1370,6 +1752,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1381,6 +1767,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         },
@@ -1392,6 +1782,10 @@
                 "name": "",
                 "level": 0,
                 "isPlayer": false,
+                "indexLoadGoldMine": 0,
+                "xR": 0.0,
+                "yR": 0.0,
+                "zR": 0.0,
                 "lsHeroGoldMine": []
             }
         }
@@ -1472,6 +1866,80 @@
         {
             "ID": 18,
             "isUnlock": true
+        }
+    ],
+    "lsHousePlayer": [
+        {
+            "ID": 0,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
+        },
+        {
+            "ID": 1,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
+        },
+        {
+            "ID": 2,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
+        },
+        {
+            "ID": 3,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
+        },
+        {
+            "ID": 4,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
+        },
+        {
+            "ID": 5,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
+        },
+        {
+            "ID": 6,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
+        },
+        {
+            "ID": 7,
+            "level": 0,
+            "isLock": true,
+            "heroInfo": {
+                "ID": 0,
+                "CountHero": 0
+            }
         }
     ]
 }

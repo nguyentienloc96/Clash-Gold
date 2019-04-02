@@ -263,7 +263,7 @@ public class GoldMine : MonoBehaviour
                 }
                 if (!isHeroOn)
                 {
-                    InstantiateHero(lsIconHero[i].houseHero.info.idHero - 1, numberadd);
+                    InstantiateHero(lsIconHero[i].houseHero.info.idHero, numberadd);
                 }
                 lsIconHero[i].houseHero.info.countHero -= numberadd;
             }
@@ -401,7 +401,7 @@ public class GoldMine : MonoBehaviour
     public void InstantiateEnemy(int idHero, int number, int i)
     {
         Hero hero;
-        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero]
+        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero - 1]
             , lsPosIns[i].position, Quaternion.identity, GameManager.Instance.enemyManager);
         hero.gameObject.name = "Enemy";
         hero.SetInfoHero();
@@ -415,7 +415,7 @@ public class GoldMine : MonoBehaviour
     public void InstantiateEnemyJson(int idHero, int number)
     {
         Hero hero;
-        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero]
+        hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero - 1]
             , lsPosIns[lsHeroGoldMine.Count].position
             , Quaternion.identity
             , GameManager.Instance.enemyManager);
@@ -431,7 +431,7 @@ public class GoldMine : MonoBehaviour
     public void InstantiateHeroJson(int idHero, int number)
     {
         Hero hero;
-        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero - 1]
             , lsPosIns[lsHeroGoldMine.Count].position
             , Quaternion.identity
             , GameManager.Instance.enemyManager);
@@ -447,7 +447,7 @@ public class GoldMine : MonoBehaviour
     public void InstantiateHero(int idHero, int number)
     {
         Hero hero;
-        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero]
+        hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero - 1]
             , lsPosIns[lsHeroGoldMine.Count].position
             , Quaternion.identity
             , GameManager.Instance.enemyManager);

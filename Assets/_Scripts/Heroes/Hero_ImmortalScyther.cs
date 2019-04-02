@@ -20,7 +20,7 @@ public class Hero_ImmortalScyther : Hero
 
     public override void Die()
     {
-        InstantiateChild(21, countHeroStart, gameObject.tag == "Hero");
+        InstantiateChild(22, countHeroStart, gameObject.tag == "Hero");
         AnimDie();
     }
 

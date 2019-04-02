@@ -51,7 +51,7 @@ public class Hero_DeadlyMOM : Hero {
             timeInstanceChild += Time.deltaTime;
             if (timeInstanceChild >= 2f)
             {
-                InstantiateChild(19,infoHero.countHero ,gameObject.tag == "Hero");
+                InstantiateChild(20,infoHero.countHero ,gameObject.tag == "Hero");
                 timeInstanceChild = 0;
             }
         }

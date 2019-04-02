@@ -387,7 +387,7 @@ public abstract class Hero : MonoBehaviour
     {
         if (ishero)
         {
-            Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero], transform.position, Quaternion.identity);
+            Hero hero = Instantiate(GameManager.Instance.lsPrefabsHero[idHero - 1], transform.position, Quaternion.identity);
             hero.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             hero.IDGold = IDGold;
             hero.isAttack = true;
@@ -404,7 +404,7 @@ public abstract class Hero : MonoBehaviour
         }
         else
         {
-            Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero], transform.position, Quaternion.identity);
+            Hero hero = Instantiate(GameManager.Instance.lsPrefabsEnemy[idHero - 1], transform.position, Quaternion.identity);
             hero.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             hero.IDGold = IDGold;
             hero.isAttack = true;

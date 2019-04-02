@@ -317,7 +317,7 @@ public class GameManager : MonoBehaviour
                             lsGoldMineEnemy.Add(GolHeroBeingAttack);
                             for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
                             {
-                                GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
+                                GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID
                                     , lsEnemyAttackGoldMine[i].infoHero.countHero, i);
                             }
                             foreach (Hero h in lsEnemyAttackGoldMine)
@@ -337,7 +337,7 @@ public class GameManager : MonoBehaviour
                                  lsGoldMineEnemy.Add(GolHeroBeingAttack);
                                  for (int i = 0; i < lsEnemyAttackGoldMine.Count; i++)
                                  {
-                                     GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID - 1
+                                     GolHeroBeingAttack.InstantiateEnemy(lsEnemyAttackGoldMine[i].infoHero.ID
                                          , lsEnemyAttackGoldMine[i].infoHero.countHero, i);
                                  }
                                  foreach (Hero h in lsEnemyAttackGoldMine)
@@ -599,6 +599,11 @@ public class GameManager : MonoBehaviour
 
     public void GenerateMapBoxJson()
     {
+        if (idMapBox != -1)
+        {
+            stateGame = StateGame.Playing;
+            return;
+        }
         idMapBox = DataPlayer.Instance.idMapBox;
         maxLevelHouse = DataPlayer.Instance.maxLevelHouse;
         for (int i = 0; i < row; i++)
@@ -730,6 +735,7 @@ public class GameManager : MonoBehaviour
             GoldMine goldMine = Instantiate(prefabsBoxMap[2], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
             goldMine.GetInfo(id, GameConfig.Instance.GetNameIsLand(), level, TypeGoldMine.Player, 2);
             goldMine.canvas.localRotation = Quaternion.Euler(_rotation);
+            goldMine.info.indexLoadGoldMine = 2;
             lsGoldMinePlayer.Add(goldMine);
             lsGoldMineManager.Add(goldMine);
             box.info.goldMine = goldMine;
@@ -739,6 +745,7 @@ public class GameManager : MonoBehaviour
             GoldMine goldMine = Instantiate(prefabsBoxMap[typeGoldMine], toPos.position, Quaternion.Euler(_rotation), toPos).GetComponent<GoldMine>();
             goldMine.GetInfo(id, GameConfig.Instance.GetNameIsLand(), level, TypeGoldMine.Enemy, typeGoldMine);
             goldMine.canvas.localRotation = Quaternion.Euler(_rotation);
+            goldMine.info.indexLoadGoldMine = typeGoldMine;
             lsGoldMineEnemy.Add(goldMine);
             lsGoldMineManager.Add(goldMine);
             box.info.goldMine = goldMine;
