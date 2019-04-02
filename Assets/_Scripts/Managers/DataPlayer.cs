@@ -85,7 +85,22 @@ public class DataPlayer : MonoBehaviour
     public List<HouseInfoST> lsHousePlayer = new List<HouseInfoST>();
     public void Start()
     {
-        LoadDataPlayer();
+        if (!PlayerPrefs.HasKey(KeyPrefs.IS_CONTINUE))
+        {
+            PlayerPrefs.SetInt(KeyPrefs.IS_CONTINUE, 0);
+        }
+        else
+        {
+            if(PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) != 0)
+            {
+                LoadDataPlayer();
+                UIManager.Instance.btnContinue.interactable = true;
+            }
+            else
+            {
+                UIManager.Instance.btnContinue.interactable = false;
+            }
+        }
     }
 
     public void SaveDataPlayer()
@@ -162,7 +177,7 @@ public class DataPlayer : MonoBehaviour
         File.WriteAllText(_path, JsonUtility.ToJson(data, true));
         File.ReadAllText(_path);
         PlayerPrefs.SetInt(KeyPrefs.IS_CONTINUE, 1);
-
+        UIManager.Instance.btnContinue.interactable = true;
         Debug.Log(SimpleJSON_DatDz.JSON.Parse(File.ReadAllText(_path)));
 
         //string path = "Assets/Resources/DebugJson.json";
@@ -286,7 +301,7 @@ public class DataPlayer : MonoBehaviour
     {
         if (pause == true && GameManager.Instance.stateGame == StateGame.Playing)
         {
-            //SaveDataPlayer();
+            SaveDataPlayer();
         }
     }
 
@@ -294,7 +309,7 @@ public class DataPlayer : MonoBehaviour
     {
         if (GameManager.Instance.stateGame == StateGame.Playing)
         {
-            //SaveDataPlayer();
+            SaveDataPlayer();
         }
     }
 }
