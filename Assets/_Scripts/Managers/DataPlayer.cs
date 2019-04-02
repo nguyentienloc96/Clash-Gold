@@ -87,6 +87,7 @@ public class DataPlayer : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey(KeyPrefs.IS_CONTINUE))
         {
+            Fade.Instance.EndFade(0);
             PlayerPrefs.SetInt(KeyPrefs.IS_CONTINUE, 0);
         }
         else
@@ -98,6 +99,7 @@ public class DataPlayer : MonoBehaviour
             }
             else
             {
+                Fade.Instance.EndFade(0);
                 UIManager.Instance.btnContinue.interactable = false;
             }
         }
