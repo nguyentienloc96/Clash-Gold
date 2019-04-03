@@ -46,6 +46,8 @@ public struct HouseInfoST
 {
     public int ID;
     public int level;
+    public long price;
+    public int capWar;
     public bool isLock;
     public HeroInfoST heroInfo;
 }
@@ -53,9 +55,6 @@ public struct HouseInfoST
 [System.Serializable]
 public struct CastleInfoST
 {
-    public float x;
-    public float y;
-    public float z;
     public List<HouseInfoST> lsHouse;
 }
 
@@ -116,6 +115,19 @@ public class DataPlayer : MonoBehaviour
         data.dateGame = GameManager.Instance.dateGame;
         data.dateEnemyAttack = GameManager.Instance.dateEnemyAttack;
         data.lstBuildHouse = GameManager.Instance.lsBuildHouse;
+
+        data.castlePlayer = new CastleInfoST();
+        data.castlePlayer.lsHouse = new List<HouseInfoST>();
+        foreach (House h in GameManager.Instance.castlePlayer.lsHouseRelease)
+        {
+            HouseInfoST hInfo = new HouseInfoST();
+            hInfo.ID = h.info.ID;
+            hInfo.level = h.info.level;
+            hInfo.heroInfo.ID = h.info.idHero;
+            hInfo.heroInfo.CountHero = h.info.countHero;
+            data.castlePlayer.lsHouse.Add(hInfo);
+        }
+
         foreach (Box b in GameManager.Instance.lsBoxManager)
         {
             BoxInfoST bInfo = new BoxInfoST();
@@ -149,26 +161,13 @@ public class DataPlayer : MonoBehaviour
             data.lsBox.Add(bInfo);
         }
 
-        data.castlePlayer = new CastleInfoST();
-        data.castlePlayer.x = GameManager.Instance.castlePlayer.transform.position.x;
-        data.castlePlayer.y = GameManager.Instance.castlePlayer.transform.position.y;
-        data.castlePlayer.z = GameManager.Instance.castlePlayer.transform.position.z;
-        data.castlePlayer.lsHouse = new List<HouseInfoST>();
-        foreach (House h in GameManager.Instance.castlePlayer.lsHouseRelease)
-        {
-            HouseInfoST hInfo = new HouseInfoST();
-            hInfo.ID = h.info.ID;
-            hInfo.level = h.info.level;
-            hInfo.heroInfo.ID = h.info.idHero;
-            hInfo.heroInfo.CountHero = h.info.countHero;
-            data.castlePlayer.lsHouse.Add(hInfo);
-        }
-
         foreach (House h in GameManager.Instance.lsHousePlayer)
         {
             HouseInfoST hInfo = new HouseInfoST();
             hInfo.ID = h.info.ID;
             hInfo.level = h.info.level;
+            hInfo.price = h.info.price;
+            hInfo.capWar = h.info.capWar;
             hInfo.isLock = h.info.typeState == TypeStateHouse.Lock ? true : false;
             hInfo.heroInfo.ID = h.info.idHero;
             hInfo.heroInfo.CountHero = h.info.countHero;
@@ -179,7 +178,6 @@ public class DataPlayer : MonoBehaviour
         File.WriteAllText(_path, JsonUtility.ToJson(data, true));
         File.ReadAllText(_path);
         PlayerPrefs.SetInt(KeyPrefs.IS_CONTINUE, 1);
-        UIManager.Instance.btnContinue.interactable = true;
         Debug.Log(SimpleJSON_DatDz.JSON.Parse(File.ReadAllText(_path)));
 
         //string path = "Assets/Resources/DebugJson.json";
@@ -228,6 +226,8 @@ public class DataPlayer : MonoBehaviour
                 HouseInfoST hInfo = new HouseInfoST();
                 hInfo.ID = lstHousePlayerJson[i]["ID"].AsInt;
                 hInfo.level = lstHousePlayerJson[i]["level"].AsInt;
+                hInfo.price = lstHousePlayerJson[i]["price"].AsLong;
+                hInfo.capWar = lstHousePlayerJson[i]["capWar"].AsInt;
                 hInfo.isLock = lstHousePlayerJson[i]["isLock"].AsBool;
                 hInfo.heroInfo = new HeroInfoST();
                 hInfo.heroInfo.ID = lstHousePlayerJson[i]["heroInfo"]["ID"].AsInt;
@@ -273,9 +273,6 @@ public class DataPlayer : MonoBehaviour
         yield return new WaitUntil(() => lsBox.Count == lsBoxJson.Count);
 
         castlePlayer = new CastleInfoST();
-        castlePlayer.x = objJson["castlePlayer"]["x"].AsFloat;
-        castlePlayer.y = objJson["castlePlayer"]["y"].AsFloat; ;
-        castlePlayer.z = objJson["castlePlayer"]["z"].AsFloat; ;
         castlePlayer.lsHouse = new List<HouseInfoST>();
         var lsHouseJson = objJson["castlePlayer"]["lsHouse"];
 

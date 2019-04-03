@@ -118,11 +118,13 @@ public class House : MonoBehaviour
     {
         if (GameManager.Instance.gold < priceWillUpgrade)
             return;
-    }
-
-    void HideAnim()
-    {
-
+        info.price = priceWillUpgrade;
+        GameManager.Instance.AddGold(-info.price);
+        timeUpgrade = GameConfig.Instance.UpgradeTime * _x;
+        info.typeState = TypeStateHouse.Upgrading;
+        txtCountHero.gameObject.SetActive(false);
+        imgLoadingBuild.gameObject.SetActive(true);
+        panelHouse.SetActive(false);
     }
 
     void UpgradeComplete()

@@ -156,7 +156,14 @@ public class UIManager : MonoBehaviour
 
     public void BtnMode_Onclick(float mode)
     {
-        GameManager.Instance.GenerateMapBox();
+        if (GameManager.Instance.idMapBox != -1)
+        {
+            StartCoroutine(IEResetMap());
+        }
+        else
+        {
+            GameManager.Instance.GenerateMapBox();
+        }
         SetActivePanel(panelChooseLevel, false);
         SetActivePanel(panelHome, false);
         GameManager.Instance.ratioBorn = mode;
@@ -166,10 +173,17 @@ public class UIManager : MonoBehaviour
             null,
             () =>
             {
-                GameManager.Instance.AddGold(GameConfig.Instance.GoldStart);
-                GameManager.Instance.AddCoin(GameConfig.Instance.CoinStart);
+                GameManager.Instance.GetGold(GameConfig.Instance.GoldStart);
+                GameManager.Instance.GetCoin(GameConfig.Instance.CoinStart);
             }
         );
+    }
+
+    public IEnumerator IEResetMap()
+    {
+        GameManager.Instance.ClearMap();
+        yield return new WaitUntil(() => GameManager.Instance.lsBoxManager.Count == 0);
+        GameManager.Instance.GenerateMapBox();
     }
 
     public void BtnContinue_Onclick()
@@ -184,8 +198,8 @@ public class UIManager : MonoBehaviour
             null,
             () =>
             {
-                GameManager.Instance.AddGold(DataPlayer.Instance.gold);
-                GameManager.Instance.AddCoin(DataPlayer.Instance.coin);
+                GameManager.Instance.GetGold(DataPlayer.Instance.gold);
+                GameManager.Instance.GetCoin(DataPlayer.Instance.coin);
             }
         );
     }
@@ -247,7 +261,7 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.lsHousePlayer[houseClick].YesUpgrade(1);
         UpgradeHouse();
-        //SetActivePanel(panelUpgrade,false);
+        SetActivePanel(panelUpgrade,false);
     }
 
     public void Btn_NoUpgrade()
@@ -270,7 +284,16 @@ public class UIManager : MonoBehaviour
 
     public void HideAllPanelGame()
     {
-
+        panelBuildHouse.SetActive(false);
+        panelBuildSelect.SetActive(false);
+        panelRelace.SetActive(false);
+        panelRelease.SetActive(false);
+        panelReleaseAttack.SetActive(false);
+        panelSeting.SetActive(false);
+        panelUpgrade.SetActive(false);
+        panelUpgradeG.SetActive(false);
+        panelWarring.SetActive(false);
+        panelInWall.SetActive(false);
     }
 
     public void GetUIAttack()
@@ -337,6 +360,7 @@ public class UIManager : MonoBehaviour
         txtStory.text = GameConfig.Instance.lsStory[Random.Range(0, GameConfig.Instance.lsStory.Count)];
         ScenesManager.Instance.GoToScene(1,() =>
         {
+            btnContinue.interactable = true;
             GameManager.Instance.stateGame = StateGame.Home;
         });
     }

@@ -655,7 +655,8 @@ public class GameManager : MonoBehaviour
             }
         }
         yield return new WaitForEndOfFrame();
-        Vector3 posCastle = new Vector3(DataPlayer.Instance.castlePlayer.x, DataPlayer.Instance.castlePlayer.y, DataPlayer.Instance.castlePlayer.z);
+        int rdPosCastle = UnityEngine.Random.Range(0, lsGoldMinePlayer.Count);
+        Vector3 posCastle = lsGoldMinePlayer[rdPosCastle].transform.position;
         castlePlayer.transform.position = posCastle;
         posCastle.z = -10;
         DeadzoneCamera.Instance._camera.transform.position = posCastle;
@@ -671,7 +672,8 @@ public class GameManager : MonoBehaviour
                 }
                 h.info.level = DataPlayer.Instance.lsHousePlayer[i].level;
                 h.info.idHero = DataPlayer.Instance.lsHousePlayer[i].heroInfo.ID;
-                h.info.capWar = (int)GameConfig.Instance.lsInfoHero[h.info.idHero - 1].capWar;
+                h.info.price = DataPlayer.Instance.lsHousePlayer[i].price;
+                h.info.capWar = DataPlayer.Instance.lsHousePlayer[i].capWar;
                 h.info.countHero = DataPlayer.Instance.lsHousePlayer[i].heroInfo.CountHero;
                 h.imgNotBuild.enabled = false;
                 h.panelHouse.SetActive(true);
@@ -1185,6 +1187,39 @@ public class GameManager : MonoBehaviour
         }
         return numberCheck;
     }
+
+    public void ClearMap()
+    {
+        foreach(GoldMine g in lsGoldMineManager)
+        {
+            g.ClearAllListener();
+        }
+        foreach(Box b in lsBoxManager)
+        {
+            Destroy(b.gameObject);
+        }
+        for (int i = 0; i < enemyManager.childCount; i++)
+        {
+            Destroy(enemyManager.GetChild(i).gameObject);
+        }
+        foreach(Hero h in lsEnemyAttackGoldMine)
+        {
+            Destroy(h.gameObject);
+        }
+        castlePlayer.lsHouseRelease.Clear();
+        lsBoxManager.Clear();
+        lsBoxCanMove.Clear();
+        lsBoxMove.Clear();
+        lsBuildHouse.Clear();
+        lsGoldMineManager.Clear();
+        lsGoldMinePlayer.Clear();
+        lsGoldMineEnemy.Clear();
+        lsEnemyAttackGoldMine.Clear();
+        foreach (House h in lsHousePlayer)
+        {
+            h.info.typeState = TypeStateHouse.Lock;
+        }
+    }
     #endregion
 
     #region === HOUSE ===
@@ -1230,6 +1265,12 @@ public class GameManager : MonoBehaviour
 
     #region === ADD GOLD, COIN ===
 
+    public void GetGold(long _gold)
+    {
+        gold = _gold;
+        UIManager.Instance.txtGold.text = UIManager.Instance.ConvertNumber(gold);
+    }
+
     public void AddGold(long _gold)
     {
         gold += _gold;
@@ -1238,6 +1279,12 @@ public class GameManager : MonoBehaviour
             gold = 0;
         }
         UIManager.Instance.txtGold.text = UIManager.Instance.ConvertNumber(gold);
+    }
+
+    public void GetCoin(int _coin)
+    {
+        coin = _coin;
+        UIManager.Instance.txtCoin.text = UIManager.Instance.ConvertNumber(coin);
     }
 
     public void AddCoin(int _coin)
