@@ -91,7 +91,7 @@ public class DataPlayer : MonoBehaviour
         }
         else
         {
-            if(PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) != 0)
+            if (PlayerPrefs.GetInt(KeyPrefs.IS_CONTINUE) != 0)
             {
                 LoadDataPlayer();
                 UIManager.Instance.btnContinue.interactable = true;
@@ -304,7 +304,7 @@ public class DataPlayer : MonoBehaviour
         }
     }
 
-    public void OnDestroy()
+    private void OnApplicationQuit()
     {
         if (GameManager.Instance.stateGame == StateGame.Playing)
         {

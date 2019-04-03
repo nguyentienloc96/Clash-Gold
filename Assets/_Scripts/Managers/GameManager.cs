@@ -13,6 +13,23 @@ public enum StateGame
     Finished
 }
 
+public enum TypeEquip
+{
+    Heath,
+    HitSpeed,
+    Damage,
+    PriceHouse,
+    PriceUpgrade
+}
+
+[System.Serializable]
+public struct Equipment
+{
+    public int IDHero;
+    public TypeEquip typeEquip;
+    public float percent;
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = new GameManager();
@@ -71,6 +88,9 @@ public class GameManager : MonoBehaviour
     public Transform enemyManager;
     public long dateEnemyAttack;
     public long dateUpGoldMine;
+
+    [Header("EQUIPMENT")]
+    public List<Equipment> lsEquip = new List<Equipment>();
 
     [Header("INSHERO")]
     public List<Hero> lsPrefabsHero = new List<Hero>();
@@ -373,13 +393,13 @@ public class GameManager : MonoBehaviour
         }
         else if (stateGame == StateGame.Finished)
         {
-            //if (Input.GetMouseButtonDown(0) &&
-            //    (UIManager.Instance.panelGameOver.activeSelf ||
-            //    UIManager.Instance.panelVictory.activeSelf))
-            //{
-            //    UIManager.Instance.panelGameOver.SetActive(false);
-            //    UIManager.Instance.panelVictory.SetActive(false);
-            //}
+            if (Input.GetMouseButtonDown(0) &&
+                (UIManager.Instance.panelGameOver.activeSelf ||
+                UIManager.Instance.panelVictory.activeSelf))
+            {
+                UIManager.Instance.panelGameOver.SetActive(false);
+                UIManager.Instance.panelVictory.SetActive(false);
+            }
         }
     }
 
@@ -641,10 +661,13 @@ public class GameManager : MonoBehaviour
             CheckBoxCanMove(box);
         }
         yield return new WaitForEndOfFrame();
+        int isNext = 0;
         for (int i = 0; i < DataPlayer.Instance.lsBox.Count; i++)
         {
             if (DataPlayer.Instance.lsBox[i].goldMineInfo.ID != -1)
             {
+                isNext++;
+                Debug.Log(isNext);
                 Vector3 _rotation = new Vector3(DataPlayer.Instance.lsBox[i].goldMineInfo.xR, DataPlayer.Instance.lsBox[i].goldMineInfo.yR, DataPlayer.Instance.lsBox[i].goldMineInfo.zR);
                 GenerateMapJson(lsBoxManager[i].transform,
                     lsBoxManager[i],
@@ -654,6 +677,7 @@ public class GameManager : MonoBehaviour
                     DataPlayer.Instance.lsBox[i].goldMineInfo.isPlayer);
             }
         }
+        yield return new WaitUntil(() => isNext == lsBoxMove.Count);
         yield return new WaitForEndOfFrame();
         int rdPosCastle = UnityEngine.Random.Range(0, lsGoldMinePlayer.Count);
         Vector3 posCastle = lsGoldMinePlayer[rdPosCastle].transform.position;
@@ -755,7 +779,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void GenerateMapJson(Transform toPos,Box box, int typeGoldMine,Vector3 _rotation,GoldMineInfoST gInfo ,bool isGoldPlayer = false)
+    public void GenerateMapJson(Transform toPos, Box box, int typeGoldMine, Vector3 _rotation, GoldMineInfoST gInfo, bool isGoldPlayer = false)
     {
         if (isGoldPlayer)
         {
@@ -1190,11 +1214,11 @@ public class GameManager : MonoBehaviour
 
     public void ClearMap()
     {
-        foreach(GoldMine g in lsGoldMineManager)
+        foreach (GoldMine g in lsGoldMineManager)
         {
             g.ClearAllListener();
         }
-        foreach(Box b in lsBoxManager)
+        foreach (Box b in lsBoxManager)
         {
             Destroy(b.gameObject);
         }
@@ -1202,7 +1226,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(enemyManager.GetChild(i).gameObject);
         }
-        foreach(Hero h in lsEnemyAttackGoldMine)
+        foreach (Hero h in lsEnemyAttackGoldMine)
         {
             Destroy(h.gameObject);
         }

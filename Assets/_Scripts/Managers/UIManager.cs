@@ -352,6 +352,7 @@ public class UIManager : MonoBehaviour
     public void Btn_SaveExit()
     {
         Time.timeScale = 1;
+        HideAllPanelGame();
         panelSeting.SetActive(false);
         DataPlayer.Instance.SaveDataPlayer();
         panelHome.SetActive(true);
