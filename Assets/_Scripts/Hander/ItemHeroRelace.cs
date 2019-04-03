@@ -17,15 +17,15 @@ public class ItemHeroRelace : MonoBehaviour
 
     public void RelaceItemHero()
     {
-        //int idHero = GameManager.Instance.lstHousePlayer[idHouseRelace].idHero;
+        int idHero = GameManager.Instance.lsHousePlayer[idHouseRelace].info.idHero;
         UIManager.Instance.panelRelace.SetActive(false);
-        //YesRelaceItemHero(idHero);
+        YesRelaceItemHero(idHero);
     }
 
     public void YesRelaceItemHero(int idHero)
     {
-        //GameManager.Instance.castlePlayer.lsHouseRelease[idLocation] = GameManager.Instance.lstHousePlayer[idHouseRelace];
-        //GameManager.Instance.castlePlayer.lstAvatarHeroRelease[idLocation].gameObject.SetActive(true);
-        //GameManager.Instance.castlePlayer.lstAvatarHeroRelease[idLocation].sprite = UIManager.Instance.sprAvatarHero[idHero - 1];
+        GameManager.Instance.castlePlayer.lsHouseRelease[idLocation] = GameManager.Instance.lsHousePlayer[idHouseRelace];
+        UIManager.Instance.lstAvatarHeroRelease[idLocation].gameObject.SetActive(true);
+        UIManager.Instance.lstAvatarHeroRelease[idLocation].sprite = UIManager.Instance.lsSprAvatarHero[idHero - 1];
     }
 }

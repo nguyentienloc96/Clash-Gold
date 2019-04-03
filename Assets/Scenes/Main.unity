@@ -12614,8 +12614,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RelaceHero
+      - m_Target: {fileID: 2114376454}
+        m_MethodName: RelaceHero_Onclick
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -14782,7 +14782,7 @@ MonoBehaviour:
   numberThrowHero: 0
   goldMineInSide: {fileID: 0}
   isBeingAttack: 0
-  itemHero: {fileID: 1899145358730652, guid: 7d1c8ea2909b0d64997f35012ff616b7, type: 2}
+  itemHero: {fileID: 1899145358730652, guid: 103752d0ee9fee04ebfc58ed5a879621, type: 2}
   isBreak: 0
 --- !u!1 &1188886460
 GameObject:
@@ -15656,8 +15656,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RelaceHero
+      - m_Target: {fileID: 2114376454}
+        m_MethodName: RelaceHero_Onclick
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17972,8 +17972,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: RelaceHero
+      - m_Target: {fileID: 2114376454}
+        m_MethodName: RelaceHero_Onclick
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

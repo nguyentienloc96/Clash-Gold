@@ -703,12 +703,15 @@ public class GameManager : MonoBehaviour
                 h.panelHouse.SetActive(true);
                 h.txtCountHero.gameObject.SetActive(true);
                 h.txtLevel.text = lsHousePlayer[i].info.level.ToString();
-                h.imgHouse.sprite = UIManager.Instance.lsSprAvatarHero[h.info.ID];
+                h.imgHouse.sprite = UIManager.Instance.lsSprAvatarHero[h.info.idHero - 1];
             }
         }
         for (int i = 0; i < DataPlayer.Instance.castlePlayer.lsHouse.Count; i++)
         {
-            castlePlayer.lsHouseRelease.Add(lsHousePlayer[DataPlayer.Instance.castlePlayer.lsHouse[i].ID]);
+            int idHouse = DataPlayer.Instance.castlePlayer.lsHouse[i].ID;
+            castlePlayer.lsHouseRelease.Add(lsHousePlayer[idHouse]);
+            UIManager.Instance.lstAvatarHeroRelease[i].gameObject.SetActive(true);
+            UIManager.Instance.lstAvatarHeroRelease[i].sprite = UIManager.Instance.lsSprAvatarHero[lsHousePlayer[idHouse].info.idHero - 1];
         }
         yield return new WaitForEndOfFrame();
         BuildHouseJson();
@@ -1214,6 +1217,11 @@ public class GameManager : MonoBehaviour
 
     public void ClearMap()
     {
+        for (int i = 0; i < UIManager.Instance.lstAvatarHeroRelease.Length; i++)
+        {
+            UIManager.Instance.lstAvatarHeroRelease[i].gameObject.SetActive(false);
+            UIManager.Instance.lstAvatarHeroRelease[i].sprite = null;
+        }
         foreach (GoldMine g in lsGoldMineManager)
         {
             g.ClearAllListener();
