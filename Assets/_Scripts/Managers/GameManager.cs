@@ -91,6 +91,8 @@ public class GameManager : MonoBehaviour
 
     [Header("EQUIPMENT")]
     public List<Equipment> lsEquip = new List<Equipment>();
+    public List<ItemEquipment> lsItemEquip = new List<ItemEquipment>();
+    public ItemEquipmentSelect itemEquipPrefab;
 
     [Header("INSHERO")]
     public List<Hero> lsPrefabsHero = new List<Hero>();
@@ -103,18 +105,27 @@ public class GameManager : MonoBehaviour
     public List<Hero> lsChild = new List<Hero>();
 
     [Header("ATTACK")]
-    public bool isAttackGoldMineEnemy;
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
+    [HideInInspector]
+    public bool isAttackGoldMineEnemy;
+    [HideInInspector]
     public GoldMine GolEnemyBeingAttack;
+    [HideInInspector]
     public GoldMine GolHeroBeingAttack;
+    [HideInInspector]
     public GoldMine GolEnemyIsAttack;
+    [HideInInspector]
     public GoldMine goldMineCurrent;
+    [HideInInspector]
     public Vector3 posTriggerGoldMine;
+    [HideInInspector]
     public List<Hero> lsEnemyAttackGoldMine = new List<Hero>();
-
+    [HideInInspector]
     public ItemHeroAttack itemSelectHero;
+    [HideInInspector]
     public int numberThrowHero;
+    [HideInInspector]
     public GoldMine goldMineInSide;
     public bool isBeingAttack;
 
@@ -704,6 +715,7 @@ public class GameManager : MonoBehaviour
                 h.txtCountHero.gameObject.SetActive(true);
                 h.txtLevel.text = lsHousePlayer[i].info.level.ToString();
                 h.imgHouse.sprite = UIManager.Instance.lsSprAvatarHero[h.info.idHero - 1];
+                UIManager.Instance.lsBtnIconHouse[h.info.idHero - 1].interactable = false;
             }
         }
         for (int i = 0; i < DataPlayer.Instance.castlePlayer.lsHouse.Count; i++)

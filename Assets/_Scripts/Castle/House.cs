@@ -196,10 +196,6 @@ public class House : MonoBehaviour
         imgLoadingBuild.gameObject.SetActive(true);
         panelHouse.SetActive(false);
         UIManager.Instance.lsBtnIconHouse[_id].interactable = false;
-        BuildHouse buildHouse = new BuildHouse();
-        buildHouse.ID = GameManager.Instance.lsBuildHouse[_id].ID;
-        buildHouse.isUnlock = false;
-        GameManager.Instance.lsBuildHouse[_id] = buildHouse;
     }
 
     void BuildComplete()
@@ -225,12 +221,13 @@ public class House : MonoBehaviour
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());
         info.level = level;
         info.idHero = idHero;
-        info.capWar = (int)GameConfig.Instance.lsInfoHero[info.idHero - 1].capWar;
+        info.capWar = (int)GameConfig.Instance.lsInfoHero[idHero - 1].capWar;
         info.countHero = countHero;
         imgLoadingBuild.gameObject.SetActive(false);
         panelHouse.SetActive(true);
         txtCountHero.gameObject.SetActive(true);
         txtLevel.text = info.level.ToString();
+        UIManager.Instance.lsBtnIconHouse[idHero - 1].interactable = false;
     }
 
     public void SpawmHero()

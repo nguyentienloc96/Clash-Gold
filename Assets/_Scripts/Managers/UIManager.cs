@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour
     public GameObject mapAttack;
     public Transform contentRelace;
 
+    [Header("RELEASE")]
     public GameObject panelRelease;
     public Transform contentThrowHero;
     public GameObject itemThrowHero;
@@ -99,6 +100,12 @@ public class UIManager : MonoBehaviour
 
     [Header("SETTING")]
     public GameObject panelSeting;
+
+    [Header("EQUIP")]
+    public GameObject panelEquip;
+    public Transform contentEquip;
+    public List<GameObject> lsItemEquip;
+    public Sprite[] arrImgTypeEquip = new Sprite[5];
 
     void Start()
     {
@@ -148,6 +155,7 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #region === HOME ===
     public void BtnPlay_Onclick()
     {
         SetActivePanel(panelGroupHome, false);
@@ -182,7 +190,8 @@ public class UIManager : MonoBehaviour
     public IEnumerator IEResetMap()
     {
         GameManager.Instance.ClearMap();
-        yield return new WaitUntil(() => GameManager.Instance.lsBoxManager.Count == 0);
+        yield return new WaitUntil(() => GameManager.Instance.lsBoxManager.Count == 0 
+        && GameManager.Instance.enemyManager.childCount == 0);
         GameManager.Instance.GenerateMapBox();
     }
 
@@ -210,6 +219,7 @@ public class UIManager : MonoBehaviour
         SetActivePanel(panelChooseLevel, false);
         SetActivePanel(panelGroupHome, true);
     }
+    #endregion
 
     #region === UI IN-WALL ===
     public void ShowInWall()
@@ -281,6 +291,8 @@ public class UIManager : MonoBehaviour
         SetActivePanel(panelInWall, false);
     }
     #endregion
+
+    #region === OTHER ===
 
     public void HideAllPanelGame()
     {
@@ -372,4 +384,20 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.goldMineCurrent = null;
         panelRelease.SetActive(false);
     }
+    #endregion
+
+    #region === EQUIP ===
+    public int indexEquip = 0;
+    public  void BtnEquip_Onclick()
+    {
+        panelEquip.SetActive(true);
+        for(int i = 0;i<GameManager.Instance.lsBuildHouse.Count; i++)
+        {
+            if (GameManager.Instance.lsBuildHouse[i].isUnlock)
+            {
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+            }
+        }
+    }
+    #endregion
 }

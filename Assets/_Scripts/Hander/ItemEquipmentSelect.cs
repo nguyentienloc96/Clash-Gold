@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemEquipment : MonoBehaviour {
+public class ItemEquipmentSelect : MonoBehaviour {
 
     public Image iconHero;
     public Image iconEquip;
     public Text txtPercent;
 
-    public GameObject objLock;
-    public GameObject objOpen;
+    public Text txtInfo;
+    public Text txtPrice;
+
+    public Button btnEquip;
 }
