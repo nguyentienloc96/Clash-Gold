@@ -17,6 +17,7 @@ public class DetailInfoHero : MonoBehaviour
         txtName.text = name;
         txtInfo.text = info;
         txtInfoDetailHero.text = detail;
+        txtPrice.text = UIManager.Instance.ConvertNumber(price);
         btnYes.interactable = true;
         btnYes.onClick.RemoveAllListeners();
         btnYes.onClick.AddListener(btnYes_Onclick);
