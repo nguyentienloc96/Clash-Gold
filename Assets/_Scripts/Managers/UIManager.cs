@@ -191,7 +191,7 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.ClearMap();
         yield return new WaitUntil(() => GameManager.Instance.lsBoxManager.Count == 0 
-        && GameManager.Instance.enemyManager.childCount == 0);
+         && GameManager.Instance.enemyManager.childCount == 0);
         GameManager.Instance.GenerateMapBox();
     }
 
@@ -396,6 +396,8 @@ public class UIManager : MonoBehaviour
             if (GameManager.Instance.lsBuildHouse[i].isUnlock)
             {
                 ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite =  lsSprAvatarHero[GameManager.Instance.lsBuildHouse[i].ID];
+                item.iconEquip.sprite = arrImgTypeEquip[3];
             }
         }
     }
