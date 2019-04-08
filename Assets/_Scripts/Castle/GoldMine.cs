@@ -524,6 +524,7 @@ public class GoldMine : MonoBehaviour
             {
                 if (other.CompareTag("Castle"))
                 {
+                    GameManager.Instance.countBattle++;
                     UIManager.Instance.HideAllPanelGame();
                     if (!GameManager.Instance.isBeingAttack)
                     {

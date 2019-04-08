@@ -5,6 +5,27 @@ using UnityEngine;
 using com.shephertz.app42.paas.sdk.csharp;
 using com.shephertz.app42.paas.sdk.csharp.storage;
 
+[System.Serializable]
+public struct EquipRD
+{
+    public int eHealth;
+    public int eAtk;
+    public int eHit_Speed;
+    public int eConstruction;
+    public int eCost;
+}
+
+[System.Serializable]
+public class Equipment
+{
+    public int IDHero;
+    public bool isHealth;
+    public bool isAtk;
+    public bool isHitSpeed;
+    public bool isCost;
+    public bool isUpgrade;
+}
+
 [RequireComponent(typeof(LoadDataJson))]
 public class GameConfig : MonoBehaviour
 {
@@ -58,6 +79,18 @@ public class GameConfig : MonoBehaviour
     public int TimeUp;
     public int LandUP;
     public int LandDiv;
+    public int AtkWalk;
+    public int AtkFly;
+    public int AtkMele;
+    public int AtkArcher;
+    public int HlthWalk;
+    public int HlthFly;
+    public int HlthMele;
+    public int HlthArcher;
+    public int Pb1;
+    public float Pbrate;
+    public List<Equipment> lsEquip = new List<Equipment>();
+    public List<EquipRD> lsRdEquip = new List<EquipRD>();
     public List<string> lsSpeech = new List<string>();
     public List<InfoHero> lsInfoHero = new List<InfoHero>();
     public List<Vector2[]> listMap = new List<Vector2[]>();

@@ -31,6 +31,20 @@ public class Hero_Canon : Hero {
         this.infoHero.ID = 9;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
         timeSurvive = GameConfig.Instance.Timecanonsurvive;
+        if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isHealth)
+        {
+            this.infoHero.health += infoHero.health * 0.5f;
+        }
+        if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isAtk)
+        {
+            this.infoHero.dame += infoHero.dame * 0.5f;
+            this.infoHero.dameDead += infoHero.dameDead * 0.5f;
+            this.infoHero.counterDame += infoHero.counterDame * 0.5f;
+        }
+        if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isHitSpeed)
+        {
+            this.infoHero.hitSpeed += infoHero.hitSpeed * 0.5f;
+        }
     }
 
     string nameBullet;

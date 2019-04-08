@@ -92,6 +92,19 @@ public class LoadDataJson : MonoBehaviour
             GameConfig.Instance.TimeUp = objJson["TimeUp"].AsInt;
             GameConfig.Instance.LandUP = objJson["LandUP"].AsInt;
             GameConfig.Instance.LandDiv = objJson["LandDiv"].AsInt;
+
+            GameConfig.Instance.AtkWalk = objJson["AtkWalk"].AsInt;
+            GameConfig.Instance.AtkFly = objJson["AtkFly"].AsInt;
+            GameConfig.Instance.AtkMele = objJson["AtkMele"].AsInt;
+            GameConfig.Instance.AtkArcher = objJson["AtkArcher"].AsInt;
+            GameConfig.Instance.HlthWalk = objJson["HlthWalk"].AsInt;
+            GameConfig.Instance.HlthFly = objJson["HlthFly"].AsInt;
+            GameConfig.Instance.HlthMele = objJson["HlthMele"].AsInt;
+            GameConfig.Instance.HlthArcher = objJson["HlthArcher"].AsInt;
+
+            GameConfig.Instance.Pb1 = objJson["Pb1"].AsInt;
+            GameConfig.Instance.Pbrate = objJson["Pbrate"].AsFloat;
+
             GameConfig.Instance.ID_UnityAds_ios = objJson["ID_UnityAds_ios"];
             GameConfig.Instance.ID_Inter_android = objJson["ID_Inter_android"];
             GameConfig.Instance.ID_Inter_ios = objJson["ID_Inter_ios"];
@@ -159,6 +172,19 @@ public class LoadDataJson : MonoBehaviour
                     _info.typeHero = TypeHero.Canon;
                 }
                 GameConfig.Instance.lsInfoHero.Add(_info);
+                if (_info.ID < 31)
+                {
+                    EquipRD eq = new EquipRD();
+                    eq.eHealth = Random.Range(1, 11);
+                    eq.eAtk = Random.Range(1, 11);
+                    eq.eHit_Speed = Random.Range(1, 11);
+                    eq.eConstruction = Random.Range(1, 11);
+                    eq.eCost = Random.Range(1, 11);
+                    GameConfig.Instance.lsRdEquip.Add(eq);
+                    Equipment equipment = new Equipment();
+                    equipment.IDHero = _info.ID;
+                    GameConfig.Instance.lsEquip.Add(equipment);
+                }
             }
 
             for (int t = 0; t < objJson["listMap"].Count; t++)

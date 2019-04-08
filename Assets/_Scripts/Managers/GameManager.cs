@@ -13,23 +13,6 @@ public enum StateGame
     Finished
 }
 
-public enum TypeEquip
-{
-    Heath,
-    HitSpeed,
-    Damage,
-    PriceHouse,
-    PriceUpgrade
-}
-
-[System.Serializable]
-public struct Equipment
-{
-    public int IDHero;
-    public TypeEquip typeEquip;
-    public float percent;
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance = new GameManager();
@@ -90,7 +73,9 @@ public class GameManager : MonoBehaviour
     public long dateUpGoldMine;
 
     [Header("EQUIPMENT")]
-    public List<Equipment> lsEquip = new List<Equipment>();
+    public int xSelectEquip = 0;
+    public int xOpenEquip = 0;
+    public int xSelectedEquip = 0;
     public List<ItemEquipment> lsItemEquip = new List<ItemEquipment>();
     public ItemEquipmentSelect itemEquipPrefab;
 
@@ -104,7 +89,19 @@ public class GameManager : MonoBehaviour
     public List<Hero> lsEnemy = new List<Hero>();
     public List<Hero> lsChild = new List<Hero>();
 
-    [Header("ATTACK")]
+    [Header("EQUIP")]
+    public long exp;
+    public int countBattle;
+    public int atkWalk = 0;
+    public int atkFly = 0;
+    public int atkMele = 0;
+    public int atkArcher = 0;
+    public int hlthWalk = 0;
+    public int hlthFly = 0;
+    public int hlthMele = 0;
+    public int hlthArcher = 0;
+
+    [Header("SECENE_ATTACK")]
     public List<Transform> lsPosHero;
     public List<Transform> lsPosEnemy;
     [HideInInspector]
@@ -1273,12 +1270,12 @@ public class GameManager : MonoBehaviour
         {
             BuildHouse bh = new BuildHouse();
             bh.ID = i;
-            //if (i >= 5)
-            //    bh.isUnlock = false;
-            //else
-            //    bh.isUnlock = true;
-            //if (i == 8)
-            bh.isUnlock = true;
+            if (i >= 5)
+                bh.isUnlock = false;
+            else
+                bh.isUnlock = true;
+            if (i == 8)
+                bh.isUnlock = true;
             lsBuildHouse.Add(bh);
         }
         if (lsGoldMinePlayer.Count >= 2)
@@ -1339,6 +1336,22 @@ public class GameManager : MonoBehaviour
             coin = 0;
         }
         UIManager.Instance.txtCoin.text = UIManager.Instance.ConvertNumber(coin);
+    }
+
+    public void GetExp(long _exp)
+    {
+        exp = _exp;
+        UIManager.Instance.txtExp.text = UIManager.Instance.ConvertNumber(exp);
+    }
+
+    public void AddExp(long _exp)
+    {
+        exp += _exp;
+        if (exp < 0)
+        {
+            exp = 0;
+        }
+        UIManager.Instance.txtExp.text = UIManager.Instance.ConvertNumber(exp);
     }
     #endregion
 

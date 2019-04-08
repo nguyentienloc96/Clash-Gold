@@ -30,6 +30,20 @@ public class Hero_DeadlyBABY : Hero {
     {
         this.infoHero.ID = 31;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 30 + GameConfig.Instance.lsInfoHero.Count - 4];
+        if (GameConfig.Instance.lsEquip[2].isHealth)
+        {
+            this.infoHero.health += infoHero.health * 0.5f;
+        }
+        if (GameConfig.Instance.lsEquip[2].isAtk)
+        {
+            this.infoHero.dame += infoHero.dame * 0.5f;
+            this.infoHero.dameDead += infoHero.dameDead * 0.5f;
+            this.infoHero.counterDame += infoHero.counterDame * 0.5f;
+        }
+        if (GameConfig.Instance.lsEquip[2].isHitSpeed)
+        {
+            this.infoHero.hitSpeed += infoHero.hitSpeed * 0.5f;
+        }
     }
     // Use this for initialization
     public void Start()

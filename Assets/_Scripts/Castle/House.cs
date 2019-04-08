@@ -36,6 +36,7 @@ public class House : MonoBehaviour
     public long priceWillUpgrade;
     public int capWillUpgrade;
     public int levelWillupgrade;
+    public long priceWillUpgradeCurrent;
 
     public Text txtCountHero;
     public Text txtCountTime;
@@ -111,15 +112,20 @@ public class House : MonoBehaviour
     {
         levelWillupgrade = info.level + _x;
         priceWillUpgrade = (long)(info.price * Mathf.Pow(GameConfig.Instance.Ri, _x));
+        priceWillUpgradeCurrent = priceWillUpgrade;
         capWillUpgrade = (int)(info.capWar * Mathf.Pow(GameConfig.Instance.Wi, _x));
+        if (GameConfig.Instance.lsEquip[info.idHero - 1].isUpgrade)
+        {
+            priceWillUpgrade -= (int)(priceWillUpgrade * 0.3f);
+        }
     }
 
     public void YesUpgrade(int _x)
     {
         if (GameManager.Instance.gold < priceWillUpgrade)
             return;
-        info.price = priceWillUpgrade;
-        GameManager.Instance.AddGold(-info.price);
+        info.price = priceWillUpgradeCurrent;
+        GameManager.Instance.AddGold(-priceWillUpgrade);
         timeUpgrade = GameConfig.Instance.UpgradeTime * _x;
         info.typeState = TypeStateHouse.Upgrading;
         txtCountHero.gameObject.SetActive(false);
@@ -162,18 +168,23 @@ public class House : MonoBehaviour
         {
             infoDetail += ": Mele";
         }
+        long price = info.price;
+        if (GameConfig.Instance.lsEquip[info.idHero - 1].isCost)
+        {
+            price -= (long)(price * 0.3f);
+        }
         detail.GetInfo(
             UIManager.Instance.lsSprAvatarHero[_id],
             GameConfig.Instance.lsInfoHero[_id].nameHero,
             GameConfig.Instance.lsInfoHero[_id].info,
             infoDetail,
-            info.price,
+            price,
             () =>
             {
                 YesBuild(_id);
                 UIManager.Instance.panelBuildHouse.SetActive(false);
             });
-        if (GameManager.Instance.gold < info.price)
+        if (GameManager.Instance.gold < price)
         {
             detail.btnYes.interactable = false;
         }
@@ -182,9 +193,14 @@ public class House : MonoBehaviour
     public void YesBuild(int _id)
     {
         info.price = (int)GameConfig.Instance.lsInfoHero[_id].price;
-        if (GameManager.Instance.gold < info.price)
+        long price = info.price;
+        if (GameConfig.Instance.lsEquip[info.idHero - 1].isCost)
+        {
+            price -= (long)(price * 0.3f);
+        }
+        if (GameManager.Instance.gold < price)
             return;
-        GameManager.Instance.AddGold(-info.price);
+        GameManager.Instance.AddGold(-price);
         timeBuild = GameConfig.Instance.BuildTime * info.ID;
         timeUpgrade = GameConfig.Instance.UpgradeTime;
         info.typeState = TypeStateHouse.Building;
@@ -215,7 +231,7 @@ public class House : MonoBehaviour
         this.PostEvent(EventID.BuildHouseComplete, keyHouse);
     }
 
-    public void BuildCompleteJson(int level,int idHero,int countHero)
+    public void BuildCompleteJson(int level, int idHero, int countHero)
     {
         info.typeState = TypeStateHouse.None;
         this.RegisterListener(EventID.NextDay, (param) => OnNextDay());

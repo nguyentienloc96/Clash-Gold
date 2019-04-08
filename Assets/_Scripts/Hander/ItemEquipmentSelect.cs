@@ -12,5 +12,9 @@ public class ItemEquipmentSelect : MonoBehaviour {
     public Text txtInfo;
     public Text txtPrice;
 
+    public Image boderEquipTop;
+
     public Button btnEquip;
+
+    public long price;
 }

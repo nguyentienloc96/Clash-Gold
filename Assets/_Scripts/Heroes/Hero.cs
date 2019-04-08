@@ -164,6 +164,11 @@ public abstract class Hero : MonoBehaviour
         else if (goldMine != null)
         {
             goldMine.AddHero(idGoldMine, -numberSub);
+            if (GameManager.Instance.isAttackGoldMineEnemy && infoHero.ID < 31)
+            {
+                long expAdd = (long)((numberSub * GameManager.Instance.ratioBorn* GameManager.Instance.ratioBorn)/(GameManager.Instance.countBattle* GameManager.Instance.dateGame));
+                GameManager.Instance.AddExp(expAdd);
+            }
         }
 
         if (infoHero.countHero <= 0)
