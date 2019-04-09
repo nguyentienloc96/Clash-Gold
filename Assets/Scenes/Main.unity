@@ -9997,7 +9997,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 79681005}
-        m_MethodName: BtnEquip_Onclick
+        m_MethodName: CloseEquip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
