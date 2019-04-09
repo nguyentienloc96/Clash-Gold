@@ -396,6 +396,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (ItemEquipmentSelect item in lsItemEquip)
         {
+            Debug.Log(item.Exp);
             if (GameManager.Instance.exp >= item.Exp)
             {
                 item.btnEquip.interactable = true;
@@ -410,7 +411,9 @@ public class UIManager : MonoBehaviour
     public int indexEquip = 0;
     public void BtnEquip_Onclick()
     {
+        Time.timeScale = 1;
         txtExp.text = "Exp : " + ConvertNumber(GameManager.Instance.exp);
+        panelSeting.SetActive(false);
         panelEquip.SetActive(true);
         if (contentEquip.childCount > 0)
         {
@@ -450,7 +453,7 @@ public class UIManager : MonoBehaviour
                     long Exp1 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eAtk));
                     item1.txtPrice.text = ConvertNumber(Exp1);
                     item1.iconEquip.sprite = arrImgTypeEquip[1];
-                    item1.Exp = Exp;
+                    item1.Exp = Exp1;
                     if (GameManager.Instance.exp > Exp1)
                     {
                         item1.btnEquip.interactable = true;
@@ -469,7 +472,7 @@ public class UIManager : MonoBehaviour
                     long Exp2 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eHit_Speed));
                     item2.txtPrice.text = ConvertNumber(Exp2);
                     item2.iconEquip.sprite = arrImgTypeEquip[2];
-                    item2.Exp = Exp;
+                    item2.Exp = Exp2;
                     if (GameManager.Instance.exp > Exp2)
                     {
                         item2.btnEquip.interactable = true;
@@ -488,7 +491,7 @@ public class UIManager : MonoBehaviour
                     long Exp3 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eCost));
                     item3.txtPrice.text = ConvertNumber(Exp3);
                     item3.iconEquip.sprite = arrImgTypeEquip[3];
-                    item3.Exp = Exp;
+                    item3.Exp = Exp3;
                     if (GameManager.Instance.exp > Exp3)
                     {
                         item3.btnEquip.interactable = true;
@@ -507,7 +510,7 @@ public class UIManager : MonoBehaviour
                     long Exp4 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eConstruction));
                     item4.txtPrice.text = ConvertNumber(Exp4);
                     item4.iconEquip.sprite = arrImgTypeEquip[4];
-                    item4.Exp = Exp;
+                    item4.Exp = Exp4;
                     if (GameManager.Instance.exp > Exp4)
                     {
                         item4.btnEquip.interactable = true;
@@ -695,6 +698,7 @@ public class UIManager : MonoBehaviour
                 item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 7, Exp, item.btnEquip, item));
             }
         }
+        Time.timeScale = 0;
     }
 
     public void Equip_Type1(int IDHouse, int type, long Exp, Button btnEquip, ItemEquipmentSelect itemEquip)
