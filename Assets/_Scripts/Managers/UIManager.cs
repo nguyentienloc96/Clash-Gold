@@ -104,7 +104,7 @@ public class UIManager : MonoBehaviour
     [Header("EQUIP")]
     public GameObject panelEquip;
     public Transform contentEquip;
-    public List<GameObject> lsItemEquip = new List<GameObject>();
+    public List<ItemEquipmentSelect> lsItemEquip = new List<ItemEquipmentSelect>();
     public Sprite[] arrImgTypeEquip = new Sprite[5];
     public Sprite[] arrImgIconType = new Sprite[4];
     public Sprite[] arrImgBtnEquip = new Sprite[3];
@@ -391,23 +391,147 @@ public class UIManager : MonoBehaviour
     #endregion
 
     #region === EQUIP ===
+
+    public void CheckBtnEquip()
+    {
+        foreach (ItemEquipmentSelect item in lsItemEquip)
+        {
+            if (GameManager.Instance.exp >= item.Exp)
+            {
+                item.btnEquip.interactable = true;
+            }
+            else
+            {
+                item.btnEquip.interactable = false;
+            }
+        }
+    }
+
     public int indexEquip = 0;
     public void BtnEquip_Onclick()
     {
+        txtExp.text = "Exp : " + ConvertNumber(GameManager.Instance.exp);
         panelEquip.SetActive(true);
-        for (int i = 0; i < GameManager.Instance.lsBuildHouse.Count; i++)
+        if (contentEquip.childCount > 0)
         {
-            if (GameManager.Instance.lsBuildHouse[i].isUnlock)
+            CheckBtnEquip();
+        }
+        else
+        {
+            for (int i = 0; i < GameManager.Instance.lsBuildHouse.Count; i++)
             {
-                int IDHouse = GameManager.Instance.lsBuildHouse[i].ID;
+                if (GameManager.Instance.lsBuildHouse[i].isUnlock)
+                {
+                    int IDHouse = GameManager.Instance.lsBuildHouse[i].ID;
 
+                    ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                    item.iconHero.sprite = lsSprAvatarHero[IDHouse];
+                    item.txtInfo.text = "Increase health " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
+                    item.txtPercent.text = "+50%";
+                    long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eHealth));
+                    item.txtPrice.text = ConvertNumber(Exp);
+                    item.iconEquip.sprite = arrImgTypeEquip[0];
+                    item.Exp = Exp;
+                    if (GameManager.Instance.exp > Exp)
+                    {
+                        item.btnEquip.interactable = true;
+                    }
+                    else
+                    {
+                        item.btnEquip.interactable = false;
+                    }
+                    item.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 0, Exp, item.btnEquip, item));
+                    lsItemEquip.Add(item);
+
+                    ItemEquipmentSelect item1 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                    item1.iconHero.sprite = lsSprAvatarHero[IDHouse];
+                    item1.txtInfo.text = "Increase attack " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
+                    item1.txtPercent.text = "+50%";
+                    long Exp1 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eAtk));
+                    item1.txtPrice.text = ConvertNumber(Exp1);
+                    item1.iconEquip.sprite = arrImgTypeEquip[1];
+                    item1.Exp = Exp;
+                    if (GameManager.Instance.exp > Exp1)
+                    {
+                        item1.btnEquip.interactable = true;
+                    }
+                    else
+                    {
+                        item1.btnEquip.interactable = false;
+                    }
+                    item1.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 1, Exp1, item1.btnEquip, item1));
+                    lsItemEquip.Add(item1);
+
+                    ItemEquipmentSelect item2 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                    item2.iconHero.sprite = lsSprAvatarHero[IDHouse];
+                    item2.txtInfo.text = "Decrease hit speed " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
+                    item2.txtPercent.text = "-30%";
+                    long Exp2 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eHit_Speed));
+                    item2.txtPrice.text = ConvertNumber(Exp2);
+                    item2.iconEquip.sprite = arrImgTypeEquip[2];
+                    item2.Exp = Exp;
+                    if (GameManager.Instance.exp > Exp2)
+                    {
+                        item2.btnEquip.interactable = true;
+                    }
+                    else
+                    {
+                        item2.btnEquip.interactable = false;
+                    }
+                    item2.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 2, Exp2, item2.btnEquip, item2));
+                    lsItemEquip.Add(item2);
+
+                    ItemEquipmentSelect item3 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                    item3.iconHero.sprite = lsSprAvatarHero[IDHouse];
+                    item3.txtInfo.text = "Decrease cost " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
+                    item3.txtPercent.text = "-30%";
+                    long Exp3 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eCost));
+                    item3.txtPrice.text = ConvertNumber(Exp3);
+                    item3.iconEquip.sprite = arrImgTypeEquip[3];
+                    item3.Exp = Exp;
+                    if (GameManager.Instance.exp > Exp3)
+                    {
+                        item3.btnEquip.interactable = true;
+                    }
+                    else
+                    {
+                        item3.btnEquip.interactable = false;
+                    }
+                    item3.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 3, Exp3, item3.btnEquip, item3));
+                    lsItemEquip.Add(item3);
+
+                    ItemEquipmentSelect item4 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                    item4.iconHero.sprite = lsSprAvatarHero[IDHouse];
+                    item4.txtInfo.text = "Decrease construction " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
+                    item4.txtPercent.text = "-30%";
+                    long Exp4 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eConstruction));
+                    item4.txtPrice.text = ConvertNumber(Exp4);
+                    item4.iconEquip.sprite = arrImgTypeEquip[4];
+                    item4.Exp = Exp;
+                    if (GameManager.Instance.exp > Exp4)
+                    {
+                        item4.btnEquip.interactable = true;
+                    }
+                    else
+                    {
+                        item4.btnEquip.interactable = false;
+                    }
+                    item4.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 4, Exp4, item4.btnEquip, item4));
+                    lsItemEquip.Add(item4);
+                }
+            }
+
+            for (int i = 0; i <= GameManager.Instance.atkWalk; i++)
+            {
                 ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-                item.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                item.txtInfo.text = "Increase health " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
-                item.txtPercent.text = "+50%";
-                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eHealth));
+                item.iconHero.sprite = arrImgIconType[0];
+                item.txtInfo.text = "Increase Atk for all Walking " + (i + 1) * GameConfig.Instance.AtkWalk + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkWalk;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
                 item.txtPrice.text = ConvertNumber(Exp);
-                item.iconEquip.sprite = arrImgTypeEquip[0];
+                item.iconEquip.sprite = arrImgTypeEquip[1];
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
                 if (GameManager.Instance.exp > Exp)
                 {
                     item.btnEquip.interactable = true;
@@ -416,234 +540,160 @@ public class UIManager : MonoBehaviour
                 {
                     item.btnEquip.interactable = false;
                 }
-                item.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 0, Exp, item.btnEquip, item));
-
-                ItemEquipmentSelect item1 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-                item1.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                item1.txtInfo.text = "Increase attack " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
-                item1.txtPercent.text = "+50%";
-                long Exp1 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eAtk));
-                item1.txtPrice.text = ConvertNumber(Exp1);
-                item1.iconEquip.sprite = arrImgTypeEquip[1];
-                if (GameManager.Instance.exp > Exp1)
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 0, Exp, item.btnEquip, item));
+                if (i == 0)
                 {
-                    item1.btnEquip.interactable = true;
+                    item.boderEquipTop.sprite = spBoderBig;
+                }
+            }
+            for (int i = 0; i <= GameManager.Instance.atkFly; i++)
+            {
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite = arrImgIconType[1];
+                item.txtInfo.text = "Increase Atk for all Flying " + (i + 1) * GameConfig.Instance.AtkFly + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkFly;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
+                item.txtPrice.text = ConvertNumber(Exp);
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
+                if (GameManager.Instance.exp > Exp)
+                {
+                    item.btnEquip.interactable = true;
                 }
                 else
                 {
-                    item1.btnEquip.interactable = false;
+                    item.btnEquip.interactable = false;
                 }
-                item1.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 1, Exp1, item1.btnEquip, item1));
-
-                ItemEquipmentSelect item2 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-                item2.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                item2.txtInfo.text = "Decrease hit speed " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
-                item2.txtPercent.text = "-30%";
-                long Exp2 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eHit_Speed));
-                item2.txtPrice.text = ConvertNumber(Exp2);
-                item2.iconEquip.sprite = arrImgTypeEquip[2];
-                if (GameManager.Instance.exp > Exp2)
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 1, Exp, item.btnEquip, item));
+                item.iconEquip.sprite = arrImgTypeEquip[1];
+            }
+            for (int i = 0; i <= GameManager.Instance.atkMele; i++)
+            {
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite = arrImgIconType[2];
+                item.txtInfo.text = "Increase Atk for all Mele " + (i + 1) * GameConfig.Instance.AtkMele + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkMele;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
+                item.txtPrice.text = ConvertNumber(Exp);
+                item.iconEquip.sprite = arrImgTypeEquip[1];
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
+                if (GameManager.Instance.exp > Exp)
                 {
-                    item2.btnEquip.interactable = true;
+                    item.btnEquip.interactable = true;
                 }
                 else
                 {
-                    item2.btnEquip.interactable = false;
+                    item.btnEquip.interactable = false;
                 }
-                item2.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 2, Exp2, item2.btnEquip, item2));
-
-                ItemEquipmentSelect item3 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-                item3.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                item3.txtInfo.text = "Decrease cost " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
-                item3.txtPercent.text = "-30%";
-                long Exp3 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eCost));
-                item3.txtPrice.text = ConvertNumber(Exp3);
-                item3.iconEquip.sprite = arrImgTypeEquip[3];
-                if (GameManager.Instance.exp > Exp3)
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 2, Exp, item.btnEquip, item));
+            }
+            for (int i = 0; i <= GameManager.Instance.atkArcher; i++)
+            {
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite = arrImgIconType[3];
+                item.txtInfo.text = "Increase Atk for all Archery " + (i + 1) * GameConfig.Instance.AtkArcher + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkArcher;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
+                item.txtPrice.text = ConvertNumber(Exp);
+                item.iconEquip.sprite = arrImgTypeEquip[1];
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
+                if (GameManager.Instance.exp > Exp)
                 {
-                    item3.btnEquip.interactable = true;
+                    item.btnEquip.interactable = true;
                 }
                 else
                 {
-                    item3.btnEquip.interactable = false;
+                    item.btnEquip.interactable = false;
                 }
-                item3.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 3, Exp3, item3.btnEquip, item3));
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 3, Exp, item.btnEquip, item));
+            }
 
-                ItemEquipmentSelect item4 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-                item4.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                item4.txtInfo.text = "Decrease construction " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
-                item4.txtPercent.text = "-30%";
-                long Exp4 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eConstruction));
-                item4.txtPrice.text = ConvertNumber(Exp4);
-                item4.iconEquip.sprite = arrImgTypeEquip[4];
-                if (GameManager.Instance.exp > Exp4)
+            for (int i = 0; i <= GameManager.Instance.hlthWalk; i++)
+            {
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite = arrImgIconType[0];
+                item.txtInfo.text = "Increase Health for all Walking " + (i + 1) * GameConfig.Instance.HlthWalk + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthWalk;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
+                item.txtPrice.text = ConvertNumber(Exp);
+                item.iconEquip.sprite = arrImgTypeEquip[0];
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
+                if (GameManager.Instance.exp > Exp)
                 {
-                    item4.btnEquip.interactable = true;
+                    item.btnEquip.interactable = true;
                 }
                 else
                 {
-                    item4.btnEquip.interactable = false;
+                    item.btnEquip.interactable = false;
                 }
-                item4.btnEquip.onClick.AddListener(() => Equip_Type1(IDHouse, 4, Exp4, item4.btnEquip, item4));
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 4, Exp, item.btnEquip, item));
             }
-        }
-
-        for (int i = 0; i <= GameManager.Instance.atkWalk; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[0];
-            item.txtInfo.text = "Increase Atk for all Walking " + (i + 1) * GameConfig.Instance.AtkWalk + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkWalk;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            item.iconEquip.sprite = arrImgTypeEquip[1];
-            if (GameManager.Instance.exp > Exp)
+            for (int i = 0; i <= GameManager.Instance.hlthFly; i++)
             {
-                item.btnEquip.interactable = true;
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite = arrImgIconType[1];
+                item.txtInfo.text = "Increase Health for all Flying " + (i + 1) * GameConfig.Instance.HlthFly + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthFly;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
+                item.txtPrice.text = ConvertNumber(Exp);
+                item.iconEquip.sprite = arrImgTypeEquip[0];
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
+                if (GameManager.Instance.exp > Exp)
+                {
+                    item.btnEquip.interactable = true;
+                }
+                else
+                {
+                    item.btnEquip.interactable = false;
+                }
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 5, Exp, item.btnEquip, item));
             }
-            else
+            for (int i = 0; i <= GameManager.Instance.hlthMele; i++)
             {
-                item.btnEquip.interactable = false;
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite = arrImgIconType[2];
+                item.txtInfo.text = "Increase Health for all Mele " + (i + 1) * GameConfig.Instance.HlthMele + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthMele;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
+                item.txtPrice.text = ConvertNumber(Exp);
+                item.iconEquip.sprite = arrImgTypeEquip[0];
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
+                if (GameManager.Instance.exp > Exp)
+                {
+                    item.btnEquip.interactable = true;
+                }
+                else
+                {
+                    item.btnEquip.interactable = false;
+                }
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 6, Exp, item.btnEquip, item));
             }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 0, Exp, item.btnEquip, item));
-            if (i == 0)
+            for (int i = 0; i <= GameManager.Instance.hlthArcher; i++)
             {
-                item.boderEquipTop.sprite = spBoderBig;
+                ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
+                item.iconHero.sprite = arrImgIconType[3];
+                item.txtInfo.text = "Increase Health for all Archery " + (i + 1) * GameConfig.Instance.HlthArcher + " points";
+                item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthArcher;
+                long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
+                item.txtPrice.text = ConvertNumber(Exp);
+                item.iconEquip.sprite = arrImgTypeEquip[0];
+                item.Exp = Exp;
+                lsItemEquip.Add(item);
+                if (GameManager.Instance.exp > Exp)
+                {
+                    item.btnEquip.interactable = true;
+                }
+                else
+                {
+                    item.btnEquip.interactable = false;
+                }
+                item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 7, Exp, item.btnEquip, item));
             }
-        }
-        for (int i = 0; i <= GameManager.Instance.atkFly; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[1];
-            item.txtInfo.text = "Increase Atk for all Flying " + (i + 1) * GameConfig.Instance.AtkFly + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkFly;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            if (GameManager.Instance.exp > Exp)
-            {
-                item.btnEquip.interactable = true;
-            }
-            else
-            {
-                item.btnEquip.interactable = false;
-            }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 1, Exp, item.btnEquip, item));
-            item.iconEquip.sprite = arrImgTypeEquip[1];
-        }
-        for (int i = 0; i <= GameManager.Instance.atkMele; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[2];
-            item.txtInfo.text = "Increase Atk for all Mele " + (i + 1) * GameConfig.Instance.AtkMele + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkMele;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            item.iconEquip.sprite = arrImgTypeEquip[1];
-            if (GameManager.Instance.exp > Exp)
-            {
-                item.btnEquip.interactable = true;
-            }
-            else
-            {
-                item.btnEquip.interactable = false;
-            }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 2, Exp, item.btnEquip, item));
-        }
-        for (int i = 0; i <= GameManager.Instance.atkArcher; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[3];
-            item.txtInfo.text = "Increase Atk for all Archery " + (i + 1) * GameConfig.Instance.AtkArcher + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.AtkArcher;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            item.iconEquip.sprite = arrImgTypeEquip[1];
-            if (GameManager.Instance.exp > Exp)
-            {
-                item.btnEquip.interactable = true;
-            }
-            else
-            {
-                item.btnEquip.interactable = false;
-            }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 3, Exp, item.btnEquip, item));
-        }
-
-        for (int i = 0; i <= GameManager.Instance.hlthWalk; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[0];
-            item.txtInfo.text = "Increase Health for all Walking " + (i + 1) * GameConfig.Instance.HlthWalk + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthWalk;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            item.iconEquip.sprite = arrImgTypeEquip[0];
-            if (GameManager.Instance.exp > Exp)
-            {
-                item.btnEquip.interactable = true;
-            }
-            else
-            {
-                item.btnEquip.interactable = false;
-            }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 4, Exp, item.btnEquip, item));
-        }
-        for (int i = 0; i <= GameManager.Instance.hlthFly; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[1];
-            item.txtInfo.text = "Increase Health for all Flying " + (i + 1) * GameConfig.Instance.HlthFly + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthFly;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            item.iconEquip.sprite = arrImgTypeEquip[0];
-            if (GameManager.Instance.exp > Exp)
-            {
-                item.btnEquip.interactable = true;
-            }
-            else
-            {
-                item.btnEquip.interactable = false;
-            }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 5, Exp, item.btnEquip, item));
-        }
-        for (int i = 0; i <= GameManager.Instance.hlthMele; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[2];
-            item.txtInfo.text = "Increase Health for all Mele " + (i + 1) * GameConfig.Instance.HlthMele + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthMele;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            item.iconEquip.sprite = arrImgTypeEquip[0];
-            if (GameManager.Instance.exp > Exp)
-            {
-                item.btnEquip.interactable = true;
-            }
-            else
-            {
-                item.btnEquip.interactable = false;
-            }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 6, Exp, item.btnEquip, item));
-        }
-        for (int i = 0; i <= GameManager.Instance.hlthArcher; i++)
-        {
-            ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
-            item.iconHero.sprite = arrImgIconType[3];
-            item.txtInfo.text = "Increase Health for all Archery " + (i + 1) * GameConfig.Instance.HlthArcher + " points";
-            item.txtPercent.text = "+" + (i + 1) * GameConfig.Instance.HlthArcher;
-            long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, i));
-            item.txtPrice.text = ConvertNumber(Exp);
-            item.iconEquip.sprite = arrImgTypeEquip[0];
-            if (GameManager.Instance.exp > Exp)
-            {
-                item.btnEquip.interactable = true;
-            }
-            else
-            {
-                item.btnEquip.interactable = false;
-            }
-            item.btnEquip.onClick.AddListener(() => Equip_Type2(i + 1, 7, Exp, item.btnEquip, item));
         }
     }
 
@@ -676,8 +726,24 @@ public class UIManager : MonoBehaviour
             {
                 GetItem(GameManager.Instance.xSelectedEquip, itemEquip);
                 GameManager.Instance.xSelectedEquip++;
+                itemEquip.isInstall = true;
             }
-            btnEquip.image.sprite = arrImgBtnEquip[1];
+            else
+            {
+                itemEquip.btnEquip.image.sprite = arrImgBtnEquip[1];
+            }
+
+            GameManager.Instance.lsItemEquip[IDHouse].type = 0;
+            GameManager.Instance.lsItemEquip[IDHouse].IDHero = IDHouse + 1;
+            GameManager.Instance.lsItemEquip[IDHouse].typeChild = type;
+
+            itemEquip.typeBig = 0;
+            itemEquip.type = type;
+            itemEquip.IDHouse = IDHouse;
+            itemEquip.Exp = Exp;
+            itemEquip.btnEquip.onClick.RemoveAllListeners();
+            itemEquip.btnEquip.onClick.AddListener(() => GetItemNew(itemEquip));
+            CheckBtnEquip();
         }
     }
 
@@ -860,18 +926,101 @@ public class UIManager : MonoBehaviour
             {
                 GetItem(GameManager.Instance.xSelectedEquip, itemEquip);
                 GameManager.Instance.xSelectedEquip++;
+                itemEquip.isInstall = true;
             }
-            btnEquip.image.sprite = arrImgBtnEquip[1];
+            else
+            {
+                itemEquip.btnEquip.image.sprite = arrImgBtnEquip[1];
+            }
+            GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectedEquip].type = 1;
+            GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectedEquip].typeChild = type;
+            GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectedEquip].typeChild = buff + 1;
+
+            itemEquip.typeBig = 1;
+            itemEquip.type = type;
+            itemEquip.buff = buff;
+            itemEquip.Exp = ExpEquip;
+            itemEquip.btnEquip.onClick.RemoveAllListeners();
+            itemEquip.btnEquip.onClick.AddListener(()=>GetItemNew(itemEquip));
+            CheckBtnEquip();
         }
     }
-    
+
     public void GetItem(int ID, ItemEquipmentSelect itemEquip)
     {
         ItemEquipment item = GameManager.Instance.lsItemEquip[ID];
         item.objOpen.SetActive(true);
         item.iconHero.sprite = itemEquip.iconHero.sprite;
         item.iconEquip.sprite = itemEquip.iconEquip.sprite;
-        item.txtPercent.text = itemEquip.txtPercent.text;   
+        item.txtPercent.text = itemEquip.txtPercent.text;
+        itemEquip.btnEquip.image.sprite = arrImgBtnEquip[2];
+    }
+
+    public void GetItemNew(ItemEquipmentSelect itemEquip)
+    {
+        if (itemEquip.isInstall)
+            return;
+        ItemEquipment item = GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectEquip];
+        lsItemEquip[item.idItemEquip].isInstall = false;
+        lsItemEquip[item.idItemEquip].btnEquip.image.sprite = arrImgBtnEquip[1];
+        if (item.type == 0)
+        {
+            if (item.typeChild == 0)
+            {
+                GameConfig.Instance.lsEquip[item.IDHero - 1].isHealth = false;
+            }
+            else if (item.typeChild == 1)
+            {
+                GameConfig.Instance.lsEquip[item.IDHero - 1].isAtk = false;
+            }
+            else if (item.typeChild == 2)
+            {
+                GameConfig.Instance.lsEquip[item.IDHero - 1].isHitSpeed = false;
+            }
+            else if (item.typeChild == 3)
+            {
+                GameConfig.Instance.lsEquip[item.IDHero - 1].isCost = false;
+            }
+            else
+            {
+                GameConfig.Instance.lsEquip[item.IDHero - 1].isUpgrade = false;
+            }
+        }
+        else
+        {
+            if (item.typeChild == 0)
+            {
+                GameManager.Instance.atkWalk = 0; 
+            }
+            else if (item.typeChild == 1)
+            {
+                GameManager.Instance.atkFly = 0;
+            }
+            else if (item.typeChild == 2)
+            {
+                GameManager.Instance.atkMele = 0;
+            }
+            else if (item.typeChild == 3)
+            {
+                GameManager.Instance.atkArcher = 0;
+            }
+            else if (item.typeChild == 4)
+            {
+                GameManager.Instance.hlthWalk = 0;
+            }
+            else if (item.typeChild == 5)
+            {
+                GameManager.Instance.hlthFly = 0;
+            }
+            else if (item.typeChild == 6)
+            {
+                GameManager.Instance.hlthMele = 0;
+            }
+            else
+            {
+                GameManager.Instance.hlthArcher = 0;
+            }
+        }
     }
     #endregion
 }

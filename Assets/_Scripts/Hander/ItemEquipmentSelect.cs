@@ -17,4 +17,12 @@ public class ItemEquipmentSelect : MonoBehaviour {
     public Button btnEquip;
 
     public long price;
+
+    public int typeBig;
+    public int IDHouse;
+    public int buff;
+    public int type;
+    public long Exp;
+
+    public bool isInstall;
 }

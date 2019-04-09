@@ -16,6 +16,13 @@ public class ItemEquipment : MonoBehaviour
     public GameObject objOpen;
     public GameObject objHighLight;
 
+    public int idItemEquip;
+
+    public int type;
+    public int IDHero;
+    public int typeChild;
+    public float buff;
+
     public void OnClick()
     {
         if (isUnLock)

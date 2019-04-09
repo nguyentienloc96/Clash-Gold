@@ -1341,7 +1341,7 @@ public class GameManager : MonoBehaviour
     public void GetExp(long _exp)
     {
         exp = _exp;
-        UIManager.Instance.txtExp.text = UIManager.Instance.ConvertNumber(exp);
+        UIManager.Instance.txtExp.text = "Exp : " + UIManager.Instance.ConvertNumber(exp);
     }
 
     public void AddExp(long _exp)
@@ -1351,7 +1351,7 @@ public class GameManager : MonoBehaviour
         {
             exp = 0;
         }
-        UIManager.Instance.txtExp.text = UIManager.Instance.ConvertNumber(exp);
+        UIManager.Instance.txtExp.text = "Exp : " + UIManager.Instance.ConvertNumber(exp);
     }
     #endregion
 
