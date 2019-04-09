@@ -1270,11 +1270,11 @@ public class GameManager : MonoBehaviour
         {
             BuildHouse bh = new BuildHouse();
             bh.ID = i;
-            if (i >= 5)
-                bh.isUnlock = false;
-            else
-                bh.isUnlock = true;
-            if (i == 8)
+            //if (i >= 5)
+            //    bh.isUnlock = false;
+            //else
+            //    bh.isUnlock = true;
+            //if (i == 8)
                 bh.isUnlock = true;
             lsBuildHouse.Add(bh);
         }
