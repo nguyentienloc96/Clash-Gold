@@ -429,7 +429,7 @@ public class UIManager : MonoBehaviour
 
                     ItemEquipmentSelect item = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
                     item.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                    item.txtInfo.text = "Increase health " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
+                    item.txtInfo.text = "Increase health for " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
                     item.txtPercent.text = "+50%";
                     long Exp = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eHealth));
                     item.txtPrice.text = ConvertNumber(Exp);
@@ -448,7 +448,7 @@ public class UIManager : MonoBehaviour
 
                     ItemEquipmentSelect item1 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
                     item1.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                    item1.txtInfo.text = "Increase attack " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
+                    item1.txtInfo.text = "Increase attack for " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 50%";
                     item1.txtPercent.text = "+50%";
                     long Exp1 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eAtk));
                     item1.txtPrice.text = ConvertNumber(Exp1);
@@ -467,7 +467,7 @@ public class UIManager : MonoBehaviour
 
                     ItemEquipmentSelect item2 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
                     item2.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                    item2.txtInfo.text = "Decrease hit speed " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
+                    item2.txtInfo.text = "Decrease hit speed for " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
                     item2.txtPercent.text = "-30%";
                     long Exp2 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eHit_Speed));
                     item2.txtPrice.text = ConvertNumber(Exp2);
@@ -486,7 +486,7 @@ public class UIManager : MonoBehaviour
 
                     ItemEquipmentSelect item3 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
                     item3.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                    item3.txtInfo.text = "Decrease cost " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
+                    item3.txtInfo.text = "Decrease cost for " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
                     item3.txtPercent.text = "-30%";
                     long Exp3 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eCost));
                     item3.txtPrice.text = ConvertNumber(Exp3);
@@ -505,7 +505,7 @@ public class UIManager : MonoBehaviour
 
                     ItemEquipmentSelect item4 = Instantiate(GameManager.Instance.itemEquipPrefab, contentEquip);
                     item4.iconHero.sprite = lsSprAvatarHero[IDHouse];
-                    item4.txtInfo.text = "Decrease construction " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
+                    item4.txtInfo.text = "Decrease construction for " + GameConfig.Instance.lsInfoHero[IDHouse].nameHero + " 30%";
                     item4.txtPercent.text = "-30%";
                     long Exp4 = (long)(GameConfig.Instance.Pb1 * Mathf.Pow(GameConfig.Instance.Pbrate, GameConfig.Instance.lsRdEquip[IDHouse].eConstruction));
                     item4.txtPrice.text = ConvertNumber(Exp4);
@@ -1025,6 +1025,12 @@ public class UIManager : MonoBehaviour
                 GameManager.Instance.hlthArcher = 0;
             }
         }
+    }
+
+    public void CloseEquip()
+    {
+        Time.timeScale = 1;
+        panelEquip.SetActive(false);
     }
     #endregion
 }
