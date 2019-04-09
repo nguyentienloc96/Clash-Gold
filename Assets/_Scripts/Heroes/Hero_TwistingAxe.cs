@@ -45,6 +45,10 @@ public class Hero_TwistingAxe : Hero
     {
         this.infoHero.ID = 18;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
+        this.infoHero.dame += GameConfig.Instance.AtkMele * GameManager.Instance.atkMele + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.health += GameConfig.Instance.HlthWalk * GameManager.Instance.hlthWalk + GameConfig.Instance.HlthMele * GameManager.Instance.hlthMele;
+        this.infoHero.dameDead += GameConfig.Instance.AtkMele * GameManager.Instance.atkMele + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.counterDame += GameConfig.Instance.AtkMele * GameManager.Instance.atkMele + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
         if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isHealth)
         {
             this.infoHero.health += infoHero.health * 0.5f;

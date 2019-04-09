@@ -31,6 +31,10 @@ public class Hero_BalloonKing : Hero {
     {
         this.infoHero.ID = 4;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
+        this.infoHero.dame += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkFly * GameManager.Instance.atkFly;
+        this.infoHero.health += GameConfig.Instance.HlthFly * GameManager.Instance.hlthFly + GameConfig.Instance.HlthArcher * GameManager.Instance.hlthArcher;
+        this.infoHero.dameDead += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkFly * GameManager.Instance.atkFly;
+        this.infoHero.counterDame += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkFly * GameManager.Instance.atkFly;
         if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isHealth)
         {
             this.infoHero.health += infoHero.health * 0.5f;

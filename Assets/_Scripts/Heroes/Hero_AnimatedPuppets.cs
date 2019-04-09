@@ -30,6 +30,10 @@ public class Hero_AnimatedPuppets : Hero {
     {
         this.infoHero.ID = 33;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 30 + GameConfig.Instance.lsInfoHero.Count - 4];
+        this.infoHero.dame += GameConfig.Instance.AtkMele * GameManager.Instance.atkMele + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.health += GameConfig.Instance.HlthWalk * GameManager.Instance.hlthWalk + GameConfig.Instance.HlthMele * GameManager.Instance.hlthMele;
+        this.infoHero.dameDead += GameConfig.Instance.AtkMele * GameManager.Instance.atkMele + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.counterDame += GameConfig.Instance.AtkMele * GameManager.Instance.atkMele + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
         if (GameConfig.Instance.lsEquip[3].isHealth)
         {
             this.infoHero.health += infoHero.health * 0.5f;

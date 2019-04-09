@@ -30,6 +30,10 @@ public class Hero_Reflector : Hero {
     {
         this.infoHero.ID = 10;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
+        this.infoHero.dame += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.health += GameConfig.Instance.HlthWalk * GameManager.Instance.hlthWalk + GameConfig.Instance.HlthArcher * GameManager.Instance.hlthArcher;
+        this.infoHero.dameDead += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.counterDame += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
         if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isHealth)
         {
             this.infoHero.health += infoHero.health * 0.5f;

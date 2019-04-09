@@ -52,6 +52,10 @@ public class Hero_BlastingDeath : Hero
     {
         this.infoHero.ID = 17;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
+        this.infoHero.dame += GameConfig.Instance.AtkFly * GameManager.Instance.atkFly + GameConfig.Instance.AtkMele * GameManager.Instance.atkMele;
+        this.infoHero.health += GameConfig.Instance.HlthFly * GameManager.Instance.hlthFly + GameConfig.Instance.HlthMele * GameManager.Instance.hlthMele;
+        this.infoHero.dameDead += GameConfig.Instance.AtkFly * GameManager.Instance.atkFly + GameConfig.Instance.AtkMele * GameManager.Instance.atkMele;
+        this.infoHero.counterDame += GameConfig.Instance.AtkFly * GameManager.Instance.atkFly + GameConfig.Instance.AtkMele * GameManager.Instance.atkMele;
         if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isHealth)
         {
             this.infoHero.health += infoHero.health * 0.5f;

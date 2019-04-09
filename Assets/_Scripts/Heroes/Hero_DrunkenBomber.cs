@@ -37,6 +37,10 @@ public class Hero_DrunkenBomber : Hero
     {
         this.infoHero.ID = 7;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 1];
+        this.infoHero.dame += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.health += GameConfig.Instance.HlthWalk * GameManager.Instance.hlthWalk + GameConfig.Instance.HlthArcher * GameManager.Instance.hlthArcher;
+        this.infoHero.dameDead += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
+        this.infoHero.counterDame += GameConfig.Instance.AtkArcher * GameManager.Instance.atkArcher + GameConfig.Instance.AtkWalk * GameManager.Instance.atkWalk;
         spreadDame = 4 * GameConfig.Instance.UnitRange;
         if (GameConfig.Instance.lsEquip[infoHero.ID - 1].isHealth)
         {

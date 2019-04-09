@@ -169,7 +169,7 @@ public class House : MonoBehaviour
             infoDetail += ": Mele";
         }
         long price = info.price;
-        if (GameConfig.Instance.lsEquip[info.idHero - 1].isCost)
+        if (GameConfig.Instance.lsEquip[_id].isCost)
         {
             price -= (long)(price * 0.3f);
         }
@@ -194,7 +194,7 @@ public class House : MonoBehaviour
     {
         info.price = (int)GameConfig.Instance.lsInfoHero[_id].price;
         long price = info.price;
-        if (GameConfig.Instance.lsEquip[info.idHero - 1].isCost)
+        if (GameConfig.Instance.lsEquip[_id].isCost)
         {
             price -= (long)(price * 0.3f);
         }

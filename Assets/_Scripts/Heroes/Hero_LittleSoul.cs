@@ -31,6 +31,10 @@ public class Hero_LittleSoul : Hero {
     {
         this.infoHero.ID = 32;
         this.infoHero = GameConfig.Instance.lsInfoHero[this.infoHero.ID - 30 + GameConfig.Instance.lsInfoHero.Count - 4];
+        this.infoHero.dame += GameConfig.Instance.AtkFly * GameManager.Instance.atkFly + GameConfig.Instance.AtkMele * GameManager.Instance.atkMele;
+        this.infoHero.health += GameConfig.Instance.HlthFly * GameManager.Instance.hlthFly + GameConfig.Instance.HlthMele * GameManager.Instance.hlthMele;
+        this.infoHero.dameDead += GameConfig.Instance.AtkFly * GameManager.Instance.atkFly + GameConfig.Instance.AtkMele * GameManager.Instance.atkMele;
+        this.infoHero.counterDame += GameConfig.Instance.AtkFly * GameManager.Instance.atkFly + GameConfig.Instance.AtkMele * GameManager.Instance.atkMele;
         if (GameConfig.Instance.lsEquip[15].isHealth)
         {
             this.infoHero.health += infoHero.health * 0.5f;
