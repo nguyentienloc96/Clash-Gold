@@ -396,14 +396,16 @@ public class UIManager : MonoBehaviour
     {
         foreach (ItemEquipmentSelect item in lsItemEquip)
         {
-            Debug.Log(item.Exp);
-            if (GameManager.Instance.exp >= item.Exp)
+            if (item.isUnlock)
             {
                 item.btnEquip.interactable = true;
             }
             else
             {
-                item.btnEquip.interactable = false;
+                if (GameManager.Instance.exp >= item.Exp)
+                    item.btnEquip.interactable = true;
+                else
+                    item.btnEquip.interactable = false;
             }
         }
     }
@@ -726,15 +728,17 @@ public class UIManager : MonoBehaviour
             {
                 GameConfig.Instance.lsEquip[IDHouse].isUpgrade = true;
             }
-            if (GameManager.Instance.xSelectedEquip < GameManager.Instance.xOpenEquip)
+            if (GameManager.Instance.xSelectedEquip <= GameManager.Instance.xOpenEquip)
             {
                 GetItem(GameManager.Instance.xSelectedEquip, itemEquip);
                 GameManager.Instance.xSelectedEquip++;
                 itemEquip.isInstall = true;
+                itemEquip.isUnlock = true;
             }
             else
             {
                 itemEquip.btnEquip.image.sprite = arrImgBtnEquip[1];
+                itemEquip.isUnlock = true;
             }
 
             GameManager.Instance.lsItemEquip[IDHouse].type = 0;
@@ -931,10 +935,12 @@ public class UIManager : MonoBehaviour
                 GetItem(GameManager.Instance.xSelectedEquip, itemEquip);
                 GameManager.Instance.xSelectedEquip++;
                 itemEquip.isInstall = true;
+                itemEquip.isUnlock = true;
             }
             else
             {
                 itemEquip.btnEquip.image.sprite = arrImgBtnEquip[1];
+                itemEquip.isUnlock = true;
             }
             GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectedEquip].type = 1;
             GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectedEquip].typeChild = type;
@@ -945,7 +951,7 @@ public class UIManager : MonoBehaviour
             itemEquip.buff = buff;
             itemEquip.Exp = ExpEquip;
             itemEquip.btnEquip.onClick.RemoveAllListeners();
-            itemEquip.btnEquip.onClick.AddListener(()=>GetItemNew(itemEquip));
+            itemEquip.btnEquip.onClick.AddListener(() => GetItemNew(itemEquip));
             CheckBtnEquip();
         }
     }
@@ -962,7 +968,7 @@ public class UIManager : MonoBehaviour
 
     public void GetItemNew(ItemEquipmentSelect itemEquip)
     {
-        if (itemEquip.isInstall)
+        if (itemEquip.isInstall && !itemEquip.isUnlock)
             return;
         ItemEquipment item = GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectEquip];
         lsItemEquip[item.idItemEquip].isInstall = false;
@@ -994,7 +1000,7 @@ public class UIManager : MonoBehaviour
         {
             if (item.typeChild == 0)
             {
-                GameManager.Instance.atkWalk = 0; 
+                GameManager.Instance.atkWalk = 0;
             }
             else if (item.typeChild == 1)
             {
@@ -1025,6 +1031,7 @@ public class UIManager : MonoBehaviour
                 GameManager.Instance.hlthArcher = 0;
             }
         }
+        GetItem(item.idItemEquip, itemEquip);
     }
 
     public void CloseEquip()

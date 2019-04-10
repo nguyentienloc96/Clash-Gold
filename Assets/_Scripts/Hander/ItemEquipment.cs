@@ -37,6 +37,7 @@ public class ItemEquipment : MonoBehaviour
             if (GameManager.Instance.gold > expNeed)
             {
                 GameManager.Instance.AddExp(-expNeed);
+                UIManager.Instance.CheckBtnEquip();
                 objLock.SetActive(false);
                 GameManager.Instance.lsItemEquip[GameManager.Instance.xSelectEquip].objHighLight.SetActive(false);
                 GameManager.Instance.xSelectEquip = ID;

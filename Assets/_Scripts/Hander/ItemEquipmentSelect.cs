@@ -25,4 +25,5 @@ public class ItemEquipmentSelect : MonoBehaviour {
     public long Exp;
 
     public bool isInstall;
+    public bool isUnlock;
 }
